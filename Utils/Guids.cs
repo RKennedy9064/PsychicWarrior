@@ -1,0 +1,42 @@
+﻿namespace PsychicWarrior.Utils;
+
+public static class Guids
+{
+    public const string PsychicWarriorClass = "4c8f9c4e-7f22-4d9b-a9b9-2f7a9f7e1d01";
+    public const string PsychicWarriorProgression = "1e54d8d4-ec8f-4d89-91d3-62b2f70d5b11";
+
+    public const string Proficiencies = "5c1f6b8b-e820-410a-ba6a-36b139988a0a";
+    public const string Spellbook = "a1b2c3d4-e5f6-4a5b-b8c9-d0e1f2a3b4c5";
+    public const string SpellList = "b2c3d4e5-f6a7-4b8c-c9d0-e1f2a3b4c5d6";
+
+    public const string BonusFeatSelection = "d2e4c1f9-0c65-4f7b-9f70-7ec822365e63";
+
+    public const string GainPsionicFocusFeature = "7a4d8b2f-9e1c-4d3a-b5c6-e7f8a9b0c1d2";
+    public const string GainPsionicFocusAbility = "b7a3d92f-18c4-4b8d-9a67-21c6130d24e5";
+    public const string PsionicFocusBuff = "f8c9301a-82f5-4d7c-b3a1-79b8c4d21e85";
+
+    public const string PsionicMeditationFeat = "c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e5f";
+    public const string GainPsionicFocusMoveAbility = "d2e3f4a5-b6c7-4d8e-9f0a-1b2c3d4e5f6a";
+
+    public const string PsionicWeaponFeat = "e1f2a3b4-c5d6-4e7f-8a9b-0c1d2e3f4a5b";
+
+    public const string PathSelectionLevel1 = "c3d4e5f6-a7b8-4c9d-d0e1-f2a3b4c5d6e7";
+    public const string WeaponmasterPath = "d4e5f6a7-b8c9-4d0e-e1f2-a3b4c5d6e7f8";
+    public const string WeaponmasterTrance = "8f3b2c1d-9a4e-47b2-8c5d-6e1f0a9b3c4d";
+    public const string WeaponmasterManeuver = "f4b2c1d3-e5a6-4f7e-8d9c-0b1a2f3e4d5c";
+    public const string WeaponmasterManeuverBuff = "d3e4f5a6-b7c8-4d9e-0f1a-2b3c4d5e6f7a";
+
+    public const string BrawlerPath = "5c2e1f4a-8b9d-4c3e-a1f2-b4d6e5a7c8f9";
+    public const string BrawlerTrance = "e3a1f4b2-c5d6-4e7f-8a9b-0c1d2e3f4a5b";
+    public const string BrawlerManeuver = "c5d6e7f8-a9b0-4c1d-2e3f-4a5b6c7d8e9f";
+    public const string BrawlerManeuverBuff = "e7f8a9b0-c1d2-4e3f-4a5b-6c7d8e9f0a1b";
+
+    public const string PathExpandedManeuver = "3e2d1c4b-5a6f-48e9-b7c8-9d0a1f2b3c4d";
+    public const string SecondaryPathSelection = "5f6a7b8c-9d0e-41f2-a3b4-c5d6e7f8a9b0";
+    public const string TwistingPaths = "2a3b4c5d-6e7f-48a9-b0c1-d2e3f4a5b6c7";
+    public const string Pathweaving = "8c9d0e1f-2a3b-44c5-d6e7-f8a9b0c1d2e3";
+
+    public const string PowerVigor = "e5f6a7b8-c9d0-4e1f-f2a3-b4c5d6e7f8a9";
+    public const string PowerMinorPrecognition = "a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d";
+    public const string PowerForceScreen = "b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e";
+}
