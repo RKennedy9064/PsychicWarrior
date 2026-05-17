@@ -22,19 +22,28 @@ public static class BlueprintInit
 
         try
         {
+            // Phase 1: Core Systems
             Mechanics.Focus.Configure();
+            Features.PsionicProficiency.Configure();
+            Features.TalentsSelection.Configure();
+            Features.PathSkillBonus.Configure();
+            Features.MartialPower.Configure();
 
+            // Powers
             Powers.MinorPrecognition.Configure();
             Powers.Vigor.Configure();
             Powers.ForceScreen.Configure();
 
+            // Features
             Features.PsychicWarriorProficiencies.Configure();
             Features.PsychicWarriorBonusFeat.Configure();
             Features.Paths.PsychicWarriorPathSelection.Configure();
 
+            // Feats
             Feats.PsionicMeditation.Configure();
             Feats.PsionicWeapon.Configure();
 
+            // Class Definition
             Classes.PsychicWarriorSpellbook.Configure();
             Classes.PsychicWarriorClass.Configure();
 

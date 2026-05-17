@@ -39,4 +39,11 @@ public static class Guids
     public const string PowerVigor = "e5f6a7b8-c9d0-4e1f-f2a3-b4c5d6e7f8a9";
     public const string PowerMinorPrecognition = "a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d";
     public const string PowerForceScreen = "b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e";
+
+    // Phase 1: Core Systems
+    public const string PsionicProficiency = "6c2f7d8e-9a0b-4c1d-e2f3-4a5b6c7d8e9f";
+    public const string TalentsSelection = "1d2e3f4a-5b6c-4d7e-8f9a-0b1c2d3e4f5a";
+    public const string PathSkillBonusFeature = "2e3f4a5b-6c7d-4e8f-9a0b-1c2d3e4f5a6b";
+    public const string PathSkillBonusSelection = "3f4a5b6c-7d8e-4f9a-0b1c-2d3e4f5a6b7c";
+    public const string MartialPowerFeature = "4a5b6c7d-8e9f-4a0b-1c2d-3e4f5a6b7c8d";
 }

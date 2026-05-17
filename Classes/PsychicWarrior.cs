@@ -19,20 +19,32 @@ public static class PsychicWarriorClass
             .SetUIGroups(
                 UIGroupBuilder.New()
                     .AddGroup(Guids.BonusFeatSelection)
-                    // --- Updated here ---
-                    .AddGroup(Guids.Proficiencies, Guids.GainPsionicFocusFeature)
-                    .AddGroup(Guids.PathSelectionLevel1, Guids.PathExpandedManeuver, Guids.SecondaryPathSelection, Guids.TwistingPaths, Guids.Pathweaving))
-            // --- Updated here ---
-            .AddToLevelEntries(1, Guids.Proficiencies, Guids.PathSelectionLevel1, Guids.BonusFeatSelection, Guids.GainPsionicFocusFeature)
+                    .AddGroup(Guids.Proficiencies, Guids.GainPsionicFocusFeature, Guids.PsionicProficiency)
+                    .AddGroup(Guids.PathSelectionLevel1, Guids.PathExpandedManeuver, Guids.TalentsSelection, Guids.PathSkillBonusFeature, Guids.MartialPowerFeature)
+                    .AddGroup(Guids.SecondaryPathSelection, Guids.TwistingPaths, Guids.Pathweaving))
+            .AddToLevelEntries(1, 
+                Guids.Proficiencies, 
+                Guids.GainPsionicFocusFeature, 
+                Guids.PsionicProficiency, 
+                Guids.PathSelectionLevel1, 
+                Guids.TalentsSelection, 
+                Guids.BonusFeatSelection)
             .AddToLevelEntries(2, Guids.BonusFeatSelection)
             .AddToLevelEntries(3, Guids.PathExpandedManeuver)
+            .AddToLevelEntries(4, Guids.PathSkillBonusFeature)
             .AddToLevelEntries(5, Guids.BonusFeatSelection)
+            .AddToLevelEntries(6, Guids.MartialPowerFeature)
+            .AddToLevelEntries(7, Guids.PathSkillBonusFeature)
             .AddToLevelEntries(8, Guids.BonusFeatSelection)
             .AddToLevelEntries(9, Guids.SecondaryPathSelection)
+            .AddToLevelEntries(10, Guids.PathSkillBonusFeature)
             .AddToLevelEntries(11, Guids.BonusFeatSelection, Guids.TwistingPaths)
+            .AddToLevelEntries(13, Guids.PathSkillBonusFeature)
             .AddToLevelEntries(14, Guids.BonusFeatSelection)
             .AddToLevelEntries(15, Guids.Pathweaving)
+            .AddToLevelEntries(16, Guids.PathSkillBonusFeature)
             .AddToLevelEntries(17, Guids.BonusFeatSelection)
+            .AddToLevelEntries(19, Guids.PathSkillBonusFeature)
             .AddToLevelEntries(20, Guids.BonusFeatSelection)
             .Configure();
 
