@@ -3,6 +3,7 @@ using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
+using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Mechanics;
 using PsychicWarrior.Utils;
@@ -28,6 +29,7 @@ public static class ForceScreen
                         durationValue: ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes)))
             .AddContextRankConfig(
                 ContextRankConfigs.CasterLevel())
+            .AddSpellComponent(SpellSchool.Abjuration)
             .Configure();
     }
 }

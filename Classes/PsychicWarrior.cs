@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Blueprints.Configurators.Classes;
+using BlueprintCore.Blueprints.Configurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
@@ -20,31 +20,38 @@ public static class PsychicWarriorClass
                 UIGroupBuilder.New()
                     .AddGroup(Guids.BonusFeatSelection)
                     .AddGroup(Guids.Proficiencies, Guids.GainPsionicFocusFeature, Guids.PsionicProficiency)
-                    .AddGroup(Guids.PathSelectionLevel1, Guids.PathExpandedManeuver, Guids.TalentsSelection, Guids.PathSkillBonusFeature, Guids.MartialPowerFeature)
+                    .AddGroup(
+                        Guids.PathSelectionLevel1,
+                        Guids.PathExpandedManeuver,
+                        Guids.TalentsSelection,
+                        Guids.PathSkillBonusSelection,
+                        Guids.MartialPowerFeature)
                     .AddGroup(Guids.SecondaryPathSelection, Guids.TwistingPaths, Guids.Pathweaving))
-            .AddToLevelEntries(1, 
-                Guids.Proficiencies, 
-                Guids.GainPsionicFocusFeature, 
-                Guids.PsionicProficiency, 
-                Guids.PathSelectionLevel1, 
-                Guids.TalentsSelection, 
+            // Level 1: proficiencies, focus, psionic proficiency, path, 2 talent picks, bonus feat
+            .AddToLevelEntries(1,
+                Guids.Proficiencies,
+                Guids.GainPsionicFocusFeature,
+                Guids.PsionicProficiency,
+                Guids.PathSelectionLevel1,
+                Guids.TalentsSelection,  // talent pick 1
+                Guids.TalentsSelection,  // talent pick 2
                 Guids.BonusFeatSelection)
             .AddToLevelEntries(2, Guids.BonusFeatSelection)
             .AddToLevelEntries(3, Guids.PathExpandedManeuver)
-            .AddToLevelEntries(4, Guids.PathSkillBonusFeature)
+            .AddToLevelEntries(4, Guids.PathSkillBonusSelection)
             .AddToLevelEntries(5, Guids.BonusFeatSelection)
             .AddToLevelEntries(6, Guids.MartialPowerFeature)
-            .AddToLevelEntries(7, Guids.PathSkillBonusFeature)
+            .AddToLevelEntries(7, Guids.PathSkillBonusSelection)
             .AddToLevelEntries(8, Guids.BonusFeatSelection)
             .AddToLevelEntries(9, Guids.SecondaryPathSelection)
-            .AddToLevelEntries(10, Guids.PathSkillBonusFeature)
+            .AddToLevelEntries(10, Guids.PathSkillBonusSelection)
             .AddToLevelEntries(11, Guids.BonusFeatSelection, Guids.TwistingPaths)
-            .AddToLevelEntries(13, Guids.PathSkillBonusFeature)
+            .AddToLevelEntries(13, Guids.PathSkillBonusSelection)
             .AddToLevelEntries(14, Guids.BonusFeatSelection)
             .AddToLevelEntries(15, Guids.Pathweaving)
-            .AddToLevelEntries(16, Guids.PathSkillBonusFeature)
+            .AddToLevelEntries(16, Guids.PathSkillBonusSelection)
             .AddToLevelEntries(17, Guids.BonusFeatSelection)
-            .AddToLevelEntries(19, Guids.PathSkillBonusFeature)
+            .AddToLevelEntries(19, Guids.PathSkillBonusSelection)
             .AddToLevelEntries(20, Guids.BonusFeatSelection)
             .Configure();
 
@@ -57,7 +64,11 @@ public static class PsychicWarriorClass
             .SetFortitudeSave(StatProgressionRefs.SavesHigh.ToString())
             .SetReflexSave(StatProgressionRefs.SavesLow.ToString())
             .SetWillSave(StatProgressionRefs.SavesLow.ToString())
-            .SetClassSkills(StatType.SkillAthletics, StatType.SkillMobility, StatType.SkillPerception)
+            .SetClassSkills(
+                StatType.SkillAthletics,
+                StatType.SkillMobility,
+                StatType.SkillPerception,
+                StatType.SkillStealth)
             .SetSpellbook(Guids.Spellbook)
             .SetProgression(progression)
             .SetStartingGold(411)

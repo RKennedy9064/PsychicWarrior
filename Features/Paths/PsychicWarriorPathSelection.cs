@@ -116,7 +116,79 @@ public static class PsychicWarriorPathSelection
             .AddToAllFeatures(brawlerPath)
             .Configure();
 
-        FeatureConfigurator.New("PathExpandedManeuver", Guids.PathExpandedManeuver).SetHideInUI(true).Configure();
+        // --- PathExpandedManeuver (Level 3): each path gains a second maneuver option ---
+
+        var wmExpandedBuff = BuffConfigurator.New("WeaponmasterExpandedManeuverBuff", Guids.WeaponmasterExpandedManeuverBuff)
+            .SetDisplayName(LocalizationTool.CreateString("PW.WMExpanded.Name", "Weaponmaster Expanded Maneuver"))
+            .SetDescription(LocalizationTool.CreateString("PW.WMExpanded.Desc", "You gain a +2 competence bonus to weapon damage rolls for 1 round."))
+            .SetIcon(wmManeuverIcon)
+            .AddComponent(new AddStatBonus { Stat = StatType.AdditionalDamage, Value = 2, Descriptor = ModifierDescriptor.Competence })
+            .Configure();
+
+        var wmExpandedAbility = AbilityConfigurator.New("WeaponmasterExpandedManeuverAbility", Guids.WeaponmasterExpandedManeuverAbility)
+            .SetDisplayName(LocalizationTool.CreateString("PW.WMExpandedAb.Name", "Weaponmaster Expanded Maneuver"))
+            .SetDescription(LocalizationTool.CreateString("PW.WMExpandedAb.Desc", "Swift Action. Expend Psionic Focus to gain a +2 competence bonus to weapon damage rolls for 1 round."))
+            .SetIcon(wmManeuverIcon)
+            .SetActionType(UnitCommand.CommandType.Swift)
+            .AddComponent(new AbilityCasterHasFacts
+            {
+                m_Facts = new[] { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) }
+            })
+            .AddAbilityEffectRunAction(
+                ActionsBuilder.New()
+                    .RemoveBuff(Guids.PsionicFocusBuff)
+                    .ApplyBuff(wmExpandedBuff, ContextDuration.Fixed(1)))
+            .Configure();
+
+        var wmExpandedFeature = FeatureConfigurator.New("WeaponmasterExpandedManeuver", Guids.WeaponmasterExpandedManeuver)
+            .SetDisplayName(LocalizationTool.CreateString("PW.WMExpandedFeat.Name", "Weaponmaster Expanded Maneuver"))
+            .SetDescription(LocalizationTool.CreateString("PW.WMExpandedFeat.Desc", "Swift Action. Expend Psionic Focus to gain a +2 competence bonus to weapon damage rolls for 1 round."))
+            .SetIcon(wmManeuverIcon)
+            .SetIsClassFeature()
+            .AddFacts([Guids.WeaponmasterExpandedManeuverAbility])
+            .AddPrerequisiteFeature(Guids.WeaponmasterPath)
+            .Configure();
+
+        var brawlerExpandedBuff = BuffConfigurator.New("BrawlerExpandedManeuverBuff", Guids.BrawlerExpandedManeuverBuff)
+            .SetDisplayName(LocalizationTool.CreateString("PW.BrawlerExpanded.Name", "Brawler Expanded Maneuver"))
+            .SetDescription(LocalizationTool.CreateString("PW.BrawlerExpanded.Desc", "You gain a +2 dodge bonus to AC for 1 round."))
+            .SetIcon(brawlerManeuverIcon)
+            .AddComponent(new AddStatBonus { Stat = StatType.AC, Value = 2, Descriptor = ModifierDescriptor.Dodge })
+            .Configure();
+
+        var brawlerExpandedAbility = AbilityConfigurator.New("BrawlerExpandedManeuverAbility", Guids.BrawlerExpandedManeuverAbility)
+            .SetDisplayName(LocalizationTool.CreateString("PW.BrawlerExpandedAb.Name", "Brawler Expanded Maneuver"))
+            .SetDescription(LocalizationTool.CreateString("PW.BrawlerExpandedAb.Desc", "Swift Action. Expend Psionic Focus to gain a +2 dodge bonus to AC for 1 round."))
+            .SetIcon(brawlerManeuverIcon)
+            .SetActionType(UnitCommand.CommandType.Swift)
+            .AddComponent(new AbilityCasterHasFacts
+            {
+                m_Facts = new[] { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) }
+            })
+            .AddAbilityEffectRunAction(
+                ActionsBuilder.New()
+                    .RemoveBuff(Guids.PsionicFocusBuff)
+                    .ApplyBuff(brawlerExpandedBuff, ContextDuration.Fixed(1)))
+            .Configure();
+
+        var brawlerExpandedFeature = FeatureConfigurator.New("BrawlerExpandedManeuver", Guids.BrawlerExpandedManeuver)
+            .SetDisplayName(LocalizationTool.CreateString("PW.BrawlerExpandedFeat.Name", "Brawler Expanded Maneuver"))
+            .SetDescription(LocalizationTool.CreateString("PW.BrawlerExpandedFeat.Desc", "Swift Action. Expend Psionic Focus to gain a +2 dodge bonus to AC for 1 round."))
+            .SetIcon(brawlerManeuverIcon)
+            .SetIsClassFeature()
+            .AddFacts([Guids.BrawlerExpandedManeuverAbility])
+            .AddPrerequisiteFeature(Guids.BrawlerPath)
+            .Configure();
+
+        FeatureSelectionConfigurator.New("PathExpandedManeuver", Guids.PathExpandedManeuver)
+            .SetDisplayName(LocalizationTool.CreateString("PW.PathExpandedManeuver.Name", "Expanded Path Maneuver"))
+            .SetDescription(LocalizationTool.CreateString("PW.PathExpandedManeuver.Desc",
+                "At 3rd level, you gain an additional maneuver from your chosen path, expanding your tactical options in combat."))
+            .SetIsClassFeature()
+            .SetIgnorePrerequisites(false)
+            .AddToAllFeatures(wmExpandedFeature, brawlerExpandedFeature)
+            .Configure();
+
         FeatureConfigurator.New("SecondaryPathSelection", Guids.SecondaryPathSelection).SetHideInUI(true).Configure();
         FeatureConfigurator.New("TwistingPaths", Guids.TwistingPaths).SetHideInUI(true).Configure();
         FeatureConfigurator.New("Pathweaving", Guids.Pathweaving).SetHideInUI(true).Configure();
