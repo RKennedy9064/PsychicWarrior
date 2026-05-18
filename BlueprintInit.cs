@@ -25,8 +25,16 @@ public static class BlueprintInit
         static void Run(string name, System.Action action, LogWrapper log)
         {
             try { action(); }
-            catch (System.Exception e) { log.Error($"[PsychicWarrior] {name} failed: {e}"); }
+            catch (System.Exception e)
+            {
+                log.Error($"[PsychicWarrior] {name} failed: {e}");
+                UnityEngine.Debug.LogError($"[PsychicWarrior] {name} failed: {e}");
+            }
         }
+
+        // Keep Debug.LogError on Configure failures (above) — silent failures
+        // led to a hard-to-find GUID collision; surfacing them to Player.log
+        // is cheap insurance for future blueprint additions.
 
         // ── Phase 1: Foundation ────────────────────────────────────────────────
         Run(nameof(Mechanics.Focus),                 Mechanics.Focus.Configure,                  logger);
@@ -95,5 +103,6 @@ public static class BlueprintInit
         {
             logger.Error($"[PsychicWarrior] Class registration failed: {e}");
         }
+
     }
 }

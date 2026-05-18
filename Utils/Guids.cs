@@ -72,11 +72,11 @@ public static class Guids
     public const string TalentPrecognitionDefensive = "e8f9a0b1-c2d3-4e4f-5a6b-7c8d9e0f1a2b";
     public const string TalentDeceleration = "f9a0b1c2-d3e4-4f5a-6b7c-8d9e0f1a2b3c";
 
-    // PathSkillBonus per-path features
-    public const string WeaponmasterPathSkillAthletics = "b1c2d3e4-f5a6-4b7c-8d9e-0f1a2b3c4d5e";
-    public const string WeaponmasterPathSkillPerception = "c2d3e4f5-a6b7-4c8d-9e0f-1a2b3c4d5e6f";
-    public const string BrawlerPathSkillAthletics = "d3e4f5a6-b7c8-4d9e-0f1a-2b3c4d5e6f7a";
-    public const string BrawlerPathSkillMobility = "e4f5a6b7-c8d9-4e0f-1a2b-3c4d5e6f7a8b";
+    // PathSkillBonus features — one per skill, with OR-prerequisites over all paths that grant it
+    public const string PathSkillAthletics  = "cb000001-0000-4000-8000-000000000001";
+    public const string PathSkillMobility   = "cb000002-0000-4000-8000-000000000001";
+    public const string PathSkillPerception = "cb000003-0000-4000-8000-000000000001";
+    public const string PathSkillStealth    = "cb000004-0000-4000-8000-000000000001";
 
     // Step 6: More 1st-level powers
     public const string PowerInertialArmor = "10a1b2c3-d4e5-4f6a-8b7c-9d0e1f2a3b4c";
