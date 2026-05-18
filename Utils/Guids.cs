@@ -90,10 +90,96 @@ public static class Guids
 
     // PathExpandedManeuver options
     // Feature = the FeatureSelection entry; Ability = the swift-action in the action bar; Buff = the applied effect
-    public const string WeaponmasterExpandedManeuver = "a6b7c8d9-e0f1-4a2b-3c4d-5e6f7a8b9c0d";       // Feature wrapper
-    public const string WeaponmasterExpandedManeuverAbility = "a7b8c9d0-e1f2-4a3b-4c5d-6e7f8a9b0c1d"; // Ability (swift action)
-    public const string WeaponmasterExpandedManeuverBuff = "b7c8d9e0-f1a2-4b3c-4d5e-6f7a8b9c0d1e";    // Buff applied
-    public const string BrawlerExpandedManeuver = "c8d9e0f1-a2b3-4c4d-5e6f-7a8b9c0d1e2f";             // Feature wrapper
-    public const string BrawlerExpandedManeuverAbility = "b8c9d0e1-f2a3-4b4c-5d6e-7f8a9b0c1d2e";      // Ability (swift action)
-    public const string BrawlerExpandedManeuverBuff = "d9e0f1a2-b3c4-4d5e-6f7a-8b9c0d1e2f3a";         // Buff applied
+    public const string WeaponmasterExpandedManeuver = "a6b7c8d9-e0f1-4a2b-3c4d-5e6f7a8b9c0d";
+    public const string WeaponmasterExpandedManeuverAbility = "a7b8c9d0-e1f2-4a3b-4c5d-6e7f8a9b0c1d";
+    public const string WeaponmasterExpandedManeuverBuff = "b7c8d9e0-f1a2-4b3c-4d5e-6f7a8b9c0d1e";
+    public const string BrawlerExpandedManeuver = "c8d9e0f1-a2b3-4c4d-5e6f-7a8b9c0d1e2f";
+    public const string BrawlerExpandedManeuverAbility = "b8c9d0e1-f2a3-4b4c-5d6e-7f8a9b0c1d2e";
+    public const string BrawlerExpandedManeuverBuff = "d9e0f1a2-b3c4-4d5e-6f7a-8b9c0d1e2f3a";
+
+    // Phase 6: New paths (ca01=Archer, ca02=Ascetic, ca03=Assassin, ca04=Dervish,
+    //          ca05=FeralWarrior, ca06=Gladiator, ca07=Infiltrator, ca08=Interceptor,
+    //          ca09=MindKnight, ca10=Survivor)
+    // Slot: 01=Path, 02=Trance, 03=ManeuverBuff, 04=ManeuverAbility,
+    //       05=ExpandedBuff, 06=ExpandedAbility, 07=ExpandedFeature
+
+    public const string ArcherPath                     = "ca010001-0000-4000-8000-000000000000";
+    public const string ArcherTrance                   = "ca010002-0000-4000-8000-000000000000";
+    public const string ArcherManeuverBuff             = "ca010003-0000-4000-8000-000000000000";
+    public const string ArcherManeuverAbility          = "ca010004-0000-4000-8000-000000000000";
+    public const string ArcherExpandedBuff             = "ca010005-0000-4000-8000-000000000000";
+    public const string ArcherExpandedAbility          = "ca010006-0000-4000-8000-000000000000";
+    public const string ArcherExpandedFeature          = "ca010007-0000-4000-8000-000000000000";
+
+    public const string AsceticPath                    = "ca020001-0000-4000-8000-000000000000";
+    public const string AsceticTrance                  = "ca020002-0000-4000-8000-000000000000";
+    public const string AsceticManeuverBuff            = "ca020003-0000-4000-8000-000000000000";
+    public const string AsceticManeuverAbility         = "ca020004-0000-4000-8000-000000000000";
+    public const string AsceticExpandedBuff            = "ca020005-0000-4000-8000-000000000000";
+    public const string AsceticExpandedAbility         = "ca020006-0000-4000-8000-000000000000";
+    public const string AsceticExpandedFeature         = "ca020007-0000-4000-8000-000000000000";
+
+    public const string AssassinsPath                  = "ca030001-0000-4000-8000-000000000000";
+    public const string AssassinsTrance                = "ca030002-0000-4000-8000-000000000000";
+    public const string AssassinsManeuverBuff          = "ca030003-0000-4000-8000-000000000000";
+    public const string AssassinsManeuverAbility       = "ca030004-0000-4000-8000-000000000000";
+    public const string AssassinsExpandedBuff          = "ca030005-0000-4000-8000-000000000000";
+    public const string AssassinsExpandedAbility       = "ca030006-0000-4000-8000-000000000000";
+    public const string AssassinsExpandedFeature       = "ca030007-0000-4000-8000-000000000000";
+
+    public const string DervishPath                    = "ca040001-0000-4000-8000-000000000000";
+    public const string DervishTrance                  = "ca040002-0000-4000-8000-000000000000";
+    public const string DervishManeuverBuff            = "ca040003-0000-4000-8000-000000000000";
+    public const string DervishManeuverAbility         = "ca040004-0000-4000-8000-000000000000";
+    public const string DervishExpandedBuff            = "ca040005-0000-4000-8000-000000000000";
+    public const string DervishExpandedAbility         = "ca040006-0000-4000-8000-000000000000";
+    public const string DervishExpandedFeature         = "ca040007-0000-4000-8000-000000000000";
+
+    public const string FeralWarriorPath               = "ca050001-0000-4000-8000-000000000000";
+    public const string FeralWarriorTrance             = "ca050002-0000-4000-8000-000000000000";
+    public const string FeralWarriorManeuverBuff       = "ca050003-0000-4000-8000-000000000000";
+    public const string FeralWarriorManeuverAbility    = "ca050004-0000-4000-8000-000000000000";
+    public const string FeralWarriorExpandedBuff       = "ca050005-0000-4000-8000-000000000000";
+    public const string FeralWarriorExpandedAbility    = "ca050006-0000-4000-8000-000000000000";
+    public const string FeralWarriorExpandedFeature    = "ca050007-0000-4000-8000-000000000000";
+
+    public const string GladiatorPath                  = "ca060001-0000-4000-8000-000000000000";
+    public const string GladiatorTrance                = "ca060002-0000-4000-8000-000000000000";
+    public const string GladiatorManeuverBuff          = "ca060003-0000-4000-8000-000000000000";
+    public const string GladiatorManeuverAbility       = "ca060004-0000-4000-8000-000000000000";
+    public const string GladiatorExpandedBuff          = "ca060005-0000-4000-8000-000000000000";
+    public const string GladiatorExpandedAbility       = "ca060006-0000-4000-8000-000000000000";
+    public const string GladiatorExpandedFeature       = "ca060007-0000-4000-8000-000000000000";
+
+    public const string InfiltratorPath                = "ca070001-0000-4000-8000-000000000000";
+    public const string InfiltratorTrance              = "ca070002-0000-4000-8000-000000000000";
+    public const string InfiltratorManeuverBuff        = "ca070003-0000-4000-8000-000000000000";
+    public const string InfiltratorManeuverAbility     = "ca070004-0000-4000-8000-000000000000";
+    public const string InfiltratorExpandedBuff        = "ca070005-0000-4000-8000-000000000000";
+    public const string InfiltratorExpandedAbility     = "ca070006-0000-4000-8000-000000000000";
+    public const string InfiltratorExpandedFeature     = "ca070007-0000-4000-8000-000000000000";
+
+    public const string InterceptorPath                = "ca080001-0000-4000-8000-000000000000";
+    public const string InterceptorTrance              = "ca080002-0000-4000-8000-000000000000";
+    public const string InterceptorManeuverBuff        = "ca080003-0000-4000-8000-000000000000";
+    public const string InterceptorManeuverAbility     = "ca080004-0000-4000-8000-000000000000";
+    public const string InterceptorExpandedBuff        = "ca080005-0000-4000-8000-000000000000";
+    public const string InterceptorExpandedAbility     = "ca080006-0000-4000-8000-000000000000";
+    public const string InterceptorExpandedFeature     = "ca080007-0000-4000-8000-000000000000";
+
+    public const string MindKnightPath                 = "ca090001-0000-4000-8000-000000000000";
+    public const string MindKnightTrance               = "ca090002-0000-4000-8000-000000000000";
+    public const string MindKnightManeuverBuff         = "ca090003-0000-4000-8000-000000000000";
+    public const string MindKnightManeuverAbility      = "ca090004-0000-4000-8000-000000000000";
+    public const string MindKnightExpandedBuff         = "ca090005-0000-4000-8000-000000000000";
+    public const string MindKnightExpandedAbility      = "ca090006-0000-4000-8000-000000000000";
+    public const string MindKnightExpandedFeature      = "ca090007-0000-4000-8000-000000000000";
+
+    public const string SurvivorPath                   = "ca100001-0000-4000-8000-000000000000";
+    public const string SurvivorTrance                 = "ca100002-0000-4000-8000-000000000000";
+    public const string SurvivorManeuverBuff           = "ca100003-0000-4000-8000-000000000000";
+    public const string SurvivorManeuverAbility        = "ca100004-0000-4000-8000-000000000000";
+    public const string SurvivorExpandedBuff           = "ca100005-0000-4000-8000-000000000000";
+    public const string SurvivorExpandedAbility        = "ca100006-0000-4000-8000-000000000000";
+    public const string SurvivorExpandedFeature        = "ca100007-0000-4000-8000-000000000000";
 }

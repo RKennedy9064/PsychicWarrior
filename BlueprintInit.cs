@@ -57,8 +57,20 @@ public static class BlueprintInit
         Run(nameof(Features.PsychicWarriorProficiencies), Features.PsychicWarriorProficiencies.Configure, logger);
         Run(nameof(Features.PsychicWarriorBonusFeat),     Features.PsychicWarriorBonusFeat.Configure,     logger);
 
-        // Paths must be configured before PathSkillBonus because
-        // PathSkillBonus.Configure() adds prerequisites referencing WeaponmasterPath/BrawlerPath.
+        // Individual paths must be configured before PathSelection (which references their GUIDs)
+        // and before PathSkillBonus (which references WeaponmasterPath/BrawlerPath GUIDs).
+        Run(nameof(Features.Paths.WeaponmasterPath),      Features.Paths.WeaponmasterPath.Configure,      logger);
+        Run(nameof(Features.Paths.BrawlerPath),           Features.Paths.BrawlerPath.Configure,           logger);
+        Run(nameof(Features.Paths.ArcherPath),            Features.Paths.ArcherPath.Configure,            logger);
+        Run(nameof(Features.Paths.AsceticPath),           Features.Paths.AsceticPath.Configure,           logger);
+        Run(nameof(Features.Paths.AssassinsPath),         Features.Paths.AssassinsPath.Configure,         logger);
+        Run(nameof(Features.Paths.DervishPath),           Features.Paths.DervishPath.Configure,           logger);
+        Run(nameof(Features.Paths.FeralWarriorPath),      Features.Paths.FeralWarriorPath.Configure,      logger);
+        Run(nameof(Features.Paths.GladiatorPath),         Features.Paths.GladiatorPath.Configure,         logger);
+        Run(nameof(Features.Paths.InfiltratorPath),       Features.Paths.InfiltratorPath.Configure,       logger);
+        Run(nameof(Features.Paths.InterceptorPath),       Features.Paths.InterceptorPath.Configure,       logger);
+        Run(nameof(Features.Paths.MindKnightPath),        Features.Paths.MindKnightPath.Configure,        logger);
+        Run(nameof(Features.Paths.SurvivorPath),          Features.Paths.SurvivorPath.Configure,          logger);
         Run(nameof(Features.Paths.PsychicWarriorPathSelection), Features.Paths.PsychicWarriorPathSelection.Configure, logger);
         Run(nameof(Features.PathSkillBonus),         Features.PathSkillBonus.Configure,          logger);
 

@@ -1,0 +1,107 @@
+using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Blueprints.References;
+using BlueprintCore.Utils;
+using BlueprintCore.Utils.Types;
+using Kingmaker.Blueprints;
+using Kingmaker.EntitySystem.Stats;
+using Kingmaker.Enums;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.Commands.Base;
+using Kingmaker.UnitLogic.FactLogic;
+using Kingmaker.Visual.Animation.Kingmaker.Actions;
+using PsychicWarrior.Utils;
+
+namespace PsychicWarrior.Features.Paths;
+
+public static class SurvivorPath
+{
+    public static void Configure()
+    {
+        var icon = FeatureRefs.Toughness.Reference.Get().Icon;
+
+        var trance = FeatureConfigurator.New("SurvivorTrance", Guids.SurvivorTrance)
+            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorTrance.Name", "Survivor Trance"))
+            .SetDescription(LocalizationTool.CreateString("PW.SurvivorTrance.Desc",
+                "Your psionic focus toughens your body against physical harm. " +
+                "You gain DR 2/— while maintaining psionic focus."))
+            .SetIcon(icon)
+            .SetIsClassFeature()
+            .AddComponent(new AddDamageResistancePhysical { Value = 2, BypassedByMaterial = false })
+            .Configure();
+
+        // Mettle: Fort/Will saves spike for 1 round
+        var maneuverBuff = BuffConfigurator.New("SurvivorManeuverBuff", Guids.SurvivorManeuverBuff)
+            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorManeuver.BuffName", "Survivor Maneuver"))
+            .SetDescription(LocalizationTool.CreateString("PW.SurvivorManeuver.BuffDesc",
+                "You steel yourself against magic and harm, gaining +4 competence to Fortitude and Will saves for 1 round."))
+            .SetIcon(icon)
+            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveFortitude, value: 4)
+            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveWill, value: 4)
+            .Configure();
+
+        var maneuverAbility = AbilityConfigurator.New("SurvivorManeuver", Guids.SurvivorManeuverAbility)
+            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorManeuverAb.Name", "Survivor Maneuver"))
+            .SetDescription(LocalizationTool.CreateString("PW.SurvivorManeuverAb.Desc",
+                "Swift Action. Expend psionic focus to steel yourself against magic and physical harm, gaining +4 competence to Fortitude and Will saves for 1 round."))
+            .SetIcon(icon)
+            .SetType(AbilityType.Extraordinary)
+            .SetRange(AbilityRange.Personal)
+            .SetActionType(UnitCommand.CommandType.Swift)
+            .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
+            .AddAbilityCasterHasFacts(new() { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) })
+            .AddAbilityEffectRunAction(
+                ActionsBuilder.New()
+                    .RemoveBuff(Guids.PsionicFocusBuff)
+                    .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
+            .Configure();
+
+        var expandedBuff = BuffConfigurator.New("SurvivorExpandedManeuverBuff", Guids.SurvivorExpandedBuff)
+            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorExpanded.BuffName", "Survivor Expanded Maneuver"))
+            .SetDescription(LocalizationTool.CreateString("PW.SurvivorExpanded.BuffDesc",
+                "You enter a state of total psionic resilience, gaining +6 competence to all saving throws for 1 round."))
+            .SetIcon(icon)
+            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveFortitude, value: 6)
+            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveReflex, value: 6)
+            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveWill, value: 6)
+            .Configure();
+
+        var expandedAbility = AbilityConfigurator.New("SurvivorExpandedManeuverAbility", Guids.SurvivorExpandedAbility)
+            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorExpandedAb.Name", "Survivor Expanded Maneuver"))
+            .SetDescription(LocalizationTool.CreateString("PW.SurvivorExpandedAb.Desc",
+                "Swift Action. Expend psionic focus to enter a state of total psionic resilience, gaining +6 competence to all saving throws for 1 round."))
+            .SetIcon(icon)
+            .SetType(AbilityType.Extraordinary)
+            .SetRange(AbilityRange.Personal)
+            .SetActionType(UnitCommand.CommandType.Swift)
+            .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
+            .AddAbilityCasterHasFacts(new() { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) })
+            .AddAbilityEffectRunAction(
+                ActionsBuilder.New()
+                    .RemoveBuff(Guids.PsionicFocusBuff)
+                    .ApplyBuff(expandedBuff, ContextDuration.Fixed(1)))
+            .Configure();
+
+        FeatureConfigurator.New("SurvivorExpandedManeuver", Guids.SurvivorExpandedFeature)
+            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorExpandedFeat.Name", "Survivor Expanded Maneuver"))
+            .SetDescription(LocalizationTool.CreateString("PW.SurvivorExpandedFeat.Desc",
+                "Your Survivor Maneuver upgrades to grant +6 competence to all saving throws for 1 round."))
+            .SetIcon(icon)
+            .SetIsClassFeature()
+            .AddFacts(new() { Guids.SurvivorExpandedAbility })
+            .AddPrerequisiteFeature(Guids.SurvivorPath)
+            .Configure();
+
+        FeatureConfigurator.New("SurvivorPath", Guids.SurvivorPath)
+            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorPath.Name", "Survivor Path"))
+            .SetDescription(LocalizationTool.CreateString("PW.SurvivorPath.Desc",
+                "You focus on endurance and resilience. You gain DR 2/— while psionically focused (trance) and can expend psionic focus to spike your Fortitude and Will saves (maneuver)."))
+            .SetIcon(icon)
+            .SetIsClassFeature()
+            .AddFacts(new() { trance.ToString(), Guids.SurvivorManeuverAbility })
+            .Configure();
+    }
+}
