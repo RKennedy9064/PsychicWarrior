@@ -23,20 +23,18 @@ public static class AssassinsPath
     {
         var icon = AbilityRefs.VampiricTouch.Reference.Get().Icon;
 
-        var trance = FeatureConfigurator.New("AssassinsTrance", Guids.AssassinsTrance)
-            .SetDisplayName(LocalizationTool.CreateString("PW.AssassinsTrance.Name", "Assassin's Trance"))
-            .SetDescription(LocalizationTool.CreateString("PW.AssassinsTrance.Desc",
-                "Your psionic focus sharpens your strikes against unsuspecting enemies. " +
-                "You gain a +2 competence bonus to damage rolls."))
-            .SetIcon(icon)
-            .SetIsClassFeature()
-            .AddComponent(new AddStatBonus
-            {
-                Stat = StatType.AdditionalDamage,
-                Value = 2,
-                Descriptor = ModifierDescriptor.Competence
-            })
-            .Configure();
+        var trance = TranceHelper.BuildTrance(
+            baseName: "Assassins",
+            tranceFeatureGuid: Guids.AssassinsTrance,
+            tranceBuffGuid: Guids.AssassinsTranceBuff,
+            tranceActivatableGuid: Guids.AssassinsTranceActivatable,
+            displayName: "Assassin's Trance",
+            featureDescription: "Your psionic focus sharpens your strikes against unsuspecting enemies. You gain a +2 competence bonus to damage rolls.",
+            icon: icon,
+            addBuffComponents: b => b.AddStatBonus(
+                descriptor: ModifierDescriptor.Competence,
+                stat: StatType.AdditionalDamage,
+                value: 2));
 
         // +7 ≈ 2d6 average; removes after next attack
         var maneuverBuff = BuffConfigurator.New("AssassinsManeuverBuff", Guids.AssassinsManeuverBuff)
@@ -62,6 +60,7 @@ public static class AssassinsPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.AssassinsExpandedFeature)
             .Configure();
 
         // +14 ≈ 4d6 average; removes after next attack

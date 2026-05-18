@@ -78,26 +78,6 @@ public static class PsychicWarriorPathSelection
                 Guids.SurvivorPath)
             .Configure();
 
-        // TODO (Phase 7): implement as a swift-action ability that swaps active trance buff
-        FeatureConfigurator.New("TwistingPaths", Guids.TwistingPaths)
-            .SetDisplayName(LocalizationTool.CreateString("PW.TwistingPaths.Name", "Twisting Paths"))
-            .SetDescription(LocalizationTool.CreateString("PW.TwistingPaths.Desc",
-                "At 11th level, while maintaining psionic focus and using a trance, the psychic warrior can spend a swift action " +
-                "to switch to the trance of his other path."))
-            .SetIcon(icon)
-            .SetIsClassFeature()
-            .Configure();
-
-        // TODO (Phase 7): implement as a free-action ability (1/day +1/day per 3 levels after 15)
-        // that grants both trance benefits simultaneously for 5 minutes.
-        FeatureConfigurator.New("Pathweaving", Guids.Pathweaving)
-            .SetDisplayName(LocalizationTool.CreateString("PW.Pathweaving.Name", "Pathweaving"))
-            .SetDescription(LocalizationTool.CreateString("PW.Pathweaving.Desc",
-                "At 15th level, while maintaining psionic focus, the psychic warrior can spend a free action once per day " +
-                "to gain the benefits of both trances simultaneously for 5 minutes. He gains one additional use per day for " +
-                "every three psychic warrior levels beyond 15th."))
-            .SetIcon(icon)
-            .SetIsClassFeature()
-            .Configure();
+        // Twisting Paths and Pathweaving features are configured in TwistingPathsPathweaving.cs (Phase 7).
     }
 }

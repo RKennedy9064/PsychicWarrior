@@ -182,4 +182,63 @@ public static class Guids
     public const string SurvivorExpandedBuff           = "ca100005-0000-4000-8000-000000000000";
     public const string SurvivorExpandedAbility        = "ca100006-0000-4000-8000-000000000000";
     public const string SurvivorExpandedFeature        = "ca100007-0000-4000-8000-000000000000";
+
+    // ── Phase 7: Trance rework — buff + activatable for each path ──
+    // bc = trance buff, ba = trance activatable
+    public const string WeaponmasterTranceBuff         = "bc010001-0000-4000-8000-000000000001";
+    public const string WeaponmasterTranceActivatable  = "ba010001-0000-4000-8000-000000000001";
+    public const string BrawlerTranceBuff              = "bc020001-0000-4000-8000-000000000001";
+    public const string BrawlerTranceActivatable       = "ba020001-0000-4000-8000-000000000001";
+    public const string ArcherTranceBuff               = "bc030001-0000-4000-8000-000000000001";
+    public const string ArcherTranceActivatable        = "ba030001-0000-4000-8000-000000000001";
+    public const string AsceticTranceBuff              = "bc040001-0000-4000-8000-000000000001";
+    public const string AsceticTranceActivatable       = "ba040001-0000-4000-8000-000000000001";
+    public const string AssassinsTranceBuff            = "bc050001-0000-4000-8000-000000000001";
+    public const string AssassinsTranceActivatable     = "ba050001-0000-4000-8000-000000000001";
+    public const string DervishTranceBuff              = "bc060001-0000-4000-8000-000000000001";
+    public const string DervishTranceActivatable       = "ba060001-0000-4000-8000-000000000001";
+    public const string FeralWarriorTranceBuff         = "bc070001-0000-4000-8000-000000000001";
+    public const string FeralWarriorTranceActivatable  = "ba070001-0000-4000-8000-000000000001";
+    public const string GladiatorTranceBuff            = "bc080001-0000-4000-8000-000000000001";
+    public const string GladiatorTranceActivatable     = "ba080001-0000-4000-8000-000000000001";
+    public const string InfiltratorTranceBuff          = "bc090001-0000-4000-8000-000000000001";
+    public const string InfiltratorTranceActivatable   = "ba090001-0000-4000-8000-000000000001";
+    public const string InterceptorTranceBuff          = "bc0a0001-0000-4000-8000-000000000001";
+    public const string InterceptorTranceActivatable   = "ba0a0001-0000-4000-8000-000000000001";
+    public const string MindKnightTranceBuff           = "bc0b0001-0000-4000-8000-000000000001";
+    public const string MindKnightTranceActivatable    = "ba0b0001-0000-4000-8000-000000000001";
+    public const string SurvivorTranceBuff             = "bc0c0001-0000-4000-8000-000000000001";
+    public const string SurvivorTranceActivatable      = "ba0c0001-0000-4000-8000-000000000001";
+
+    // Twisting Paths (level 11): swift-action ability + buff
+    public const string TwistingPathsAbility           = "d0010001-0000-4000-8000-000000000001";
+    public const string TwistingPathsBuff              = "d0010002-0000-4000-8000-000000000001";
+
+    // Pathweaving (level 15): per-day ability + buff + ability resource
+    public const string PathweavingAbility             = "d0020001-0000-4000-8000-000000000001";
+    public const string PathweavingBuff                = "d0020002-0000-4000-8000-000000000001";
+    public const string PathweavingResource            = "d0020003-0000-4000-8000-000000000001";
+
+    // Martial Power (level 6) — swift-action buff that augments next attack
+    public const string MartialPowerAbility            = "d0030001-0000-4000-8000-000000000001";
+    public const string MartialPowerBuff               = "d0030002-0000-4000-8000-000000000001";
+
+    // ── Phase 8: 2nd-level powers ──
+    public const string PowerBodyAdjustment            = "e0010001-0000-4000-8000-000000000001";
+    public const string PowerBodyPurification          = "e0020001-0000-4000-8000-000000000001";
+    public const string PowerStrengthOfMyEnemy         = "e0030001-0000-4000-8000-000000000001";
+    public const string PowerStrengthOfMyEnemyEnemyDebuff = "e0030002-0000-4000-8000-000000000001";
+    public const string PowerStrengthOfMyEnemyCasterBuff  = "e0030003-0000-4000-8000-000000000001";
+    // Animal Affinity uses AbilityVariants — parent + 3 variants (one per physical stat)
+    public const string PowerAnimalAffinity            = "e0040001-0000-4000-8000-000000000001";
+    public const string PowerAnimalAffinityStrength    = "e0040002-0000-4000-8000-000000000001";
+    public const string PowerAnimalAffinityStrengthBuff = "e0040003-0000-4000-8000-000000000001";
+    public const string PowerAnimalAffinityDexterity   = "e0040004-0000-4000-8000-000000000001";
+    public const string PowerAnimalAffinityDexterityBuff = "e0040005-0000-4000-8000-000000000001";
+    public const string PowerAnimalAffinityConstitution = "e0040006-0000-4000-8000-000000000001";
+    public const string PowerAnimalAffinityConstitutionBuff = "e0040007-0000-4000-8000-000000000001";
+    public const string PowerDetectHostileIntent       = "e0050001-0000-4000-8000-000000000001";
+    public const string PowerDetectHostileIntentBuff   = "e0050002-0000-4000-8000-000000000001";
+    public const string PowerHustle                    = "e0060001-0000-4000-8000-000000000001";
+    public const string PowerHustleBuff                = "e0060002-0000-4000-8000-000000000001";
 }

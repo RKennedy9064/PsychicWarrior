@@ -23,26 +23,17 @@ public static class InterceptorPath
     {
         var icon = FeatureRefs.CombatReflexes.Reference.Get().Icon;
 
-        var trance = FeatureConfigurator.New("InterceptorTrance", Guids.InterceptorTrance)
-            .SetDisplayName(LocalizationTool.CreateString("PW.InterceptorTrance.Name", "Interceptor Trance"))
-            .SetDescription(LocalizationTool.CreateString("PW.InterceptorTrance.Desc",
-                "Your psionic focus heightens your protective instincts. You gain a +1 competence bonus to attack rolls " +
-                "and a +1 competence bonus to damage rolls against enemies threatening your allies."))
-            .SetIcon(icon)
-            .SetIsClassFeature()
-            .AddComponent(new AddStatBonus
-            {
-                Stat = StatType.AdditionalAttackBonus,
-                Value = 1,
-                Descriptor = ModifierDescriptor.Competence
-            })
-            .AddComponent(new AddStatBonus
-            {
-                Stat = StatType.AdditionalDamage,
-                Value = 1,
-                Descriptor = ModifierDescriptor.Competence
-            })
-            .Configure();
+        var trance = TranceHelper.BuildTrance(
+            baseName: "Interceptor",
+            tranceFeatureGuid: Guids.InterceptorTrance,
+            tranceBuffGuid: Guids.InterceptorTranceBuff,
+            tranceActivatableGuid: Guids.InterceptorTranceActivatable,
+            displayName: "Interceptor Trance",
+            featureDescription: "Your psionic focus heightens your protective instincts. You gain a +1 competence bonus to attack and damage rolls.",
+            icon: icon,
+            addBuffComponents: b => b
+                .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalAttackBonus, value: 1)
+                .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalDamage, value: 1));
 
         var maneuverBuff = BuffConfigurator.New("InterceptorManeuverBuff", Guids.InterceptorManeuverBuff)
             .SetDisplayName(LocalizationTool.CreateString("PW.InterceptorManeuver.BuffName", "Interceptor Maneuver"))
@@ -67,6 +58,7 @@ public static class InterceptorPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.InterceptorExpandedFeature)
             .Configure();
 
         var expandedBuff = BuffConfigurator.New("InterceptorExpandedManeuverBuff", Guids.InterceptorExpandedBuff)

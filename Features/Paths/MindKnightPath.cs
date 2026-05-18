@@ -23,26 +23,17 @@ public static class MindKnightPath
     {
         var icon = AbilityRefs.DivineFavor.Reference.Get().Icon;
 
-        var trance = FeatureConfigurator.New("MindKnightTrance", Guids.MindKnightTrance)
-            .SetDisplayName(LocalizationTool.CreateString("PW.MindKnightTrance.Name", "Mind Knight Trance"))
-            .SetDescription(LocalizationTool.CreateString("PW.MindKnightTrance.Desc",
-                "Your psionic focus sharpens your mental acuity in battle. " +
-                "You gain a +1 competence bonus to Initiative and a +1 competence bonus to attack rolls."))
-            .SetIcon(icon)
-            .SetIsClassFeature()
-            .AddComponent(new AddStatBonus
-            {
-                Stat = StatType.Initiative,
-                Value = 1,
-                Descriptor = ModifierDescriptor.Competence
-            })
-            .AddComponent(new AddStatBonus
-            {
-                Stat = StatType.AdditionalAttackBonus,
-                Value = 1,
-                Descriptor = ModifierDescriptor.Competence
-            })
-            .Configure();
+        var trance = TranceHelper.BuildTrance(
+            baseName: "MindKnight",
+            tranceFeatureGuid: Guids.MindKnightTrance,
+            tranceBuffGuid: Guids.MindKnightTranceBuff,
+            tranceActivatableGuid: Guids.MindKnightTranceActivatable,
+            displayName: "Mind Knight Trance",
+            featureDescription: "Your psionic focus sharpens your mental acuity in battle. You gain a +1 competence bonus to Initiative and a +1 competence bonus to attack rolls.",
+            icon: icon,
+            addBuffComponents: b => b
+                .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.Initiative, value: 1)
+                .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalAttackBonus, value: 1));
 
         var maneuverBuff = BuffConfigurator.New("MindKnightManeuverBuff", Guids.MindKnightManeuverBuff)
             .SetDisplayName(LocalizationTool.CreateString("PW.MindKnightManeuver.BuffName", "Mind Knight Maneuver"))
@@ -67,6 +58,7 @@ public static class MindKnightPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.MindKnightExpandedFeature)
             .Configure();
 
         var expandedBuff = BuffConfigurator.New("MindKnightExpandedManeuverBuff", Guids.MindKnightExpandedBuff)

@@ -25,20 +25,19 @@ public static class WeaponmasterPath
         var icon = FeatureRefs.PowerAttackFeature.Reference.Get().Icon;
         var maneuverIcon = AbilityRefs.DivineFavor.Reference.Get().Icon;
 
-        // Trance: +1 competence bonus to attack rolls (passive, always active while focused)
-        var trance = FeatureConfigurator.New("WeaponmasterTrance", Guids.WeaponmasterTrance)
-            .SetDisplayName(LocalizationTool.CreateString("PW.WMTrance.Name", "Weaponmaster Trance"))
-            .SetDescription(LocalizationTool.CreateString("PW.WMTrance.Desc",
-                "You gain a +1 competence bonus to attack rolls."))
-            .SetIcon(icon)
-            .SetIsClassFeature()
-            .AddComponent(new AddStatBonus
-            {
-                Stat = StatType.AdditionalAttackBonus,
-                Value = 1,
-                Descriptor = ModifierDescriptor.Competence
-            })
-            .Configure();
+        // Trance: +1 competence bonus to attack rolls (activatable, mutually exclusive)
+        var trance = TranceHelper.BuildTrance(
+            baseName: "Weaponmaster",
+            tranceFeatureGuid: Guids.WeaponmasterTrance,
+            tranceBuffGuid: Guids.WeaponmasterTranceBuff,
+            tranceActivatableGuid: Guids.WeaponmasterTranceActivatable,
+            displayName: "Weaponmaster Trance",
+            featureDescription: "You gain a +1 competence bonus to attack rolls.",
+            icon: icon,
+            addBuffComponents: b => b.AddStatBonus(
+                descriptor: ModifierDescriptor.Competence,
+                stat: StatType.AdditionalAttackBonus,
+                value: 1));
 
         // Maneuver buff: +2 dodge to AC + +2 competence to next attack (riposte spirit)
         var maneuverBuff = BuffConfigurator.New("WeaponmasterManeuverBuff", Guids.WeaponmasterManeuverBuff)
@@ -65,6 +64,7 @@ public static class WeaponmasterPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.WeaponmasterExpandedManeuver)
             .Configure();
 
         // Expanded buff: +4 dodge to AC + +2 competence to attack AND damage

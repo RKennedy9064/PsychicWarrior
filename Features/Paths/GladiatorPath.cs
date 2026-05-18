@@ -23,20 +23,18 @@ public static class GladiatorPath
     {
         var icon = AbilityRefs.BullsStrength.Reference.Get().Icon;
 
-        var trance = FeatureConfigurator.New("GladiatorTrance", Guids.GladiatorTrance)
-            .SetDisplayName(LocalizationTool.CreateString("PW.GladiatorTrance.Name", "Gladiator Trance"))
-            .SetDescription(LocalizationTool.CreateString("PW.GladiatorTrance.Desc",
-                "Your psionic focus enhances your combat maneuver capabilities. " +
-                "You gain a +2 competence bonus to CMB."))
-            .SetIcon(icon)
-            .SetIsClassFeature()
-            .AddComponent(new AddStatBonus
-            {
-                Stat = StatType.AdditionalCMB,
-                Value = 2,
-                Descriptor = ModifierDescriptor.Competence
-            })
-            .Configure();
+        var trance = TranceHelper.BuildTrance(
+            baseName: "Gladiator",
+            tranceFeatureGuid: Guids.GladiatorTrance,
+            tranceBuffGuid: Guids.GladiatorTranceBuff,
+            tranceActivatableGuid: Guids.GladiatorTranceActivatable,
+            displayName: "Gladiator Trance",
+            featureDescription: "Your psionic focus enhances your combat maneuver capabilities. You gain a +2 competence bonus to CMB.",
+            icon: icon,
+            addBuffComponents: b => b.AddStatBonus(
+                descriptor: ModifierDescriptor.Competence,
+                stat: StatType.AdditionalCMB,
+                value: 2));
 
         var maneuverBuff = BuffConfigurator.New("GladiatorManeuverBuff", Guids.GladiatorManeuverBuff)
             .SetDisplayName(LocalizationTool.CreateString("PW.GladiatorManeuver.BuffName", "Gladiator Maneuver"))
@@ -60,6 +58,7 @@ public static class GladiatorPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.GladiatorExpandedFeature)
             .Configure();
 
         var expandedBuff = BuffConfigurator.New("GladiatorExpandedManeuverBuff", Guids.GladiatorExpandedBuff)

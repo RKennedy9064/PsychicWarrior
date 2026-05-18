@@ -23,26 +23,17 @@ public static class InfiltratorPath
     {
         var icon = AbilityRefs.CauseFear.Reference.Get().Icon;
 
-        var trance = FeatureConfigurator.New("InfiltratorTrance", Guids.InfiltratorTrance)
-            .SetDisplayName(LocalizationTool.CreateString("PW.InfiltratorTrance.Name", "Infiltrator Trance"))
-            .SetDescription(LocalizationTool.CreateString("PW.InfiltratorTrance.Desc",
-                "Your psionic focus makes you more effective at social manipulation and precision strikes. " +
-                "You gain a +2 competence bonus to Persuasion checks and a +1 competence bonus to damage rolls."))
-            .SetIcon(icon)
-            .SetIsClassFeature()
-            .AddComponent(new AddStatBonus
-            {
-                Stat = StatType.SkillPersuasion,
-                Value = 2,
-                Descriptor = ModifierDescriptor.Competence
-            })
-            .AddComponent(new AddStatBonus
-            {
-                Stat = StatType.AdditionalDamage,
-                Value = 1,
-                Descriptor = ModifierDescriptor.Competence
-            })
-            .Configure();
+        var trance = TranceHelper.BuildTrance(
+            baseName: "Infiltrator",
+            tranceFeatureGuid: Guids.InfiltratorTrance,
+            tranceBuffGuid: Guids.InfiltratorTranceBuff,
+            tranceActivatableGuid: Guids.InfiltratorTranceActivatable,
+            displayName: "Infiltrator Trance",
+            featureDescription: "Your psionic focus makes you more effective at social manipulation and precision strikes. You gain a +2 competence bonus to Persuasion and +1 competence bonus to damage rolls.",
+            icon: icon,
+            addBuffComponents: b => b
+                .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SkillPersuasion, value: 2)
+                .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalDamage, value: 1));
 
         var maneuverBuff = BuffConfigurator.New("InfiltratorManeuverBuff", Guids.InfiltratorManeuverBuff)
             .SetDisplayName(LocalizationTool.CreateString("PW.InfiltratorManeuver.BuffName", "Infiltrator Maneuver"))
@@ -67,6 +58,7 @@ public static class InfiltratorPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.InfiltratorExpandedFeature)
             .Configure();
 
         var expandedBuff = BuffConfigurator.New("InfiltratorExpandedManeuverBuff", Guids.InfiltratorExpandedBuff)

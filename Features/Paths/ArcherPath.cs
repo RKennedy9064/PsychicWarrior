@@ -23,19 +23,18 @@ public static class ArcherPath
     {
         var icon = FeatureRefs.PointBlankShot.Reference.Get().Icon;
 
-        var trance = FeatureConfigurator.New("ArcherTrance", Guids.ArcherTrance)
-            .SetDisplayName(LocalizationTool.CreateString("PW.ArcherTrance.Name", "Archer Trance"))
-            .SetDescription(LocalizationTool.CreateString("PW.ArcherTrance.Desc",
-                "Your psionic focus steadies your aim. You gain a +1 competence bonus to attack rolls."))
-            .SetIcon(icon)
-            .SetIsClassFeature()
-            .AddComponent(new AddStatBonus
-            {
-                Stat = StatType.AdditionalAttackBonus,
-                Value = 1,
-                Descriptor = ModifierDescriptor.Competence
-            })
-            .Configure();
+        var trance = TranceHelper.BuildTrance(
+            baseName: "Archer",
+            tranceFeatureGuid: Guids.ArcherTrance,
+            tranceBuffGuid: Guids.ArcherTranceBuff,
+            tranceActivatableGuid: Guids.ArcherTranceActivatable,
+            displayName: "Archer Trance",
+            featureDescription: "Your psionic focus steadies your aim. You gain a +1 competence bonus to attack rolls.",
+            icon: icon,
+            addBuffComponents: b => b.AddStatBonus(
+                descriptor: ModifierDescriptor.Competence,
+                stat: StatType.AdditionalAttackBonus,
+                value: 1));
 
         var maneuverBuff = BuffConfigurator.New("ArcherManeuverBuff", Guids.ArcherManeuverBuff)
             .SetDisplayName(LocalizationTool.CreateString("PW.ArcherManeuver.BuffName", "Archer Maneuver"))
@@ -60,6 +59,7 @@ public static class ArcherPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.ArcherExpandedFeature)
             .Configure();
 
         var expandedBuff = BuffConfigurator.New("ArcherExpandedManeuverBuff", Guids.ArcherExpandedBuff)

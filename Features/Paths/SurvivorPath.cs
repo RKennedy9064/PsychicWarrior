@@ -23,15 +23,15 @@ public static class SurvivorPath
     {
         var icon = FeatureRefs.Toughness.Reference.Get().Icon;
 
-        var trance = FeatureConfigurator.New("SurvivorTrance", Guids.SurvivorTrance)
-            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorTrance.Name", "Survivor Trance"))
-            .SetDescription(LocalizationTool.CreateString("PW.SurvivorTrance.Desc",
-                "Your psionic focus toughens your body against physical harm. " +
-                "You gain DR 2/— while maintaining psionic focus."))
-            .SetIcon(icon)
-            .SetIsClassFeature()
-            .AddComponent(new AddDamageResistancePhysical { Value = 2, BypassedByMaterial = false })
-            .Configure();
+        var trance = TranceHelper.BuildTrance(
+            baseName: "Survivor",
+            tranceFeatureGuid: Guids.SurvivorTrance,
+            tranceBuffGuid: Guids.SurvivorTranceBuff,
+            tranceActivatableGuid: Guids.SurvivorTranceActivatable,
+            displayName: "Survivor Trance",
+            featureDescription: "Your psionic focus toughens your body against physical harm. You gain DR 2/—.",
+            icon: icon,
+            addBuffComponents: b => b.AddComponent(new AddDamageResistancePhysical { Value = 2, BypassedByMaterial = false }));
 
         // Mettle: Fort/Will saves spike for 1 round
         var maneuverBuff = BuffConfigurator.New("SurvivorManeuverBuff", Guids.SurvivorManeuverBuff)
@@ -57,6 +57,7 @@ public static class SurvivorPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.SurvivorExpandedFeature)
             .Configure();
 
         var expandedBuff = BuffConfigurator.New("SurvivorExpandedManeuverBuff", Guids.SurvivorExpandedBuff)

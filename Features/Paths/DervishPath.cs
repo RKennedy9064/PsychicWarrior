@@ -23,20 +23,18 @@ public static class DervishPath
     {
         var icon = FeatureRefs.TwoWeaponFighting.Reference.Get().Icon;
 
-        var trance = FeatureConfigurator.New("DervishTrance", Guids.DervishTrance)
-            .SetDisplayName(LocalizationTool.CreateString("PW.DervishTrance.Name", "Dervish Trance"))
-            .SetDescription(LocalizationTool.CreateString("PW.DervishTrance.Desc",
-                "Your psionic focus sharpens your dual-weapon strikes. " +
-                "You gain a +1 competence bonus to attack rolls."))
-            .SetIcon(icon)
-            .SetIsClassFeature()
-            .AddComponent(new AddStatBonus
-            {
-                Stat = StatType.AdditionalAttackBonus,
-                Value = 1,
-                Descriptor = ModifierDescriptor.Competence
-            })
-            .Configure();
+        var trance = TranceHelper.BuildTrance(
+            baseName: "Dervish",
+            tranceFeatureGuid: Guids.DervishTrance,
+            tranceBuffGuid: Guids.DervishTranceBuff,
+            tranceActivatableGuid: Guids.DervishTranceActivatable,
+            displayName: "Dervish Trance",
+            featureDescription: "Your psionic focus sharpens your dual-weapon strikes. You gain a +1 competence bonus to attack rolls.",
+            icon: icon,
+            addBuffComponents: b => b.AddStatBonus(
+                descriptor: ModifierDescriptor.Competence,
+                stat: StatType.AdditionalAttackBonus,
+                value: 1));
 
         var maneuverBuff = BuffConfigurator.New("DervishManeuverBuff", Guids.DervishManeuverBuff)
             .SetDisplayName(LocalizationTool.CreateString("PW.DervishManeuver.BuffName", "Dervish Maneuver"))
@@ -61,6 +59,7 @@ public static class DervishPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.DervishExpandedFeature)
             .Configure();
 
         var expandedBuff = BuffConfigurator.New("DervishExpandedManeuverBuff", Guids.DervishExpandedBuff)

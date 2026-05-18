@@ -61,6 +61,14 @@ public static class BlueprintInit
         Run(nameof(Powers.Biofeedback),              Powers.Biofeedback.Configure,               logger);
         Run(nameof(Powers.MetaphysicalWeapon),       Powers.MetaphysicalWeapon.Configure,        logger);
 
+        // ── Phase 8: 2nd-level powers ──────────────────────────────────────────
+        Run(nameof(Powers.BodyAdjustment),           Powers.BodyAdjustment.Configure,            logger);
+        Run(nameof(Powers.BodyPurification),         Powers.BodyPurification.Configure,          logger);
+        Run(nameof(Powers.StrengthOfMyEnemy),        Powers.StrengthOfMyEnemy.Configure,         logger);
+        Run(nameof(Powers.AnimalAffinity),           Powers.AnimalAffinity.Configure,            logger);
+        Run(nameof(Powers.DetectHostileIntent),      Powers.DetectHostileIntent.Configure,       logger);
+        Run(nameof(Powers.Hustle),                   Powers.Hustle.Configure,                    logger);
+
         // ── Phase 4: Class features (paths first, skill bonuses reference path GUIDs) ──
         Run(nameof(Features.PsychicWarriorProficiencies), Features.PsychicWarriorProficiencies.Configure, logger);
         Run(nameof(Features.PsychicWarriorBonusFeat),     Features.PsychicWarriorBonusFeat.Configure,     logger);
@@ -81,6 +89,7 @@ public static class BlueprintInit
         Run(nameof(Features.Paths.SurvivorPath),          Features.Paths.SurvivorPath.Configure,          logger);
         Run(nameof(Features.Paths.PsychicWarriorPathSelection), Features.Paths.PsychicWarriorPathSelection.Configure, logger);
         Run(nameof(Features.PathSkillBonus),         Features.PathSkillBonus.Configure,          logger);
+        Run(nameof(Features.Paths.TwistingPathsPathweaving), Features.Paths.TwistingPathsPathweaving.Configure, logger);
 
         // ── Phase 5: Feats ─────────────────────────────────────────────────────
         Run(nameof(Feats.PsionicMeditation),         Feats.PsionicMeditation.Configure,          logger);

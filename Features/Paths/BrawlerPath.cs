@@ -25,19 +25,20 @@ public static class BrawlerPath
         var maneuverIcon = AbilityRefs.BullsStrength.Reference.Get().Icon;
 
         // Trance: Wis modifier as competence bonus to CMB (grapple spirit)
-        var trance = FeatureConfigurator.New("BrawlerTrance", Guids.BrawlerTrance)
-            .SetDisplayName(LocalizationTool.CreateString("PW.BrawlerTrance.Name", "Brawler Trance"))
-            .SetDescription(LocalizationTool.CreateString("PW.BrawlerTrance.Desc",
-                "Your Wisdom modifier is added as a competence bonus to your Combat Maneuver Bonus, " +
-                "reflecting your psionic insight in grappling and close combat."))
-            .SetIcon(icon)
-            .SetIsClassFeature()
-            .AddContextStatBonus(
-                stat: StatType.AdditionalCMB,
-                descriptor: ModifierDescriptor.Competence,
-                value: new ContextValue { ValueType = ContextValueType.Rank })
-            .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Wisdom))
-            .Configure();
+        var trance = TranceHelper.BuildTrance(
+            baseName: "Brawler",
+            tranceFeatureGuid: Guids.BrawlerTrance,
+            tranceBuffGuid: Guids.BrawlerTranceBuff,
+            tranceActivatableGuid: Guids.BrawlerTranceActivatable,
+            displayName: "Brawler Trance",
+            featureDescription: "Your Wisdom modifier is added as a competence bonus to your Combat Maneuver Bonus, reflecting your psionic insight in grappling and close combat.",
+            icon: icon,
+            addBuffComponents: b => b
+                .AddContextStatBonus(
+                    stat: StatType.AdditionalCMB,
+                    descriptor: ModifierDescriptor.Competence,
+                    value: new ContextValue { ValueType = ContextValueType.Rank })
+                .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Wisdom)));
 
         // Maneuver buff: +7 competence to damage (≈2d6) on next attack, then removes itself
         var maneuverBuff = BuffConfigurator.New("BrawlerManeuverBuff", Guids.BrawlerManeuverBuff)
@@ -63,6 +64,7 @@ public static class BrawlerPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.BrawlerExpandedManeuver)
             .Configure();
 
         // Expanded buff: +14 competence to damage (≈4d6) on next attack

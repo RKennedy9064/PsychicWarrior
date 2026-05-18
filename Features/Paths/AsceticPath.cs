@@ -23,20 +23,18 @@ public static class AsceticPath
     {
         var icon = FeatureRefs.Dodge.Reference.Get().Icon;
 
-        var trance = FeatureConfigurator.New("AsceticTrance", Guids.AsceticTrance)
-            .SetDisplayName(LocalizationTool.CreateString("PW.AsceticTrance.Name", "Ascetic Trance"))
-            .SetDescription(LocalizationTool.CreateString("PW.AsceticTrance.Desc",
-                "Your psionic discipline allows you to move and react with supernatural efficiency. " +
-                "You gain a +1 competence bonus to AC."))
-            .SetIcon(icon)
-            .SetIsClassFeature()
-            .AddComponent(new AddStatBonus
-            {
-                Stat = StatType.AC,
-                Value = 1,
-                Descriptor = ModifierDescriptor.Competence
-            })
-            .Configure();
+        var trance = TranceHelper.BuildTrance(
+            baseName: "Ascetic",
+            tranceFeatureGuid: Guids.AsceticTrance,
+            tranceBuffGuid: Guids.AsceticTranceBuff,
+            tranceActivatableGuid: Guids.AsceticTranceActivatable,
+            displayName: "Ascetic Trance",
+            featureDescription: "Your psionic discipline allows you to move and react with supernatural efficiency. You gain a +1 competence bonus to AC.",
+            icon: icon,
+            addBuffComponents: b => b.AddStatBonus(
+                descriptor: ModifierDescriptor.Competence,
+                stat: StatType.AC,
+                value: 1));
 
         var maneuverBuff = BuffConfigurator.New("AsceticManeuverBuff", Guids.AsceticManeuverBuff)
             .SetDisplayName(LocalizationTool.CreateString("PW.AsceticManeuver.BuffName", "Ascetic Maneuver"))
@@ -60,6 +58,7 @@ public static class AsceticPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.AsceticExpandedFeature)
             .Configure();
 
         var expandedBuff = BuffConfigurator.New("AsceticExpandedManeuverBuff", Guids.AsceticExpandedBuff)

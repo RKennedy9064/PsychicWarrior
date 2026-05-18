@@ -23,20 +23,18 @@ public static class FeralWarriorPath
     {
         var icon = FeatureRefs.ImprovedUnarmedStrike.Reference.Get().Icon;
 
-        var trance = FeatureConfigurator.New("FeralWarriorTrance", Guids.FeralWarriorTrance)
-            .SetDisplayName(LocalizationTool.CreateString("PW.FeralWarriorTrance.Name", "Feral Warrior Trance"))
-            .SetDescription(LocalizationTool.CreateString("PW.FeralWarriorTrance.Desc",
-                "Your psionic focus channels through your body's natural weapons. " +
-                "You gain a +1 competence bonus to attack rolls with natural weapons and unarmed strikes."))
-            .SetIcon(icon)
-            .SetIsClassFeature()
-            .AddComponent(new AddStatBonus
-            {
-                Stat = StatType.AdditionalAttackBonus,
-                Value = 1,
-                Descriptor = ModifierDescriptor.Competence
-            })
-            .Configure();
+        var trance = TranceHelper.BuildTrance(
+            baseName: "FeralWarrior",
+            tranceFeatureGuid: Guids.FeralWarriorTrance,
+            tranceBuffGuid: Guids.FeralWarriorTranceBuff,
+            tranceActivatableGuid: Guids.FeralWarriorTranceActivatable,
+            displayName: "Feral Warrior Trance",
+            featureDescription: "Your psionic focus channels through your body's natural weapons. You gain a +1 competence bonus to attack rolls.",
+            icon: icon,
+            addBuffComponents: b => b.AddStatBonus(
+                descriptor: ModifierDescriptor.Competence,
+                stat: StatType.AdditionalAttackBonus,
+                value: 1));
 
         // +7 ≈ 2d6 average; removes after next attack
         var maneuverBuff = BuffConfigurator.New("FeralWarriorManeuverBuff", Guids.FeralWarriorManeuverBuff)
@@ -62,6 +60,7 @@ public static class FeralWarriorPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.FeralWarriorExpandedFeature)
             .Configure();
 
         // +14 ≈ 4d6 average; removes after next attack
