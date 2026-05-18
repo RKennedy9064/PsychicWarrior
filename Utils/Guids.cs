@@ -78,6 +78,16 @@ public static class Guids
     public const string BrawlerPathSkillAthletics = "d3e4f5a6-b7c8-4d9e-0f1a-2b3c4d5e6f7a";
     public const string BrawlerPathSkillMobility = "e4f5a6b7-c8d9-4e0f-1a2b-3c4d5e6f7a8b";
 
+    // Step 6: More 1st-level powers
+    public const string PowerInertialArmor = "10a1b2c3-d4e5-4f6a-8b7c-9d0e1f2a3b4c";
+    public const string PowerInertialArmorBuff = "10b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d";
+    public const string PowerThickenSkin = "20c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e";
+    public const string PowerThickenSkinBuff = "20d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f";
+    public const string PowerBiofeedback = "30e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f8a";
+    public const string PowerBiofeedbackBuff = "30f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a9b";
+    public const string PowerMetaphysicalWeapon = "40a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b0c";
+    public const string PowerMetaphysicalWeaponBuff = "40b8c9d0-e1f2-4a3b-4c5d-6e7f8a9b0c1d";
+
     // PathExpandedManeuver options
     // Feature = the FeatureSelection entry; Ability = the swift-action in the action bar; Buff = the applied effect
     public const string WeaponmasterExpandedManeuver = "a6b7c8d9-e0f1-4a2b-3c4d-5e6f7a8b9c0d";       // Feature wrapper

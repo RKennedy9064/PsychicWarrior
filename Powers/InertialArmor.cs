@@ -1,0 +1,46 @@
+using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Blueprints.References;
+using BlueprintCore.Utils;
+using BlueprintCore.Utils.Types;
+using Kingmaker.Blueprints.Classes.Spells;
+using Kingmaker.Enums;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.Commands.Base;
+using Kingmaker.UnitLogic.Mechanics;
+using Kingmaker.Visual.Animation.Kingmaker.Actions;
+using PsychicWarrior.Utils;
+
+namespace PsychicWarrior.Powers;
+
+public static class InertialArmor
+{
+    public static void Configure()
+    {
+        var buff = BuffConfigurator.New("PWInertialArmorBuff", Guids.PowerInertialArmorBuff)
+            .SetDisplayName(LocalizationTool.CreateString("PW.InertialArmor.BuffName", "Inertial Armor"))
+            .SetDescription(LocalizationTool.CreateString("PW.InertialArmor.BuffDesc",
+                "A psychokinetic field surrounds you, granting a +4 armor bonus to AC."))
+            .SetIcon(AbilityRefs.MageArmor.Reference.Get().Icon)
+            .AddStatBonus(descriptor: ModifierDescriptor.Armor, stat: Kingmaker.EntitySystem.Stats.StatType.AC, value: 4)
+            .Configure();
+
+        AbilityConfigurator.New("PWInertialArmor", Guids.PowerInertialArmor)
+            .SetDisplayName(LocalizationTool.CreateString("PW.InertialArmor.Name", "Inertial Armor"))
+            .SetDescription(LocalizationTool.CreateString("PW.InertialArmor.Desc",
+                "You create an invisible psychokinetic field around your body. You gain a +4 armor bonus to AC. Unlike mundane armor, inertial armor never results in armor check penalties or arcane spell failure."))
+            .SetIcon(AbilityRefs.MageArmor.Reference.Get().Icon)
+            .SetType(AbilityType.Supernatural)
+            .SetRange(AbilityRange.Personal)
+            .SetActionType(UnitCommand.CommandType.Standard)
+            .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
+            .AddSpellListComponent(1, Guids.SpellList)
+            .AddAbilityEffectRunAction(
+                ActionsBuilder.New()
+                    .ApplyBuff(buff, ContextDuration.Fixed(1, DurationRate.Hours)))
+            .AddSpellComponent(SpellSchool.Abjuration)
+            .Configure();
+    }
+}

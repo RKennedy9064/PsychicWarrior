@@ -71,6 +71,7 @@ public static class PsychicWarriorClass
                 StatType.SkillStealth)
             .SetSpellbook(Guids.Spellbook)
             .SetProgression(progression)
+            .SetStartingItems(ItemArmorRefs.ScalemailStandard.Reference.Get())
             .SetStartingGold(411)
             .SetPrimaryColor(1)
             .SetSecondaryColor(1)
@@ -80,8 +81,8 @@ public static class PsychicWarriorClass
             .OnConfigure(bp =>
             {
                 var fighter = CharacterClassRefs.FighterClass.Reference.Get();
-                bp.m_EquipmentEntities = fighter.m_EquipmentEntities;
-                bp.m_StartingItems = fighter.m_StartingItems;
+                bp.MaleEquipmentEntities = fighter.MaleEquipmentEntities;
+                bp.FemaleEquipmentEntities = fighter.FemaleEquipmentEntities;
             })
             .Configure();
     }

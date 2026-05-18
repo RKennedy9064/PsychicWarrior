@@ -189,8 +189,35 @@ public static class PsychicWarriorPathSelection
             .AddToAllFeatures(wmExpandedFeature, brawlerExpandedFeature)
             .Configure();
 
-        FeatureConfigurator.New("SecondaryPathSelection", Guids.SecondaryPathSelection).SetHideInUI(true).Configure();
-        FeatureConfigurator.New("TwistingPaths", Guids.TwistingPaths).SetHideInUI(true).Configure();
-        FeatureConfigurator.New("Pathweaving", Guids.Pathweaving).SetHideInUI(true).Configure();
+        FeatureSelectionConfigurator.New("SecondaryPathSelection", Guids.SecondaryPathSelection)
+            .SetDisplayName(LocalizationTool.CreateString("PW.SecondaryPath.Name", "Secondary Path"))
+            .SetDescription(LocalizationTool.CreateString("PW.SecondaryPath.Desc",
+                "At 9th level, a psychic warrior chooses a second warrior's path. He gains the trance and maneuver of that path. " +
+                "The psychic warrior may only benefit from one trance at a time (see Twisting Paths)."))
+            .SetIsClassFeature()
+            .AddToAllFeatures(weaponmasterPath, brawlerPath)
+            .Configure();
+
+        // TODO (Phase 6): Once trances are redesigned as toggled buffs, implement as a swift-action
+        // ability that removes the active trance buff and applies the other path's trance buff.
+        FeatureConfigurator.New("TwistingPaths", Guids.TwistingPaths)
+            .SetDisplayName(LocalizationTool.CreateString("PW.TwistingPaths.Name", "Twisting Paths"))
+            .SetDescription(LocalizationTool.CreateString("PW.TwistingPaths.Desc",
+                "At 11th level, while maintaining psionic focus and using a trance, the psychic warrior can spend a swift action " +
+                "to switch to the trance of his other path."))
+            .SetIsClassFeature()
+            .Configure();
+
+        // TODO (Phase 6): Once trances are redesigned as toggled buffs, implement as a free-action
+        // ability (1/day, +1/day per 3 levels after 15) that activates both trance buffs simultaneously
+        // for 5 minutes.
+        FeatureConfigurator.New("Pathweaving", Guids.Pathweaving)
+            .SetDisplayName(LocalizationTool.CreateString("PW.Pathweaving.Name", "Pathweaving"))
+            .SetDescription(LocalizationTool.CreateString("PW.Pathweaving.Desc",
+                "At 15th level, while maintaining psionic focus, the psychic warrior can spend a free action once per day " +
+                "to gain the benefits of both trances simultaneously for 5 minutes. He gains one additional use per day for " +
+                "every three psychic warrior levels beyond 15th."))
+            .SetIsClassFeature()
+            .Configure();
     }
 }

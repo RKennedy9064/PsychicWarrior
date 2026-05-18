@@ -48,6 +48,10 @@ public static class BlueprintInit
         // ── Phase 3: 1st-level powers ──────────────────────────────────────────
         Run(nameof(Powers.Vigor),                    Powers.Vigor.Configure,                     logger);
         Run(nameof(Powers.ForceScreen),              Powers.ForceScreen.Configure,               logger);
+        Run(nameof(Powers.InertialArmor),            Powers.InertialArmor.Configure,             logger);
+        Run(nameof(Powers.ThickenSkin),              Powers.ThickenSkin.Configure,               logger);
+        Run(nameof(Powers.Biofeedback),              Powers.Biofeedback.Configure,               logger);
+        Run(nameof(Powers.MetaphysicalWeapon),       Powers.MetaphysicalWeapon.Configure,        logger);
 
         // ── Phase 4: Class features (paths first, skill bonuses reference path GUIDs) ──
         Run(nameof(Features.PsychicWarriorProficiencies), Features.PsychicWarriorProficiencies.Configure, logger);

@@ -40,14 +40,13 @@ public static class PsychicWarriorSpellbook
                     bp.SpellsByLevel[i] = new SpellLevelList(i);
                 }
 
-                // 0-level talents
-                bp.SpellsByLevel[0].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerMinorPrecognition));
-
                 // 1st-level powers
                 bp.SpellsByLevel[1].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerVigor));
                 bp.SpellsByLevel[1].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerForceScreen));
-
-                // TODO: Add more powers to their respective levels as they are implemented
+                bp.SpellsByLevel[1].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerInertialArmor));
+                bp.SpellsByLevel[1].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerThickenSkin));
+                bp.SpellsByLevel[1].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerBiofeedback));
+                bp.SpellsByLevel[1].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerMetaphysicalWeapon));
             })
             .Configure();
 
