@@ -1,5 +1,6 @@
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
+using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
@@ -16,11 +17,14 @@ public static class PathSkillBonus
 {
     public static void Configure()
     {
+        var icon = FeatureRefs.PowerAttackFeature.Reference.Get().Icon;
+
         // Weaponmaster path skills: Athletics (weapon techniques), Perception (battlefield awareness)
         var wmAthletics = FeatureConfigurator.New("WeaponmasterPathSkillAthletics", Guids.WeaponmasterPathSkillAthletics)
             .SetDisplayName(LocalizationTool.CreateString("PW.WMSkillAthletics.Name", "Path Skill: Athletics (Weaponmaster)"))
             .SetDescription(LocalizationTool.CreateString("PW.WMSkillAthletics.Desc",
                 "You gain a +2 competence bonus to Athletics checks. Can be selected up to three times (maximum +6)."))
+            .SetIcon(icon)
             .SetIsClassFeature()
             .SetRanks(3)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SkillAthletics, value: 2)
@@ -31,6 +35,7 @@ public static class PathSkillBonus
             .SetDisplayName(LocalizationTool.CreateString("PW.WMSkillPerception.Name", "Path Skill: Perception (Weaponmaster)"))
             .SetDescription(LocalizationTool.CreateString("PW.WMSkillPerception.Desc",
                 "You gain a +2 competence bonus to Perception checks. Can be selected up to three times (maximum +6)."))
+            .SetIcon(icon)
             .SetIsClassFeature()
             .SetRanks(3)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SkillPerception, value: 2)
@@ -42,6 +47,7 @@ public static class PathSkillBonus
             .SetDisplayName(LocalizationTool.CreateString("PW.BrawlerSkillAthletics.Name", "Path Skill: Athletics (Brawler)"))
             .SetDescription(LocalizationTool.CreateString("PW.BrawlerSkillAthletics.Desc",
                 "You gain a +2 competence bonus to Athletics checks. Can be selected up to three times (maximum +6)."))
+            .SetIcon(icon)
             .SetIsClassFeature()
             .SetRanks(3)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SkillAthletics, value: 2)
@@ -52,6 +58,7 @@ public static class PathSkillBonus
             .SetDisplayName(LocalizationTool.CreateString("PW.BrawlerSkillMobility.Name", "Path Skill: Mobility (Brawler)"))
             .SetDescription(LocalizationTool.CreateString("PW.BrawlerSkillMobility.Desc",
                 "You gain a +2 competence bonus to Mobility checks. Can be selected up to three times (maximum +6)."))
+            .SetIcon(icon)
             .SetIsClassFeature()
             .SetRanks(3)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SkillMobility, value: 2)
@@ -62,6 +69,7 @@ public static class PathSkillBonus
             .SetDisplayName(LocalizationTool.CreateString("PW.PathSkillSel.Name", "Path Skill"))
             .SetDescription(LocalizationTool.CreateString("PW.PathSkillSel.Desc",
                 "Select one skill associated with your warrior path to gain a +2 competence bonus (maximum +6 for any one skill)."))
+            .SetIcon(icon)
             .SetIsClassFeature(true)
             .SetIgnorePrerequisites(false)
             .AddToAllFeatures(wmAthletics, wmPerception, brawlerAthletics, brawlerMobility)

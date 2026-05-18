@@ -1,5 +1,6 @@
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
+using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using PsychicWarrior.Utils;
 
@@ -9,11 +10,14 @@ public static class PsychicWarriorPathSelection
 {
     public static void Configure()
     {
+        var icon = AbilityRefs.DivineFavor.Reference.Get().Icon;
+
         FeatureSelectionConfigurator.New("PsychicWarriorPathSelection", Guids.PathSelectionLevel1)
             .SetDisplayName(LocalizationTool.CreateString("PW.PathSelection.Name", "Psychic Warrior Path"))
             .SetDescription(LocalizationTool.CreateString("PW.PathSelection.Desc",
                 "At 1st level, a psychic warrior chooses a path that shapes her training and fighting style. " +
                 "She gains the trance and maneuver of her chosen path."))
+            .SetIcon(icon)
             .SetIsClassFeature()
             .AddToAllFeatures(
                 Guids.WeaponmasterPath,
@@ -34,6 +38,7 @@ public static class PsychicWarriorPathSelection
             .SetDisplayName(LocalizationTool.CreateString("PW.PathExpandedManeuver.Name", "Expanded Path Maneuver"))
             .SetDescription(LocalizationTool.CreateString("PW.PathExpandedManeuver.Desc",
                 "At 3rd level, you gain an additional maneuver from your chosen path, expanding your tactical options in combat."))
+            .SetIcon(icon)
             .SetIsClassFeature()
             .SetIgnorePrerequisites(false)
             .AddToAllFeatures(
@@ -56,6 +61,7 @@ public static class PsychicWarriorPathSelection
             .SetDescription(LocalizationTool.CreateString("PW.SecondaryPath.Desc",
                 "At 9th level, a psychic warrior chooses a second warrior's path. He gains the trance and maneuver of that path. " +
                 "The psychic warrior may only benefit from one trance at a time (see Twisting Paths)."))
+            .SetIcon(icon)
             .SetIsClassFeature()
             .AddToAllFeatures(
                 Guids.WeaponmasterPath,
@@ -78,6 +84,7 @@ public static class PsychicWarriorPathSelection
             .SetDescription(LocalizationTool.CreateString("PW.TwistingPaths.Desc",
                 "At 11th level, while maintaining psionic focus and using a trance, the psychic warrior can spend a swift action " +
                 "to switch to the trance of his other path."))
+            .SetIcon(icon)
             .SetIsClassFeature()
             .Configure();
 
@@ -89,6 +96,7 @@ public static class PsychicWarriorPathSelection
                 "At 15th level, while maintaining psionic focus, the psychic warrior can spend a free action once per day " +
                 "to gain the benefits of both trances simultaneously for 5 minutes. He gains one additional use per day for " +
                 "every three psychic warrior levels beyond 15th."))
+            .SetIcon(icon)
             .SetIsClassFeature()
             .Configure();
     }

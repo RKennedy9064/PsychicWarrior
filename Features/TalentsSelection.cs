@@ -89,6 +89,7 @@ public static class TalentsSelection
             .SetDisplayName(LocalizationTool.CreateString("PW.Talents.Name", "Psychic Warrior Talents"))
             .SetDescription(LocalizationTool.CreateString("PW.Talents.Desc",
                 "You gain two 0-level psychic talents of your choice. These do not count against your powers known."))
+            .SetIcon(AbilityRefs.Guidance.Reference.Get().Icon)
             .SetIgnorePrerequisites(true)
             .SetIsClassFeature(true)
             .AddToAllFeatures(
