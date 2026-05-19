@@ -57,7 +57,7 @@ internal static class TranceHelper
         ActivatableAbilityConfigurator.New($"{baseName}TranceActivatable", Guids.GetTranceActivatableGuid(baseName))
             .SetDisplayName(Loc.Str($"PW.{baseName}TranceActivatable.Name", displayName + " Trance", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str($"PW.{baseName}TranceActivatable.Desc",
-                featureDescription + " Toggling takes a standard action (reduced to swift at PW 11 by Twisting Paths). Only one trance can be active at a time. Requires psionic focus.",
+                featureDescription + " Toggling takes a standard action (reduced to swift at PW 12 by Twisting Paths). Only one trance can be active at a time. Requires psionic focus.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetBuff(tranceBuffGuid)

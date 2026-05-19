@@ -45,14 +45,15 @@ public static class PsychicWarriorClass
             .AddToLevelEntries(8, Guids.BonusFeatSelection)
             .AddToLevelEntries(9, Guids.SecondaryPathSelection)
             .AddToLevelEntries(10, Guids.PathSkillBonusSelection)
-            .AddToLevelEntries(11, Guids.BonusFeatSelection, Guids.TwistingPaths)
+            .AddToLevelEntries(11, Guids.BonusFeatSelection)
+            .AddToLevelEntries(12, Guids.TwistingPaths)
             .AddToLevelEntries(13, Guids.PathSkillBonusSelection)
             .AddToLevelEntries(14, Guids.BonusFeatSelection)
             .AddToLevelEntries(15, Guids.Pathweaving)
             .AddToLevelEntries(16, Guids.PathSkillBonusSelection)
             .AddToLevelEntries(17, Guids.BonusFeatSelection)
             .AddToLevelEntries(19, Guids.PathSkillBonusSelection)
-            .AddToLevelEntries(20, Guids.BonusFeatSelection)
+            .AddToLevelEntries(20, Guids.BonusFeatSelection, Guids.EternalWarriorFeature)
             .Configure();
 
         CharacterClassConfigurator.New("PsychicWarrior.Class", Guids.PsychicWarriorClass)

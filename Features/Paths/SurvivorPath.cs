@@ -34,9 +34,14 @@ public static class SurvivorPath
             maneuverAbilityGuid: Guids.SurvivorManeuverAbility,
             expandedManeuverAbilityGuid: Guids.SurvivorExpandedAbility,
             displayName: "Survivor",
-            featureDescription: "Your psionic focus toughens your body against physical harm. You gain DR 2/—.",
+            featureDescription: "Your psionic focus toughens your body. You gain DR 2/— and Mettle (when you succeed on a Fortitude or Will saving throw against an effect that normally allows a partial save, you instead take no effect at all).",
             icon: icon,
-            addBuffComponents: b => b.AddComponent(new AddDamageResistancePhysical { Value = 2, BypassedByMaterial = false }));
+            addBuffComponents: b =>
+            {
+                b.AddComponent(new AddDamageResistancePhysical { Value = 2, BypassedByMaterial = false });
+                b.AddEvasion(SavingThrowType.Fortitude);
+                b.AddEvasion(SavingThrowType.Will);
+            });
 
         // Mettle: Fort/Will saves spike for 1 round
         var maneuverBuff = BuffConfigurator.New("SurvivorManeuverBuff", Guids.SurvivorManeuverBuff)
@@ -106,7 +111,7 @@ public static class SurvivorPath
         FeatureConfigurator.New("SurvivorPath", Guids.SurvivorPath)
             .SetDisplayName(Loc.Str("PW.SurvivorPath.Name", "Survivor Path"))
             .SetDescription(Loc.Str("PW.SurvivorPath.Desc",
-                "You focus on endurance and resilience. You gain DR 2/— while psionically focused (trance) and can expend psionic focus to spike your Fortitude and Will saves (maneuver)."))
+                "You focus on endurance and resilience. Your trance grants DR 2/— and Mettle (partial-effect Fort/Will saves are negated entirely on a success). Your maneuver lets you expend psionic focus to spike your Fortitude and Will saves."))
             .SetIcon(icon)
             .SetIsClassFeature()
             .AddFacts(new() { trance.ToString() })

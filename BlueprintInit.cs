@@ -137,6 +137,9 @@ public static class BlueprintInit
         Run(nameof(Feats.UpTheWalls),                Feats.UpTheWalls.Configure,                 logger);
         Run(nameof(Feats.PsionicEndowment),          Feats.PsionicEndowment.Configure,           logger);
 
+        // ── Phase 15: Level 20 Capstone ───────────────────────────────────────
+        Run(nameof(Features.EternalWarrior),             Features.EternalWarrior.Configure,             logger);
+
         // ── Phase 6: Class definition (must come last) ─────────────────────────
         Run(nameof(Classes.PsychicWarriorSpellbook), Classes.PsychicWarriorSpellbook.Configure,  logger);
         Run(nameof(Classes.PsychicWarriorClass),     Classes.PsychicWarriorClass.Configure,      logger);

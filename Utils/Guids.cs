@@ -410,6 +410,12 @@ public static class Guids
     public const string PowerOakBody                    = "e0150001-0000-4000-8000-000000000001";
     public const string PowerOakBodyBuff                = "e0150002-0000-4000-8000-000000000001";
 
+    // ── Phase 15: Class capstone ──
+    public const string EternalWarriorFeature  = "f0000001-0000-4000-8000-000000000001";
+    public const string EternalWarriorAbility  = "f0000002-0000-4000-8000-000000000001";
+    public const string EternalWarriorBuff     = "f0000003-0000-4000-8000-000000000001";
+    public const string EternalWarriorResource = "f0000004-0000-4000-8000-000000000001";
+
     // ── Phase 14: 4th-level powers ──
     public const string PowerDimensionDoor              = "e00c0001-0000-4000-8000-000000000001";
     public const string PowerFreedomOfMovement          = "e00d0001-0000-4000-8000-000000000001";

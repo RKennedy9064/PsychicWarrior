@@ -59,7 +59,7 @@ public static class TwistingPathsPathweaving
         FeatureConfigurator.New("TwistingPaths", Guids.TwistingPaths)
             .SetDisplayName(Loc.Str("PW.TwistingPaths.Name", "Twisting Paths", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.TwistingPaths.Desc",
-                "At 11th level, your training lets you slip between trances effortlessly. The action cost to toggle any of your path trances is reduced from a standard action to a swift action, letting you switch between your two paths' trances mid-combat.",
+                "At 12th level, your training lets you slip between trances effortlessly. The action cost to toggle any of your path trances is reduced from a standard action to a swift action, letting you switch between your two paths' trances mid-combat.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetIsClassFeature()
