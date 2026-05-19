@@ -56,6 +56,16 @@ public static class PsychicWarriorSpellbook
                 bp.SpellsByLevel[2].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerDetectHostileIntent));
                 bp.SpellsByLevel[2].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerHustle));
 
+                // 5th-level powers
+                bp.SpellsByLevel[5].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerTrueMetabolism));
+                bp.SpellsByLevel[5].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerAdaptBody));
+                bp.SpellsByLevel[5].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerTrueSeeing));
+
+                // 6th-level powers
+                bp.SpellsByLevel[6].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerDisintegratePsionic));
+                bp.SpellsByLevel[6].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerMindBlankPersonal));
+                bp.SpellsByLevel[6].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerOakBody));
+
                 // 4th-level powers
                 bp.SpellsByLevel[4].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerDimensionDoor));
                 bp.SpellsByLevel[4].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerFreedomOfMovement));

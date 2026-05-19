@@ -69,6 +69,16 @@ public static class BlueprintInit
         Run(nameof(Powers.DetectHostileIntent),      Powers.DetectHostileIntent.Configure,       logger);
         Run(nameof(Powers.Hustle),                   Powers.Hustle.Configure,                    logger);
 
+        // ── Phase 14: 5th-level powers ─────────────────────────────────────────
+        Run(nameof(Powers.TrueMetabolism),           Powers.TrueMetabolism.Configure,            logger);
+        Run(nameof(Powers.AdaptBody),                Powers.AdaptBody.Configure,                 logger);
+        Run(nameof(Powers.TrueSeeing),               Powers.TrueSeeing.Configure,                logger);
+
+        // ── Phase 14: 6th-level powers ─────────────────────────────────────────
+        Run(nameof(Powers.DisintegratePsionic),      Powers.DisintegratePsionic.Configure,       logger);
+        Run(nameof(Powers.MindBlankPersonalPsionic),Powers.MindBlankPersonalPsionic.Configure, logger);
+        Run(nameof(Powers.OakBody),                  Powers.OakBody.Configure,                   logger);
+
         // ── Phase 14: 4th-level powers ─────────────────────────────────────────
         Run(nameof(Powers.DimensionDoor),            Powers.DimensionDoor.Configure,             logger);
         Run(nameof(Powers.FreedomOfMovement),        Powers.FreedomOfMovement.Configure,         logger);

@@ -390,6 +390,26 @@ public static class Guids
     public const string PsionicEndowmentFeat           = "f0100001-0000-4000-8000-000000000001";
     public const string PsionicEndowmentBuff           = "f0100002-0000-4000-8000-000000000001";
 
+    // ── Phase 14: 5th-level powers ──
+    public const string PowerTrueMetabolism             = "e0100001-0000-4000-8000-000000000001";
+    public const string PowerTrueMetabolismBuff         = "e0100002-0000-4000-8000-000000000001";
+    public const string PowerAdaptBody                  = "e0110001-0000-4000-8000-000000000001";
+    public const string PowerAdaptBodyFire              = "e0110002-0000-4000-8000-000000000001";
+    public const string PowerAdaptBodyFireBuff          = "e0110003-0000-4000-8000-000000000001";
+    public const string PowerAdaptBodyCold              = "e0110004-0000-4000-8000-000000000001";
+    public const string PowerAdaptBodyColdBuff          = "e0110005-0000-4000-8000-000000000001";
+    public const string PowerAdaptBodyElectric          = "e0110006-0000-4000-8000-000000000001";
+    public const string PowerAdaptBodyElectricBuff      = "e0110007-0000-4000-8000-000000000001";
+    public const string PowerAdaptBodyAcid              = "e0110008-0000-4000-8000-000000000001";
+    public const string PowerAdaptBodyAcidBuff          = "e0110009-0000-4000-8000-000000000001";
+    public const string PowerTrueSeeing                 = "e0120001-0000-4000-8000-000000000001";
+    // ── Phase 14: 6th-level powers ──
+    public const string PowerDisintegratePsionic        = "e0130001-0000-4000-8000-000000000001";
+    public const string PowerMindBlankPersonal           = "e0140001-0000-4000-8000-000000000001";
+    public const string PowerMindBlankPersonalBuff       = "e0140002-0000-4000-8000-000000000001";
+    public const string PowerOakBody                    = "e0150001-0000-4000-8000-000000000001";
+    public const string PowerOakBodyBuff                = "e0150002-0000-4000-8000-000000000001";
+
     // ── Phase 14: 4th-level powers ──
     public const string PowerDimensionDoor              = "e00c0001-0000-4000-8000-000000000001";
     public const string PowerFreedomOfMovement          = "e00d0001-0000-4000-8000-000000000001";
