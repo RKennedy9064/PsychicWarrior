@@ -390,6 +390,21 @@ public static class Guids
     public const string PsionicEndowmentFeat           = "f0100001-0000-4000-8000-000000000001";
     public const string PsionicEndowmentBuff           = "f0100002-0000-4000-8000-000000000001";
 
+    // ── Phase 14: 4th-level powers ──
+    public const string PowerDimensionDoor              = "e00c0001-0000-4000-8000-000000000001";
+    public const string PowerFreedomOfMovement          = "e00d0001-0000-4000-8000-000000000001";
+    public const string PowerWeaponOfEnergy             = "e00e0001-0000-4000-8000-000000000001";
+    public const string PowerWeaponOfEnergyFire         = "e00e0002-0000-4000-8000-000000000001";
+    public const string PowerWeaponOfEnergyFireBuff     = "e00e0003-0000-4000-8000-000000000001";
+    public const string PowerWeaponOfEnergyCold         = "e00e0004-0000-4000-8000-000000000001";
+    public const string PowerWeaponOfEnergyColdBuff     = "e00e0005-0000-4000-8000-000000000001";
+    public const string PowerWeaponOfEnergyElectric     = "e00e0006-0000-4000-8000-000000000001";
+    public const string PowerWeaponOfEnergyElectricBuff = "e00e0007-0000-4000-8000-000000000001";
+    public const string PowerWeaponOfEnergyAcid         = "e00e0008-0000-4000-8000-000000000001";
+    public const string PowerWeaponOfEnergyAcidBuff     = "e00e0009-0000-4000-8000-000000000001";
+    public const string PowerSteadfastPerception        = "e00f0001-0000-4000-8000-000000000001";
+    public const string PowerSteadfastPerceptionBuff    = "e00f0002-0000-4000-8000-000000000001";
+
     // ── Phase 9: 3rd-level powers ──
     public const string PowerVampiricBlade             = "e0070001-0000-4000-8000-000000000001";
     public const string PowerVampiricBladeBuff         = "e0070002-0000-4000-8000-000000000001";
