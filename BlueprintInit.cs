@@ -69,6 +69,13 @@ public static class BlueprintInit
         Run(nameof(Powers.DetectHostileIntent),      Powers.DetectHostileIntent.Configure,       logger);
         Run(nameof(Powers.Hustle),                   Powers.Hustle.Configure,                    logger);
 
+        // ── Phase 9: 3rd-level powers ──────────────────────────────────────────
+        Run(nameof(Powers.VampiricBlade),            Powers.VampiricBlade.Configure,             logger);
+        Run(nameof(Powers.MentalBarrier),            Powers.MentalBarrier.Configure,             logger);
+        Run(nameof(Powers.ConcealingAmorphaGreater), Powers.ConcealingAmorphaGreater.Configure,  logger);
+        Run(nameof(Powers.GraftWeapon),              Powers.GraftWeapon.Configure,               logger);
+        Run(nameof(Powers.KeenEdgePsionic),          Powers.KeenEdgePsionic.Configure,           logger);
+
         // ── Phase 4: Class features (paths first, skill bonuses reference path GUIDs) ──
         Run(nameof(Features.PsychicWarriorProficiencies), Features.PsychicWarriorProficiencies.Configure, logger);
         Run(nameof(Features.PsychicWarriorBonusFeat),     Features.PsychicWarriorBonusFeat.Configure,     logger);

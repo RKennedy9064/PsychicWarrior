@@ -27,8 +27,12 @@ public static class InfiltratorPath
             baseName: "Infiltrator",
             tranceFeatureGuid: Guids.InfiltratorTrance,
             tranceBuffGuid: Guids.InfiltratorTranceBuff,
-            tranceActivatableGuid: Guids.InfiltratorTranceActivatable,
-            displayName: "Infiltrator Trance",
+            tranceToggleStdGuid: Guids.InfiltratorTranceToggleStd,
+            tranceToggleSwiftGuid: Guids.InfiltratorTranceToggleSwift,
+            parentAbilityGuid: Guids.InfiltratorPathParent,
+            maneuverAbilityGuid: Guids.InfiltratorManeuverAbility,
+            expandedManeuverAbilityGuid: Guids.InfiltratorExpandedAbility,
+            displayName: "Infiltrator",
             featureDescription: "Your psionic focus makes you more effective at social manipulation and precision strikes. You gain a +2 competence bonus to Persuasion and +1 competence bonus to damage rolls.",
             icon: icon,
             addBuffComponents: b => b
@@ -58,22 +62,22 @@ public static class InfiltratorPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
-            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.InfiltratorExpandedFeature)
             .Configure();
 
+        // Expanded — Hidden Step: +20 speed (enhancement) + +6 stealth for 1 round
         var expandedBuff = BuffConfigurator.New("InfiltratorExpandedManeuverBuff", Guids.InfiltratorExpandedBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.InfiltratorExpanded.BuffName", "Infiltrator Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.InfiltratorExpanded.BuffName", "Hidden Step"))
             .SetDescription(LocalizationTool.CreateString("PW.InfiltratorExpanded.BuffDesc",
-                "Enhanced menacing aura: +6 competence to Persuasion and +4 competence to damage for 1 round."))
+                "Psionic shadow-step: +20 ft enhancement speed and +6 competence to Stealth for 1 round."))
             .SetIcon(icon)
-            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SkillPersuasion, value: 6)
-            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalDamage, value: 4)
+            .AddStatBonus(descriptor: ModifierDescriptor.Enhancement, stat: StatType.Speed, value: 20)
+            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SkillStealth, value: 6)
             .Configure();
 
         var expandedAbility = AbilityConfigurator.New("InfiltratorExpandedManeuverAbility", Guids.InfiltratorExpandedAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.InfiltratorExpandedAb.Name", "Infiltrator Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.InfiltratorExpandedAb.Name", "Hidden Step"))
             .SetDescription(LocalizationTool.CreateString("PW.InfiltratorExpandedAb.Desc",
-                "Swift Action. Expend psionic focus to project an enhanced menacing aura, gaining +6 competence to Persuasion and +4 competence to damage for 1 round."))
+                "Swift Action. Expend psionic focus to glide as a shadow: +20 ft enhancement speed and +6 competence to Stealth for 1 round."))
             .SetIcon(icon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
@@ -84,15 +88,15 @@ public static class InfiltratorPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(expandedBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: false, unitFact: Guids.InfiltratorExpandedFeature)
             .Configure();
 
         FeatureConfigurator.New("InfiltratorExpandedManeuver", Guids.InfiltratorExpandedFeature)
-            .SetDisplayName(LocalizationTool.CreateString("PW.InfiltratorExpandedFeat.Name", "Infiltrator Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.InfiltratorExpandedFeat.Name", "Hidden Step"))
             .SetDescription(LocalizationTool.CreateString("PW.InfiltratorExpandedFeat.Desc",
-                "Your Infiltrator Maneuver upgrades to grant +6 competence to Persuasion and +4 competence to damage for 1 round."))
+                "You learn the Hidden Step maneuver: a swift-action self-buff granting +20 ft speed and +6 competence to Stealth for 1 round."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { Guids.InfiltratorExpandedAbility })
             .AddPrerequisiteFeature(Guids.InfiltratorPath)
             .Configure();
 
@@ -102,7 +106,7 @@ public static class InfiltratorPath
                 "You focus on deception and precise lethal strikes. You gain +2 competence to Persuasion and +1 to damage (trance), and can expend psionic focus for enhanced menace (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { trance.ToString(), Guids.InfiltratorManeuverAbility })
+            .AddFacts(new() { trance.ToString() })
             .Configure();
     }
 }

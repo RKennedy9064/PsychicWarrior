@@ -27,8 +27,12 @@ public static class FeralWarriorPath
             baseName: "FeralWarrior",
             tranceFeatureGuid: Guids.FeralWarriorTrance,
             tranceBuffGuid: Guids.FeralWarriorTranceBuff,
-            tranceActivatableGuid: Guids.FeralWarriorTranceActivatable,
-            displayName: "Feral Warrior Trance",
+            tranceToggleStdGuid: Guids.FeralWarriorTranceToggleStd,
+            tranceToggleSwiftGuid: Guids.FeralWarriorTranceToggleSwift,
+            parentAbilityGuid: Guids.FeralWarriorPathParent,
+            maneuverAbilityGuid: Guids.FeralWarriorManeuverAbility,
+            expandedManeuverAbilityGuid: Guids.FeralWarriorExpandedAbility,
+            displayName: "Feral Warrior",
             featureDescription: "Your psionic focus channels through your body's natural weapons. You gain a +1 competence bonus to attack rolls.",
             icon: icon,
             addBuffComponents: b => b.AddStatBonus(
@@ -60,23 +64,21 @@ public static class FeralWarriorPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
-            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.FeralWarriorExpandedFeature)
             .Configure();
 
-        // +14 ≈ 4d6 average; removes after next attack
+        // Expanded — Feral Rend: keen weapon edge (doubled threat range) for 1 round
         var expandedBuff = BuffConfigurator.New("FeralWarriorExpandedManeuverBuff", Guids.FeralWarriorExpandedBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.FeralWarriorExpanded.BuffName", "Feral Warrior Expanded Maneuver"))
+            .CopyFrom(BuffRefs.ArcaneWeaponKeenBuff)
+            .SetDisplayName(LocalizationTool.CreateString("PW.FeralWarriorExpanded.BuffName", "Feral Rend"))
             .SetDescription(LocalizationTool.CreateString("PW.FeralWarriorExpanded.BuffDesc",
-                "Your next attack deals +14 bonus damage from unleashed feral psionic energy."))
+                "Your weapons take on a feral edge — doubled critical threat range."))
             .SetIcon(icon)
-            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalDamage, value: 14)
-            .AddInitiatorAttackRollTrigger(ActionsBuilder.New().RemoveBuff(Guids.FeralWarriorExpandedBuff))
             .Configure();
 
         var expandedAbility = AbilityConfigurator.New("FeralWarriorExpandedManeuverAbility", Guids.FeralWarriorExpandedAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.FeralWarriorExpandedAb.Name", "Feral Warrior Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.FeralWarriorExpandedAb.Name", "Feral Rend"))
             .SetDescription(LocalizationTool.CreateString("PW.FeralWarriorExpandedAb.Desc",
-                "Swift Action. Expend psionic focus to channel greater feral energy into your next strike, dealing +14 bonus damage."))
+                "Swift Action. Expend psionic focus to imbue your weapons with feral edge — doubled critical threat range for 1 round."))
             .SetIcon(icon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
@@ -87,15 +89,15 @@ public static class FeralWarriorPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(expandedBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: false, unitFact: Guids.FeralWarriorExpandedFeature)
             .Configure();
 
         FeatureConfigurator.New("FeralWarriorExpandedManeuver", Guids.FeralWarriorExpandedFeature)
-            .SetDisplayName(LocalizationTool.CreateString("PW.FeralWarriorExpandedFeat.Name", "Feral Warrior Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.FeralWarriorExpandedFeat.Name", "Feral Rend"))
             .SetDescription(LocalizationTool.CreateString("PW.FeralWarriorExpandedFeat.Desc",
-                "Your Feral Warrior Maneuver upgrades to deal +14 bonus damage on your next attack."))
+                "You learn the Feral Rend maneuver: a swift-action self-buff that imbues your weapons with feral edge — doubled critical threat range for 1 round."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { Guids.FeralWarriorExpandedAbility })
             .AddPrerequisiteFeature(Guids.FeralWarriorPath)
             .Configure();
 
@@ -105,7 +107,7 @@ public static class FeralWarriorPath
                 "You focus on natural weapon and unarmed combat. You gain a +1 competence bonus to attack rolls (trance) and can expend psionic focus for +7 bonus damage on your next strike (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { trance.ToString(), Guids.FeralWarriorManeuverAbility })
+            .AddFacts(new() { trance.ToString() })
             .Configure();
     }
 }

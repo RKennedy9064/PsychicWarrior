@@ -27,8 +27,12 @@ public static class ArcherPath
             baseName: "Archer",
             tranceFeatureGuid: Guids.ArcherTrance,
             tranceBuffGuid: Guids.ArcherTranceBuff,
-            tranceActivatableGuid: Guids.ArcherTranceActivatable,
-            displayName: "Archer Trance",
+            tranceToggleStdGuid: Guids.ArcherTranceToggleStd,
+            tranceToggleSwiftGuid: Guids.ArcherTranceToggleSwift,
+            parentAbilityGuid: Guids.ArcherPathParent,
+            maneuverAbilityGuid: Guids.ArcherManeuverAbility,
+            expandedManeuverAbilityGuid: Guids.ArcherExpandedAbility,
+            displayName: "Archer",
             featureDescription: "Your psionic focus steadies your aim. You gain a +1 competence bonus to attack rolls.",
             icon: icon,
             addBuffComponents: b => b.AddStatBonus(
@@ -59,21 +63,21 @@ public static class ArcherPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
-            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.ArcherExpandedFeature)
             .Configure();
 
+        // Expanded — Twin Shot: Haste-like acceleration for 1 round
         var expandedBuff = BuffConfigurator.New("ArcherExpandedManeuverBuff", Guids.ArcherExpandedBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.ArcherExpanded.BuffName", "Archer Expanded Maneuver"))
+            .CopyFrom(BuffRefs.HasteBuff)
+            .SetDisplayName(LocalizationTool.CreateString("PW.ArcherExpanded.BuffName", "Twin Shot"))
             .SetDescription(LocalizationTool.CreateString("PW.ArcherExpanded.BuffDesc",
-                "You gain a +4 competence bonus to CMB for combat maneuvers for 1 round."))
+                "Psionic acceleration drives your arms: gain the benefits of haste — extra attack on full attacks, +1 dodge AC, +1 Reflex, +30 ft speed."))
             .SetIcon(icon)
-            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalCMB, value: 4)
             .Configure();
 
         var expandedAbility = AbilityConfigurator.New("ArcherExpandedManeuverAbility", Guids.ArcherExpandedAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.ArcherExpandedAb.Name", "Archer Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.ArcherExpandedAb.Name", "Twin Shot"))
             .SetDescription(LocalizationTool.CreateString("PW.ArcherExpandedAb.Desc",
-                "Swift Action. Expend psionic focus to gain a +4 competence bonus to CMB for combat maneuvers for 1 round."))
+                "Swift Action. Expend psionic focus to unleash a Twin Shot: gain the benefits of haste for 1 round (extra attack on full attacks, +1 dodge AC, +1 Reflex, +30 ft speed)."))
             .SetIcon(icon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
@@ -84,15 +88,15 @@ public static class ArcherPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(expandedBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: false, unitFact: Guids.ArcherExpandedFeature)
             .Configure();
 
         FeatureConfigurator.New("ArcherExpandedManeuver", Guids.ArcherExpandedFeature)
-            .SetDisplayName(LocalizationTool.CreateString("PW.ArcherExpandedFeat.Name", "Archer Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.ArcherExpandedFeat.Name", "Twin Shot"))
             .SetDescription(LocalizationTool.CreateString("PW.ArcherExpandedFeat.Desc",
-                "Your Archer Maneuver upgrades: expend psionic focus to gain +4 competence to CMB for 1 round."))
+                "You learn the Twin Shot maneuver: a swift-action haste-like buff for 1 round."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { Guids.ArcherExpandedAbility })
             .AddPrerequisiteFeature(Guids.ArcherPath)
             .Configure();
 
@@ -102,7 +106,7 @@ public static class ArcherPath
                 "You focus on ranged precision. You gain a +1 competence bonus to attack rolls (trance) and can expend psionic focus to enhance your next attack (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { trance.ToString(), Guids.ArcherManeuverAbility })
+            .AddFacts(new() { trance.ToString() })
             .Configure();
     }
 }

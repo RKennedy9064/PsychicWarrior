@@ -210,6 +210,62 @@ public static class Guids
     public const string SurvivorTranceBuff             = "bc0c0001-0000-4000-8000-000000000001";
     public const string SurvivorTranceActivatable      = "ba0c0001-0000-4000-8000-000000000001";
 
+    public static string GetTranceActivatableGuid(string baseName) => baseName switch
+    {
+        "Weaponmaster"  => WeaponmasterTranceActivatable,
+        "Brawler"       => BrawlerTranceActivatable,
+        "Archer"        => ArcherTranceActivatable,
+        "Ascetic"       => AsceticTranceActivatable,
+        "Assassins"     => AssassinsTranceActivatable,
+        "Dervish"       => DervishTranceActivatable,
+        "FeralWarrior"  => FeralWarriorTranceActivatable,
+        "Gladiator"     => GladiatorTranceActivatable,
+        "Infiltrator"   => InfiltratorTranceActivatable,
+        "Interceptor"   => InterceptorTranceActivatable,
+        "MindKnight"    => MindKnightTranceActivatable,
+        "Survivor"      => SurvivorTranceActivatable,
+        _ => throw new System.ArgumentException($"Unknown path baseName: {baseName}")
+    };
+
+    // Phase 7b: Per-path "[Path] Powers" parent ability + Std/Swift trance-toggle ability variants
+    // pa{path:01-0c}{slot:01=parent, 02=toggleStd, 03=toggleSwift}
+    public const string WeaponmasterPathParent         = "ae010001-0000-4000-8000-000000000001";
+    public const string WeaponmasterTranceToggleStd    = "ae010002-0000-4000-8000-000000000001";
+    public const string WeaponmasterTranceToggleSwift  = "ae010003-0000-4000-8000-000000000001";
+    public const string BrawlerPathParent              = "ae020001-0000-4000-8000-000000000001";
+    public const string BrawlerTranceToggleStd         = "ae020002-0000-4000-8000-000000000001";
+    public const string BrawlerTranceToggleSwift       = "ae020003-0000-4000-8000-000000000001";
+    public const string ArcherPathParent               = "ae030001-0000-4000-8000-000000000001";
+    public const string ArcherTranceToggleStd          = "ae030002-0000-4000-8000-000000000001";
+    public const string ArcherTranceToggleSwift        = "ae030003-0000-4000-8000-000000000001";
+    public const string AsceticPathParent              = "ae040001-0000-4000-8000-000000000001";
+    public const string AsceticTranceToggleStd         = "ae040002-0000-4000-8000-000000000001";
+    public const string AsceticTranceToggleSwift       = "ae040003-0000-4000-8000-000000000001";
+    public const string AssassinsPathParent            = "ae050001-0000-4000-8000-000000000001";
+    public const string AssassinsTranceToggleStd       = "ae050002-0000-4000-8000-000000000001";
+    public const string AssassinsTranceToggleSwift     = "ae050003-0000-4000-8000-000000000001";
+    public const string DervishPathParent              = "ae060001-0000-4000-8000-000000000001";
+    public const string DervishTranceToggleStd         = "ae060002-0000-4000-8000-000000000001";
+    public const string DervishTranceToggleSwift       = "ae060003-0000-4000-8000-000000000001";
+    public const string FeralWarriorPathParent         = "ae070001-0000-4000-8000-000000000001";
+    public const string FeralWarriorTranceToggleStd    = "ae070002-0000-4000-8000-000000000001";
+    public const string FeralWarriorTranceToggleSwift  = "ae070003-0000-4000-8000-000000000001";
+    public const string GladiatorPathParent            = "ae080001-0000-4000-8000-000000000001";
+    public const string GladiatorTranceToggleStd       = "ae080002-0000-4000-8000-000000000001";
+    public const string GladiatorTranceToggleSwift     = "ae080003-0000-4000-8000-000000000001";
+    public const string InfiltratorPathParent          = "ae090001-0000-4000-8000-000000000001";
+    public const string InfiltratorTranceToggleStd     = "ae090002-0000-4000-8000-000000000001";
+    public const string InfiltratorTranceToggleSwift   = "ae090003-0000-4000-8000-000000000001";
+    public const string InterceptorPathParent          = "ae0a0001-0000-4000-8000-000000000001";
+    public const string InterceptorTranceToggleStd     = "ae0a0002-0000-4000-8000-000000000001";
+    public const string InterceptorTranceToggleSwift   = "ae0a0003-0000-4000-8000-000000000001";
+    public const string MindKnightPathParent           = "ae0b0001-0000-4000-8000-000000000001";
+    public const string MindKnightTranceToggleStd      = "ae0b0002-0000-4000-8000-000000000001";
+    public const string MindKnightTranceToggleSwift    = "ae0b0003-0000-4000-8000-000000000001";
+    public const string SurvivorPathParent             = "ae0c0001-0000-4000-8000-000000000001";
+    public const string SurvivorTranceToggleStd        = "ae0c0002-0000-4000-8000-000000000001";
+    public const string SurvivorTranceToggleSwift      = "ae0c0003-0000-4000-8000-000000000001";
+
     // Twisting Paths (level 11): swift-action ability + buff
     public const string TwistingPathsAbility           = "d0010001-0000-4000-8000-000000000001";
     public const string TwistingPathsBuff              = "d0010002-0000-4000-8000-000000000001";
@@ -229,6 +285,7 @@ public static class Guids
     public const string PowerStrengthOfMyEnemy         = "e0030001-0000-4000-8000-000000000001";
     public const string PowerStrengthOfMyEnemyEnemyDebuff = "e0030002-0000-4000-8000-000000000001";
     public const string PowerStrengthOfMyEnemyCasterBuff  = "e0030003-0000-4000-8000-000000000001";
+    public const string PowerStrengthOfMyEnemyBuff     = "e0030004-0000-4000-8000-000000000001";
     // Animal Affinity uses AbilityVariants — parent + 3 variants (one per physical stat)
     public const string PowerAnimalAffinity            = "e0040001-0000-4000-8000-000000000001";
     public const string PowerAnimalAffinityStrength    = "e0040002-0000-4000-8000-000000000001";
@@ -237,8 +294,26 @@ public static class Guids
     public const string PowerAnimalAffinityDexterityBuff = "e0040005-0000-4000-8000-000000000001";
     public const string PowerAnimalAffinityConstitution = "e0040006-0000-4000-8000-000000000001";
     public const string PowerAnimalAffinityConstitutionBuff = "e0040007-0000-4000-8000-000000000001";
+    public const string PowerAnimalAffinityIntelligence = "e0040008-0000-4000-8000-000000000001";
+    public const string PowerAnimalAffinityIntelligenceBuff = "e0040009-0000-4000-8000-000000000001";
+    public const string PowerAnimalAffinityWisdom      = "e004000a-0000-4000-8000-000000000001";
+    public const string PowerAnimalAffinityWisdomBuff  = "e004000b-0000-4000-8000-000000000001";
+    public const string PowerAnimalAffinityCharisma    = "e004000c-0000-4000-8000-000000000001";
+    public const string PowerAnimalAffinityCharismaBuff = "e004000d-0000-4000-8000-000000000001";
     public const string PowerDetectHostileIntent       = "e0050001-0000-4000-8000-000000000001";
     public const string PowerDetectHostileIntentBuff   = "e0050002-0000-4000-8000-000000000001";
     public const string PowerHustle                    = "e0060001-0000-4000-8000-000000000001";
     public const string PowerHustleBuff                = "e0060002-0000-4000-8000-000000000001";
+
+    // ── Phase 9: 3rd-level powers ──
+    public const string PowerVampiricBlade             = "e0070001-0000-4000-8000-000000000001";
+    public const string PowerVampiricBladeBuff         = "e0070002-0000-4000-8000-000000000001";
+    public const string PowerVampiricBladeTempHPBuff   = "e0070003-0000-4000-8000-000000000001";
+    public const string PowerMentalBarrier             = "e0080001-0000-4000-8000-000000000001";
+    public const string PowerMentalBarrierBuff         = "e0080002-0000-4000-8000-000000000001";
+    public const string PowerConcealingAmorphaGreater  = "e0090001-0000-4000-8000-000000000001";
+    public const string PowerConcealingAmorphaGreaterBuff = "e0090002-0000-4000-8000-000000000001";
+    public const string PowerGraftWeapon               = "e00a0001-0000-4000-8000-000000000001";
+    public const string PowerGraftWeaponBuff           = "e00a0002-0000-4000-8000-000000000001";
+    public const string PowerKeenEdgePsionic           = "e00b0001-0000-4000-8000-000000000001";
 }

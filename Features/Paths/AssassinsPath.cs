@@ -27,8 +27,12 @@ public static class AssassinsPath
             baseName: "Assassins",
             tranceFeatureGuid: Guids.AssassinsTrance,
             tranceBuffGuid: Guids.AssassinsTranceBuff,
-            tranceActivatableGuid: Guids.AssassinsTranceActivatable,
-            displayName: "Assassin's Trance",
+            tranceToggleStdGuid: Guids.AssassinsTranceToggleStd,
+            tranceToggleSwiftGuid: Guids.AssassinsTranceToggleSwift,
+            parentAbilityGuid: Guids.AssassinsPathParent,
+            maneuverAbilityGuid: Guids.AssassinsManeuverAbility,
+            expandedManeuverAbilityGuid: Guids.AssassinsExpandedAbility,
+            displayName: "Assassin's",
             featureDescription: "Your psionic focus sharpens your strikes against unsuspecting enemies. You gain a +2 competence bonus to damage rolls.",
             icon: icon,
             addBuffComponents: b => b.AddStatBonus(
@@ -60,23 +64,24 @@ public static class AssassinsPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
-            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.AssassinsExpandedFeature)
             .Configure();
 
-        // +14 ≈ 4d6 average; removes after next attack
+        // Expanded — Mindblade Strike: +4 saves and +4 competence damage for 1 round (mind-over-body focus)
         var expandedBuff = BuffConfigurator.New("AssassinsExpandedManeuverBuff", Guids.AssassinsExpandedBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.AssassinsExpanded.BuffName", "Assassin's Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.AssassinsExpanded.BuffName", "Mindblade Strike"))
             .SetDescription(LocalizationTool.CreateString("PW.AssassinsExpanded.BuffDesc",
-                "Your next attack deals +14 bonus damage from precision psionic energy."))
+                "Pure mental focus: +4 competence damage, +4 competence to all saves."))
             .SetIcon(icon)
-            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalDamage, value: 14)
-            .AddInitiatorAttackRollTrigger(ActionsBuilder.New().RemoveBuff(Guids.AssassinsExpandedBuff))
+            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalDamage, value: 4)
+            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveFortitude, value: 4)
+            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveReflex, value: 4)
+            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveWill, value: 4)
             .Configure();
 
         var expandedAbility = AbilityConfigurator.New("AssassinsExpandedManeuverAbility", Guids.AssassinsExpandedAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.AssassinsExpandedAb.Name", "Assassin's Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.AssassinsExpandedAb.Name", "Mindblade Strike"))
             .SetDescription(LocalizationTool.CreateString("PW.AssassinsExpandedAb.Desc",
-                "Swift Action. Expend psionic focus to channel greater precision energy into your next strike, dealing +14 bonus damage."))
+                "Swift Action. Expend psionic focus and enter a state of pure mental focus: +4 competence damage and +4 competence to all saves for 1 round."))
             .SetIcon(icon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
@@ -87,15 +92,15 @@ public static class AssassinsPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(expandedBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: false, unitFact: Guids.AssassinsExpandedFeature)
             .Configure();
 
         FeatureConfigurator.New("AssassinsExpandedManeuver", Guids.AssassinsExpandedFeature)
-            .SetDisplayName(LocalizationTool.CreateString("PW.AssassinsExpandedFeat.Name", "Assassin's Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.AssassinsExpandedFeat.Name", "Mindblade Strike"))
             .SetDescription(LocalizationTool.CreateString("PW.AssassinsExpandedFeat.Desc",
-                "Your Assassin's Maneuver upgrades to deal +14 bonus damage on your next attack."))
+                "You learn the Mindblade Strike maneuver: a swift-action self-buff granting +4 competence damage and +4 competence to all saves for 1 round."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { Guids.AssassinsExpandedAbility })
             .AddPrerequisiteFeature(Guids.AssassinsPath)
             .Configure();
 
@@ -106,7 +111,7 @@ public static class AssassinsPath
                 "and can expend psionic focus for +7 bonus damage on your next strike (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { trance.ToString(), Guids.AssassinsManeuverAbility })
+            .AddFacts(new() { trance.ToString() })
             .Configure();
     }
 }

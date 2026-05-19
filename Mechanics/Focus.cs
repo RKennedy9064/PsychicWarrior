@@ -49,6 +49,8 @@ public static class Focus
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuffPermanent(focusBuff))
+            // Hidden once Psionic Meditation feat is taken (the move-action version supersedes this)
+            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.PsionicMeditationFeat)
             .Configure();
 
         AbilityConfigurator.New("GainPsionicFocusMoveAbility", Guids.GainPsionicFocusMoveAbility)

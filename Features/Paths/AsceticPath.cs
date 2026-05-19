@@ -9,6 +9,7 @@ using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
+using Kingmaker.RuleSystem;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.FactLogic;
@@ -27,8 +28,12 @@ public static class AsceticPath
             baseName: "Ascetic",
             tranceFeatureGuid: Guids.AsceticTrance,
             tranceBuffGuid: Guids.AsceticTranceBuff,
-            tranceActivatableGuid: Guids.AsceticTranceActivatable,
-            displayName: "Ascetic Trance",
+            tranceToggleStdGuid: Guids.AsceticTranceToggleStd,
+            tranceToggleSwiftGuid: Guids.AsceticTranceToggleSwift,
+            parentAbilityGuid: Guids.AsceticPathParent,
+            maneuverAbilityGuid: Guids.AsceticManeuverAbility,
+            expandedManeuverAbilityGuid: Guids.AsceticExpandedAbility,
+            displayName: "Ascetic",
             featureDescription: "Your psionic discipline allows you to move and react with supernatural efficiency. You gain a +1 competence bonus to AC.",
             icon: icon,
             addBuffComponents: b => b.AddStatBonus(
@@ -58,21 +63,20 @@ public static class AsceticPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
-            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.AsceticExpandedFeature)
             .Configure();
 
-        var expandedBuff = BuffConfigurator.New("AsceticExpandedManeuverBuff", Guids.AsceticExpandedBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.AsceticExpanded.BuffName", "Ascetic Expanded Maneuver"))
-            .SetDescription(LocalizationTool.CreateString("PW.AsceticExpanded.BuffDesc",
-                "You gain a +6 dodge bonus to AC for 1 round."))
+        // Expanded — Wholeness of Body: instant self-heal equal to caster level
+        // (buff retained as a stub so its GUID still registers; not applied)
+        BuffConfigurator.New("AsceticExpandedManeuverBuff", Guids.AsceticExpandedBuff)
+            .SetDisplayName(LocalizationTool.CreateString("PW.AsceticExpanded.BuffName", "Wholeness of Body"))
+            .SetDescription(LocalizationTool.CreateString("PW.AsceticExpanded.BuffDesc", "Psychometabolic self-healing."))
             .SetIcon(icon)
-            .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.AC, value: 6)
             .Configure();
 
         var expandedAbility = AbilityConfigurator.New("AsceticExpandedManeuverAbility", Guids.AsceticExpandedAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.AsceticExpandedAb.Name", "Ascetic Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.AsceticExpandedAb.Name", "Wholeness of Body"))
             .SetDescription(LocalizationTool.CreateString("PW.AsceticExpandedAb.Desc",
-                "Swift Action. Expend psionic focus to enter an enhanced defensive stance, gaining +6 dodge to AC for 1 round."))
+                "Swift Action. Expend psionic focus to heal yourself for hit points equal to your manifester level."))
             .SetIcon(icon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
@@ -82,16 +86,17 @@ public static class AsceticPath
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
-                    .ApplyBuff(expandedBuff, ContextDuration.Fixed(1)))
+                    .HealTarget(value: ContextDice.Value(DiceType.Zero, 0, ContextValues.Rank())))
+            .AddContextRankConfig(ContextRankConfigs.CasterLevel())
+            .AddAbilityShowIfCasterHasFact(not: false, unitFact: Guids.AsceticExpandedFeature)
             .Configure();
 
         FeatureConfigurator.New("AsceticExpandedManeuver", Guids.AsceticExpandedFeature)
-            .SetDisplayName(LocalizationTool.CreateString("PW.AsceticExpandedFeat.Name", "Ascetic Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.AsceticExpandedFeat.Name", "Wholeness of Body"))
             .SetDescription(LocalizationTool.CreateString("PW.AsceticExpandedFeat.Desc",
-                "Your Ascetic Maneuver upgrades to grant +6 dodge to AC for 1 round."))
+                "You learn the Wholeness of Body maneuver: a swift action that heals you for hit points equal to your manifester level."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { Guids.AsceticExpandedAbility })
             .AddPrerequisiteFeature(Guids.AsceticPath)
             .Configure();
 
@@ -101,7 +106,7 @@ public static class AsceticPath
                 "You focus on psionic body mastery. You gain a +1 competence bonus to AC (trance) and can expend psionic focus to adopt a defensive stance (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { trance.ToString(), Guids.AsceticManeuverAbility })
+            .AddFacts(new() { trance.ToString() })
             .Configure();
     }
 }

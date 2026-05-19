@@ -27,8 +27,12 @@ public static class InterceptorPath
             baseName: "Interceptor",
             tranceFeatureGuid: Guids.InterceptorTrance,
             tranceBuffGuid: Guids.InterceptorTranceBuff,
-            tranceActivatableGuid: Guids.InterceptorTranceActivatable,
-            displayName: "Interceptor Trance",
+            tranceToggleStdGuid: Guids.InterceptorTranceToggleStd,
+            tranceToggleSwiftGuid: Guids.InterceptorTranceToggleSwift,
+            parentAbilityGuid: Guids.InterceptorPathParent,
+            maneuverAbilityGuid: Guids.InterceptorManeuverAbility,
+            expandedManeuverAbilityGuid: Guids.InterceptorExpandedAbility,
+            displayName: "Interceptor",
             featureDescription: "Your psionic focus heightens your protective instincts. You gain a +1 competence bonus to attack and damage rolls.",
             icon: icon,
             addBuffComponents: b => b
@@ -58,22 +62,21 @@ public static class InterceptorPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
-            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.InterceptorExpandedFeature)
             .Configure();
 
+        // Expanded — Save Another: DR 5/— for 1 round (take damage for allies)
         var expandedBuff = BuffConfigurator.New("InterceptorExpandedManeuverBuff", Guids.InterceptorExpandedBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.InterceptorExpanded.BuffName", "Interceptor Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.InterceptorExpanded.BuffName", "Save Another"))
             .SetDescription(LocalizationTool.CreateString("PW.InterceptorExpanded.BuffDesc",
-                "Enhanced counter-attack stance: +4 competence to attack rolls and +4 competence to damage for 1 round."))
+                "You harden your body to absorb blows meant for allies: DR 5/— for 1 round."))
             .SetIcon(icon)
-            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalAttackBonus, value: 4)
-            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalDamage, value: 4)
+            .AddComponent(new AddDamageResistancePhysical { Value = 5, BypassedByMaterial = false })
             .Configure();
 
         var expandedAbility = AbilityConfigurator.New("InterceptorExpandedManeuverAbility", Guids.InterceptorExpandedAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.InterceptorExpandedAb.Name", "Interceptor Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.InterceptorExpandedAb.Name", "Save Another"))
             .SetDescription(LocalizationTool.CreateString("PW.InterceptorExpandedAb.Desc",
-                "Swift Action. Expend psionic focus to enter an enhanced counter-attack stance, gaining +4 competence to attack and damage for 1 round."))
+                "Swift Action. Expend psionic focus to harden your body and absorb blows meant for allies: gain DR 5/— for 1 round."))
             .SetIcon(icon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
@@ -84,15 +87,15 @@ public static class InterceptorPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(expandedBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: false, unitFact: Guids.InterceptorExpandedFeature)
             .Configure();
 
         FeatureConfigurator.New("InterceptorExpandedManeuver", Guids.InterceptorExpandedFeature)
-            .SetDisplayName(LocalizationTool.CreateString("PW.InterceptorExpandedFeat.Name", "Interceptor Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.InterceptorExpandedFeat.Name", "Save Another"))
             .SetDescription(LocalizationTool.CreateString("PW.InterceptorExpandedFeat.Desc",
-                "Your Interceptor Maneuver upgrades to grant +4 competence to attack and damage for 1 round."))
+                "You learn the Save Another maneuver: a swift-action self-buff granting DR 5/— for 1 round."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { Guids.InterceptorExpandedAbility })
             .AddPrerequisiteFeature(Guids.InterceptorPath)
             .Configure();
 
@@ -102,7 +105,7 @@ public static class InterceptorPath
                 "You focus on protecting allies through aggressive counter-attacks. You gain +1 competence to attack and damage (trance) and can expend psionic focus for a +2 bonus to both (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { trance.ToString(), Guids.InterceptorManeuverAbility })
+            .AddFacts(new() { trance.ToString() })
             .Configure();
     }
 }

@@ -12,6 +12,7 @@ using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.FactLogic;
+using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using PsychicWarrior.Utils;
 
@@ -27,8 +28,12 @@ public static class SurvivorPath
             baseName: "Survivor",
             tranceFeatureGuid: Guids.SurvivorTrance,
             tranceBuffGuid: Guids.SurvivorTranceBuff,
-            tranceActivatableGuid: Guids.SurvivorTranceActivatable,
-            displayName: "Survivor Trance",
+            tranceToggleStdGuid: Guids.SurvivorTranceToggleStd,
+            tranceToggleSwiftGuid: Guids.SurvivorTranceToggleSwift,
+            parentAbilityGuid: Guids.SurvivorPathParent,
+            maneuverAbilityGuid: Guids.SurvivorManeuverAbility,
+            expandedManeuverAbilityGuid: Guids.SurvivorExpandedAbility,
+            displayName: "Survivor",
             featureDescription: "Your psionic focus toughens your body against physical harm. You gain DR 2/—.",
             icon: icon,
             addBuffComponents: b => b.AddComponent(new AddDamageResistancePhysical { Value = 2, BypassedByMaterial = false }));
@@ -57,23 +62,23 @@ public static class SurvivorPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
-            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.SurvivorExpandedFeature)
             .Configure();
 
+        // Expanded — Survivor's Resolve: temp HP equal to caster level for 1 minute
         var expandedBuff = BuffConfigurator.New("SurvivorExpandedManeuverBuff", Guids.SurvivorExpandedBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorExpanded.BuffName", "Survivor Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorExpanded.BuffName", "Survivor's Resolve"))
             .SetDescription(LocalizationTool.CreateString("PW.SurvivorExpanded.BuffDesc",
-                "You enter a state of total psionic resilience, gaining +6 competence to all saving throws for 1 round."))
+                "Psionic resolve hardens flesh — temporary hit points equal to your manifester level."))
             .SetIcon(icon)
-            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveFortitude, value: 6)
-            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveReflex, value: 6)
-            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveWill, value: 6)
+            .AddTemporaryHitPointsFromAbilityValue(
+                descriptor: ModifierDescriptor.UntypedStackable,
+                value: ContextValues.Rank())
             .Configure();
 
         var expandedAbility = AbilityConfigurator.New("SurvivorExpandedManeuverAbility", Guids.SurvivorExpandedAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorExpandedAb.Name", "Survivor Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorExpandedAb.Name", "Survivor's Resolve"))
             .SetDescription(LocalizationTool.CreateString("PW.SurvivorExpandedAb.Desc",
-                "Swift Action. Expend psionic focus to enter a state of total psionic resilience, gaining +6 competence to all saving throws for 1 round."))
+                "Swift Action. Expend psionic focus to gain temporary hit points equal to your manifester level (1 minute)."))
             .SetIcon(icon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
@@ -83,16 +88,17 @@ public static class SurvivorPath
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
-                    .ApplyBuff(expandedBuff, ContextDuration.Fixed(1)))
+                    .ApplyBuff(expandedBuff, ContextDuration.Fixed(1, DurationRate.Minutes)))
+            .AddContextRankConfig(ContextRankConfigs.CasterLevel())
+            .AddAbilityShowIfCasterHasFact(not: false, unitFact: Guids.SurvivorExpandedFeature)
             .Configure();
 
         FeatureConfigurator.New("SurvivorExpandedManeuver", Guids.SurvivorExpandedFeature)
-            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorExpandedFeat.Name", "Survivor Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorExpandedFeat.Name", "Survivor's Resolve"))
             .SetDescription(LocalizationTool.CreateString("PW.SurvivorExpandedFeat.Desc",
-                "Your Survivor Maneuver upgrades to grant +6 competence to all saving throws for 1 round."))
+                "You learn the Survivor's Resolve maneuver: a swift-action self-buff granting temporary hit points equal to your manifester level for 1 minute."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { Guids.SurvivorExpandedAbility })
             .AddPrerequisiteFeature(Guids.SurvivorPath)
             .Configure();
 
@@ -102,7 +108,7 @@ public static class SurvivorPath
                 "You focus on endurance and resilience. You gain DR 2/— while psionically focused (trance) and can expend psionic focus to spike your Fortitude and Will saves (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { trance.ToString(), Guids.SurvivorManeuverAbility })
+            .AddFacts(new() { trance.ToString() })
             .Configure();
     }
 }

@@ -27,8 +27,12 @@ public static class GladiatorPath
             baseName: "Gladiator",
             tranceFeatureGuid: Guids.GladiatorTrance,
             tranceBuffGuid: Guids.GladiatorTranceBuff,
-            tranceActivatableGuid: Guids.GladiatorTranceActivatable,
-            displayName: "Gladiator Trance",
+            tranceToggleStdGuid: Guids.GladiatorTranceToggleStd,
+            tranceToggleSwiftGuid: Guids.GladiatorTranceToggleSwift,
+            parentAbilityGuid: Guids.GladiatorPathParent,
+            maneuverAbilityGuid: Guids.GladiatorManeuverAbility,
+            expandedManeuverAbilityGuid: Guids.GladiatorExpandedAbility,
+            displayName: "Gladiator",
             featureDescription: "Your psionic focus enhances your combat maneuver capabilities. You gain a +2 competence bonus to CMB.",
             icon: icon,
             addBuffComponents: b => b.AddStatBonus(
@@ -58,21 +62,23 @@ public static class GladiatorPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
-            .AddAbilityShowIfCasterHasFact(not: true, unitFact: Guids.GladiatorExpandedFeature)
             .Configure();
 
+        // Expanded — Gladiator's Will: +4 competence to all saves for 1 round
         var expandedBuff = BuffConfigurator.New("GladiatorExpandedManeuverBuff", Guids.GladiatorExpandedBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.GladiatorExpanded.BuffName", "Gladiator Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.GladiatorExpanded.BuffName", "Gladiator's Will"))
             .SetDescription(LocalizationTool.CreateString("PW.GladiatorExpanded.BuffDesc",
-                "You gain a +6 competence bonus to CMB for 1 round."))
+                "Iron focus carries you through anything: +4 competence to all saving throws for 1 round."))
             .SetIcon(icon)
-            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalCMB, value: 6)
+            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveFortitude, value: 4)
+            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveReflex, value: 4)
+            .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveWill, value: 4)
             .Configure();
 
         var expandedAbility = AbilityConfigurator.New("GladiatorExpandedManeuverAbility", Guids.GladiatorExpandedAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.GladiatorExpandedAb.Name", "Gladiator Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.GladiatorExpandedAb.Name", "Gladiator's Will"))
             .SetDescription(LocalizationTool.CreateString("PW.GladiatorExpandedAb.Desc",
-                "Swift Action. Expend psionic focus to gain a +6 competence bonus to CMB for 1 round."))
+                "Swift Action. Expend psionic focus to steel your resolve: gain +4 competence to all saving throws for 1 round."))
             .SetIcon(icon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
@@ -83,15 +89,15 @@ public static class GladiatorPath
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
                     .ApplyBuff(expandedBuff, ContextDuration.Fixed(1)))
+            .AddAbilityShowIfCasterHasFact(not: false, unitFact: Guids.GladiatorExpandedFeature)
             .Configure();
 
         FeatureConfigurator.New("GladiatorExpandedManeuver", Guids.GladiatorExpandedFeature)
-            .SetDisplayName(LocalizationTool.CreateString("PW.GladiatorExpandedFeat.Name", "Gladiator Expanded Maneuver"))
+            .SetDisplayName(LocalizationTool.CreateString("PW.GladiatorExpandedFeat.Name", "Gladiator's Will"))
             .SetDescription(LocalizationTool.CreateString("PW.GladiatorExpandedFeat.Desc",
-                "Your Gladiator Maneuver upgrades to grant +6 competence to CMB for 1 round."))
+                "You learn the Gladiator's Will maneuver: a swift-action self-buff granting +4 competence to all saving throws for 1 round."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { Guids.GladiatorExpandedAbility })
             .AddPrerequisiteFeature(Guids.GladiatorPath)
             .Configure();
 
@@ -101,7 +107,7 @@ public static class GladiatorPath
                 "You focus on combat maneuvers and arena fighting. You gain a permanent +2 competence bonus to CMB (trance) and can expend psionic focus for an additional +4 to CMB (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { trance.ToString(), Guids.GladiatorManeuverAbility })
+            .AddFacts(new() { trance.ToString() })
             .Configure();
     }
 }
