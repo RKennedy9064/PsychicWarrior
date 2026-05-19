@@ -368,7 +368,9 @@ public static class Guids
     // f001-f00b: Tier 1; f00c-f013: Tier 2 (reserved)
     public const string PsionicBodyFeat                = "f0010001-0000-4000-8000-000000000001";
     public const string SpeedOfThoughtFeat             = "f0020001-0000-4000-8000-000000000001";
+    public const string SpeedOfThoughtBuff             = "f0020002-0000-4000-8000-000000000001";
     public const string PsionicDodgeFeat               = "f0030001-0000-4000-8000-000000000001";
+    public const string PsionicDodgeBuff               = "f0030002-0000-4000-8000-000000000001";
     public const string CriticalRefocusFeat            = "f0040001-0000-4000-8000-000000000001";
     public const string GreaterPsionicWeaponFeat       = "f0050001-0000-4000-8000-000000000001";
     public const string PsionicFistFeat                = "f0060001-0000-4000-8000-000000000001";

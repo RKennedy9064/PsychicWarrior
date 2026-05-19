@@ -1,17 +1,17 @@
-using System.Collections.Generic;
 using System.Linq;
-using BlueprintCore.Blueprints.Components.Replacements;
+using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
+using BlueprintCore.Conditions.Builder;
+using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils;
-using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
-using Kingmaker.UnitLogic.Mechanics;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Feats;
@@ -20,6 +20,15 @@ public static class SpeedOfThought
 {
     public static void Configure()
     {
+        // Intermediate buff — source label shows "Speed of Thought" in the speed tooltip.
+        BuffConfigurator.New("SpeedOfThoughtBuff", Guids.SpeedOfThoughtBuff)
+            .SetDisplayName(Loc.Str("PW.SpeedOfThought.Name", "Speed of Thought"))
+            .SetDescription(Loc.Str("PW.SpeedOfThought.Desc",
+                "While psionically focused, you gain a +10 ft enhancement bonus to your land speed."))
+            .SetIcon(FeatureRefs.Dodge.Reference.Get().Icon)
+            .AddStatBonus(descriptor: ModifierDescriptor.Enhancement, stat: StatType.Speed, value: 10)
+            .Configure();
+
         FeatureConfigurator.New("SpeedOfThoughtFeat", Guids.SpeedOfThoughtFeat)
             .SetDisplayName(Loc.Str("PW.SpeedOfThought.Name", "Speed of Thought"))
             .SetDescription(Loc.Str("PW.SpeedOfThought.Desc",
@@ -29,14 +38,14 @@ public static class SpeedOfThought
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .Configure();
 
-        // Inject the conditional speed bonus into PsionicFocusBuff so it fires whenever
-        // the unit has both this feat and an active psionic focus.
+        // When focus is gained, apply the speed buff if the unit has this feat.
+        // When focus is lost, the speed buff is removed alongside it.
         BuffConfigurator.For(Guids.PsionicFocusBuff)
-            .AddComponent(new AddStatBonusIfHasFactFixed(
-                stat: StatType.Speed,
-                bonus: ContextValues.Constant(10),
-                requiredFacts: new List<Blueprint<BlueprintUnitFactReference>> { Guids.SpeedOfThoughtFeat },
-                descriptor: ModifierDescriptor.Enhancement))
+            .AddBuffActions(
+                activated: ActionsBuilder.New().Conditional(
+                    ConditionsBuilder.New().CasterHasFact(Guids.SpeedOfThoughtFeat),
+                    ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SpeedOfThoughtBuff)),
+                deactivated: ActionsBuilder.New().RemoveBuff(Guids.SpeedOfThoughtBuff))
             .Configure();
 
         SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.SpeedOfThoughtFeat);

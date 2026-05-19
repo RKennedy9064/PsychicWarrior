@@ -47,7 +47,7 @@ internal static class TranceHelper
         Action<BuffConfigurator> addBuffComponents)
     {
         var tranceBuff = BuffConfigurator.New($"{baseName}TranceBuff", tranceBuffGuid)
-            .SetDisplayName(Loc.Str($"PW.{baseName}TranceBuff.Name", displayName, tagEncyclopediaEntries: false))
+            .SetDisplayName(Loc.Str($"PW.{baseName}TranceBuff.Name", displayName + " Trance", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str($"PW.{baseName}TranceBuff.Desc", featureDescription, tagEncyclopediaEntries: false))
             .SetIcon(icon);
         addBuffComponents(tranceBuff);

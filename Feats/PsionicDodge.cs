@@ -1,17 +1,17 @@
-using System.Collections.Generic;
 using System.Linq;
-using BlueprintCore.Blueprints.Components.Replacements;
+using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
+using BlueprintCore.Conditions.Builder;
+using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils;
-using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
-using Kingmaker.UnitLogic.Mechanics;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Feats;
@@ -20,6 +20,15 @@ public static class PsionicDodge
 {
     public static void Configure()
     {
+        // Intermediate buff — source label shows "Psionic Dodge" in the AC tooltip.
+        BuffConfigurator.New("PsionicDodgeBuff", Guids.PsionicDodgeBuff)
+            .SetDisplayName(Loc.Str("PW.PsionicDodge.Name", "Psionic Dodge"))
+            .SetDescription(Loc.Str("PW.PsionicDodge.Desc",
+                "While psionically focused, you gain a +1 dodge bonus to Armor Class."))
+            .SetIcon(FeatureRefs.Dodge.Reference.Get().Icon)
+            .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.AC, value: 1)
+            .Configure();
+
         FeatureConfigurator.New("PsionicDodgeFeat", Guids.PsionicDodgeFeat)
             .SetDisplayName(Loc.Str("PW.PsionicDodge.Name", "Psionic Dodge"))
             .SetDescription(Loc.Str("PW.PsionicDodge.Desc",
@@ -29,12 +38,14 @@ public static class PsionicDodge
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .Configure();
 
+        // When focus is gained, apply the bonus buff if the unit has this feat.
+        // When focus is lost, the bonus buff is removed alongside it.
         BuffConfigurator.For(Guids.PsionicFocusBuff)
-            .AddComponent(new AddStatBonusIfHasFactFixed(
-                stat: StatType.AC,
-                bonus: ContextValues.Constant(1),
-                requiredFacts: new List<Blueprint<BlueprintUnitFactReference>> { Guids.PsionicDodgeFeat },
-                descriptor: ModifierDescriptor.Dodge))
+            .AddBuffActions(
+                activated: ActionsBuilder.New().Conditional(
+                    ConditionsBuilder.New().CasterHasFact(Guids.PsionicDodgeFeat),
+                    ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsionicDodgeBuff)),
+                deactivated: ActionsBuilder.New().RemoveBuff(Guids.PsionicDodgeBuff))
             .Configure();
 
         SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.PsionicDodgeFeat);
