@@ -102,6 +102,19 @@ public static class BlueprintInit
         Run(nameof(Feats.PsionicMeditation),         Feats.PsionicMeditation.Configure,          logger);
         Run(nameof(Feats.PsionicWeapon),             Feats.PsionicWeapon.Configure,              logger);
 
+        // ── Phase 6b: Psionic Feats ────────────────────────────────────────────
+        // SpeedOfThought/PsionicDodge inject components into PsionicFocusBuff — must run after Focus.
+        Run(nameof(Feats.PsionicBody),               Feats.PsionicBody.Configure,                logger);
+        Run(nameof(Feats.SpeedOfThought),            Feats.SpeedOfThought.Configure,             logger);
+        Run(nameof(Feats.PsionicDodge),              Feats.PsionicDodge.Configure,               logger);
+        Run(nameof(Feats.CriticalRefocus),           Feats.CriticalRefocus.Configure,            logger);
+        Run(nameof(Feats.PsionicFist),               Feats.PsionicFist.Configure,                logger);
+        Run(nameof(Feats.PsionicShot),               Feats.PsionicShot.Configure,                logger);
+        // Greater feats require base feat GUIDs and register with PsionicProficiencyPatch
+        Run(nameof(Feats.GreaterPsionicWeapon),      Feats.GreaterPsionicWeapon.Configure,       logger);
+        Run(nameof(Feats.GreaterPsionicFist),        Feats.GreaterPsionicFist.Configure,         logger);
+        Run(nameof(Feats.GreaterPsionicShot),        Feats.GreaterPsionicShot.Configure,         logger);
+
         // ── Phase 6: Class definition (must come last) ─────────────────────────
         Run(nameof(Classes.PsychicWarriorSpellbook), Classes.PsychicWarriorSpellbook.Configure,  logger);
         Run(nameof(Classes.PsychicWarriorClass),     Classes.PsychicWarriorClass.Configure,      logger);

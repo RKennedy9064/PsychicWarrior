@@ -10,23 +10,29 @@ using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
+using PsychicWarrior.HarmonyPatches;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Feats;
 
-public static class PsionicWeapon
+public static class GreaterPsionicShot
 {
     public static void Configure()
     {
-        var feat = FeatureConfigurator.New("PsionicWeaponFeat", Guids.PsionicWeaponFeat)
-            .SetDisplayName(Loc.Str("PW.PsionicWeapon.Name", "Psionic Weapon"))
-            .SetDescription(Loc.Str("PW.PsionicWeapon.Desc", "While psionically focused, your melee attacks deal an additional 1d6 damage."))
-            .SetIcon(FeatureRefs.VitalStrikeFeature.Reference.Get().Icon)
+        PsionicProficiencyPatch.RegisterPsionicFeat(Guids.GreaterPsionicShotFeat);
+
+        FeatureConfigurator.New("GreaterPsionicShotFeat", Guids.GreaterPsionicShotFeat)
+            .SetDisplayName(Loc.Str("PW.GreaterPsionicShot.Name", "Greater Psionic Shot"))
+            .SetDescription(Loc.Str("PW.GreaterPsionicShot.Desc",
+                "While psionically focused, your ranged attacks deal an additional 1d6 damage (stacks with Psionic Shot for 2d6 total)."))
+            .SetIcon(FeatureRefs.PointBlankShot.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
-            .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
+            .AddPrerequisiteFeature(Guids.PsionicShotFeat)
+            .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 5)
             .AddInitiatorAttackWithWeaponTrigger(
                 action: ActionsBuilder.New().Conditional(
                     ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff),
@@ -35,12 +41,12 @@ public static class PsionicWeapon
                         ContextDice.Value(DiceType.D6, 1))),
                 onlyHit: true,
                 checkWeaponRangeType: true,
-                rangeType: WeaponRangeType.Melee)
+                rangeType: WeaponRangeType.Ranged)
             .Configure();
 
-        SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.PsionicWeaponFeat);
-        SafeAddFeatToSelection(FeatureSelectionRefs.FighterFeatSelection.ToString(), Guids.PsionicWeaponFeat);
-        SafeAddFeatToSelection(Guids.BonusFeatSelection, Guids.PsionicWeaponFeat);
+        SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.GreaterPsionicShotFeat);
+        SafeAddFeatToSelection(FeatureSelectionRefs.FighterFeatSelection.ToString(), Guids.GreaterPsionicShotFeat);
+        SafeAddFeatToSelection(Guids.BonusFeatSelection, Guids.GreaterPsionicShotFeat);
     }
 
     private static void SafeAddFeatToSelection(string selectionGuid, string featGuid)
@@ -49,9 +55,7 @@ public static class PsionicWeapon
             .OnConfigure(bp =>
             {
                 var featRef = BlueprintTool.GetRef<BlueprintFeatureReference>(featGuid);
-
-                bp.m_AllFeatures = [.. bp.m_AllFeatures.Where(f => f.Guid != featRef.Guid)];
-                bp.m_AllFeatures = [.. bp.m_AllFeatures, featRef];
+                bp.m_AllFeatures = [.. bp.m_AllFeatures.Where(f => f.Guid != featRef.Guid), featRef];
             })
             .Configure();
     }

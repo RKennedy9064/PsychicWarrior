@@ -364,6 +364,26 @@ public static class Guids
     public const string PowerHustle                    = "e0060001-0000-4000-8000-000000000001";
     public const string PowerHustleBuff                = "e0060002-0000-4000-8000-000000000001";
 
+    // ── Phase 6b: Psionic feats ──
+    // f001-f00b: Tier 1; f00c-f013: Tier 2 (reserved)
+    public const string PsionicBodyFeat                = "f0010001-0000-4000-8000-000000000001";
+    public const string SpeedOfThoughtFeat             = "f0020001-0000-4000-8000-000000000001";
+    public const string PsionicDodgeFeat               = "f0030001-0000-4000-8000-000000000001";
+    public const string CriticalRefocusFeat            = "f0040001-0000-4000-8000-000000000001";
+    public const string GreaterPsionicWeaponFeat       = "f0050001-0000-4000-8000-000000000001";
+    public const string PsionicFistFeat                = "f0060001-0000-4000-8000-000000000001";
+    public const string GreaterPsionicFistFeat         = "f0070001-0000-4000-8000-000000000001";
+    public const string PsionicShotFeat                = "f0080001-0000-4000-8000-000000000001";
+    public const string GreaterPsionicShotFeat         = "f0090001-0000-4000-8000-000000000001";
+    // Tier 2 reserved GUIDs (for Psionic Body feat count — add feats here as implemented)
+    public const string RapidMetabolismFeat            = "f00a0001-0000-4000-8000-000000000001";
+    public const string OverchannelFeat                = "f00b0001-0000-4000-8000-000000000001";
+    public const string CombatManifestationFeat        = "f00c0001-0000-4000-8000-000000000001";
+    public const string DeepImpactFeat                 = "f00d0001-0000-4000-8000-000000000001";
+    public const string ExpandedKnowledgeFeat          = "f00e0001-0000-4000-8000-000000000001";
+    public const string UpTheWallsFeat                 = "f00f0001-0000-4000-8000-000000000001";
+    public const string PsionicEndowmentFeat           = "f0100001-0000-4000-8000-000000000001";
+
     // ── Phase 9: 3rd-level powers ──
     public const string PowerVampiricBlade             = "e0070001-0000-4000-8000-000000000001";
     public const string PowerVampiricBladeBuff         = "e0070002-0000-4000-8000-000000000001";
