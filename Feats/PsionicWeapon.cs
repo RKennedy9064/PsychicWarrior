@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using BlueprintCore.Blueprints.References;
@@ -17,8 +17,8 @@ public static class PsionicWeapon
     public static void Configure()
     {
         var feat = FeatureConfigurator.New("PsionicWeaponFeat", Guids.PsionicWeaponFeat)
-            .SetDisplayName(LocalizationTool.CreateString("PW.PsionicWeapon.Name", "Psionic Weapon"))
-            .SetDescription(LocalizationTool.CreateString("PW.PsionicWeapon.Desc", "While you maintain Psionic Focus, your attacks deal an additional 2 points of damage."))
+            .SetDisplayName(Loc.Str("PW.PsionicWeapon.Name", "Psionic Weapon"))
+            .SetDescription(Loc.Str("PW.PsionicWeapon.Desc", "While you maintain Psionic Focus, your attacks deal an additional 2 points of damage."))
             .SetIcon(FeatureRefs.VitalStrikeFeature.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)

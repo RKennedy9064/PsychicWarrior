@@ -20,8 +20,8 @@ public static class Valor
     public static void Configure()
     {
         var buff = BuffConfigurator.New("PWValorBuff", Guids.PowerValorBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.Valor.BuffName", "Valor"))
-            .SetDescription(LocalizationTool.CreateString("PW.Valor.BuffDesc", "+1 morale bonus to saving throws against fear effects."))
+            .SetDisplayName(Loc.Str("PW.Valor.BuffName", "Valor"))
+            .SetDescription(Loc.Str("PW.Valor.BuffDesc", "+1 morale bonus to saving throws against fear effects."))
             .SetIcon(AbilityRefs.RemoveFear.Reference.Get().Icon)
             .AddSavingThrowBonusAgainstDescriptor(
                 spellDescriptor: SpellDescriptor.Fear,
@@ -30,8 +30,8 @@ public static class Valor
             .Configure();
 
         AbilityConfigurator.New("PWValor", Guids.PowerValor)
-            .SetDisplayName(LocalizationTool.CreateString("PW.Valor.Name", "Valor"))
-            .SetDescription(LocalizationTool.CreateString("PW.Valor.Desc",
+            .SetDisplayName(Loc.Str("PW.Valor.Name", "Valor"))
+            .SetDescription(Loc.Str("PW.Valor.Desc",
                 "You steel yourself with psionic resolve. You gain a +1 morale bonus to saving throws against fear effects for 10 minutes."))
             .SetIcon(AbilityRefs.RemoveFear.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)

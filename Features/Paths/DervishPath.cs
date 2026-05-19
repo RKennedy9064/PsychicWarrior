@@ -41,8 +41,8 @@ public static class DervishPath
                 value: 1));
 
         var maneuverBuff = BuffConfigurator.New("DervishManeuverBuff", Guids.DervishManeuverBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.DervishManeuver.BuffName", "Dervish Maneuver"))
-            .SetDescription(LocalizationTool.CreateString("PW.DervishManeuver.BuffDesc",
+            .SetDisplayName(Loc.Str("PW.DervishManeuver.BuffName", "Dervish Maneuver"))
+            .SetDescription(Loc.Str("PW.DervishManeuver.BuffDesc",
                 "You enter a whirling combat stance, gaining +2 competence to attack rolls and +2 competence to damage rolls for 1 round."))
             .SetIcon(icon)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalAttackBonus, value: 2)
@@ -50,8 +50,8 @@ public static class DervishPath
             .Configure();
 
         var maneuverAbility = AbilityConfigurator.New("DervishManeuver", Guids.DervishManeuverAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.DervishManeuverAb.Name", "Dervish Maneuver"))
-            .SetDescription(LocalizationTool.CreateString("PW.DervishManeuverAb.Desc",
+            .SetDisplayName(Loc.Str("PW.DervishManeuverAb.Name", "Dervish Maneuver"))
+            .SetDescription(Loc.Str("PW.DervishManeuverAb.Desc",
                 "Swift Action. Expend psionic focus to enter a whirling combat stance, gaining +2 competence to attack and damage for 1 round."))
             .SetIcon(icon)
             .SetType(AbilityType.Extraordinary)
@@ -68,15 +68,15 @@ public static class DervishPath
         // Expanded — Whirlwind Step: Haste-like spinning attack for 1 round
         var expandedBuff = BuffConfigurator.New("DervishExpandedManeuverBuff", Guids.DervishExpandedBuff)
             .CopyFrom(BuffRefs.HasteBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.DervishExpanded.BuffName", "Whirlwind Step"))
-            .SetDescription(LocalizationTool.CreateString("PW.DervishExpanded.BuffDesc",
+            .SetDisplayName(Loc.Str("PW.DervishExpanded.BuffName", "Whirlwind Step"))
+            .SetDescription(Loc.Str("PW.DervishExpanded.BuffDesc",
                 "You spin in a deadly whirlwind: gain the benefits of haste (extra attack, +1 dodge AC, +1 Reflex, +30 ft speed)."))
             .SetIcon(icon)
             .Configure();
 
         var expandedAbility = AbilityConfigurator.New("DervishExpandedManeuverAbility", Guids.DervishExpandedAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.DervishExpandedAb.Name", "Whirlwind Step"))
-            .SetDescription(LocalizationTool.CreateString("PW.DervishExpandedAb.Desc",
+            .SetDisplayName(Loc.Str("PW.DervishExpandedAb.Name", "Whirlwind Step"))
+            .SetDescription(Loc.Str("PW.DervishExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to enter a whirlwind dance: gain haste for 1 round (extra attack on full attacks, +1 dodge AC, +1 Reflex, +30 ft speed)."))
             .SetIcon(icon)
             .SetType(AbilityType.Extraordinary)
@@ -92,21 +92,23 @@ public static class DervishPath
             .Configure();
 
         FeatureConfigurator.New("DervishExpandedManeuver", Guids.DervishExpandedFeature)
-            .SetDisplayName(LocalizationTool.CreateString("PW.DervishExpandedFeat.Name", "Whirlwind Step"))
-            .SetDescription(LocalizationTool.CreateString("PW.DervishExpandedFeat.Desc",
+            .SetDisplayName(Loc.Str("PW.DervishExpandedFeat.Name", "Whirlwind Step"))
+            .SetDescription(Loc.Str("PW.DervishExpandedFeat.Desc",
                 "You learn the Whirlwind Step maneuver: a swift-action haste-like buff for 1 round."))
             .SetIcon(icon)
             .SetIsClassFeature()
+            .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerDervishExpanded)
             .AddPrerequisiteFeature(Guids.DervishPath)
             .Configure();
 
         FeatureConfigurator.New("DervishPath", Guids.DervishPath)
-            .SetDisplayName(LocalizationTool.CreateString("PW.DervishPath.Name", "Dervish Path"))
-            .SetDescription(LocalizationTool.CreateString("PW.DervishPath.Desc",
+            .SetDisplayName(Loc.Str("PW.DervishPath.Name", "Dervish Path"))
+            .SetDescription(Loc.Str("PW.DervishPath.Desc",
                 "You focus on swift dual-weapon mastery. You gain a +1 competence bonus to attack rolls (trance) and can expend psionic focus to enter a whirling combat stance (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
             .AddFacts(new() { trance.ToString() })
+            .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerDervishManeuver)
             .Configure();
     }
 }

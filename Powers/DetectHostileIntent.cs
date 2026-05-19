@@ -27,8 +27,8 @@ public static class DetectHostileIntent
         var icon = AbilityRefs.TrueStrike.Reference.Get().Icon;
 
         var buff = BuffConfigurator.New("PWDetectHostileIntentBuff", Guids.PowerDetectHostileIntentBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.DetectHostileIntent.BuffName", "Detect Hostile Intent", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.DetectHostileIntent.BuffDesc",
+            .SetDisplayName(Loc.Str("PW.DetectHostileIntent.BuffName", "Detect Hostile Intent", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.DetectHostileIntent.BuffDesc",
                 "You cannot be caught flat-footed and gain +2 Initiative.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
@@ -37,8 +37,8 @@ public static class DetectHostileIntent
             .Configure();
 
         AbilityConfigurator.New("PWDetectHostileIntent", Guids.PowerDetectHostileIntent)
-            .SetDisplayName(LocalizationTool.CreateString("PW.DetectHostileIntent.Name", "Detect Hostile Intent", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.DetectHostileIntent.Desc",
+            .SetDisplayName(Loc.Str("PW.DetectHostileIntent.Name", "Detect Hostile Intent", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.DetectHostileIntent.Desc",
                 "You attune your mind to detect incoming attacks. For 10 minutes per manifester level, you cannot be caught flat-footed (Uncanny Dodge) and gain +2 Initiative.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)

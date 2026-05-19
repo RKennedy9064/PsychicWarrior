@@ -19,8 +19,8 @@ public static class TelekineticPunch
     public static void Configure()
     {
         AbilityConfigurator.New("PWTelekineticPunch", Guids.PowerTelekineticPunch)
-            .SetDisplayName(LocalizationTool.CreateString("PW.TelekineticPunch.Name", "Telekinetic Punch"))
-            .SetDescription(LocalizationTool.CreateString("PW.TelekineticPunch.Desc",
+            .SetDisplayName(Loc.Str("PW.TelekineticPunch.Name", "Telekinetic Punch"))
+            .SetDescription(Loc.Str("PW.TelekineticPunch.Desc",
                 "You deliver a telekinetic punch to your target, dealing 1d4+1 points of force damage."))
             .SetIcon(AbilityRefs.MagicMissile.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)

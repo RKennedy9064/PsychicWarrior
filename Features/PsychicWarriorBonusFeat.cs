@@ -16,8 +16,8 @@ public static class PsychicWarriorBonusFeat
         // By copying the Fighter Feat Selection, we instantly get access to all combat feats
         FeatureSelectionConfigurator.New("PsychicWarriorBonusFeat", Guids.BonusFeatSelection)
             .CopyFrom(FeatureSelectionRefs.FighterFeatSelection.ToString())
-            .SetDisplayName(LocalizationTool.CreateString("PW.BonusFeat.Name", "Psychic Warrior Bonus Feat"))
-            .SetDescription(LocalizationTool.CreateString("PW.BonusFeat.Desc", "A psychic warrior gains a bonus combat feat at 1st level, 2nd level, and every three levels thereafter."))
+            .SetDisplayName(Loc.Str("PW.BonusFeat.Name", "Psychic Warrior Bonus Feat"))
+            .SetDescription(Loc.Str("PW.BonusFeat.Desc", "A psychic warrior gains a bonus combat feat at 1st level, 2nd level, and every three levels thereafter."))
             .SetIcon(icon)
             .SetIsClassFeature()
             .Configure();

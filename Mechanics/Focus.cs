@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -19,8 +19,8 @@ public static class Focus
         var focusIcon = AbilityRefs.TrueStrike.Reference.Get().Icon;
 
         var focusBuff = BuffConfigurator.New("PsionicFocusBuff", Guids.PsionicFocusBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.Focus.Name", "Psionic Focus"))
-            .SetDescription(LocalizationTool.CreateString("PW.Focus.Desc", "You are psionically focused. You can expend this focus to activate certain powers and maneuvers."))
+            .SetDisplayName(Loc.Str("PW.Focus.Name", "Psionic Focus"))
+            .SetDescription(Loc.Str("PW.Focus.Desc", "You are psionically focused. You can expend this focus to activate certain powers and maneuvers."))
             .SetIcon(focusIcon)
             .SetFxOnStart(BuffRefs.ArcaneAccuracyBuff.Reference.Get().FxOnStart)
             // When focus is lost, all path trance buffs end (RAW: trance is maintained by focus)
@@ -40,8 +40,8 @@ public static class Focus
             .Configure();
 
         var gainFocusAbility = AbilityConfigurator.New("GainPsionicFocusAbility", Guids.GainPsionicFocusAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.GainFocusAbility.Name", "Gain Psionic Focus"))
-            .SetDescription(LocalizationTool.CreateString("PW.GainFocusAbility.Desc", "Standard Action. Meditate to gain psionic focus."))
+            .SetDisplayName(Loc.Str("PW.GainFocusAbility.Name", "Gain Psionic Focus"))
+            .SetDescription(Loc.Str("PW.GainFocusAbility.Desc", "Standard Action. Meditate to gain psionic focus."))
             .SetIcon(focusIcon)
             // Supernatural is the mechanically perfect fit: No AoO, No Spell Resistance, infinite uses.
             .SetType(AbilityType.Supernatural)
@@ -54,8 +54,8 @@ public static class Focus
             .Configure();
 
         AbilityConfigurator.New("GainPsionicFocusMoveAbility", Guids.GainPsionicFocusMoveAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.GainFocusMoveAbility.Name", "Gain Psionic Focus (Move Action)"))
-            .SetDescription(LocalizationTool.CreateString("PW.GainFocusMoveAbility.Desc", "Move Action. Meditate quickly to gain psionic focus."))
+            .SetDisplayName(Loc.Str("PW.GainFocusMoveAbility.Name", "Gain Psionic Focus (Move Action)"))
+            .SetDescription(Loc.Str("PW.GainFocusMoveAbility.Desc", "Move Action. Meditate quickly to gain psionic focus."))
             .SetIcon(focusIcon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
@@ -65,8 +65,8 @@ public static class Focus
             .Configure();
 
         FeatureConfigurator.New("GainPsionicFocusFeature", Guids.GainPsionicFocusFeature)
-            .SetDisplayName(LocalizationTool.CreateString("PW.GainFocusFeature.Name", "Psionic Focus"))
-            .SetDescription(LocalizationTool.CreateString("PW.GainFocusFeature.Desc", "A psychic warrior can meditate to gain psionic focus. While focused, they can trigger special maneuvers."))
+            .SetDisplayName(Loc.Str("PW.GainFocusFeature.Name", "Psionic Focus"))
+            .SetDescription(Loc.Str("PW.GainFocusFeature.Desc", "A psychic warrior can meditate to gain psionic focus. While focused, they can trigger special maneuvers."))
             .SetIsClassFeature()
             .SetIcon(focusIcon)
             .AddFacts([gainFocusAbility.ToString()])

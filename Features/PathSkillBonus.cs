@@ -53,8 +53,8 @@ public static class PathSkillBonus
             Guids.InfiltratorPath, Guids.MindKnightPath, Guids.SurvivorPath);
 
         FeatureSelectionConfigurator.New("PathSkillBonusSelection", Guids.PathSkillBonusSelection)
-            .SetDisplayName(LocalizationTool.CreateString("PW.PathSkillSel.Name", "Path Skill", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.PathSkillSel.Desc",
+            .SetDisplayName(Loc.Str("PW.PathSkillSel.Name", "Path Skill", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.PathSkillSel.Desc",
                 "Select one skill associated with your warrior path to gain a +2 competence bonus (maximum +6 for any one skill).",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
@@ -73,9 +73,9 @@ public static class PathSkillBonus
             prereqs.Add(p);
 
         return FeatureConfigurator.New(name, guid)
-            .SetDisplayName(LocalizationTool.CreateString($"PW.{name}.Name",
+            .SetDisplayName(Loc.Str($"PW.{name}.Name",
                 $"Path Skill: {skillLabel}", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString($"PW.{name}.Desc",
+            .SetDescription(Loc.Str($"PW.{name}.Desc",
                 $"You gain a +2 competence bonus to {skillLabel} checks. Can be selected up to three times (maximum +6).",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)

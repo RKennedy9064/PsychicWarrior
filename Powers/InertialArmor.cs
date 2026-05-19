@@ -20,16 +20,16 @@ public static class InertialArmor
     public static void Configure()
     {
         var buff = BuffConfigurator.New("PWInertialArmorBuff", Guids.PowerInertialArmorBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.InertialArmor.BuffName", "Inertial Armor"))
-            .SetDescription(LocalizationTool.CreateString("PW.InertialArmor.BuffDesc",
+            .SetDisplayName(Loc.Str("PW.InertialArmor.BuffName", "Inertial Armor"))
+            .SetDescription(Loc.Str("PW.InertialArmor.BuffDesc",
                 "A psychokinetic field surrounds you, granting a +4 armor bonus to AC."))
             .SetIcon(AbilityRefs.MageArmor.Reference.Get().Icon)
             .AddStatBonus(descriptor: ModifierDescriptor.Armor, stat: Kingmaker.EntitySystem.Stats.StatType.AC, value: 4)
             .Configure();
 
         AbilityConfigurator.New("PWInertialArmor", Guids.PowerInertialArmor)
-            .SetDisplayName(LocalizationTool.CreateString("PW.InertialArmor.Name", "Inertial Armor"))
-            .SetDescription(LocalizationTool.CreateString("PW.InertialArmor.Desc",
+            .SetDisplayName(Loc.Str("PW.InertialArmor.Name", "Inertial Armor"))
+            .SetDescription(Loc.Str("PW.InertialArmor.Desc",
                 "You create an invisible psychokinetic field around your body. You gain a +4 armor bonus to AC. Unlike mundane armor, inertial armor never results in armor check penalties or arcane spell failure."))
             .SetIcon(AbilityRefs.MageArmor.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)

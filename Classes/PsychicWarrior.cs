@@ -13,8 +13,8 @@ public static class PsychicWarriorClass
     public static void Configure()
     {
         var progression = ProgressionConfigurator.New("PsychicWarrior.Progression", Guids.PsychicWarriorProgression)
-            .SetDisplayName(LocalizationTool.CreateString("PW.Progression.Name", "Psychic Warrior"))
-            .SetDescription(LocalizationTool.CreateString("PW.Progression.Desc", "A martial psionic combatant."))
+            .SetDisplayName(Loc.Str("PW.Progression.Name", "Psychic Warrior"))
+            .SetDescription(Loc.Str("PW.Progression.Desc", "A martial psionic combatant."))
             .SetClasses(Guids.PsychicWarriorClass)
             .SetUIGroups(
                 UIGroupBuilder.New()
@@ -56,8 +56,8 @@ public static class PsychicWarriorClass
             .Configure();
 
         CharacterClassConfigurator.New("PsychicWarrior.Class", Guids.PsychicWarriorClass)
-            .SetLocalizedName(LocalizationTool.CreateString("PW.Class.Name", "Psychic Warrior"))
-            .SetLocalizedDescription(LocalizationTool.CreateString("PW.Class.Desc", "A martial psionic combatant..."))
+            .SetLocalizedName(Loc.Str("PW.Class.Name", "Psychic Warrior"))
+            .SetLocalizedDescription(Loc.Str("PW.Class.Desc", "A martial psionic combatant..."))
             .SetHitDie(DiceType.D8)
             .SetSkillPoints(4)
             .SetBaseAttackBonus(StatProgressionRefs.BABMedium.ToString())

@@ -17,10 +17,10 @@ public static class PsionicProficiency
         var icon = AbilityRefs.DivineFavor.Reference.Get().Icon;
 
         FeatureConfigurator.New("PsionicProficiency", Guids.PsionicProficiency)
-            .SetDisplayName(LocalizationTool.CreateString("PW.PsionicProf.Name", "Psionic Proficiency"))
-            .SetDescription(LocalizationTool.CreateString(
+            .SetDisplayName(Loc.Str("PW.PsionicProf.Name", "Psionic Proficiency"))
+            .SetDescription(Loc.Str(
                 "PW.PsionicProf.Desc",
-                "You treat your base attack bonus as equal to your Psychic Warrior level for the purposes of requirements for psionic feats."))
+                "You treat your base attack bonus as equal to your Psychic Warrior level for the purposes of meeting prerequisites for psionic feats. Base attack bonuses granted from other classes are unaffected and are added normally."))
             .SetIcon(icon)
             .SetIsClassFeature()
             .Configure();

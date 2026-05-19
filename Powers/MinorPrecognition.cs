@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using PsychicWarrior.Utils;
@@ -11,8 +11,8 @@ public static class MinorPrecognition
     {
         AbilityConfigurator.New("PWMinorPrecognition", Guids.PowerMinorPrecognition)
             .CopyFrom(AbilityRefs.Guidance)
-            .SetDisplayName(LocalizationTool.CreateString("PW.MinorPrecognition.Name", "Minor Precognition"))
-            .SetDescription(LocalizationTool.CreateString("PW.MinorPrecognition.Desc", "Your psionic foresight grants a +1 competence bonus on a single attack roll, saving throw, or skill check."))
+            .SetDisplayName(Loc.Str("PW.MinorPrecognition.Name", "Minor Precognition"))
+            .SetDescription(Loc.Str("PW.MinorPrecognition.Desc", "Your psionic foresight grants a +1 competence bonus on a single attack roll, saving throw, or skill check."))
             .Configure();
     }
 }

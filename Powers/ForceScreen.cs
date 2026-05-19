@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Utils;
@@ -19,8 +19,8 @@ public static class ForceScreen
     {
         AbilityConfigurator.New("PWForceScreen", Guids.PowerForceScreen)
             .CopyFrom(ShieldSpellGuid, typeof(AbilityEffectRunAction))
-            .SetDisplayName(LocalizationTool.CreateString("PW.ForceScreen.Name", "Force Screen"))
-            .SetDescription(LocalizationTool.CreateString("PW.ForceScreen.Desc", "You create an invisible mobile disk of force that hovers in front of you. It grants a +4 shield bonus to Armor Class."))
+            .SetDisplayName(Loc.Str("PW.ForceScreen.Name", "Force Screen"))
+            .SetDescription(Loc.Str("PW.ForceScreen.Desc", "You create an invisible mobile disk of force that hovers in front of you. It grants a +4 shield bonus to Armor Class."))
             .AddSpellListComponent(1, Guids.SpellList)
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()

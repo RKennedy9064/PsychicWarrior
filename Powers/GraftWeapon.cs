@@ -30,8 +30,8 @@ public static class GraftWeapon
         var icon = AbilityRefs.MagicWeaponGreater.Reference.Get().Icon;
 
         var buff = BuffConfigurator.New("PWGraftWeaponBuff", Guids.PowerGraftWeaponBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.GraftWeapon.BuffName", "Graft Weapon", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.GraftWeapon.BuffDesc",
+            .SetDisplayName(Loc.Str("PW.GraftWeapon.BuffName", "Graft Weapon", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.GraftWeapon.BuffDesc",
                 "Your weapon is melded into your hand. You wield it with supernatural precision, gaining an enhancement bonus to attack and damage that scales with manifester level (+2 to +5).",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
@@ -48,8 +48,8 @@ public static class GraftWeapon
             .Configure();
 
         AbilityConfigurator.New("PWGraftWeapon", Guids.PowerGraftWeapon)
-            .SetDisplayName(LocalizationTool.CreateString("PW.GraftWeapon.Name", "Graft Weapon", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.GraftWeapon.Desc",
+            .SetDisplayName(Loc.Str("PW.GraftWeapon.Name", "Graft Weapon", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.GraftWeapon.Desc",
                 "You meld your hand and weapon together into a unified psionic instrument. You gain an enhancement bonus to attack and damage rolls (+2, increasing by +1 per 4 manifester levels to a maximum of +5) for 1 minute per manifester level.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)

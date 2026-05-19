@@ -21,15 +21,15 @@ public static class Deceleration
     public static void Configure()
     {
         var buff = BuffConfigurator.New("PWDecelerationBuff", Guids.PowerDecelerationBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.Deceleration.BuffName", "Deceleration"))
-            .SetDescription(LocalizationTool.CreateString("PW.Deceleration.BuffDesc", "Movement speed is reduced by 10 feet."))
+            .SetDisplayName(Loc.Str("PW.Deceleration.BuffName", "Deceleration"))
+            .SetDescription(Loc.Str("PW.Deceleration.BuffDesc", "Movement speed is reduced by 10 feet."))
             .SetIcon(AbilityRefs.Slow.Reference.Get().Icon)
             .AddStatBonus(descriptor: ModifierDescriptor.Penalty, stat: StatType.Speed, value: -10)
             .Configure();
 
         AbilityConfigurator.New("PWDeceleration", Guids.PowerDeceleration)
-            .SetDisplayName(LocalizationTool.CreateString("PW.Deceleration.Name", "Deceleration"))
-            .SetDescription(LocalizationTool.CreateString("PW.Deceleration.Desc",
+            .SetDisplayName(Loc.Str("PW.Deceleration.Name", "Deceleration"))
+            .SetDescription(Loc.Str("PW.Deceleration.Desc",
                 "You project a telekinetic force to slow a target. The target's movement speed is reduced by 10 feet for 1 minute (Will negates)."))
             .SetIcon(AbilityRefs.Slow.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)

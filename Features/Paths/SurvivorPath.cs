@@ -40,8 +40,8 @@ public static class SurvivorPath
 
         // Mettle: Fort/Will saves spike for 1 round
         var maneuverBuff = BuffConfigurator.New("SurvivorManeuverBuff", Guids.SurvivorManeuverBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorManeuver.BuffName", "Survivor Maneuver"))
-            .SetDescription(LocalizationTool.CreateString("PW.SurvivorManeuver.BuffDesc",
+            .SetDisplayName(Loc.Str("PW.SurvivorManeuver.BuffName", "Survivor Maneuver"))
+            .SetDescription(Loc.Str("PW.SurvivorManeuver.BuffDesc",
                 "You steel yourself against magic and harm, gaining +4 competence to Fortitude and Will saves for 1 round."))
             .SetIcon(icon)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveFortitude, value: 4)
@@ -49,8 +49,8 @@ public static class SurvivorPath
             .Configure();
 
         var maneuverAbility = AbilityConfigurator.New("SurvivorManeuver", Guids.SurvivorManeuverAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorManeuverAb.Name", "Survivor Maneuver"))
-            .SetDescription(LocalizationTool.CreateString("PW.SurvivorManeuverAb.Desc",
+            .SetDisplayName(Loc.Str("PW.SurvivorManeuverAb.Name", "Survivor Maneuver"))
+            .SetDescription(Loc.Str("PW.SurvivorManeuverAb.Desc",
                 "Swift Action. Expend psionic focus to steel yourself against magic and physical harm, gaining +4 competence to Fortitude and Will saves for 1 round."))
             .SetIcon(icon)
             .SetType(AbilityType.Extraordinary)
@@ -66,8 +66,8 @@ public static class SurvivorPath
 
         // Expanded — Survivor's Resolve: temp HP equal to caster level for 1 minute
         var expandedBuff = BuffConfigurator.New("SurvivorExpandedManeuverBuff", Guids.SurvivorExpandedBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorExpanded.BuffName", "Survivor's Resolve"))
-            .SetDescription(LocalizationTool.CreateString("PW.SurvivorExpanded.BuffDesc",
+            .SetDisplayName(Loc.Str("PW.SurvivorExpanded.BuffName", "Survivor's Resolve"))
+            .SetDescription(Loc.Str("PW.SurvivorExpanded.BuffDesc",
                 "Psionic resolve hardens flesh — temporary hit points equal to your manifester level."))
             .SetIcon(icon)
             .AddTemporaryHitPointsFromAbilityValue(
@@ -76,8 +76,8 @@ public static class SurvivorPath
             .Configure();
 
         var expandedAbility = AbilityConfigurator.New("SurvivorExpandedManeuverAbility", Guids.SurvivorExpandedAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorExpandedAb.Name", "Survivor's Resolve"))
-            .SetDescription(LocalizationTool.CreateString("PW.SurvivorExpandedAb.Desc",
+            .SetDisplayName(Loc.Str("PW.SurvivorExpandedAb.Name", "Survivor's Resolve"))
+            .SetDescription(Loc.Str("PW.SurvivorExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to gain temporary hit points equal to your manifester level (1 minute)."))
             .SetIcon(icon)
             .SetType(AbilityType.Extraordinary)
@@ -94,21 +94,23 @@ public static class SurvivorPath
             .Configure();
 
         FeatureConfigurator.New("SurvivorExpandedManeuver", Guids.SurvivorExpandedFeature)
-            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorExpandedFeat.Name", "Survivor's Resolve"))
-            .SetDescription(LocalizationTool.CreateString("PW.SurvivorExpandedFeat.Desc",
+            .SetDisplayName(Loc.Str("PW.SurvivorExpandedFeat.Name", "Survivor's Resolve"))
+            .SetDescription(Loc.Str("PW.SurvivorExpandedFeat.Desc",
                 "You learn the Survivor's Resolve maneuver: a swift-action self-buff granting temporary hit points equal to your manifester level for 1 minute."))
             .SetIcon(icon)
             .SetIsClassFeature()
+            .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerSurvivorExpanded)
             .AddPrerequisiteFeature(Guids.SurvivorPath)
             .Configure();
 
         FeatureConfigurator.New("SurvivorPath", Guids.SurvivorPath)
-            .SetDisplayName(LocalizationTool.CreateString("PW.SurvivorPath.Name", "Survivor Path"))
-            .SetDescription(LocalizationTool.CreateString("PW.SurvivorPath.Desc",
+            .SetDisplayName(Loc.Str("PW.SurvivorPath.Name", "Survivor Path"))
+            .SetDescription(Loc.Str("PW.SurvivorPath.Desc",
                 "You focus on endurance and resilience. You gain DR 2/— while psionically focused (trance) and can expend psionic focus to spike your Fortitude and Will saves (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
             .AddFacts(new() { trance.ToString() })
+            .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerSurvivorManeuver)
             .Configure();
     }
 }

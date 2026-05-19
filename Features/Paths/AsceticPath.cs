@@ -42,16 +42,16 @@ public static class AsceticPath
                 value: 1));
 
         var maneuverBuff = BuffConfigurator.New("AsceticManeuverBuff", Guids.AsceticManeuverBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.AsceticManeuver.BuffName", "Ascetic Maneuver"))
-            .SetDescription(LocalizationTool.CreateString("PW.AsceticManeuver.BuffDesc",
+            .SetDisplayName(Loc.Str("PW.AsceticManeuver.BuffName", "Ascetic Maneuver"))
+            .SetDescription(Loc.Str("PW.AsceticManeuver.BuffDesc",
                 "You gain a +4 dodge bonus to AC for 1 round."))
             .SetIcon(icon)
             .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.AC, value: 4)
             .Configure();
 
         var maneuverAbility = AbilityConfigurator.New("AsceticManeuver", Guids.AsceticManeuverAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.AsceticManeuverAb.Name", "Ascetic Maneuver"))
-            .SetDescription(LocalizationTool.CreateString("PW.AsceticManeuverAb.Desc",
+            .SetDisplayName(Loc.Str("PW.AsceticManeuverAb.Name", "Ascetic Maneuver"))
+            .SetDescription(Loc.Str("PW.AsceticManeuverAb.Desc",
                 "Swift Action. Expend psionic focus to enter a defensive stance, gaining +4 dodge to AC for 1 round."))
             .SetIcon(icon)
             .SetType(AbilityType.Extraordinary)
@@ -68,14 +68,14 @@ public static class AsceticPath
         // Expanded — Wholeness of Body: instant self-heal equal to caster level
         // (buff retained as a stub so its GUID still registers; not applied)
         BuffConfigurator.New("AsceticExpandedManeuverBuff", Guids.AsceticExpandedBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.AsceticExpanded.BuffName", "Wholeness of Body"))
-            .SetDescription(LocalizationTool.CreateString("PW.AsceticExpanded.BuffDesc", "Psychometabolic self-healing."))
+            .SetDisplayName(Loc.Str("PW.AsceticExpanded.BuffName", "Wholeness of Body"))
+            .SetDescription(Loc.Str("PW.AsceticExpanded.BuffDesc", "Psychometabolic self-healing."))
             .SetIcon(icon)
             .Configure();
 
         var expandedAbility = AbilityConfigurator.New("AsceticExpandedManeuverAbility", Guids.AsceticExpandedAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.AsceticExpandedAb.Name", "Wholeness of Body"))
-            .SetDescription(LocalizationTool.CreateString("PW.AsceticExpandedAb.Desc",
+            .SetDisplayName(Loc.Str("PW.AsceticExpandedAb.Name", "Wholeness of Body"))
+            .SetDescription(Loc.Str("PW.AsceticExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to heal yourself for hit points equal to your manifester level."))
             .SetIcon(icon)
             .SetType(AbilityType.Extraordinary)
@@ -92,21 +92,23 @@ public static class AsceticPath
             .Configure();
 
         FeatureConfigurator.New("AsceticExpandedManeuver", Guids.AsceticExpandedFeature)
-            .SetDisplayName(LocalizationTool.CreateString("PW.AsceticExpandedFeat.Name", "Wholeness of Body"))
-            .SetDescription(LocalizationTool.CreateString("PW.AsceticExpandedFeat.Desc",
+            .SetDisplayName(Loc.Str("PW.AsceticExpandedFeat.Name", "Wholeness of Body"))
+            .SetDescription(Loc.Str("PW.AsceticExpandedFeat.Desc",
                 "You learn the Wholeness of Body maneuver: a swift action that heals you for hit points equal to your manifester level."))
             .SetIcon(icon)
             .SetIsClassFeature()
+            .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerAsceticExpanded)
             .AddPrerequisiteFeature(Guids.AsceticPath)
             .Configure();
 
         FeatureConfigurator.New("AsceticPath", Guids.AsceticPath)
-            .SetDisplayName(LocalizationTool.CreateString("PW.AsceticPath.Name", "Ascetic Path"))
-            .SetDescription(LocalizationTool.CreateString("PW.AsceticPath.Desc",
+            .SetDisplayName(Loc.Str("PW.AsceticPath.Name", "Ascetic Path"))
+            .SetDescription(Loc.Str("PW.AsceticPath.Desc",
                 "You focus on psionic body mastery. You gain a +1 competence bonus to AC (trance) and can expend psionic focus to adopt a defensive stance (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
             .AddFacts(new() { trance.ToString() })
+            .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerAsceticManeuver)
             .Configure();
     }
 }

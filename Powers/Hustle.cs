@@ -29,16 +29,16 @@ public static class Hustle
         // Copy the Haste buff for its full mechanical effect (speed, +1 attack on full attack, etc.)
         var buff = BuffConfigurator.New("PWHustleBuff", Guids.PowerHustleBuff)
             .CopyFrom(BuffRefs.HasteBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.Hustle.BuffName", "Hustle", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.Hustle.BuffDesc",
+            .SetDisplayName(Loc.Str("PW.Hustle.BuffName", "Hustle", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.Hustle.BuffDesc",
                 "Psionic acceleration drives your body, granting haste-like speed and reflexes.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .Configure();
 
         AbilityConfigurator.New("PWHustle", Guids.PowerHustle)
-            .SetDisplayName(LocalizationTool.CreateString("PW.Hustle.Name", "Hustle", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.Hustle.Desc",
+            .SetDisplayName(Loc.Str("PW.Hustle.Name", "Hustle", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.Hustle.Desc",
                 "You psionically accelerate yourself. For 1 round you gain the benefits of haste: +30 ft. speed, +1 dodge bonus to AC and Reflex saves, and an extra attack at your highest BAB on a full attack.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)

@@ -19,15 +19,15 @@ public static class Burst
     public static void Configure()
     {
         var buff = BuffConfigurator.New("PWBurstBuff", Guids.PowerBurstBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.Burst.BuffName", "Burst"))
-            .SetDescription(LocalizationTool.CreateString("PW.Burst.BuffDesc", "Movement speed is increased by 10 feet."))
+            .SetDisplayName(Loc.Str("PW.Burst.BuffName", "Burst"))
+            .SetDescription(Loc.Str("PW.Burst.BuffDesc", "Movement speed is increased by 10 feet."))
             .SetIcon(AbilityRefs.ExpeditiousRetreat.Reference.Get().Icon)
             .AddStatBonus(descriptor: ModifierDescriptor.Enhancement, stat: StatType.Speed, value: 10)
             .Configure();
 
         AbilityConfigurator.New("PWBurst", Guids.PowerBurst)
-            .SetDisplayName(LocalizationTool.CreateString("PW.Burst.Name", "Burst"))
-            .SetDescription(LocalizationTool.CreateString("PW.Burst.Desc",
+            .SetDisplayName(Loc.Str("PW.Burst.Name", "Burst"))
+            .SetDescription(Loc.Str("PW.Burst.Desc",
                 "You gain a +10-foot enhancement bonus to your speed for 1 round."))
             .SetIcon(AbilityRefs.ExpeditiousRetreat.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)

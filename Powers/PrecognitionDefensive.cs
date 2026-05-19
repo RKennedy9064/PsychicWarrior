@@ -19,15 +19,15 @@ public static class PrecognitionDefensive
     public static void Configure()
     {
         var buff = BuffConfigurator.New("PWPrecognitionDefensiveBuff", Guids.PowerPrecognitionDefensiveBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.PrecognitionDef.BuffName", "Precognition, Defensive"))
-            .SetDescription(LocalizationTool.CreateString("PW.PrecognitionDef.BuffDesc", "+1 insight bonus to AC."))
+            .SetDisplayName(Loc.Str("PW.PrecognitionDef.BuffName", "Precognition, Defensive"))
+            .SetDescription(Loc.Str("PW.PrecognitionDef.BuffDesc", "+1 insight bonus to AC."))
             .SetIcon(AbilityRefs.TrueStrike.Reference.Get().Icon)
             .AddStatBonus(descriptor: ModifierDescriptor.Insight, stat: StatType.AC, value: 1)
             .Configure();
 
         AbilityConfigurator.New("PWPrecognitionDefensive", Guids.PowerPrecognitionDefensive)
-            .SetDisplayName(LocalizationTool.CreateString("PW.PrecognitionDef.Name", "Precognition, Defensive"))
-            .SetDescription(LocalizationTool.CreateString("PW.PrecognitionDef.Desc",
+            .SetDisplayName(Loc.Str("PW.PrecognitionDef.Name", "Precognition, Defensive"))
+            .SetDescription(Loc.Str("PW.PrecognitionDef.Desc",
                 "Your psionic foresight warns you of incoming attacks. You gain a +1 insight bonus to AC for 1 round."))
             .SetIcon(AbilityRefs.TrueStrike.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)

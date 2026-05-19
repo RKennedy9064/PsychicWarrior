@@ -40,8 +40,8 @@ public static class VampiricBlade
 
         // Temp HP buff applied to caster on each hit. Stacks so consecutive hits accumulate temp HP.
         var tempHpBuff = BuffConfigurator.New("PWVampiricBladeTempHPBuff", Guids.PowerVampiricBladeTempHPBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.VampiricBladeTempHP.Name", "Vampiric Blade (Temp HP)", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.VampiricBladeTempHP.Desc",
+            .SetDisplayName(Loc.Str("PW.VampiricBladeTempHP.Name", "Vampiric Blade (Temp HP)", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.VampiricBladeTempHP.Desc",
                 "Temporary hit points drained from a foe by your vampiric weapon.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
@@ -53,8 +53,8 @@ public static class VampiricBlade
 
         // Main buff with the on-hit trigger
         var buff = BuffConfigurator.New("PWVampiricBladeBuff", Guids.PowerVampiricBladeBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.VampiricBlade.BuffName", "Vampiric Blade", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.VampiricBlade.BuffDesc",
+            .SetDisplayName(Loc.Str("PW.VampiricBlade.BuffName", "Vampiric Blade", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.VampiricBlade.BuffDesc",
                 "Your weapon drinks the life essence of those you strike: each melee hit deals +2d6 negative-energy damage and grants you temporary hit points equal to half the damage dealt.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
@@ -75,8 +75,8 @@ public static class VampiricBlade
             .Configure();
 
         AbilityConfigurator.New("PWVampiricBlade", Guids.PowerVampiricBlade)
-            .SetDisplayName(LocalizationTool.CreateString("PW.VampiricBlade.Name", "Vampiric Blade", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.VampiricBlade.Desc",
+            .SetDisplayName(Loc.Str("PW.VampiricBlade.Name", "Vampiric Blade", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.VampiricBlade.Desc",
                 "You imbue your weapon with soul-stealing psionic energy. For 1 round per manifester level, your melee attacks deal an extra 2d6 negative-energy damage and you gain temporary hit points equal to half the damage dealt by these strikes.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)

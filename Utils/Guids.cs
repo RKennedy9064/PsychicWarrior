@@ -275,9 +275,68 @@ public static class Guids
     public const string PathweavingBuff                = "d0020002-0000-4000-8000-000000000001";
     public const string PathweavingResource            = "d0020003-0000-4000-8000-000000000001";
 
-    // Martial Power (level 6) — swift-action buff that augments next attack
+    // Martial Power (level 6) — parent ability with per-path maneuver variants
     public const string MartialPowerAbility            = "d0030001-0000-4000-8000-000000000001";
-    public const string MartialPowerBuff               = "d0030002-0000-4000-8000-000000000001";
+    public const string MartialPowerBuff               = "d0030002-0000-4000-8000-000000000001";  // (legacy, unused)
+    public const string MartialPowerUsedBuff           = "d0030003-0000-4000-8000-000000000001";
+
+    // Martial Power variants (1 per path × 2 maneuver tiers = 24). Each is a free-of-focus
+    // version of the corresponding maneuver. Layout: d004{path:01-0c}{slot:01=basic, 02=expanded}
+    public const string MartialPowerWeaponmasterManeuver     = "d0040101-0000-4000-8000-000000000001";
+    public const string MartialPowerWeaponmasterExpanded     = "d0040102-0000-4000-8000-000000000001";
+    public const string MartialPowerBrawlerManeuver          = "d0040201-0000-4000-8000-000000000001";
+    public const string MartialPowerBrawlerExpanded          = "d0040202-0000-4000-8000-000000000001";
+    public const string MartialPowerArcherManeuver           = "d0040301-0000-4000-8000-000000000001";
+    public const string MartialPowerArcherExpanded           = "d0040302-0000-4000-8000-000000000001";
+    public const string MartialPowerAsceticManeuver          = "d0040401-0000-4000-8000-000000000001";
+    public const string MartialPowerAsceticExpanded          = "d0040402-0000-4000-8000-000000000001";
+    public const string MartialPowerAssassinsManeuver        = "d0040501-0000-4000-8000-000000000001";
+    public const string MartialPowerAssassinsExpanded        = "d0040502-0000-4000-8000-000000000001";
+    public const string MartialPowerDervishManeuver          = "d0040601-0000-4000-8000-000000000001";
+    public const string MartialPowerDervishExpanded          = "d0040602-0000-4000-8000-000000000001";
+    public const string MartialPowerFeralWarriorManeuver     = "d0040701-0000-4000-8000-000000000001";
+    public const string MartialPowerFeralWarriorExpanded     = "d0040702-0000-4000-8000-000000000001";
+    public const string MartialPowerGladiatorManeuver        = "d0040801-0000-4000-8000-000000000001";
+    public const string MartialPowerGladiatorExpanded        = "d0040802-0000-4000-8000-000000000001";
+    public const string MartialPowerInfiltratorManeuver      = "d0040901-0000-4000-8000-000000000001";
+    public const string MartialPowerInfiltratorExpanded      = "d0040902-0000-4000-8000-000000000001";
+    public const string MartialPowerInterceptorManeuver      = "d0040a01-0000-4000-8000-000000000001";
+    public const string MartialPowerInterceptorExpanded      = "d0040a02-0000-4000-8000-000000000001";
+    public const string MartialPowerMindKnightManeuver       = "d0040b01-0000-4000-8000-000000000001";
+    public const string MartialPowerMindKnightExpanded       = "d0040b02-0000-4000-8000-000000000001";
+    public const string MartialPowerSurvivorManeuver         = "d0040c01-0000-4000-8000-000000000001";
+    public const string MartialPowerSurvivorExpanded         = "d0040c02-0000-4000-8000-000000000001";
+
+    // Martial Power "selected mode" buffs — one per variant. Selector variant applies its own
+    // selection buff and removes the other 23. Layout: d005{path:01-0c}{slot:01=basic, 02=expanded}
+    public const string MartialPowerSelectedWeaponmasterManeuver  = "d0050101-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedWeaponmasterExpanded  = "d0050102-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedBrawlerManeuver       = "d0050201-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedBrawlerExpanded       = "d0050202-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedArcherManeuver        = "d0050301-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedArcherExpanded        = "d0050302-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedAsceticManeuver       = "d0050401-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedAsceticExpanded       = "d0050402-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedAssassinsManeuver     = "d0050501-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedAssassinsExpanded     = "d0050502-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedDervishManeuver       = "d0050601-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedDervishExpanded       = "d0050602-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedFeralWarriorManeuver  = "d0050701-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedFeralWarriorExpanded  = "d0050702-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedGladiatorManeuver     = "d0050801-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedGladiatorExpanded     = "d0050802-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedInfiltratorManeuver   = "d0050901-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedInfiltratorExpanded   = "d0050902-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedInterceptorManeuver   = "d0050a01-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedInterceptorExpanded   = "d0050a02-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedMindKnightManeuver    = "d0050b01-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedMindKnightExpanded    = "d0050b02-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedSurvivorManeuver      = "d0050c01-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedSurvivorExpanded      = "d0050c02-0000-4000-8000-000000000001";
+
+    // Martial Power Activatable toggle + its active buff (the one with the on-hit trigger)
+    public const string MartialPowerActivatable        = "d0060001-0000-4000-8000-000000000001";
+    public const string MartialPowerActivatableBuff    = "d0060002-0000-4000-8000-000000000001";
 
     // ── Phase 8: 2nd-level powers ──
     public const string PowerBodyAdjustment            = "e0010001-0000-4000-8000-000000000001";

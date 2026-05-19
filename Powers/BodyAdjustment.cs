@@ -21,8 +21,8 @@ public static class BodyAdjustment
     public static void Configure()
     {
         AbilityConfigurator.New("PWBodyAdjustment", Guids.PowerBodyAdjustment)
-            .SetDisplayName(LocalizationTool.CreateString("PW.BodyAdjustment.Name", "Body Adjustment", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.BodyAdjustment.Desc",
+            .SetDisplayName(Loc.Str("PW.BodyAdjustment.Name", "Body Adjustment", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.BodyAdjustment.Desc",
                 "Through psionic biomanipulation, you heal yourself for 2d8 + your manifester level (max +10) hit points.",
                 tagEncyclopediaEntries: false))
             .SetIcon(AbilityRefs.CureModerateWounds.Reference.Get().Icon)

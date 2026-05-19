@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Blueprints.Configurators.Classes.Spells;
+using BlueprintCore.Blueprints.Configurators.Classes.Spells;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Spells;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
@@ -66,7 +66,7 @@ public static class PsychicWarriorSpellbook
             .Configure();
 
         SpellbookConfigurator.New("PsychicWarriorSpellbook", Guids.Spellbook)
-            .SetName(LocalizationTool.CreateString("PW.Spellbook.Name", "Psychic Warrior Powers"))
+            .SetName(Loc.Str("PW.Spellbook.Name", "Psychic Warrior Powers"))
             .SetCharacterClass(Guids.PsychicWarriorClass)
             .SetSpellsPerDay(SpellsTableRefs.InquisitorSpellSlotsTable.ToString())
             .SetSpellsKnown(SpellsTableRefs.InquisitorSpellsKnownTable.ToString())

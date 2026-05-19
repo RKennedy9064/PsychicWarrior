@@ -43,8 +43,8 @@ public static class StrengthOfMyEnemy
 
         // Caster-stacking buff: each rank adds +1 enhancement Strength, max 6 ranks.
         var casterBuff = BuffConfigurator.New("PWStrengthOfMyEnemyCasterBuff", Guids.PowerStrengthOfMyEnemyCasterBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.StrengthOfMyEnemy.CasterBuff.Name", "Strength of My Enemy", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.StrengthOfMyEnemy.CasterBuff.Desc",
+            .SetDisplayName(Loc.Str("PW.StrengthOfMyEnemy.CasterBuff.Name", "Strength of My Enemy", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.StrengthOfMyEnemy.CasterBuff.Desc",
                 "You have absorbed Strength from your foes, gaining a +1 enhancement bonus per stack (max +6).",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
@@ -60,8 +60,8 @@ public static class StrengthOfMyEnemy
 
         // Enemy debuff: -2 Strength per stack, stackable.
         var enemyDebuff = BuffConfigurator.New("PWStrengthOfMyEnemyEnemyDebuff", Guids.PowerStrengthOfMyEnemyEnemyDebuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.StrengthOfMyEnemy.EnemyDebuff.Name", "Strength Drained", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.StrengthOfMyEnemy.EnemyDebuff.Desc",
+            .SetDisplayName(Loc.Str("PW.StrengthOfMyEnemy.EnemyDebuff.Name", "Strength Drained", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.StrengthOfMyEnemy.EnemyDebuff.Desc",
                 "Your Strength has been psionically drained — 2 points per stack.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
@@ -71,8 +71,8 @@ public static class StrengthOfMyEnemy
 
         // Main buff with the on-hit trigger. Caps via Conditional on the caster-stack buff's rank.
         var mainBuff = BuffConfigurator.New("PWStrengthOfMyEnemyMainBuff", Guids.PowerStrengthOfMyEnemyBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.StrengthOfMyEnemy.MainBuff.Name", "Strength of My Enemy", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.StrengthOfMyEnemy.MainBuff.Desc",
+            .SetDisplayName(Loc.Str("PW.StrengthOfMyEnemy.MainBuff.Name", "Strength of My Enemy", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.StrengthOfMyEnemy.MainBuff.Desc",
                 "Your weapon is imbued with strength-draining psionic energy. Each successful melee hit drains 2 Strength from your foe and grants you +1 enhancement Strength (max +6).",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
@@ -97,8 +97,8 @@ public static class StrengthOfMyEnemy
             .Configure();
 
         AbilityConfigurator.New("PWStrengthOfMyEnemy", Guids.PowerStrengthOfMyEnemy)
-            .SetDisplayName(LocalizationTool.CreateString("PW.StrengthOfMyEnemy.Name", "Strength of My Enemy", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.StrengthOfMyEnemy.Desc",
+            .SetDisplayName(Loc.Str("PW.StrengthOfMyEnemy.Name", "Strength of My Enemy", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.StrengthOfMyEnemy.Desc",
                 "Imbue your weapon with strength-draining psionic energy. For 1 round per manifester level, each successful melee hit drains 2 Strength from your foe and grants you a +1 enhancement bonus to Strength (maximum +6).",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)

@@ -46,8 +46,8 @@ public static class BrawlerPath
 
         // Maneuver buff: +7 competence to damage (≈2d6) on next attack, then removes itself
         var maneuverBuff = BuffConfigurator.New("BrawlerManeuverBuff", Guids.BrawlerManeuverBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.BrawlerManeuver.BuffName", "Brawler Maneuver"))
-            .SetDescription(LocalizationTool.CreateString("PW.BrawlerManeuver.BuffDesc",
+            .SetDisplayName(Loc.Str("PW.BrawlerManeuver.BuffName", "Brawler Maneuver"))
+            .SetDescription(Loc.Str("PW.BrawlerManeuver.BuffDesc",
                 "Your next attack deals +7 bonus damage from psionic energy channeled through your strike."))
             .SetIcon(maneuverIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalDamage, value: 7)
@@ -55,8 +55,8 @@ public static class BrawlerPath
             .Configure();
 
         var maneuverAbility = AbilityConfigurator.New("BrawlerManeuver", Guids.BrawlerManeuver)
-            .SetDisplayName(LocalizationTool.CreateString("PW.BrawlerManeuverAb.Name", "Brawler Maneuver"))
-            .SetDescription(LocalizationTool.CreateString("PW.BrawlerManeuverAb.Desc",
+            .SetDisplayName(Loc.Str("PW.BrawlerManeuverAb.Name", "Brawler Maneuver"))
+            .SetDescription(Loc.Str("PW.BrawlerManeuverAb.Desc",
                 "Swift Action. Expend psionic focus to channel energy into your next strike, dealing +7 bonus damage on hit."))
             .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
@@ -72,8 +72,8 @@ public static class BrawlerPath
 
         // Expanded — Steel Sinews: counter-attack reflex, +4 dodge AC + Fast Healing 2 for 1 round
         var expandedBuff = BuffConfigurator.New("BrawlerExpandedManeuverBuff", Guids.BrawlerExpandedManeuverBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.BrawlerExpanded.BuffName", "Steel Sinews"))
-            .SetDescription(LocalizationTool.CreateString("PW.BrawlerExpanded.BuffDesc",
+            .SetDisplayName(Loc.Str("PW.BrawlerExpanded.BuffName", "Steel Sinews"))
+            .SetDescription(Loc.Str("PW.BrawlerExpanded.BuffDesc",
                 "Your sinews harden against blows. You gain +4 dodge bonus to AC and Fast Healing 2 for 1 round."))
             .SetIcon(maneuverIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.AC, value: 4)
@@ -81,8 +81,8 @@ public static class BrawlerPath
             .Configure();
 
         var expandedAbility = AbilityConfigurator.New("BrawlerExpandedManeuverAbility", Guids.BrawlerExpandedManeuverAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.BrawlerExpandedAb.Name", "Steel Sinews"))
-            .SetDescription(LocalizationTool.CreateString("PW.BrawlerExpandedAb.Desc",
+            .SetDisplayName(Loc.Str("PW.BrawlerExpandedAb.Name", "Steel Sinews"))
+            .SetDescription(Loc.Str("PW.BrawlerExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to harden your sinews. Gain +4 dodge bonus to AC and Fast Healing 2 for 1 round."))
             .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
@@ -98,22 +98,24 @@ public static class BrawlerPath
             .Configure();
 
         FeatureConfigurator.New("BrawlerExpandedManeuver", Guids.BrawlerExpandedManeuver)
-            .SetDisplayName(LocalizationTool.CreateString("PW.BrawlerExpandedFeat.Name", "Steel Sinews"))
-            .SetDescription(LocalizationTool.CreateString("PW.BrawlerExpandedFeat.Desc",
+            .SetDisplayName(Loc.Str("PW.BrawlerExpandedFeat.Name", "Steel Sinews"))
+            .SetDescription(Loc.Str("PW.BrawlerExpandedFeat.Desc",
                 "You learn the Steel Sinews maneuver: a swift-action self-buff that grants +4 dodge AC and Fast Healing 2 for 1 round."))
             .SetIcon(maneuverIcon)
             .SetIsClassFeature()
+            .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerBrawlerExpanded)
             .AddPrerequisiteFeature(Guids.BrawlerPath)
             .Configure();
 
         FeatureConfigurator.New("BrawlerPath", Guids.BrawlerPath)
-            .SetDisplayName(LocalizationTool.CreateString("PW.BrawlerPath.Name", "Brawler Path"))
-            .SetDescription(LocalizationTool.CreateString("PW.BrawlerPath.Desc",
+            .SetDisplayName(Loc.Str("PW.BrawlerPath.Name", "Brawler Path"))
+            .SetDescription(Loc.Str("PW.BrawlerPath.Desc",
                 "You focus on close combat and grappling. Your Wisdom modifier adds to your CMB (trance) " +
                 "and you can expend psionic focus to deal +7 bonus damage on your next strike (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
             .AddFacts(new() { trance.ToString() })
+            .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerBrawlerManeuver)
             .Configure();
     }
 }

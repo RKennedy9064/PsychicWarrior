@@ -19,16 +19,16 @@ public static class Biofeedback
     public static void Configure()
     {
         var buff = BuffConfigurator.New("PWBiofeedbackBuff", Guids.PowerBiofeedbackBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.Biofeedback.BuffName", "Biofeedback"))
-            .SetDescription(LocalizationTool.CreateString("PW.Biofeedback.BuffDesc",
+            .SetDisplayName(Loc.Str("PW.Biofeedback.BuffName", "Biofeedback"))
+            .SetDescription(Loc.Str("PW.Biofeedback.BuffDesc",
                 "A psionic biofeedback loop reduces all physical damage you take by 2."))
             .SetIcon(AbilityRefs.Stoneskin.Reference.Get().Icon)
             .AddDamageResistancePhysical(value: ContextValues.Constant(2))
             .Configure();
 
         AbilityConfigurator.New("PWBiofeedback", Guids.PowerBiofeedback)
-            .SetDisplayName(LocalizationTool.CreateString("PW.Biofeedback.Name", "Biofeedback"))
-            .SetDescription(LocalizationTool.CreateString("PW.Biofeedback.Desc",
+            .SetDisplayName(Loc.Str("PW.Biofeedback.Name", "Biofeedback"))
+            .SetDescription(Loc.Str("PW.Biofeedback.Desc",
                 "You create a biofeedback loop that protects you from harm. You gain damage reduction 2/— for 1 hour."))
             .SetIcon(AbilityRefs.Stoneskin.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)

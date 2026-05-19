@@ -47,16 +47,16 @@ internal static class TranceHelper
         Action<BuffConfigurator> addBuffComponents)
     {
         var tranceBuff = BuffConfigurator.New($"{baseName}TranceBuff", tranceBuffGuid)
-            .SetDisplayName(LocalizationTool.CreateString($"PW.{baseName}TranceBuff.Name", displayName, tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString($"PW.{baseName}TranceBuff.Desc", featureDescription, tagEncyclopediaEntries: false))
+            .SetDisplayName(Loc.Str($"PW.{baseName}TranceBuff.Name", displayName, tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str($"PW.{baseName}TranceBuff.Desc", featureDescription, tagEncyclopediaEntries: false))
             .SetIcon(icon);
         addBuffComponents(tranceBuff);
         tranceBuff.Configure();
 
         // Trance Activatable — separate action-bar icon with spinning border
         ActivatableAbilityConfigurator.New($"{baseName}TranceActivatable", Guids.GetTranceActivatableGuid(baseName))
-            .SetDisplayName(LocalizationTool.CreateString($"PW.{baseName}TranceActivatable.Name", displayName + " Trance", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString($"PW.{baseName}TranceActivatable.Desc",
+            .SetDisplayName(Loc.Str($"PW.{baseName}TranceActivatable.Name", displayName + " Trance", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str($"PW.{baseName}TranceActivatable.Desc",
                 featureDescription + " Toggling takes a standard action (reduced to swift at PW 11 by Twisting Paths). Only one trance can be active at a time. Requires psionic focus.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
@@ -70,8 +70,8 @@ internal static class TranceHelper
 
         // Parent ability — maneuver menu (Kineticist-blast-style variant container)
         AbilityConfigurator.New($"{baseName}PathPowers", parentAbilityGuid)
-            .SetDisplayName(LocalizationTool.CreateString($"PW.{baseName}PathPowers.Name", displayName + " Maneuvers", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString($"PW.{baseName}PathPowers.Desc",
+            .SetDisplayName(Loc.Str($"PW.{baseName}PathPowers.Name", displayName + " Maneuvers", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str($"PW.{baseName}PathPowers.Desc",
                 $"Click to choose a {displayName.ToLower()} maneuver. At 3rd level, the Expanded Maneuver becomes a second option.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
@@ -85,8 +85,8 @@ internal static class TranceHelper
             .Configure();
 
         return FeatureConfigurator.New($"{baseName}Trance", tranceFeatureGuid)
-            .SetDisplayName(LocalizationTool.CreateString($"PW.{baseName}Trance.Name", displayName, tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString($"PW.{baseName}Trance.Desc", featureDescription, tagEncyclopediaEntries: false))
+            .SetDisplayName(Loc.Str($"PW.{baseName}Trance.Name", displayName, tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str($"PW.{baseName}Trance.Desc", featureDescription, tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetIsClassFeature()
             .AddFacts(new() { Guids.GetTranceActivatableGuid(baseName), parentAbilityGuid })

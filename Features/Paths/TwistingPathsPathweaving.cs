@@ -57,8 +57,8 @@ public static class TwistingPathsPathweaving
         };
 
         FeatureConfigurator.New("TwistingPaths", Guids.TwistingPaths)
-            .SetDisplayName(LocalizationTool.CreateString("PW.TwistingPaths.Name", "Twisting Paths", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.TwistingPaths.Desc",
+            .SetDisplayName(Loc.Str("PW.TwistingPaths.Name", "Twisting Paths", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.TwistingPaths.Desc",
                 "At 11th level, your training lets you slip between trances effortlessly. The action cost to toggle any of your path trances is reduced from a standard action to a swift action, letting you switch between your two paths' trances mid-combat.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
@@ -75,8 +75,8 @@ public static class TwistingPathsPathweaving
 
         // Per-day resource: 1 at level 15, +1 per 3 PW levels past 15
         AbilityResourceConfigurator.New("PathweavingResource", Guids.PathweavingResource)
-            .SetLocalizedName(LocalizationTool.CreateString("PW.PathweavingResource.Name", "Pathweaving Uses", tagEncyclopediaEntries: false))
-            .SetLocalizedDescription(LocalizationTool.CreateString("PW.PathweavingResource.Desc",
+            .SetLocalizedName(Loc.Str("PW.PathweavingResource.Name", "Pathweaving Uses", tagEncyclopediaEntries: false))
+            .SetLocalizedDescription(Loc.Str("PW.PathweavingResource.Desc",
                 "Daily uses of Pathweaving. Recovers after a full rest.", tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetMaxAmount(
@@ -91,8 +91,8 @@ public static class TwistingPathsPathweaving
 
         // Pathweaving buff: combined trance benefits for 5 minutes
         var buff = BuffConfigurator.New("PathweavingBuff", Guids.PathweavingBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.PathweavingBuff.Name", "Pathweaving", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.PathweavingBuff.Desc",
+            .SetDisplayName(Loc.Str("PW.PathweavingBuff.Name", "Pathweaving", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.PathweavingBuff.Desc",
                 "Your trances merge: +2 competence attack and damage, +2 dodge AC, +2 to all saves.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
@@ -106,8 +106,8 @@ public static class TwistingPathsPathweaving
 
         // Ability: free action, consumes one PathweavingResource, applies the buff for 5 minutes
         AbilityConfigurator.New("PathweavingAbility", Guids.PathweavingAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.PathweavingAbility.Name", "Pathweaving", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.PathweavingAbility.Desc",
+            .SetDisplayName(Loc.Str("PW.PathweavingAbility.Name", "Pathweaving", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.PathweavingAbility.Desc",
                 "Free Action. Weave both your trances together for 5 minutes, gaining +2 competence to attack and damage, +2 dodge AC, and +2 to all saves. Usable a number of times per day equal to 1 + your Psychic Warrior level above 15 divided by 3.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
@@ -122,8 +122,8 @@ public static class TwistingPathsPathweaving
 
         // Replace the placeholder Pathweaving feature
         FeatureConfigurator.New("Pathweaving", Guids.Pathweaving)
-            .SetDisplayName(LocalizationTool.CreateString("PW.Pathweaving.Name", "Pathweaving", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.Pathweaving.Desc",
+            .SetDisplayName(Loc.Str("PW.Pathweaving.Name", "Pathweaving", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.Pathweaving.Desc",
                 "At 15th level, you can weave both your paths' trances together. As a free action a number of times per day " +
                 "(1 at level 15, +1 every 3 Psychic Warrior levels thereafter), you gain +2 competence to attack and damage, " +
                 "+2 dodge AC, and +2 to all saves for 5 minutes.",

@@ -20,15 +20,15 @@ public static class EmptyMind
     public static void Configure()
     {
         var buff = BuffConfigurator.New("PWEmptyMindBuff", Guids.PowerEmptyMindBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.EmptyMind.BuffName", "Empty Mind"))
-            .SetDescription(LocalizationTool.CreateString("PW.EmptyMind.BuffDesc", "+2 insight bonus to Will saving throws."))
+            .SetDisplayName(Loc.Str("PW.EmptyMind.BuffName", "Empty Mind"))
+            .SetDescription(Loc.Str("PW.EmptyMind.BuffDesc", "+2 insight bonus to Will saving throws."))
             .SetIcon(AbilityRefs.MindBlank.Reference.Get().Icon)
             .AddStatBonus(descriptor: ModifierDescriptor.Insight, stat: StatType.SaveWill, value: 2)
             .Configure();
 
         AbilityConfigurator.New("PWEmptyMind", Guids.PowerEmptyMind)
-            .SetDisplayName(LocalizationTool.CreateString("PW.EmptyMind.Name", "Empty Mind"))
-            .SetDescription(LocalizationTool.CreateString("PW.EmptyMind.Desc",
+            .SetDisplayName(Loc.Str("PW.EmptyMind.Name", "Empty Mind"))
+            .SetDescription(Loc.Str("PW.EmptyMind.Desc",
                 "You empty your mind, focusing inward. You gain a +2 insight bonus to Will saving throws for 1 minute."))
             .SetIcon(AbilityRefs.MindBlank.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)

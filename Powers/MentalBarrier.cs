@@ -27,8 +27,8 @@ public static class MentalBarrier
         var icon = AbilityRefs.ShieldOfFaith.Reference.Get().Icon;
 
         var buff = BuffConfigurator.New("PWMentalBarrierBuff", Guids.PowerMentalBarrierBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.MentalBarrier.BuffName", "Mental Barrier", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.MentalBarrier.BuffDesc",
+            .SetDisplayName(Loc.Str("PW.MentalBarrier.BuffName", "Mental Barrier", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.MentalBarrier.BuffDesc",
                 "A barrier of mental force surrounds you, granting +4 deflection bonus to AC.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
@@ -36,8 +36,8 @@ public static class MentalBarrier
             .Configure();
 
         AbilityConfigurator.New("PWMentalBarrier", Guids.PowerMentalBarrier)
-            .SetDisplayName(LocalizationTool.CreateString("PW.MentalBarrier.Name", "Mental Barrier", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.MentalBarrier.Desc",
+            .SetDisplayName(Loc.Str("PW.MentalBarrier.Name", "Mental Barrier", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.MentalBarrier.Desc",
                 "You raise a barrier of pure mental energy, gaining a +4 deflection bonus to AC for 1 round per manifester level.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)

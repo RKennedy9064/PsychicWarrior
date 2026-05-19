@@ -22,15 +22,15 @@ public static class Vigor
         // Copy FalseLifeBuff for its temp HP component; override display only.
         var vigorBuff = BuffConfigurator.New("PWVigorBuff", Guids.VigorBuff)
             .CopyFrom(BuffRefs.FalseLifeBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.VigorBuff.Name", "Vigor"))
-            .SetDescription(LocalizationTool.CreateString("PW.VigorBuff.Desc",
+            .SetDisplayName(Loc.Str("PW.VigorBuff.Name", "Vigor"))
+            .SetDescription(Loc.Str("PW.VigorBuff.Desc",
                 "You are suffused with psionic energy, granting temporary hit points."))
             .SetIcon(AbilityRefs.FalseLife.Reference.Get().Icon)
             .Configure();
 
         AbilityConfigurator.New("PsychicWarriorVigor", Guids.PowerVigor)
-            .SetDisplayName(LocalizationTool.CreateString("PW.Vigor.Name", "Vigor"))
-            .SetDescription(LocalizationTool.CreateString("PW.Vigor.Desc",
+            .SetDisplayName(Loc.Str("PW.Vigor.Name", "Vigor"))
+            .SetDescription(Loc.Str("PW.Vigor.Desc",
                 "You suffuse yourself with power, gaining 1d10 temporary hit points + 1 per manifester level (maximum +10)."))
             .SetIcon(AbilityRefs.FalseLife.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)

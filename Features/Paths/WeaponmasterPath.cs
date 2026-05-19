@@ -45,8 +45,8 @@ public static class WeaponmasterPath
 
         // Maneuver buff: +2 dodge to AC + +2 competence to next attack (riposte spirit)
         var maneuverBuff = BuffConfigurator.New("WeaponmasterManeuverBuff", Guids.WeaponmasterManeuverBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.WMManeuver.BuffName", "Weaponmaster Maneuver"))
-            .SetDescription(LocalizationTool.CreateString("PW.WMManeuver.BuffDesc",
+            .SetDisplayName(Loc.Str("PW.WMManeuver.BuffName", "Weaponmaster Maneuver"))
+            .SetDescription(Loc.Str("PW.WMManeuver.BuffDesc",
                 "You are in a counter-attack stance, gaining +2 dodge to AC and +2 competence to your next attack roll."))
             .SetIcon(maneuverIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.AC, value: 2)
@@ -55,8 +55,8 @@ public static class WeaponmasterPath
 
         // Maneuver ability: swift, expend focus, apply buff 1 round
         var maneuverAbility = AbilityConfigurator.New("WeaponmasterManeuver", Guids.WeaponmasterManeuver)
-            .SetDisplayName(LocalizationTool.CreateString("PW.WMManeuverAb.Name", "Weaponmaster Maneuver"))
-            .SetDescription(LocalizationTool.CreateString("PW.WMManeuverAb.Desc",
+            .SetDisplayName(Loc.Str("PW.WMManeuverAb.Name", "Weaponmaster Maneuver"))
+            .SetDescription(Loc.Str("PW.WMManeuverAb.Desc",
                 "Swift Action. Expend psionic focus to enter a counter-attack stance, gaining +2 dodge to AC and +2 competence to your next attack roll for 1 round."))
             .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
@@ -72,8 +72,8 @@ public static class WeaponmasterPath
 
         // Expanded — Burst of Speed: +30 ft speed + +4 attack for 1 round (charge bonus)
         var expandedBuff = BuffConfigurator.New("WeaponmasterExpandedManeuverBuff", Guids.WeaponmasterExpandedManeuverBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.WMExpanded.BuffName", "Burst of Speed"))
-            .SetDescription(LocalizationTool.CreateString("PW.WMExpanded.BuffDesc",
+            .SetDisplayName(Loc.Str("PW.WMExpanded.BuffName", "Burst of Speed"))
+            .SetDescription(Loc.Str("PW.WMExpanded.BuffDesc",
                 "A psionic burst of momentum carries you forward: +30 ft speed and +4 competence to attack rolls."))
             .SetIcon(maneuverIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Enhancement, stat: StatType.Speed, value: 30)
@@ -81,8 +81,8 @@ public static class WeaponmasterPath
             .Configure();
 
         var expandedAbility = AbilityConfigurator.New("WeaponmasterExpandedManeuverAbility", Guids.WeaponmasterExpandedManeuverAbility)
-            .SetDisplayName(LocalizationTool.CreateString("PW.WMExpandedAb.Name", "Burst of Speed"))
-            .SetDescription(LocalizationTool.CreateString("PW.WMExpandedAb.Desc",
+            .SetDisplayName(Loc.Str("PW.WMExpandedAb.Name", "Burst of Speed"))
+            .SetDescription(Loc.Str("PW.WMExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to unleash a burst of psionic momentum: +30 ft speed and +4 competence to attack rolls for 1 round."))
             .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
@@ -98,22 +98,24 @@ public static class WeaponmasterPath
             .Configure();
 
         FeatureConfigurator.New("WeaponmasterExpandedManeuver", Guids.WeaponmasterExpandedManeuver)
-            .SetDisplayName(LocalizationTool.CreateString("PW.WMExpandedFeat.Name", "Burst of Speed"))
-            .SetDescription(LocalizationTool.CreateString("PW.WMExpandedFeat.Desc",
+            .SetDisplayName(Loc.Str("PW.WMExpandedFeat.Name", "Burst of Speed"))
+            .SetDescription(Loc.Str("PW.WMExpandedFeat.Desc",
                 "You learn the Burst of Speed maneuver: a swift-action self-buff granting +30 ft speed and +4 competence to attack rolls for 1 round."))
             .SetIcon(maneuverIcon)
             .SetIsClassFeature()
+            .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerWeaponmasterExpanded)
             .AddPrerequisiteFeature(Guids.WeaponmasterPath)
             .Configure();
 
         // Path: grants trance + maneuver
         FeatureConfigurator.New("WeaponmasterPath", Guids.WeaponmasterPath)
-            .SetDisplayName(LocalizationTool.CreateString("PW.WeaponmasterPath.Name", "Weaponmaster Path"))
-            .SetDescription(LocalizationTool.CreateString("PW.WeaponmasterPath.Desc",
+            .SetDisplayName(Loc.Str("PW.WeaponmasterPath.Name", "Weaponmaster Path"))
+            .SetDescription(Loc.Str("PW.WeaponmasterPath.Desc",
                 "You focus on martial superiority in melee. You gain a +1 competence bonus to attack rolls (trance) and can expend psionic focus to enter a counter-attack stance (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
             .AddFacts(new() { trance.ToString() })
+            .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerWeaponmasterManeuver)
             .Configure();
     }
 }

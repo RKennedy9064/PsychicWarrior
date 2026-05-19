@@ -20,8 +20,8 @@ public static class MetaphysicalWeapon
     public static void Configure()
     {
         var buff = BuffConfigurator.New("PWMetaphysicalWeaponBuff", Guids.PowerMetaphysicalWeaponBuff)
-            .SetDisplayName(LocalizationTool.CreateString("PW.MetaphysicalWeapon.BuffName", "Metaphysical Weapon"))
-            .SetDescription(LocalizationTool.CreateString("PW.MetaphysicalWeapon.BuffDesc",
+            .SetDisplayName(Loc.Str("PW.MetaphysicalWeapon.BuffName", "Metaphysical Weapon"))
+            .SetDescription(Loc.Str("PW.MetaphysicalWeapon.BuffDesc",
                 "Your weapon is imbued with psychic energy, granting a +1 enhancement bonus to attack and damage rolls."))
             .SetIcon(AbilityRefs.MagicWeapon.Reference.Get().Icon)
             .AddStatBonus(descriptor: ModifierDescriptor.Enhancement, stat: Kingmaker.EntitySystem.Stats.StatType.AdditionalAttackBonus, value: 1)
@@ -29,8 +29,8 @@ public static class MetaphysicalWeapon
             .Configure();
 
         AbilityConfigurator.New("PWMetaphysicalWeapon", Guids.PowerMetaphysicalWeapon)
-            .SetDisplayName(LocalizationTool.CreateString("PW.MetaphysicalWeapon.Name", "Metaphysical Weapon"))
-            .SetDescription(LocalizationTool.CreateString("PW.MetaphysicalWeapon.Desc",
+            .SetDisplayName(Loc.Str("PW.MetaphysicalWeapon.Name", "Metaphysical Weapon"))
+            .SetDescription(Loc.Str("PW.MetaphysicalWeapon.Desc",
                 "You imbue your weapon with psychic energy, granting a +1 enhancement bonus to attack rolls and damage rolls for 1 minute per manifester level."))
             .SetIcon(AbilityRefs.MagicWeapon.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)

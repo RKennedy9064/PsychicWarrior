@@ -23,8 +23,8 @@ public static class BodyPurification
     public static void Configure()
     {
         AbilityConfigurator.New("PWBodyPurification", Guids.PowerBodyPurification)
-            .SetDisplayName(LocalizationTool.CreateString("PW.BodyPurification.Name", "Body Purification", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.BodyPurification.Desc",
+            .SetDisplayName(Loc.Str("PW.BodyPurification.Name", "Body Purification", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.BodyPurification.Desc",
                 "You cleanse your body of toxins and impurities, restoring 1d4 + your manifester level (max +5) points of physical ability damage.",
                 tagEncyclopediaEntries: false))
             .SetIcon(AbilityRefs.Restoration.Reference.Get().Icon)

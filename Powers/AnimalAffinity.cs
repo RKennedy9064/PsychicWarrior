@@ -74,8 +74,8 @@ public static class AnimalAffinity
 
         // Parent ability — the entry in the spellbook/action bar. Clicking expands the variant menu.
         AbilityConfigurator.New("PWAnimalAffinity", Guids.PowerAnimalAffinity)
-            .SetDisplayName(LocalizationTool.CreateString("PW.AnimalAffinity.Name", "Animal Affinity", tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString("PW.AnimalAffinity.Desc",
+            .SetDisplayName(Loc.Str("PW.AnimalAffinity.Name", "Animal Affinity", tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str("PW.AnimalAffinity.Desc",
                 "Channel the spirit of a great beast: gain a +4 enhancement bonus to one ability score of your choice (Strength, Dexterity, Constitution, Intelligence, Wisdom, or Charisma) for 1 minute per manifester level.",
                 tagEncyclopediaEntries: false))
             .SetIcon(iconStr)
@@ -104,8 +104,8 @@ public static class AnimalAffinity
         StatType stat, UnityEngine.Sprite icon)
     {
         var buff = BuffConfigurator.New(buffName, buffGuid)
-            .SetDisplayName(LocalizationTool.CreateString($"PW.{abilityName}.BuffName", displayName, tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString($"PW.{abilityName}.BuffDesc",
+            .SetDisplayName(Loc.Str($"PW.{abilityName}.BuffName", displayName, tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str($"PW.{abilityName}.BuffDesc",
                 $"You channel the spirit of the {beastName}, gaining a +4 enhancement bonus to {stat}.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
@@ -113,8 +113,8 @@ public static class AnimalAffinity
             .Configure();
 
         return AbilityConfigurator.New(abilityName, abilityGuid)
-            .SetDisplayName(LocalizationTool.CreateString($"PW.{abilityName}.Name", displayName, tagEncyclopediaEntries: false))
-            .SetDescription(LocalizationTool.CreateString($"PW.{abilityName}.Desc",
+            .SetDisplayName(Loc.Str($"PW.{abilityName}.Name", displayName, tagEncyclopediaEntries: false))
+            .SetDescription(Loc.Str($"PW.{abilityName}.Desc",
                 $"Channel the spirit of the {beastName}, gaining +4 enhancement bonus to {stat} for 1 minute per manifester level.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)

@@ -13,8 +13,8 @@ public static class PsychicWarriorPathSelection
         var icon = AbilityRefs.DivineFavor.Reference.Get().Icon;
 
         FeatureSelectionConfigurator.New("PsychicWarriorPathSelection", Guids.PathSelectionLevel1)
-            .SetDisplayName(LocalizationTool.CreateString("PW.PathSelection.Name", "Psychic Warrior Path"))
-            .SetDescription(LocalizationTool.CreateString("PW.PathSelection.Desc",
+            .SetDisplayName(Loc.Str("PW.PathSelection.Name", "Psychic Warrior Path"))
+            .SetDescription(Loc.Str("PW.PathSelection.Desc",
                 "At 1st level, a psychic warrior chooses a path that shapes her training and fighting style. " +
                 "She gains the trance and maneuver of her chosen path."))
             .SetIcon(icon)
@@ -35,8 +35,8 @@ public static class PsychicWarriorPathSelection
             .Configure();
 
         FeatureSelectionConfigurator.New("PathExpandedManeuver", Guids.PathExpandedManeuver)
-            .SetDisplayName(LocalizationTool.CreateString("PW.PathExpandedManeuver.Name", "Expanded Path Maneuver"))
-            .SetDescription(LocalizationTool.CreateString("PW.PathExpandedManeuver.Desc",
+            .SetDisplayName(Loc.Str("PW.PathExpandedManeuver.Name", "Expanded Path Maneuver"))
+            .SetDescription(Loc.Str("PW.PathExpandedManeuver.Desc",
                 "At 3rd level, you gain an additional maneuver from your chosen path, expanding your tactical options in combat."))
             .SetIcon(icon)
             .SetIsClassFeature()
@@ -57,8 +57,8 @@ public static class PsychicWarriorPathSelection
             .Configure();
 
         FeatureSelectionConfigurator.New("SecondaryPathSelection", Guids.SecondaryPathSelection)
-            .SetDisplayName(LocalizationTool.CreateString("PW.SecondaryPath.Name", "Secondary Path"))
-            .SetDescription(LocalizationTool.CreateString("PW.SecondaryPath.Desc",
+            .SetDisplayName(Loc.Str("PW.SecondaryPath.Name", "Secondary Path"))
+            .SetDescription(Loc.Str("PW.SecondaryPath.Desc",
                 "At 9th level, a psychic warrior chooses a second warrior's path. He gains the trance and maneuver of that path. " +
                 "The psychic warrior may only benefit from one trance at a time (see Twisting Paths)."))
             .SetIcon(icon)

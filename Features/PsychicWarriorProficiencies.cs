@@ -12,8 +12,8 @@ public static class PsychicWarriorProficiencies
         var icon = FeatureRefs.MartialWeaponProficiency.Reference.Get().Icon;
 
         FeatureConfigurator.New("PsychicWarriorProficiencies", Guids.Proficiencies)
-            .SetDisplayName(LocalizationTool.CreateString("PW.Proficiencies.Name", "Psychic Warrior Proficiencies"))
-            .SetDescription(LocalizationTool.CreateString("PW.Proficiencies.Desc", "Psychic Warriors are proficient with all simple and martial weapons, and with all armor (heavy, light, and medium) and shields (except tower shields)."))
+            .SetDisplayName(Loc.Str("PW.Proficiencies.Name", "Psychic Warrior Proficiencies"))
+            .SetDescription(Loc.Str("PW.Proficiencies.Desc", "Psychic Warriors are proficient with all simple and martial weapons, and with all armor (heavy, light, and medium) and shields (except tower shields)."))
             .SetIcon(icon)
             .SetIsClassFeature()
             .AddFacts(
