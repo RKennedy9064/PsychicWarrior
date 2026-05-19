@@ -36,6 +36,7 @@ public static class SpeedOfThought
             .SetIcon(FeatureRefs.Dodge.Reference.Get().Icon)
             .SetGroups(FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
+            .AddRecommendedClass(Guids.PsychicWarriorClass)
             .Configure();
 
         // When focus is gained, apply the speed buff if the unit has this feat.

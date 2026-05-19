@@ -57,6 +57,7 @@ public static class PsionicBody
             .AddContextRankConfig(
                 ContextRankConfigs.FeatureList(AllPsionicFeatGuids)
                     .WithBonusValueProgression(0, doubleBaseValue: true))
+            .AddRecommendedClass(Guids.PsychicWarriorClass)
             .Configure();
 
         SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.PsionicBodyFeat);

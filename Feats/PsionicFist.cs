@@ -37,6 +37,7 @@ public static class PsionicFist
                         ContextDice.Value(DiceType.D6, 1))),
                 onlyHit: true,
                 category: WeaponCategory.UnarmedStrike)
+            .AddRecommendedClass(Guids.PsychicWarriorClass)
             .Configure();
 
         SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.PsionicFistFeat);

@@ -379,12 +379,16 @@ public static class Guids
     public const string GreaterPsionicShotFeat         = "f0090001-0000-4000-8000-000000000001";
     // Tier 2 reserved GUIDs (for Psionic Body feat count — add feats here as implemented)
     public const string RapidMetabolismFeat            = "f00a0001-0000-4000-8000-000000000001";
+    public const string RapidMetabolismBuff            = "f00a0002-0000-4000-8000-000000000001";
     public const string OverchannelFeat                = "f00b0001-0000-4000-8000-000000000001";
     public const string CombatManifestationFeat        = "f00c0001-0000-4000-8000-000000000001";
     public const string DeepImpactFeat                 = "f00d0001-0000-4000-8000-000000000001";
+    public const string DeepImpactDebuff               = "f00d0002-0000-4000-8000-000000000001";
     public const string ExpandedKnowledgeFeat          = "f00e0001-0000-4000-8000-000000000001";
     public const string UpTheWallsFeat                 = "f00f0001-0000-4000-8000-000000000001";
+    public const string UpTheWallsBuff                 = "f00f0002-0000-4000-8000-000000000001";
     public const string PsionicEndowmentFeat           = "f0100001-0000-4000-8000-000000000001";
+    public const string PsionicEndowmentBuff           = "f0100002-0000-4000-8000-000000000001";
 
     // ── Phase 9: 3rd-level powers ──
     public const string PowerVampiricBlade             = "e0070001-0000-4000-8000-000000000001";

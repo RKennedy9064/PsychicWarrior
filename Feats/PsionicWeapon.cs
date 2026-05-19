@@ -36,6 +36,7 @@ public static class PsionicWeapon
                 onlyHit: true,
                 checkWeaponRangeType: true,
                 rangeType: WeaponRangeType.Melee)
+            .AddRecommendedClass(Guids.PsychicWarriorClass)
             .Configure();
 
         SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.PsionicWeaponFeat);

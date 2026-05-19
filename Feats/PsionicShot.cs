@@ -38,6 +38,7 @@ public static class PsionicShot
                 onlyHit: true,
                 checkWeaponRangeType: true,
                 rangeType: WeaponRangeType.Ranged)
+            .AddRecommendedClass(Guids.PsychicWarriorClass)
             .Configure();
 
         SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.PsionicShotFeat);

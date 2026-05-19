@@ -3,6 +3,7 @@ using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
@@ -12,42 +13,49 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
-using Kingmaker.RuleSystem;
-using Kingmaker.RuleSystem.Rules.Damage;
+using Kingmaker.UnitLogic;
 using PsychicWarrior.HarmonyPatches;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Feats;
 
-public static class GreaterPsionicWeapon
+public static class DeepImpact
 {
     public static void Configure()
     {
-        PsionicProficiencyPatch.RegisterPsionicFeat(Guids.GreaterPsionicWeaponFeat);
+        PsionicProficiencyPatch.RegisterPsionicFeat(Guids.DeepImpactFeat);
 
-        FeatureConfigurator.New("GreaterPsionicWeaponFeat", Guids.GreaterPsionicWeaponFeat)
-            .SetDisplayName(Loc.Str("PW.GreaterPsionicWeapon.Name", "Greater Psionic Weapon"))
-            .SetDescription(Loc.Str("PW.GreaterPsionicWeapon.Desc",
-                "While psionically focused, your melee attacks deal an additional 1d6 damage (stacks with Psionic Weapon for 2d6 total)."))
-            .SetIcon(FeatureRefs.VitalStrikeFeatureImproved.Reference.Get().Icon)
+        BuffConfigurator.New("DeepImpactDebuff", Guids.DeepImpactDebuff)
+            .SetDisplayName(Loc.Str("PW.DeepImpact.DebuffName", "Deep Impact"))
+            .SetDescription(Loc.Str("PW.DeepImpact.DebuffDesc",
+                "This target has been struck with psionic force and loses their Dexterity bonus to AC."))
+            .SetIcon(FeatureRefs.VitalStrikeFeature.Reference.Get().Icon)
+            .AddCondition(UnitCondition.LoseDexterityToAC)
+            .Configure();
+
+        FeatureConfigurator.New("DeepImpactFeat", Guids.DeepImpactFeat)
+            .SetDisplayName(Loc.Str("PW.DeepImpact.Name", "Deep Impact"))
+            .SetDescription(Loc.Str("PW.DeepImpact.Desc",
+                "While psionically focused, your melee attacks treat the target as flat-footed for 1 round."))
+            .SetIcon(FeatureRefs.VitalStrikeFeature.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
-            .AddPrerequisiteFeature(Guids.PsionicWeaponFeat)
+            .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 5)
             .AddInitiatorAttackWithWeaponTrigger(
                 action: ActionsBuilder.New().Conditional(
                     ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff),
-                    ifTrue: ActionsBuilder.New().DealDamage(
-                        DamageTypes.Physical(),
-                        ContextDice.Value(DiceType.D6, 1))),
+                    ifTrue: ActionsBuilder.New().ApplyBuff(
+                        Guids.DeepImpactDebuff,
+                        ContextDuration.Fixed(1))),
                 onlyHit: true,
                 checkWeaponRangeType: true,
                 rangeType: WeaponRangeType.Melee)
             .AddRecommendedClass(Guids.PsychicWarriorClass)
             .Configure();
 
-        SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.GreaterPsionicWeaponFeat);
-        SafeAddFeatToSelection(FeatureSelectionRefs.FighterFeatSelection.ToString(), Guids.GreaterPsionicWeaponFeat);
-        SafeAddFeatToSelection(Guids.BonusFeatSelection, Guids.GreaterPsionicWeaponFeat);
+        SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.DeepImpactFeat);
+        SafeAddFeatToSelection(FeatureSelectionRefs.FighterFeatSelection.ToString(), Guids.DeepImpactFeat);
+        SafeAddFeatToSelection(Guids.BonusFeatSelection, Guids.DeepImpactFeat);
     }
 
     private static void SafeAddFeatToSelection(string selectionGuid, string featGuid)

@@ -30,6 +30,7 @@ public static class CriticalRefocus
                     ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsionicFocusBuff)),
                 criticalHit: true,
                 onlyHit: true)
+            .AddRecommendedClass(Guids.PsychicWarriorClass)
             .Configure();
 
         SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.CriticalRefocusFeat);

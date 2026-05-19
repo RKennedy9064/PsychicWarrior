@@ -20,6 +20,7 @@ public static class PsionicMeditation
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddFacts([Guids.GainPsionicFocusMoveAbility])
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
+            .AddRecommendedClass(Guids.PsychicWarriorClass)
             .Configure();
 
         SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.PsionicMeditationFeat);

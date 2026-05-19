@@ -114,6 +114,12 @@ public static class BlueprintInit
         Run(nameof(Feats.GreaterPsionicWeapon),      Feats.GreaterPsionicWeapon.Configure,       logger);
         Run(nameof(Feats.GreaterPsionicFist),        Feats.GreaterPsionicFist.Configure,         logger);
         Run(nameof(Feats.GreaterPsionicShot),        Feats.GreaterPsionicShot.Configure,         logger);
+        // Tier 2 feats
+        Run(nameof(Feats.RapidMetabolism),           Feats.RapidMetabolism.Configure,            logger);
+        Run(nameof(Feats.CombatManifestation),       Feats.CombatManifestation.Configure,        logger);
+        Run(nameof(Feats.DeepImpact),                Feats.DeepImpact.Configure,                 logger);
+        Run(nameof(Feats.UpTheWalls),                Feats.UpTheWalls.Configure,                 logger);
+        Run(nameof(Feats.PsionicEndowment),          Feats.PsionicEndowment.Configure,           logger);
 
         // ── Phase 6: Class definition (must come last) ─────────────────────────
         Run(nameof(Classes.PsychicWarriorSpellbook), Classes.PsychicWarriorSpellbook.Configure,  logger);
