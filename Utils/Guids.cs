@@ -400,6 +400,12 @@ public static class Guids
     public const string PowerBodyOfIron          = "8b69fe2e-406d-48ce-875b-c67b6d59588f";
     public const string PowerBodyOfIronBuff      = "ab8b0ced-6d61-4871-8b6a-3090ef4b15af";
 
+    // ── Premade build ─────────────────────────────────────────────────────
+    public const string PrebuildPsychicWarriorFeatureList = "a1b2c3d4-e5f6-7890-abcd-ef1234567890";
+
+    // ── Archetypes ────────────────────────────────────────────────────────
+    public const string ThunderJarlArchetype = "c9d1e2f3-a4b5-6789-cdef-012345678901";
+
     // ── Level 20 capstone ─────────────────────────────────────────────────
     public const string EternalWarriorFeature  = "51d67668-4bfa-4976-8717-7d35acab9fbd";
     public const string EternalWarriorAbility  = "afd53a7f-8704-4eb3-9c6b-b57afc5f8ef2";

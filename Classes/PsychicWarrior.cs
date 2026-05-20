@@ -14,7 +14,8 @@ public static class PsychicWarriorClass
     {
         var progression = ProgressionConfigurator.New("PsychicWarrior.Progression", Guids.PsychicWarriorProgression)
             .SetDisplayName(Loc.Str("PW.Progression.Name", "Psychic Warrior"))
-            .SetDescription(Loc.Str("PW.Progression.Desc", "A martial psionic combatant."))
+            .SetDescription(Loc.Str("PW.Progression.Desc",
+                "Psychic Warriors are psionic combatants who fuse martial skill with the power of the mind."))
             .SetClasses(Guids.PsychicWarriorClass)
             .SetUIGroups(
                 UIGroupBuilder.New()
@@ -58,7 +59,16 @@ public static class PsychicWarriorClass
 
         CharacterClassConfigurator.New("PsychicWarrior.Class", Guids.PsychicWarriorClass)
             .SetLocalizedName(Loc.Str("PW.Class.Name", "Psychic Warrior"))
-            .SetLocalizedDescription(Loc.Str("PW.Class.Desc", "A martial psionic combatant..."))
+            .SetLocalizedDescription(Loc.Str("PW.Class.Desc",
+                "Psychic Warriors are psionic combatants who fuse martial skill with the power of the mind. "
+                + "By attuning their mental energy through Psionic Focus, they augment their attacks, harden "
+                + "their bodies, and channel minor psionic effects — all without sacrificing the fighting "
+                + "prowess of a dedicated warrior. At 1st level they choose a Path, a martial discipline "
+                + "that defines their style; a second Path is available at 9th level. Bonus combat and "
+                + "psionic feats round out a highly adaptable martial toolkit."))
+            .SetLocalizedDescriptionShort(Loc.Str("PW.Class.DescShort",
+                "A psionic warrior who channels mental focus to augment attacks, harden the body, "
+                + "and channel minor psionic effects — without sacrificing martial prowess."))
             .SetHitDie(DiceType.D8)
             .SetSkillPoints(4)
             .SetBaseAttackBonus(StatProgressionRefs.BABMedium.ToString())
@@ -79,6 +89,12 @@ public static class PsychicWarriorClass
             .SetDifficulty(1)
             .SetRecommendedAttributes(StatType.Strength, StatType.Wisdom)
             .SetNotRecommendedAttributes(StatType.Charisma)
+            .SetSignatureAbilities(
+                Guids.GainPsionicFocusFeature,
+                Guids.PsionicProficiency,
+                Guids.MartialPowerFeature,
+                Guids.EternalWarriorFeature)
+            .SetDefaultBuild(Guids.PrebuildPsychicWarriorFeatureList)
             .OnConfigure(bp =>
             {
                 var fighter = CharacterClassRefs.FighterClass.Reference.Get();

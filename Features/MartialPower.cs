@@ -194,12 +194,15 @@ public static class MartialPower
     /// </summary>
     private static string DeriveSiblingGuid(string guid)
     {
-        // Variant Activatable GUIDs end with "...000000000001"; flip to "...000000000002" for the buff sibling.
-        if (guid.EndsWith("000000000001"))
-            return guid.Substring(0, guid.Length - 1) + "2";
-        // Fallback: flip the very last char
-        var lastChar = guid[guid.Length - 1];
-        char newChar = lastChar == 'f' ? 'e' : (char)(lastChar + 1);
+        // Increment the last hex digit to produce a deterministic sibling GUID.
+        // '9' jumps to 'a' to stay within valid hex; 'f' steps back to 'e'.
+        var lastChar = char.ToLower(guid[guid.Length - 1]);
+        char newChar = lastChar switch
+        {
+            '9' => 'a',
+            'f' => 'e',
+            _ => (char)(lastChar + 1)
+        };
         return guid.Substring(0, guid.Length - 1) + newChar;
     }
 }

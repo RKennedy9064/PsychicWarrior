@@ -166,12 +166,17 @@ public static class BlueprintInit
         Run(nameof(Feats.UnavoidableStrike),         Feats.UnavoidableStrike.Configure,          logger);
         Run(nameof(Feats.IntuitiveFighting),         Feats.IntuitiveFighting.Configure,          logger);
 
+        // Populate class-specific feat list now that all psionic feats are registered
+        Run("BonusFeatSelection.PopulateClassSpecificFeats",
+            Features.PsychicWarriorBonusFeat.PopulateClassSpecificFeats, logger);
+
         // ── Phase 15: Level 20 Capstone ───────────────────────────────────────
         Run(nameof(Features.EternalWarrior),             Features.EternalWarrior.Configure,             logger);
 
         // ── Phase 6: Class definition (must come last) ─────────────────────────
-        Run(nameof(Classes.PsychicWarriorSpellbook), Classes.PsychicWarriorSpellbook.Configure,  logger);
-        Run(nameof(Classes.PsychicWarriorClass),     Classes.PsychicWarriorClass.Configure,      logger);
+        Run(nameof(Classes.PsychicWarriorSpellbook),           Classes.PsychicWarriorSpellbook.Configure,            logger);
+        Run(nameof(Features.PrebuildPsychicWarriorFeatureList), Features.PrebuildPsychicWarriorFeatureList.Configure, logger);
+        Run(nameof(Classes.PsychicWarriorClass),               Classes.PsychicWarriorClass.Configure,                logger);
 
         // ── Class registration ─────────────────────────────────────────────────
         try

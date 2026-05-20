@@ -1,8 +1,11 @@
-// Features/PsychicWarriorBonusFeat.cs
+using System.Linq;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Localization;
+using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Classes.Selection;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Features;
@@ -13,13 +16,62 @@ public static class PsychicWarriorBonusFeat
     {
         var icon = FeatureRefs.PowerAttackFeature.Reference.Get().Icon;
 
-        // By copying the Fighter Feat Selection, we instantly get access to all combat feats
         FeatureSelectionConfigurator.New("PsychicWarriorBonusFeat", Guids.BonusFeatSelection)
             .CopyFrom(FeatureSelectionRefs.FighterFeatSelection.ToString())
             .SetDisplayName(Loc.Str("PW.BonusFeat.Name", "Psychic Warrior Bonus Feat"))
             .SetDescription(Loc.Str("PW.BonusFeat.Desc", "A psychic warrior gains a bonus combat feat at 1st level, 2nd level, and every three levels thereafter."))
             .SetIcon(icon)
             .SetIsClassFeature()
+            .OnConfigure(bp => bp.m_Features = [])
             .Configure();
+    }
+
+    // Called after all psionic feats are configured so:
+    // 1. m_Features is set to the psionic-feat subset (used by some filter paths)
+    // 2. FeatureTag.ClassSpecific is added to each feat (used by the CharGen "class specific" toggle)
+    public static void PopulateClassSpecificFeats()
+    {
+        string[] psionicFeats =
+        [
+            Guids.PsionicMeditationFeat,
+            Guids.PsionicWeaponFeat,
+            Guids.PsionicFistFeat,
+            Guids.PsionicShotFeat,
+            Guids.PsionicBodyFeat,
+            Guids.SpeedOfThoughtFeat,
+            Guids.PsionicDodgeFeat,
+            Guids.CriticalRefocusFeat,
+            Guids.GreaterPsionicWeaponFeat,
+            Guids.GreaterPsionicFistFeat,
+            Guids.GreaterPsionicShotFeat,
+            Guids.RapidMetabolismFeat,
+            Guids.CombatManifestationFeat,
+            Guids.DeepImpactFeat,
+            Guids.UpTheWallsFeat,
+            Guids.PsionicEndowmentFeat,
+            Guids.PsionicCriticalFeat,
+            Guids.RecklessOffenseFeat,
+            Guids.AlignedAttackFeat,
+            Guids.WoundingAttackFeat,
+            Guids.FellShotFeat,
+            Guids.UnavoidableStrikeFeat,
+            Guids.IntuitiveFightingFeat,
+        ];
+
+        FeatureSelectionConfigurator.For(Guids.BonusFeatSelection)
+            .OnConfigure(bp =>
+                bp.m_Features = psionicFeats
+                    .Select(g => BlueprintTool.GetRef<BlueprintFeatureReference>(g))
+                    .ToArray())
+            .Configure();
+
+        // The CharGen "class specific" toggle filters by FeatureTag.ClassSpecific on each feat,
+        // not by m_Features. Tag every psionic feat so they appear when the filter is on.
+        foreach (var guid in psionicFeats)
+        {
+            FeatureConfigurator.For(guid)
+                .AddFeatureTagsComponent(FeatureTag.ClassSpecific)
+                .Configure();
+        }
     }
 }
