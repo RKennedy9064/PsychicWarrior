@@ -86,7 +86,8 @@ public static class AsceticPath
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
-                    .HealTarget(value: ContextDice.Value(DiceType.Zero, 0, ContextValues.Rank())))
+                    .Add(new ContextActionLog { Message = "[WholenessOfBody] healing manifester level HP", LogRank = true })
+                    .HealTarget(value: ContextDice.Value(DiceType.One, ContextValues.Rank(), 0)))
             .AddContextRankConfig(ContextRankConfigs.CasterLevel())
             .AddAbilityShowIfCasterHasFact(not: false, unitFact: Guids.AsceticExpandedFeature)
             .Configure();

@@ -6,6 +6,8 @@ using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints.Classes.Spells;
+using Kingmaker.EntitySystem.Stats;
+using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.Mechanics;
@@ -26,20 +28,22 @@ public static class Hustle
     {
         var icon = AbilityRefs.Haste.Reference.Get().Icon;
 
-        // Copy the Haste buff for its full mechanical effect (speed, +1 attack on full attack, etc.)
         var buff = BuffConfigurator.New("PWHustleBuff", Guids.PowerHustleBuff)
-            .CopyFrom(BuffRefs.HasteBuff)
             .SetDisplayName(Loc.Str("PW.Hustle.BuffName", "Hustle", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.Hustle.BuffDesc",
-                "Psionic acceleration drives your body, granting haste-like speed and reflexes.",
+                "+30 ft. speed, +1 dodge bonus to AC, +1 dodge bonus to Reflex saves, extra attack at highest BAB on full attack.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
+            .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.AC, value: 1)
+            .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.SaveReflex, value: 1)
+            .AddBuffMovementSpeed(descriptor: ModifierDescriptor.Enhancement, value: 30)
+            .AddBuffExtraAttack(haste: true, number: 1)
             .Configure();
 
         AbilityConfigurator.New("PWHustle", Guids.PowerHustle)
             .SetDisplayName(Loc.Str("PW.Hustle.Name", "Hustle", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.Hustle.Desc",
-                "You psionically accelerate yourself. For 1 round you gain the benefits of haste: +30 ft. speed, +1 dodge bonus to AC and Reflex saves, and an extra attack at your highest BAB on a full attack.",
+                "You psionically accelerate yourself. For 1 round per manifester level you gain the benefits of haste: +30 ft. speed, +1 dodge bonus to AC and Reflex saves, and an extra attack at your highest BAB on a full attack.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
@@ -48,7 +52,10 @@ public static class Hustle
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(2, Guids.SpellList)
             .AddAbilityEffectRunAction(
-                ActionsBuilder.New().ApplyBuff(buff, ContextDuration.Fixed(1)))
+                ActionsBuilder.New()
+                    .Add(new ContextActionLog { Message = "[Hustle] applying haste (1 round: +30ft speed, +1 dodge AC, +1 Reflex, extra attack)" })
+                    .ApplyBuff(buff, ContextDuration.Variable(ContextValues.Rank(), DurationRate.Rounds)))
+            .AddContextRankConfig(ContextRankConfigs.CasterLevel())
             .AddSpellComponent(SpellSchool.Transmutation)
             .Configure();
     }
