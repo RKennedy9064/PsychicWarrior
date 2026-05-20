@@ -59,6 +59,7 @@ public static class BodyOfIron
                     .ApplyBuff(buff, ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes)))
             .AddContextRankConfig(ContextRankConfigs.CasterLevel())
             .AddSpellListComponent(6, Guids.SpellList)
+            .AddSpellComponent(SpellSchool.Transmutation)
             .Configure();
     }
 }

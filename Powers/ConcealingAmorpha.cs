@@ -1,5 +1,6 @@
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.References;
+using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using PsychicWarrior.Utils;
 
@@ -17,6 +18,7 @@ public static class ConcealingAmorpha
             .SetDescription(Loc.Str("PW.ConcealingAmorpha.Desc",
                 "You surround yourself with a distortion of ectoplasmic shimmer that grants you a 20% miss chance for 1 minute per manifester level."))
             .AddSpellListComponent(2, Guids.SpellList)
+            .AddSpellComponent(SpellSchool.Transmutation)
             .Configure();
     }
 }

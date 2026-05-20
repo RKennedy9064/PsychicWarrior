@@ -7,6 +7,7 @@ using BlueprintCore.Utils.Types;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.FactLogic;
+using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using PsychicWarrior.Utils;
 
@@ -40,6 +41,7 @@ public static class PsionicLionsCharge
                     .Add(new ContextActionLog { Message = "[PsionicLionsCharge] applying Pounce 1r" })
                     .ApplyBuff(buff, ContextDuration.Fixed(1)))
             .AddSpellListComponent(2, Guids.SpellList)
+            .AddSpellComponent(SpellSchool.Transmutation)
             .Configure();
     }
 }

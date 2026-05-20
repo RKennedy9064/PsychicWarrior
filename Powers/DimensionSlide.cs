@@ -1,5 +1,6 @@
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.References;
+using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using PsychicWarrior.Utils;
 
@@ -17,6 +18,7 @@ public static class DimensionSlide
             .SetDescription(Loc.Str("PW.DimensionSlide.Desc",
                 "You teleport to any visible location within close range (25 ft. + 5 ft./2 levels). You do not provoke attacks of opportunity from this movement."))
             .AddSpellListComponent(3, Guids.SpellList)
+            .AddSpellComponent(SpellSchool.Transmutation)
             .Configure();
     }
 }

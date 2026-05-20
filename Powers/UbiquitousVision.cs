@@ -10,6 +10,7 @@ using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.Mechanics;
+using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using PsychicWarrior.Utils;
 
@@ -45,6 +46,7 @@ public static class UbiquitousVision
                     .ApplyBuff(buff, ContextDuration.Variable(ContextValues.Rank(), DurationRate.TenMinutes)))
             .AddContextRankConfig(ContextRankConfigs.CasterLevel())
             .AddSpellListComponent(3, Guids.SpellList)
+            .AddSpellComponent(SpellSchool.Divination)
             .Configure();
     }
 }

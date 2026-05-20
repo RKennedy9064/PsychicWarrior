@@ -8,6 +8,7 @@ using BlueprintCore.Utils.Types;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.Mechanics;
+using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using PsychicWarrior.Utils;
 
@@ -45,6 +46,7 @@ public static class InertialBarrier
                     .ApplyBuff(buff, ContextDuration.Variable(ContextValues.Rank(), DurationRate.TenMinutes)))
             .AddContextRankConfig(ContextRankConfigs.CasterLevel())
             .AddSpellListComponent(4, Guids.SpellList)
+            .AddSpellComponent(SpellSchool.Abjuration)
             .Configure();
     }
 }

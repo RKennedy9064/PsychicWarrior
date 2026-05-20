@@ -8,6 +8,7 @@ using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
+using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using PsychicWarrior.Utils;
 
@@ -41,6 +42,7 @@ public static class ZealousFury
                     .Add(new ContextActionLog { Message = "[ZealousFury] applying +5 AdditionalAttackBonus 1r" })
                     .ApplyBuff(buff, ContextDuration.Fixed(1)))
             .AddSpellListComponent(4, Guids.SpellList)
+            .AddSpellComponent(SpellSchool.Transmutation)
             .Configure();
     }
 }

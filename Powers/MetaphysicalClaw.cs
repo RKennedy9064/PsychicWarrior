@@ -7,6 +7,7 @@ using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Enums;
 using Kingmaker.EntitySystem.Stats;
+using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.Mechanics;
@@ -45,6 +46,7 @@ public static class MetaphysicalClaw
                     .ApplyBuff(buff, ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes)))
             .AddContextRankConfig(ContextRankConfigs.CasterLevel())
             .AddSpellListComponent(1, Guids.SpellList)
+            .AddSpellComponent(SpellSchool.Transmutation)
             .Configure();
     }
 }

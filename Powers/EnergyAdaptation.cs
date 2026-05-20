@@ -12,6 +12,7 @@ using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
+using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using PsychicWarrior.Utils;
 
@@ -45,6 +46,7 @@ public static class EnergyAdaptation
                 Guids.PowerEnergyAdaptationAcid,
                 Guids.PowerEnergyAdaptationSonic,
             })
+            .AddSpellComponent(SpellSchool.Transmutation)
             .Configure();
     }
 
