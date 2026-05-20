@@ -21,15 +21,18 @@ public static class Biofeedback
         var buff = BuffConfigurator.New("PWBiofeedbackBuff", Guids.PowerBiofeedbackBuff)
             .SetDisplayName(Loc.Str("PW.Biofeedback.BuffName", "Biofeedback"))
             .SetDescription(Loc.Str("PW.Biofeedback.BuffDesc",
-                "A psionic biofeedback loop reduces all physical damage you take by 2."))
+                "A psionic biofeedback loop reduces all physical damage you take. DR 2/— at ML 1, improving by 1 per 3 manifester levels."))
             .SetIcon(AbilityRefs.Stoneskin.Reference.Get().Icon)
-            .AddDamageResistancePhysical(value: ContextValues.Constant(2))
+            .AddDamageResistancePhysical(value: ContextValues.Rank())
+            .AddContextRankConfig(
+                ContextRankConfigs.CasterLevel().WithCustomProgression(
+                    (3, 2), (6, 3), (9, 4), (12, 5), (15, 6), (18, 7), (20, 8)))
             .Configure();
 
         AbilityConfigurator.New("PWBiofeedback", Guids.PowerBiofeedback)
             .SetDisplayName(Loc.Str("PW.Biofeedback.Name", "Biofeedback"))
             .SetDescription(Loc.Str("PW.Biofeedback.Desc",
-                "You create a biofeedback loop that protects you from harm. You gain damage reduction 2/— for 1 hour."))
+                "You create a biofeedback loop that protects you from harm. DR 2/— at ML 1, improving by 1 per 3 manifester levels."))
             .SetIcon(AbilityRefs.Stoneskin.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
@@ -38,7 +41,9 @@ public static class Biofeedback
             .AddSpellListComponent(1, Guids.SpellList)
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
+                    .Add(new ContextActionLog { Message = "[Biofeedback] applying DR (rank=ML; buff scales DR2..DR8 at ML 1..20)", LogRank = true })
                     .ApplyBuff(buff, ContextDuration.Fixed(1, DurationRate.Hours)))
+            .AddContextRankConfig(ContextRankConfigs.CasterLevel())
             .AddSpellComponent(SpellSchool.Transmutation)
             .Configure();
     }

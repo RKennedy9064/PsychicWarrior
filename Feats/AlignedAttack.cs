@@ -14,44 +14,40 @@ using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
-using Kingmaker.UnitLogic.Mechanics;
 using PsychicWarrior.HarmonyPatches;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Feats;
 
-public static class GreaterPsionicShot
+public static class AlignedAttack
 {
     public static void Configure()
     {
-        PsionicProficiencyPatch.RegisterPsionicFeat(Guids.GreaterPsionicShotFeat);
+        PsionicProficiencyPatch.RegisterPsionicFeat(Guids.AlignedAttackFeat);
 
-        FeatureConfigurator.New("GreaterPsionicShotFeat", Guids.GreaterPsionicShotFeat)
-            .SetDisplayName(Loc.Str("PW.GreaterPsionicShot.Name", "Greater Psionic Shot"))
-            .SetDescription(Loc.Str("PW.GreaterPsionicShot.Desc",
-                "While psionically focused, your ranged attacks deal additional damage scaling with manifester level (1d6 at ML 1, 2d6 at ML 2, 3d6 at ML 4). Stacks with Psionic Shot."))
-            .SetIcon(FeatureRefs.PointBlankShot.Reference.Get().Icon)
+        FeatureConfigurator.New("AlignedAttackFeat", Guids.AlignedAttackFeat)
+            .SetDisplayName(Loc.Str("PW.AlignedAttack.Name", "Aligned Attack"))
+            .SetDescription(Loc.Str("PW.AlignedAttack.Desc",
+                "While psionically focused, your melee attacks deal an additional 2d6 damage, as your strikes are infused with aligned psionic energy that bypasses damage reduction based on alignment."))
+            .SetIcon(FeatureRefs.VitalStrikeFeature.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
-            .AddPrerequisiteFeature(Guids.PsionicShotFeat)
-            .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 5)
-            .AddContextRankConfig(ContextRankConfigs.CasterLevel().WithCustomProgression((1, 1), (3, 2), (20, 3)))
+            .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
+            .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 6)
             .AddInitiatorAttackWithWeaponTrigger(
                 action: ActionsBuilder.New().Conditional(
                     ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff),
                     ifTrue: ActionsBuilder.New()
-                        .Add(new ContextActionLog { Message = "[GreaterPsionicShot] ranged hit while focused", LogRank = true })
-                        .DealDamage(
-                            DamageTypes.Physical(),
-                            ContextDice.Value(DiceType.D6, ContextValues.Rank(), 0))),
+                        .Add(new ContextActionLog { Message = "[AlignedAttack] melee hit while focused — dealing 2d6" })
+                        .DealDamage(DamageTypes.Physical(), ContextDice.Value(DiceType.D6, 2, 0))),
                 onlyHit: true,
                 checkWeaponRangeType: true,
-                rangeType: WeaponRangeType.Ranged)
+                rangeType: WeaponRangeType.Melee)
             .AddRecommendedClass(Guids.PsychicWarriorClass)
             .Configure();
 
-        SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.GreaterPsionicShotFeat);
-        SafeAddFeatToSelection(FeatureSelectionRefs.FighterFeatSelection.ToString(), Guids.GreaterPsionicShotFeat);
-        SafeAddFeatToSelection(Guids.BonusFeatSelection, Guids.GreaterPsionicShotFeat);
+        SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.AlignedAttackFeat);
+        SafeAddFeatToSelection(FeatureSelectionRefs.FighterFeatSelection.ToString(), Guids.AlignedAttackFeat);
+        SafeAddFeatToSelection(Guids.BonusFeatSelection, Guids.AlignedAttackFeat);
     }
 
     private static void SafeAddFeatToSelection(string selectionGuid, string featGuid)

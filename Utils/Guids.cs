@@ -1,214 +1,200 @@
-﻿namespace PsychicWarrior.Utils;
+namespace PsychicWarrior.Utils;
 
 public static class Guids
 {
-    public const string PsychicWarriorClass = "4c8f9c4e-7f22-4d9b-a9b9-2f7a9f7e1d01";
+    // ── Core (original random GUIDs — kept as-is) ──────────────────────────
+    public const string PsychicWarriorClass      = "4c8f9c4e-7f22-4d9b-a9b9-2f7a9f7e1d01";
     public const string PsychicWarriorProgression = "1e54d8d4-ec8f-4d89-91d3-62b2f70d5b11";
+    public const string Proficiencies            = "5c1f6b8b-e820-410a-ba6a-36b139988a0a";
+    public const string BonusFeatSelection       = "d2e4c1f9-0c65-4f7b-9f70-7ec822365e63";
+    public const string GainPsionicFocusAbility  = "b7a3d92f-18c4-4b8d-9a67-21c6130d24e5";
+    public const string PsionicFocusBuff         = "f8c9301a-82f5-4d7c-b3a1-79b8c4d21e85";
 
-    public const string Proficiencies = "5c1f6b8b-e820-410a-ba6a-36b139988a0a";
-    public const string Spellbook = "a1b2c3d4-e5f6-4a5b-b8c9-d0e1f2a3b4c5";
-    public const string SpellList = "b2c3d4e5-f6a7-4b8c-c9d0-e1f2a3b4c5d6";
+    // ── Spellbook / SpellList ──────────────────────────────────────────────
+    public const string Spellbook                = "fab46f8a-307c-4248-86a4-84886cd3f689";
+    public const string SpellList                = "ddaa7433-6daa-46a9-bab9-50dd6b26ca17";
 
-    public const string BonusFeatSelection = "d2e4c1f9-0c65-4f7b-9f70-7ec822365e63";
+    // ── Focus / Meditation ────────────────────────────────────────────────
+    public const string GainPsionicFocusFeature  = "dff1108a-c32d-4ccd-bc89-61d473a0ae63";
+    public const string PsionicMeditationFeat    = "f97adbd7-1bbb-479b-9cf0-38d344f6c855";
+    public const string GainPsionicFocusMoveAbility = "dd58c7df-3eea-4691-ada3-ca3d8aa57ae4";
+    public const string PsionicWeaponFeat        = "19d01da1-af69-43d9-8043-fd9af97c0fe3";
 
-    public const string GainPsionicFocusFeature = "7a4d8b2f-9e1c-4d3a-b5c6-e7f8a9b0c1d2";
-    public const string GainPsionicFocusAbility = "b7a3d92f-18c4-4b8d-9a67-21c6130d24e5";
-    public const string PsionicFocusBuff = "f8c9301a-82f5-4d7c-b3a1-79b8c4d21e85";
+    // ── Path infrastructure ───────────────────────────────────────────────
+    public const string PathSelectionLevel1      = "b0ff4d20-2424-4bbd-abc4-25f6ea6fba0d";
+    public const string WeaponmasterPath         = "b61fd2a2-9f43-4010-a6ad-239d81c5ef0a";
+    public const string WeaponmasterTrance       = "b637a3fe-f7a0-427e-8eac-e652b660d03c";
+    public const string WeaponmasterManeuver     = "abd18f11-699e-4464-8d5e-c82471bfd0df";
+    public const string WeaponmasterManeuverBuff = "01c1d5ff-0a85-417d-ae0c-d9c3d5e9a230";
+    public const string BrawlerPath             = "1bf0e28d-9646-4719-a1c0-d822d80095d9";
+    public const string BrawlerTrance           = "750b8b18-682a-43d2-a1d7-89c592e65995";
+    public const string BrawlerManeuver         = "f8d76d74-53b4-429a-aefa-2c7611879e98";
+    public const string BrawlerManeuverBuff     = "5dd5f9a9-2c0b-4e53-8ea8-6c848b0da89e";
+    public const string PathExpandedManeuver    = "b94340e9-d1f0-4170-917e-3da650b82eee";
+    public const string SecondaryPathSelection  = "0bfd77af-b387-40d0-a3c5-ccbadfa121b5";
+    public const string TwistingPaths           = "9fd4c056-6c89-47a0-9028-e29187e1ea62";
+    public const string Pathweaving             = "a72ac6df-272e-4937-a991-b839fcfe4717";
 
-    public const string PsionicMeditationFeat = "c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e5f";
-    public const string GainPsionicFocusMoveAbility = "d2e3f4a5-b6c7-4d8e-9f0a-1b2c3d4e5f6a";
+    // ── 0-level powers & talents ─────────────────────────────────────────
+    public const string PowerVigor                   = "00a09564-4df4-49a7-a99b-75eef659d615";
+    public const string PowerMinorPrecognition       = "5f71e319-d9f1-4381-836e-08c34cc434ca";
+    public const string PowerForceScreen             = "1d2e517d-f746-437f-8dc2-1ef9eba6fdcc";
+    public const string PowerForceScreenBuff         = "3a7f1c24-b8e5-4d92-af60-c1d34e8b2f17";
+    public const string PsionicProficiency           = "f4d8a570-2b01-4679-ae29-0f9329dbf800";
+    public const string TalentsSelection             = "bfd5eeff-e208-42e0-8caf-4789545c8d9c";
+    public const string PathSkillBonusFeature        = "3248434d-8b3d-4cc6-b687-ae2a8ae070bd";
+    public const string PathSkillBonusSelection      = "ec9a3fee-f284-4ee9-acce-4702b3faa5fb";
+    public const string MartialPowerFeature          = "6518212e-1063-4f6d-8cb8-6e5f49640077";
+    public const string VigorBuff                    = "bee3e90c-578d-487d-ba14-795279891847";
+    public const string PowerBurst                   = "8dcf9ed2-de4e-4733-9be5-6e574884ef7e";
+    public const string PowerBurstBuff               = "d63ea4d0-749a-45fd-aacf-335928cf6d6f";
+    public const string PowerEmptyMind               = "b2a09b96-1e84-46ea-8d84-02bc62bb38fd";
+    public const string PowerEmptyMindBuff           = "ee9643ec-2b80-42e2-b9f6-7e8ad4b240a1";
+    public const string PowerValor                   = "a13ca553-b873-4ac4-b70b-e3ccf5335f1a";
+    public const string PowerValorBuff               = "93f6430d-8762-473c-95d9-3d2c1b419059";
+    public const string PowerTelekineticPunch        = "4bf044ba-0c52-4018-8672-3a3abf476f1d";
+    public const string PowerPrecognitionDefensive   = "c6dd5594-db9a-48c6-8f37-94eac53f6518";
+    public const string PowerPrecognitionDefensiveBuff = "8ebda42d-c976-4e26-8983-bc79834284da";
+    public const string PowerDeceleration           = "babdbb18-e5eb-4113-97fa-440239b3f330";
+    public const string PowerDecelerationBuff       = "7cfa0e1e-86c2-4d84-a95c-f915504eadbe";
+    public const string TalentMinorPrecognition     = "aab32657-80d0-40fc-955f-3854faf063b4";
+    public const string TalentBurst                 = "cdb3a75d-1eaa-4028-8898-ad592eff55d7";
+    public const string TalentEmptyMind             = "49e4bd8e-110e-4758-bb74-dbe6daeaff3c";
+    public const string TalentValor                 = "a0034f81-cfc9-4be4-bca3-5dc386bfbcb6";
+    public const string TalentTelekineticPunch      = "11a4cb42-2176-4655-b9b4-afcaece16285";
+    public const string TalentPrecognitionDefensive = "a2585e51-0ca8-41d5-a311-8665103749b2";
+    public const string TalentDeceleration         = "c656b5ff-d92c-4667-bcdd-4deefeff4cb6";
 
-    public const string PsionicWeaponFeat = "e1f2a3b4-c5d6-4e7f-8a9b-0c1d2e3f4a5b";
+    // ── Path skill bonuses ────────────────────────────────────────────────
+    public const string PathSkillAthletics  = "199364c2-d606-43c9-8f64-be50f6b43e96";
+    public const string PathSkillMobility   = "d2040764-421d-4779-ac27-6697a95dcd7a";
+    public const string PathSkillPerception = "b7f7a729-a9dd-4ee4-8a52-e60a54052def";
+    public const string PathSkillStealth    = "df0c9bc6-8295-41f0-93a6-d94a0414d5e4";
 
-    public const string PathSelectionLevel1 = "c3d4e5f6-a7b8-4c9d-d0e1-f2a3b4c5d6e7";
-    public const string WeaponmasterPath = "d4e5f6a7-b8c9-4d0e-e1f2-a3b4c5d6e7f8";
-    public const string WeaponmasterTrance = "8f3b2c1d-9a4e-47b2-8c5d-6e1f0a9b3c4d";
-    public const string WeaponmasterManeuver = "f4b2c1d3-e5a6-4f7e-8d9c-0b1a2f3e4d5c";
-    public const string WeaponmasterManeuverBuff = "d3e4f5a6-b7c8-4d9e-0f1a-2b3c4d5e6f7a";
+    // ── 1st-level powers ─────────────────────────────────────────────────
+    public const string PowerInertialArmor      = "a2d15fcd-25fc-40ba-8c9f-3c5ca2f2005d";
+    public const string PowerInertialArmorBuff  = "5ffe4491-3e5c-499e-878a-0bf7a7e354db";
+    public const string PowerThickenSkin        = "7476a916-b7a6-443f-96f8-4a8a583961d7";
+    public const string PowerThickenSkinBuff    = "2f2da4cc-3834-40e5-a2a8-30318665f477";
+    public const string PowerBiofeedback        = "15af9339-8112-4150-a6ef-6bdd0b9c8b6e";
+    public const string PowerBiofeedbackBuff    = "0d10511a-724b-4982-96f2-1cb94840a56d";
+    public const string PowerMetaphysicalWeapon     = "3a162e6f-2d77-4abf-8cac-efd7599923c2";
+    public const string PowerMetaphysicalWeaponBuff = "83dc50b8-c907-47fd-af80-45741eb697a8";
 
-    public const string BrawlerPath = "5c2e1f4a-8b9d-4c3e-a1f2-b4d6e5a7c8f9";
-    public const string BrawlerTrance = "e3a1f4b2-c5d6-4e7f-8a9b-0c1d2e3f4a5b";
-    public const string BrawlerManeuver = "c5d6e7f8-a9b0-4c1d-2e3f-4a5b6c7d8e9f";
-    public const string BrawlerManeuverBuff = "e7f8a9b0-c1d2-4e3f-4a5b-6c7d8e9f0a1b";
+    // ── Expanded maneuvers ────────────────────────────────────────────────
+    public const string WeaponmasterExpandedManeuver        = "191bf05c-98fd-4c2f-893a-df45d76a85ae";
+    public const string WeaponmasterExpandedManeuverAbility = "3d6d9c49-685d-4c8b-b9b2-6e41b77dc127";
+    public const string WeaponmasterExpandedManeuverBuff    = "cc76c60e-6a5c-4c1a-8758-fd47bfcd462b";
+    public const string BrawlerExpandedManeuver             = "7576814f-461b-43ed-8d84-29774c9e88b1";
+    public const string BrawlerExpandedManeuverAbility      = "8572ebb4-1ea3-4740-a637-5222d884213f";
+    public const string BrawlerExpandedManeuverBuff         = "c5f73fd6-10f9-48ef-8612-f9af4d90847a";
 
-    public const string PathExpandedManeuver = "3e2d1c4b-5a6f-48e9-b7c8-9d0a1f2b3c4d";
-    public const string SecondaryPathSelection = "5f6a7b8c-9d0e-41f2-a3b4-c5d6e7f8a9b0";
-    public const string TwistingPaths = "2a3b4c5d-6e7f-48a9-b0c1-d2e3f4a5b6c7";
-    public const string Pathweaving = "8c9d0e1f-2a3b-44c5-d6e7-f8a9b0c1d2e3";
+    // ── Phase 6 paths ─────────────────────────────────────────────────────
+    public const string ArcherPath             = "bbd89c89-ea38-4bb9-a206-0b8ca18eca46";
+    public const string ArcherTrance           = "2296181d-33ce-494f-8d3f-b22a20055c6a";
+    public const string ArcherManeuverBuff     = "2c546663-21af-4f5b-acca-3c9e59596b5d";
+    public const string ArcherManeuverAbility  = "6b2ea73e-e8ea-40f6-b027-ae5db6d79c38";
+    public const string ArcherExpandedBuff     = "45b6c711-0bd3-4325-95ad-967541741f49";
+    public const string ArcherExpandedAbility  = "60847f03-9e4b-419a-9b12-b7e9a90c8f95";
+    public const string ArcherExpandedFeature  = "a6f10673-1ea4-415e-a0a2-4059f11dda93";
 
-    public const string PowerVigor = "e5f6a7b8-c9d0-4e1f-f2a3-b4c5d6e7f8a9";
-    public const string PowerMinorPrecognition = "a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d";
-    public const string PowerForceScreen = "b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e";
+    public const string AsceticPath            = "e6e03572-423e-4023-a757-3429244c6873";
+    public const string AsceticTrance          = "78a24005-5aa5-4784-8159-5536bed3c6e8";
+    public const string AsceticManeuverBuff    = "f34eb5bf-7602-4689-a990-5b03b5af5ca9";
+    public const string AsceticManeuverAbility = "7799bf41-42df-42f7-a6ff-44ed08407eb3";
+    public const string AsceticExpandedBuff    = "d8ea76e8-7992-429a-9319-dc764b971b98";
+    public const string AsceticExpandedAbility = "64c50c9f-9f13-4a14-9589-ac3cb0d70035";
+    public const string AsceticExpandedFeature = "7b453131-74aa-42fb-854b-826c64ab151b";
 
-    // Phase 1: Core Systems
-    public const string PsionicProficiency = "6c2f7d8e-9a0b-4c1d-e2f3-4a5b6c7d8e9f";
-    public const string TalentsSelection = "1d2e3f4a-5b6c-4d7e-8f9a-0b1c2d3e4f5a";
-    public const string PathSkillBonusFeature = "2e3f4a5b-6c7d-4e8f-9a0b-1c2d3e4f5a6b";
-    public const string PathSkillBonusSelection = "3f4a5b6c-7d8e-4f9a-0b1c-2d3e4f5a6b7c";
-    public const string MartialPowerFeature = "4a5b6c7d-8e9f-4a0b-1c2d-3e4f5a6b7c8d";
+    public const string AssassinsPath            = "aca9ff81-85e0-4323-b9d9-9213501d53b7";
+    public const string AssassinsTrance          = "1940710e-9565-4ec4-a3e2-1de352782b2f";
+    public const string AssassinsManeuverBuff    = "93fd8db6-067c-4531-bcfe-6d61b21c151c";
+    public const string AssassinsManeuverAbility = "039a0c6a-a1e7-4191-807e-4c28eb7fad82";
+    public const string AssassinsExpandedBuff    = "ee446035-2e37-489e-8c33-cbffe59b0db0";
+    public const string AssassinsExpandedAbility = "3e93350a-1544-4b4c-9d04-8b12496459b0";
+    public const string AssassinsExpandedFeature = "e129a6f6-eb23-479a-857a-72ae107c4bf9";
 
-    // Phase 2: Talents & Powers
-    public const string VigorBuff = "a0b1c2d3-e4f5-4a6b-7c8d-9e0f1a2b3c4d";
+    public const string DervishPath            = "f58bc750-0ad7-4edc-b012-f592a43e9147";
+    public const string DervishTrance          = "ece20873-5096-4550-a830-08601e7ef4db";
+    public const string DervishManeuverBuff    = "f34c920c-2456-4f85-8d08-44ccc09a3ab9";
+    public const string DervishManeuverAbility = "b27925ef-3afe-4eab-bd59-181ec954bc9b";
+    public const string DervishExpandedBuff    = "5ef98d64-a521-4817-867f-3d162236ef85";
+    public const string DervishExpandedAbility = "af6d87bb-a54a-447e-ba7d-4d0bfab3f5c2";
+    public const string DervishExpandedFeature = "4a45a982-e2ee-4b92-b87e-c4e6df704b59";
 
-    // 0-level talent abilities
-    public const string PowerBurst = "a2b3c4d5-e6f7-4a8b-9c0d-1e2f3a4b5c6d";
-    public const string PowerBurstBuff = "b3c4d5e6-f7a8-4b9c-0d1e-2f3a4b5c6d7e";
-    public const string PowerEmptyMind = "c4d5e6f7-a8b9-4c0d-1e2f-3a4b5c6d7e8f";
-    public const string PowerEmptyMindBuff = "d5e6f7a8-b9c0-4d1e-2f3a-4b5c6d7e8f9a";
-    public const string PowerValor = "e6f7a8b9-c0d1-4e2f-3a4b-5c6d7e8f9a0b";
-    public const string PowerValorBuff = "f7a8b9c0-d1e2-4f3a-4b5c-6d7e8f9a0b1c";
-    public const string PowerTelekineticPunch = "a8b9c0d1-e2f3-4a4b-5c6d-7e8f9a0b1c2d";
-    public const string PowerPrecognitionDefensive = "b9c0d1e2-f3a4-4b5c-6d7e-8f9a0b1c2d3e";
-    public const string PowerPrecognitionDefensiveBuff = "c0d1e2f3-a4b5-4c6d-7e8f-9a0b1c2d3e4f";
-    public const string PowerDeceleration = "d1e2f3a4-b5c6-4d7e-8f9a-0b1c2d3e4f5a";
-    public const string PowerDecelerationBuff = "e2f3a4b5-c6d7-4e8f-9a0b-1c2d3e4f5a6b";
+    public const string FeralWarriorPath            = "252d4841-a6a7-4574-b338-237e2129b291";
+    public const string FeralWarriorTrance          = "6481ec2b-a273-47a9-a615-327e6ad49304";
+    public const string FeralWarriorManeuverBuff    = "fbd180c7-4327-4b1c-8f8f-aca440725fa5";
+    public const string FeralWarriorManeuverAbility = "d49e53b5-49d9-42db-a155-1c06d1657211";
+    public const string FeralWarriorExpandedBuff    = "fd28f519-3c53-4319-a3a4-e211cd99eb65";
+    public const string FeralWarriorExpandedAbility = "9223e2f3-8e4a-4e8c-95df-b29151bd0854";
+    public const string FeralWarriorExpandedFeature = "2966be41-92dd-48d6-aabf-0adc1c915518";
 
-    // Talent feature wrappers (entries in TalentsSelection)
-    public const string TalentMinorPrecognition = "f3a4b5c6-d7e8-4f9a-0b1c-2d3e4f5a6b7c";
-    public const string TalentBurst = "a4b5c6d7-e8f9-4a0b-1c2d-3e4f5a6b7c8d";
-    public const string TalentEmptyMind = "b5c6d7e8-f9a0-4b1c-2d3e-4f5a6b7c8d9e";
-    public const string TalentValor = "c6d7e8f9-a0b1-4c2d-3e4f-5a6b7c8d9e0f";
-    public const string TalentTelekineticPunch = "d7e8f9a0-b1c2-4d3e-4f5a-6b7c8d9e0f1a";
-    public const string TalentPrecognitionDefensive = "e8f9a0b1-c2d3-4e4f-5a6b-7c8d9e0f1a2b";
-    public const string TalentDeceleration = "f9a0b1c2-d3e4-4f5a-6b7c-8d9e0f1a2b3c";
+    public const string GladiatorPath            = "96429534-22f1-4f2a-b9be-a1597a4de1f1";
+    public const string GladiatorTrance          = "826309ab-cf7a-48f0-90c4-b385b703e1f7";
+    public const string GladiatorManeuverBuff    = "8ab65536-3ee4-4ef8-a583-2cb6dec456d7";
+    public const string GladiatorManeuverAbility = "34da3d80-5b73-4ca4-b3b8-654ab3049e30";
+    public const string GladiatorExpandedBuff    = "737f8471-e124-4f6f-98a8-620ec0c85864";
+    public const string GladiatorExpandedAbility = "f64bb947-32da-4526-91d0-338b13bbf346";
+    public const string GladiatorExpandedFeature = "033e27af-42e6-49a6-a120-f4543c36f33a";
 
-    // PathSkillBonus features — one per skill, with OR-prerequisites over all paths that grant it
-    public const string PathSkillAthletics  = "cb000001-0000-4000-8000-000000000001";
-    public const string PathSkillMobility   = "cb000002-0000-4000-8000-000000000001";
-    public const string PathSkillPerception = "cb000003-0000-4000-8000-000000000001";
-    public const string PathSkillStealth    = "cb000004-0000-4000-8000-000000000001";
+    public const string InfiltratorPath            = "e81ce535-81d6-44a3-bf8b-1b7628eba3e8";
+    public const string InfiltratorTrance          = "e3de5a9a-4692-446c-af0f-6b5fc543e87f";
+    public const string InfiltratorManeuverBuff    = "6bc15163-3c8e-4e39-a1e7-727f69650249";
+    public const string InfiltratorManeuverAbility = "4ba0f2e9-03f6-4711-b344-7364ed7d44fb";
+    public const string InfiltratorExpandedBuff    = "6a6a53d7-0412-41ad-b51a-6ba4198b2c8f";
+    public const string InfiltratorExpandedAbility = "a07a826b-f97a-4b07-8659-3ad91d687d8e";
+    public const string InfiltratorExpandedFeature = "44008d26-365d-460e-870d-cea52e0d33d3";
 
-    // Step 6: More 1st-level powers
-    public const string PowerInertialArmor = "10a1b2c3-d4e5-4f6a-8b7c-9d0e1f2a3b4c";
-    public const string PowerInertialArmorBuff = "10b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d";
-    public const string PowerThickenSkin = "20c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e";
-    public const string PowerThickenSkinBuff = "20d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f";
-    public const string PowerBiofeedback = "30e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f8a";
-    public const string PowerBiofeedbackBuff = "30f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a9b";
-    public const string PowerMetaphysicalWeapon = "40a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b0c";
-    public const string PowerMetaphysicalWeaponBuff = "40b8c9d0-e1f2-4a3b-4c5d-6e7f8a9b0c1d";
+    public const string InterceptorPath            = "8864c710-9eec-407b-8cdd-bf3ea0136882";
+    public const string InterceptorTrance          = "491408f3-dc98-4e4c-93a1-67018a37e77c";
+    public const string InterceptorManeuverBuff    = "40ae133d-d2f8-420d-b933-2afd6a0239cb";
+    public const string InterceptorManeuverAbility = "c13c7674-e0e5-4b04-8040-8e66c07a6f03";
+    public const string InterceptorExpandedBuff    = "c6fad9c5-f9e5-420d-afa1-4b7c52617d08";
+    public const string InterceptorExpandedAbility = "b0153754-3bd9-4faa-8ca1-e6abef0ad06c";
+    public const string InterceptorExpandedFeature = "c7b5a25c-f324-4013-834b-29becf576089";
 
-    // PathExpandedManeuver options
-    // Feature = the FeatureSelection entry; Ability = the swift-action in the action bar; Buff = the applied effect
-    public const string WeaponmasterExpandedManeuver = "a6b7c8d9-e0f1-4a2b-3c4d-5e6f7a8b9c0d";
-    public const string WeaponmasterExpandedManeuverAbility = "a7b8c9d0-e1f2-4a3b-4c5d-6e7f8a9b0c1d";
-    public const string WeaponmasterExpandedManeuverBuff = "b7c8d9e0-f1a2-4b3c-4d5e-6f7a8b9c0d1e";
-    public const string BrawlerExpandedManeuver = "c8d9e0f1-a2b3-4c4d-5e6f-7a8b9c0d1e2f";
-    public const string BrawlerExpandedManeuverAbility = "b8c9d0e1-f2a3-4b4c-5d6e-7f8a9b0c1d2e";
-    public const string BrawlerExpandedManeuverBuff = "d9e0f1a2-b3c4-4d5e-6f7a-8b9c0d1e2f3a";
+    public const string MindKnightPath            = "68af173e-3bd4-45ce-a30a-280fb549d7ca";
+    public const string MindKnightTrance          = "fd1bf73e-87e0-465b-9e6f-53637893ac01";
+    public const string MindKnightManeuverBuff    = "0889b0f8-1164-443b-89e8-39df62ce833b";
+    public const string MindKnightManeuverAbility = "ca604b3c-3ab3-4d6b-b070-f4f87f95e8ae";
+    public const string MindKnightExpandedBuff    = "3f76285a-e64c-4797-b1a5-3e20ed421e44";
+    public const string MindKnightExpandedAbility = "6315ddfe-b7d7-4247-8f25-a40011daf7d2";
+    public const string MindKnightExpandedFeature = "2da09fc3-43a6-4657-9a26-d48f417a19b5";
 
-    // Phase 6: New paths (ca01=Archer, ca02=Ascetic, ca03=Assassin, ca04=Dervish,
-    //          ca05=FeralWarrior, ca06=Gladiator, ca07=Infiltrator, ca08=Interceptor,
-    //          ca09=MindKnight, ca10=Survivor)
-    // Slot: 01=Path, 02=Trance, 03=ManeuverBuff, 04=ManeuverAbility,
-    //       05=ExpandedBuff, 06=ExpandedAbility, 07=ExpandedFeature
+    public const string SurvivorPath            = "4f1de9f3-b5e6-45d5-8924-7cad9408b5f8";
+    public const string SurvivorTrance          = "125516a1-b1b7-4409-b010-07d3c0bfb0e6";
+    public const string SurvivorManeuverBuff    = "bbfc0ecb-78c5-48a5-bdf8-bb652853f9ad";
+    public const string SurvivorManeuverAbility = "2697cd10-aa62-4c79-bc81-cb4d37c73e18";
+    public const string SurvivorExpandedBuff    = "7c9d212a-b12d-4047-b90d-c3bc988581b0";
+    public const string SurvivorExpandedAbility = "1e1657aa-949e-4296-b10b-b00eafeecdf8";
+    public const string SurvivorExpandedFeature = "2d41716e-fc02-4019-a822-6bd3f15648bb";
 
-    public const string ArcherPath                     = "ca010001-0000-4000-8000-000000000000";
-    public const string ArcherTrance                   = "ca010002-0000-4000-8000-000000000000";
-    public const string ArcherManeuverBuff             = "ca010003-0000-4000-8000-000000000000";
-    public const string ArcherManeuverAbility          = "ca010004-0000-4000-8000-000000000000";
-    public const string ArcherExpandedBuff             = "ca010005-0000-4000-8000-000000000000";
-    public const string ArcherExpandedAbility          = "ca010006-0000-4000-8000-000000000000";
-    public const string ArcherExpandedFeature          = "ca010007-0000-4000-8000-000000000000";
-
-    public const string AsceticPath                    = "ca020001-0000-4000-8000-000000000000";
-    public const string AsceticTrance                  = "ca020002-0000-4000-8000-000000000000";
-    public const string AsceticManeuverBuff            = "ca020003-0000-4000-8000-000000000000";
-    public const string AsceticManeuverAbility         = "ca020004-0000-4000-8000-000000000000";
-    public const string AsceticExpandedBuff            = "ca020005-0000-4000-8000-000000000000";
-    public const string AsceticExpandedAbility         = "ca020006-0000-4000-8000-000000000000";
-    public const string AsceticExpandedFeature         = "ca020007-0000-4000-8000-000000000000";
-
-    public const string AssassinsPath                  = "ca030001-0000-4000-8000-000000000000";
-    public const string AssassinsTrance                = "ca030002-0000-4000-8000-000000000000";
-    public const string AssassinsManeuverBuff          = "ca030003-0000-4000-8000-000000000000";
-    public const string AssassinsManeuverAbility       = "ca030004-0000-4000-8000-000000000000";
-    public const string AssassinsExpandedBuff          = "ca030005-0000-4000-8000-000000000000";
-    public const string AssassinsExpandedAbility       = "ca030006-0000-4000-8000-000000000000";
-    public const string AssassinsExpandedFeature       = "ca030007-0000-4000-8000-000000000000";
-
-    public const string DervishPath                    = "ca040001-0000-4000-8000-000000000000";
-    public const string DervishTrance                  = "ca040002-0000-4000-8000-000000000000";
-    public const string DervishManeuverBuff            = "ca040003-0000-4000-8000-000000000000";
-    public const string DervishManeuverAbility         = "ca040004-0000-4000-8000-000000000000";
-    public const string DervishExpandedBuff            = "ca040005-0000-4000-8000-000000000000";
-    public const string DervishExpandedAbility         = "ca040006-0000-4000-8000-000000000000";
-    public const string DervishExpandedFeature         = "ca040007-0000-4000-8000-000000000000";
-
-    public const string FeralWarriorPath               = "ca050001-0000-4000-8000-000000000000";
-    public const string FeralWarriorTrance             = "ca050002-0000-4000-8000-000000000000";
-    public const string FeralWarriorManeuverBuff       = "ca050003-0000-4000-8000-000000000000";
-    public const string FeralWarriorManeuverAbility    = "ca050004-0000-4000-8000-000000000000";
-    public const string FeralWarriorExpandedBuff       = "ca050005-0000-4000-8000-000000000000";
-    public const string FeralWarriorExpandedAbility    = "ca050006-0000-4000-8000-000000000000";
-    public const string FeralWarriorExpandedFeature    = "ca050007-0000-4000-8000-000000000000";
-
-    public const string GladiatorPath                  = "ca060001-0000-4000-8000-000000000000";
-    public const string GladiatorTrance                = "ca060002-0000-4000-8000-000000000000";
-    public const string GladiatorManeuverBuff          = "ca060003-0000-4000-8000-000000000000";
-    public const string GladiatorManeuverAbility       = "ca060004-0000-4000-8000-000000000000";
-    public const string GladiatorExpandedBuff          = "ca060005-0000-4000-8000-000000000000";
-    public const string GladiatorExpandedAbility       = "ca060006-0000-4000-8000-000000000000";
-    public const string GladiatorExpandedFeature       = "ca060007-0000-4000-8000-000000000000";
-
-    public const string InfiltratorPath                = "ca070001-0000-4000-8000-000000000000";
-    public const string InfiltratorTrance              = "ca070002-0000-4000-8000-000000000000";
-    public const string InfiltratorManeuverBuff        = "ca070003-0000-4000-8000-000000000000";
-    public const string InfiltratorManeuverAbility     = "ca070004-0000-4000-8000-000000000000";
-    public const string InfiltratorExpandedBuff        = "ca070005-0000-4000-8000-000000000000";
-    public const string InfiltratorExpandedAbility     = "ca070006-0000-4000-8000-000000000000";
-    public const string InfiltratorExpandedFeature     = "ca070007-0000-4000-8000-000000000000";
-
-    public const string InterceptorPath                = "ca080001-0000-4000-8000-000000000000";
-    public const string InterceptorTrance              = "ca080002-0000-4000-8000-000000000000";
-    public const string InterceptorManeuverBuff        = "ca080003-0000-4000-8000-000000000000";
-    public const string InterceptorManeuverAbility     = "ca080004-0000-4000-8000-000000000000";
-    public const string InterceptorExpandedBuff        = "ca080005-0000-4000-8000-000000000000";
-    public const string InterceptorExpandedAbility     = "ca080006-0000-4000-8000-000000000000";
-    public const string InterceptorExpandedFeature     = "ca080007-0000-4000-8000-000000000000";
-
-    public const string MindKnightPath                 = "ca090001-0000-4000-8000-000000000000";
-    public const string MindKnightTrance               = "ca090002-0000-4000-8000-000000000000";
-    public const string MindKnightManeuverBuff         = "ca090003-0000-4000-8000-000000000000";
-    public const string MindKnightManeuverAbility      = "ca090004-0000-4000-8000-000000000000";
-    public const string MindKnightExpandedBuff         = "ca090005-0000-4000-8000-000000000000";
-    public const string MindKnightExpandedAbility      = "ca090006-0000-4000-8000-000000000000";
-    public const string MindKnightExpandedFeature      = "ca090007-0000-4000-8000-000000000000";
-
-    public const string SurvivorPath                   = "ca100001-0000-4000-8000-000000000000";
-    public const string SurvivorTrance                 = "ca100002-0000-4000-8000-000000000000";
-    public const string SurvivorManeuverBuff           = "ca100003-0000-4000-8000-000000000000";
-    public const string SurvivorManeuverAbility        = "ca100004-0000-4000-8000-000000000000";
-    public const string SurvivorExpandedBuff           = "ca100005-0000-4000-8000-000000000000";
-    public const string SurvivorExpandedAbility        = "ca100006-0000-4000-8000-000000000000";
-    public const string SurvivorExpandedFeature        = "ca100007-0000-4000-8000-000000000000";
-
-    // ── Phase 7: Trance rework — buff + activatable for each path ──
-    // bc = trance buff, ba = trance activatable
-    public const string WeaponmasterTranceBuff         = "bc010001-0000-4000-8000-000000000001";
-    public const string WeaponmasterTranceActivatable  = "ba010001-0000-4000-8000-000000000001";
-    public const string BrawlerTranceBuff              = "bc020001-0000-4000-8000-000000000001";
-    public const string BrawlerTranceActivatable       = "ba020001-0000-4000-8000-000000000001";
-    public const string ArcherTranceBuff               = "bc030001-0000-4000-8000-000000000001";
-    public const string ArcherTranceActivatable        = "ba030001-0000-4000-8000-000000000001";
-    public const string AsceticTranceBuff              = "bc040001-0000-4000-8000-000000000001";
-    public const string AsceticTranceActivatable       = "ba040001-0000-4000-8000-000000000001";
-    public const string AssassinsTranceBuff            = "bc050001-0000-4000-8000-000000000001";
-    public const string AssassinsTranceActivatable     = "ba050001-0000-4000-8000-000000000001";
-    public const string DervishTranceBuff              = "bc060001-0000-4000-8000-000000000001";
-    public const string DervishTranceActivatable       = "ba060001-0000-4000-8000-000000000001";
-    public const string FeralWarriorTranceBuff         = "bc070001-0000-4000-8000-000000000001";
-    public const string FeralWarriorTranceActivatable  = "ba070001-0000-4000-8000-000000000001";
-    public const string GladiatorTranceBuff            = "bc080001-0000-4000-8000-000000000001";
-    public const string GladiatorTranceActivatable     = "ba080001-0000-4000-8000-000000000001";
-    public const string InfiltratorTranceBuff          = "bc090001-0000-4000-8000-000000000001";
-    public const string InfiltratorTranceActivatable   = "ba090001-0000-4000-8000-000000000001";
-    public const string InterceptorTranceBuff          = "bc0a0001-0000-4000-8000-000000000001";
-    public const string InterceptorTranceActivatable   = "ba0a0001-0000-4000-8000-000000000001";
-    public const string MindKnightTranceBuff           = "bc0b0001-0000-4000-8000-000000000001";
-    public const string MindKnightTranceActivatable    = "ba0b0001-0000-4000-8000-000000000001";
-    public const string SurvivorTranceBuff             = "bc0c0001-0000-4000-8000-000000000001";
-    public const string SurvivorTranceActivatable      = "ba0c0001-0000-4000-8000-000000000001";
+    // ── Phase 7: Trance buffs + activatables ─────────────────────────────
+    public const string WeaponmasterTranceBuff        = "d5a2e744-f6e9-4b87-97ac-ee1aff803f94";
+    public const string WeaponmasterTranceActivatable = "ff8d0d38-f3bc-436d-902b-b5f2f90703b4";
+    public const string BrawlerTranceBuff             = "01ca5136-f40e-4089-abce-56768d8aae09";
+    public const string BrawlerTranceActivatable      = "47f94e0d-ef34-4c9f-a0ea-d54fa1ecf4a4";
+    public const string ArcherTranceBuff              = "a35dd7e4-b3d2-4b33-bc0e-e067e54c230f";
+    public const string ArcherTranceActivatable       = "578a76e3-f7e5-46a3-a74f-ddad581ed8fb";
+    public const string AsceticTranceBuff             = "74d35475-4711-4974-97eb-d7cc984703f6";
+    public const string AsceticTranceActivatable      = "bfd88c9a-33c3-4f96-8729-3511e214b3ea";
+    public const string AssassinsTranceBuff           = "fc95c1a4-d7bb-4b6e-a61b-36771f0e636b";
+    public const string AssassinsTranceActivatable    = "951b289b-449b-4cdb-b38c-39a06df90931";
+    public const string DervishTranceBuff             = "2a7ae752-4cc6-4772-90c4-1ba3ada63858";
+    public const string DervishTranceActivatable      = "bc67a431-62e2-4e1d-9908-937cd48e62e6";
+    public const string FeralWarriorTranceBuff        = "e9c624a9-8a45-4ffa-bea4-e10207bdbc8c";
+    public const string FeralWarriorTranceActivatable = "4b320c0a-b605-4897-8c3c-66544631c132";
+    public const string GladiatorTranceBuff           = "10299f85-fc14-4b0a-98f2-806fcbb684e0";
+    public const string GladiatorTranceActivatable    = "814cf1ce-f90d-441a-aee0-657a5fc2592e";
+    public const string InfiltratorTranceBuff         = "c18ceb67-aa5f-4462-b7b6-471988c98185";
+    public const string InfiltratorTranceActivatable  = "45549396-8cf1-4c03-9bfa-15249361aa68";
+    public const string InterceptorTranceBuff         = "675ef6ad-d07f-45d1-a17d-4a82b735bbbe";
+    public const string InterceptorTranceActivatable  = "4744388d-23a0-4e64-9c34-50c763acaccf";
+    public const string MindKnightTranceBuff          = "1f6a5794-d766-4915-bb17-5804907698c5";
+    public const string MindKnightTranceActivatable   = "ace8f1d8-bd59-486f-8d37-1f592248f24a";
+    public const string SurvivorTranceBuff            = "417bbd4a-9fa8-477a-8405-ce0e55ce9c3f";
+    public const string SurvivorTranceActivatable     = "c524c3dd-a50a-4d31-a59b-9270398de71b";
 
     public static string GetTranceActivatableGuid(string baseName) => baseName switch
     {
@@ -227,219 +213,257 @@ public static class Guids
         _ => throw new System.ArgumentException($"Unknown path baseName: {baseName}")
     };
 
-    // Phase 7b: Per-path "[Path] Powers" parent ability + Std/Swift trance-toggle ability variants
-    // pa{path:01-0c}{slot:01=parent, 02=toggleStd, 03=toggleSwift}
-    public const string WeaponmasterPathParent         = "ae010001-0000-4000-8000-000000000001";
-    public const string WeaponmasterTranceToggleStd    = "ae010002-0000-4000-8000-000000000001";
-    public const string WeaponmasterTranceToggleSwift  = "ae010003-0000-4000-8000-000000000001";
-    public const string BrawlerPathParent              = "ae020001-0000-4000-8000-000000000001";
-    public const string BrawlerTranceToggleStd         = "ae020002-0000-4000-8000-000000000001";
-    public const string BrawlerTranceToggleSwift       = "ae020003-0000-4000-8000-000000000001";
-    public const string ArcherPathParent               = "ae030001-0000-4000-8000-000000000001";
-    public const string ArcherTranceToggleStd          = "ae030002-0000-4000-8000-000000000001";
-    public const string ArcherTranceToggleSwift        = "ae030003-0000-4000-8000-000000000001";
-    public const string AsceticPathParent              = "ae040001-0000-4000-8000-000000000001";
-    public const string AsceticTranceToggleStd         = "ae040002-0000-4000-8000-000000000001";
-    public const string AsceticTranceToggleSwift       = "ae040003-0000-4000-8000-000000000001";
-    public const string AssassinsPathParent            = "ae050001-0000-4000-8000-000000000001";
-    public const string AssassinsTranceToggleStd       = "ae050002-0000-4000-8000-000000000001";
-    public const string AssassinsTranceToggleSwift     = "ae050003-0000-4000-8000-000000000001";
-    public const string DervishPathParent              = "ae060001-0000-4000-8000-000000000001";
-    public const string DervishTranceToggleStd         = "ae060002-0000-4000-8000-000000000001";
-    public const string DervishTranceToggleSwift       = "ae060003-0000-4000-8000-000000000001";
-    public const string FeralWarriorPathParent         = "ae070001-0000-4000-8000-000000000001";
-    public const string FeralWarriorTranceToggleStd    = "ae070002-0000-4000-8000-000000000001";
-    public const string FeralWarriorTranceToggleSwift  = "ae070003-0000-4000-8000-000000000001";
-    public const string GladiatorPathParent            = "ae080001-0000-4000-8000-000000000001";
-    public const string GladiatorTranceToggleStd       = "ae080002-0000-4000-8000-000000000001";
-    public const string GladiatorTranceToggleSwift     = "ae080003-0000-4000-8000-000000000001";
-    public const string InfiltratorPathParent          = "ae090001-0000-4000-8000-000000000001";
-    public const string InfiltratorTranceToggleStd     = "ae090002-0000-4000-8000-000000000001";
-    public const string InfiltratorTranceToggleSwift   = "ae090003-0000-4000-8000-000000000001";
-    public const string InterceptorPathParent          = "ae0a0001-0000-4000-8000-000000000001";
-    public const string InterceptorTranceToggleStd     = "ae0a0002-0000-4000-8000-000000000001";
-    public const string InterceptorTranceToggleSwift   = "ae0a0003-0000-4000-8000-000000000001";
-    public const string MindKnightPathParent           = "ae0b0001-0000-4000-8000-000000000001";
-    public const string MindKnightTranceToggleStd      = "ae0b0002-0000-4000-8000-000000000001";
-    public const string MindKnightTranceToggleSwift    = "ae0b0003-0000-4000-8000-000000000001";
-    public const string SurvivorPathParent             = "ae0c0001-0000-4000-8000-000000000001";
-    public const string SurvivorTranceToggleStd        = "ae0c0002-0000-4000-8000-000000000001";
-    public const string SurvivorTranceToggleSwift      = "ae0c0003-0000-4000-8000-000000000001";
+    // ── Phase 7b: Per-path parent ability + trance toggles ────────────────
+    public const string WeaponmasterPathParent        = "ca4b75aa-acc4-4327-9021-8ee8743ca1c2";
+    public const string WeaponmasterTranceToggleStd   = "51d96180-287e-4465-a8c0-3baafdfda08f";
+    public const string WeaponmasterTranceToggleSwift = "ee54006d-bf71-4081-98c0-bd23ee726711";
+    public const string BrawlerPathParent             = "39325aef-cbd0-4076-9f88-8b3b25bbd39a";
+    public const string BrawlerTranceToggleStd        = "2e10f25d-958c-456f-a7e5-f4d2bf59ad27";
+    public const string BrawlerTranceToggleSwift      = "11ae220a-2906-4e54-9468-63deba7eefed";
+    public const string ArcherPathParent              = "12ed518e-b9e2-4871-a461-d326c90eb391";
+    public const string ArcherTranceToggleStd         = "b29338ea-5dba-4ac8-9aa3-e452b3d9aacc";
+    public const string ArcherTranceToggleSwift       = "89e4b8d8-4ced-46fc-87ea-2cb3b21be383";
+    public const string AsceticPathParent             = "d81e4997-1fac-46db-9060-c6dd852af8de";
+    public const string AsceticTranceToggleStd        = "ed9c204f-74a0-4699-82fe-c9b1c08f019e";
+    public const string AsceticTranceToggleSwift      = "444cb470-8a8a-4dc7-8080-d1f7940966ec";
+    public const string AssassinsPathParent           = "4bde8086-288f-47a1-84db-11815fb8f126";
+    public const string AssassinsTranceToggleStd      = "af27dde8-1b21-433e-929f-525d5f28580c";
+    public const string AssassinsTranceToggleSwift    = "b5a5f685-f307-4c2a-92a6-e2e730b2db7c";
+    public const string DervishPathParent             = "0a7c9cf8-3095-45a7-b9f6-18877bd68543";
+    public const string DervishTranceToggleStd        = "6b0b99a4-a10b-42e7-b29d-08ff1716ee76";
+    public const string DervishTranceToggleSwift      = "f6ad545d-6a85-4bb7-a145-48a258885920";
+    public const string FeralWarriorPathParent        = "b9df9083-8809-4ae3-953b-23a53de3a15a";
+    public const string FeralWarriorTranceToggleStd   = "3850feff-b448-44ed-9f58-b96d4aa1abc7";
+    public const string FeralWarriorTranceToggleSwift = "cc462382-02e1-4f67-95ce-6b75998bc802";
+    public const string GladiatorPathParent           = "21d3030f-3ef5-43e4-87a0-47d9cfd9fa67";
+    public const string GladiatorTranceToggleStd      = "156ef1d5-07e8-46db-9c9b-53588e373385";
+    public const string GladiatorTranceToggleSwift    = "890e381d-2188-49fd-9921-7fd440a313e4";
+    public const string InfiltratorPathParent         = "98f6c94d-c22a-46ca-b236-b27e01033fb4";
+    public const string InfiltratorTranceToggleStd    = "a698fbcc-f1be-41cc-aef7-73ed6609d5db";
+    public const string InfiltratorTranceToggleSwift  = "11321307-a752-41cb-a613-0e47f095dfeb";
+    public const string InterceptorPathParent         = "5bdf19f3-1e49-4cc4-bf43-3269c1935dc9";
+    public const string InterceptorTranceToggleStd    = "4838b757-f5d9-449e-938a-8d20642b73bc";
+    public const string InterceptorTranceToggleSwift  = "205160c0-a685-4064-a252-7c7854461243";
+    public const string MindKnightPathParent          = "3bed4cbd-0e4c-4fbb-9aee-466e43bf9d1b";
+    public const string MindKnightTranceToggleStd     = "ece9da41-f4cf-4c8a-bafc-255a8d6b6cf8";
+    public const string MindKnightTranceToggleSwift   = "70e605be-ed20-45fa-a73f-230d7bfcd95d";
+    public const string SurvivorPathParent            = "0d0e6499-b8eb-44a3-ab75-c12ac26a052a";
+    public const string SurvivorTranceToggleStd       = "c7e11645-8666-4c9d-b3a3-31916c6c8015";
+    public const string SurvivorTranceToggleSwift     = "acbec142-6f02-4528-91a4-1a522a7341ac";
 
-    // Twisting Paths (level 11): swift-action ability + buff
-    public const string TwistingPathsAbility           = "d0010001-0000-4000-8000-000000000001";
-    public const string TwistingPathsBuff              = "d0010002-0000-4000-8000-000000000001";
+    // ── Twisting Paths / Pathweaving / Martial Power ──────────────────────
+    public const string TwistingPathsAbility     = "4e6b862e-4616-41b8-8141-88fb6adaa61e";
+    public const string TwistingPathsBuff        = "67e30e1c-d4d7-490b-a4a7-3c836bce1412";
+    public const string PathweavingAbility       = "b1bc2908-4352-4dba-88bd-edb56a9f10a9";
+    public const string PathweavingBuff          = "84ac5c73-744a-48ba-8818-b228a8364c35";
+    public const string PathweavingResource      = "fd02a1e7-db1f-4152-9fda-b40faf4983c3";
+    public const string MartialPowerAbility      = "44a189af-d7ff-4e37-ae1e-bd34a6c9689d";
+    public const string MartialPowerBuff         = "3317d1d8-45a9-42b0-b488-1ac8c66628bc";
+    public const string MartialPowerUsedBuff     = "228c8eaa-77a6-4394-bc10-7c35aee6b152";
 
-    // Pathweaving (level 15): per-day ability + buff + ability resource
-    public const string PathweavingAbility             = "d0020001-0000-4000-8000-000000000001";
-    public const string PathweavingBuff                = "d0020002-0000-4000-8000-000000000001";
-    public const string PathweavingResource            = "d0020003-0000-4000-8000-000000000001";
+    public const string MartialPowerWeaponmasterManeuver  = "f0cc569f-b199-4037-8898-b3384e942588";
+    public const string MartialPowerWeaponmasterExpanded  = "1ca01de9-87bd-4b69-8eff-f60e5304409c";
+    public const string MartialPowerBrawlerManeuver       = "2911922f-9939-4ce6-aafc-39fb86b7a86f";
+    public const string MartialPowerBrawlerExpanded       = "55403ea4-70d0-4d65-b1c3-32c01851d5ae";
+    public const string MartialPowerArcherManeuver        = "fa11041a-bd05-4248-8b45-cc2df58acb15";
+    public const string MartialPowerArcherExpanded        = "411c7184-820c-48b7-ae7a-91d549b9dd6b";
+    public const string MartialPowerAsceticManeuver       = "e9032567-8596-491f-900f-819313bd7d56";
+    public const string MartialPowerAsceticExpanded       = "c12a627e-f92c-4715-93a3-6886f89a4a9a";
+    public const string MartialPowerAssassinsManeuver     = "1d168ac6-81b2-435e-9ac7-7bbe4de04ad6";
+    public const string MartialPowerAssassinsExpanded     = "f6f8a0ff-2e60-4ccc-af3e-fda7f036f82e";
+    public const string MartialPowerDervishManeuver       = "a37dd655-7784-456f-857b-ccca12593813";
+    public const string MartialPowerDervishExpanded       = "68a77cb9-23e1-4725-beaa-4fb827ab4788";
+    public const string MartialPowerFeralWarriorManeuver  = "d305f1b3-7fee-4a4c-b484-59cd0289ce0f";
+    public const string MartialPowerFeralWarriorExpanded  = "17677572-c486-456c-a803-6894d4853706";
+    public const string MartialPowerGladiatorManeuver     = "feb3fc6f-08ae-4eeb-810c-17a67d9ae97d";
+    public const string MartialPowerGladiatorExpanded     = "b3232ad1-64c7-4c44-9c34-8a6df91a528f";
+    public const string MartialPowerInfiltratorManeuver   = "adfb10c5-42cc-4316-a53c-ab3ddd9a31c4";
+    public const string MartialPowerInfiltratorExpanded   = "05d1262c-8753-47e9-804f-5752f0a08da9";
+    public const string MartialPowerInterceptorManeuver   = "b0286cb1-d62c-4928-95d2-251670922db0";
+    public const string MartialPowerInterceptorExpanded   = "a805b186-036c-443a-ae98-a92aed739a8d";
+    public const string MartialPowerMindKnightManeuver    = "612e0223-a346-40de-a77a-fa28c0606809";
+    public const string MartialPowerMindKnightExpanded    = "bb3efee4-c159-4f50-aa7a-ebeb0a4f4a15";
+    public const string MartialPowerSurvivorManeuver      = "f30c4b59-0abf-4d59-8050-7aa0593f6a9e";
+    public const string MartialPowerSurvivorExpanded      = "48b33683-30ab-4fb0-9fb7-02d7df80d245";
 
-    // Martial Power (level 6) — parent ability with per-path maneuver variants
-    public const string MartialPowerAbility            = "d0030001-0000-4000-8000-000000000001";
-    public const string MartialPowerBuff               = "d0030002-0000-4000-8000-000000000001";  // (legacy, unused)
-    public const string MartialPowerUsedBuff           = "d0030003-0000-4000-8000-000000000001";
+    public const string MartialPowerSelectedWeaponmasterManeuver = "f5bef40b-ace3-471d-9658-589b690ca174";
+    public const string MartialPowerSelectedWeaponmasterExpanded = "211d878e-1076-48a7-a6d8-166f2513dd00";
+    public const string MartialPowerSelectedBrawlerManeuver      = "17490f91-3738-4919-84b2-072ec4352997";
+    public const string MartialPowerSelectedBrawlerExpanded      = "3fe57ef5-4a3b-4193-a041-ba40b28495f9";
+    public const string MartialPowerSelectedArcherManeuver       = "f26f0902-34ae-4568-bb85-b2a255df8dd5";
+    public const string MartialPowerSelectedArcherExpanded       = "86b83783-5018-49b0-9a65-fa09e25fc42c";
+    public const string MartialPowerSelectedAsceticManeuver      = "e22f2977-7fc0-458f-b4fc-24451f245ec7";
+    public const string MartialPowerSelectedAsceticExpanded      = "4b118c2f-4638-4d2f-9f1d-7ed7266b1206";
+    public const string MartialPowerSelectedAssassinsManeuver    = "f57667e8-989e-45be-97f6-9e832b9f24a4";
+    public const string MartialPowerSelectedAssassinsExpanded    = "b7babb51-2c0d-4f36-ad47-efeed43e59db";
+    public const string MartialPowerSelectedDervishManeuver      = "c33fdc5c-ea79-40ba-9143-ba63d2847f7e";
+    public const string MartialPowerSelectedDervishExpanded      = "bfbdf5bd-6020-44a1-b42b-15bfb18b949e";
+    public const string MartialPowerSelectedFeralWarriorManeuver = "3a25a851-59a0-44b5-9685-c21a065b5475";
+    public const string MartialPowerSelectedFeralWarriorExpanded = "03dbc45e-115d-4919-a277-22ade8418e5a";
+    public const string MartialPowerSelectedGladiatorManeuver    = "5700aa18-ecd4-4a83-8a55-1b8c0a42034c";
+    public const string MartialPowerSelectedGladiatorExpanded    = "c44e97dc-488e-4e2f-a4fa-0f19c3585611";
+    public const string MartialPowerSelectedInfiltratorManeuver  = "766d89b3-81f8-4721-8390-a3461bf17bca";
+    public const string MartialPowerSelectedInfiltratorExpanded  = "b5faeff5-5254-4e25-9a9d-a2e096137933";
+    public const string MartialPowerSelectedInterceptorManeuver  = "7d44cfc3-9b4c-4bf2-b58a-a118df864022";
+    public const string MartialPowerSelectedInterceptorExpanded  = "7550328d-dafe-491b-8452-b66b88cc3b76";
+    public const string MartialPowerSelectedMindKnightManeuver   = "b5c35fc5-5aa8-4fcd-9d02-c0c081687073";
+    public const string MartialPowerSelectedMindKnightExpanded   = "135c20aa-65c6-4bce-b1e5-ae59f1e649e5";
+    public const string MartialPowerSelectedSurvivorManeuver     = "755d902b-1952-4afd-bdae-81284e4ff8f4";
+    public const string MartialPowerSelectedSurvivorExpanded     = "22f22602-4aaf-4640-816d-1123519232d6";
 
-    // Martial Power variants (1 per path × 2 maneuver tiers = 24). Each is a free-of-focus
-    // version of the corresponding maneuver. Layout: d004{path:01-0c}{slot:01=basic, 02=expanded}
-    public const string MartialPowerWeaponmasterManeuver     = "d0040101-0000-4000-8000-000000000001";
-    public const string MartialPowerWeaponmasterExpanded     = "d0040102-0000-4000-8000-000000000001";
-    public const string MartialPowerBrawlerManeuver          = "d0040201-0000-4000-8000-000000000001";
-    public const string MartialPowerBrawlerExpanded          = "d0040202-0000-4000-8000-000000000001";
-    public const string MartialPowerArcherManeuver           = "d0040301-0000-4000-8000-000000000001";
-    public const string MartialPowerArcherExpanded           = "d0040302-0000-4000-8000-000000000001";
-    public const string MartialPowerAsceticManeuver          = "d0040401-0000-4000-8000-000000000001";
-    public const string MartialPowerAsceticExpanded          = "d0040402-0000-4000-8000-000000000001";
-    public const string MartialPowerAssassinsManeuver        = "d0040501-0000-4000-8000-000000000001";
-    public const string MartialPowerAssassinsExpanded        = "d0040502-0000-4000-8000-000000000001";
-    public const string MartialPowerDervishManeuver          = "d0040601-0000-4000-8000-000000000001";
-    public const string MartialPowerDervishExpanded          = "d0040602-0000-4000-8000-000000000001";
-    public const string MartialPowerFeralWarriorManeuver     = "d0040701-0000-4000-8000-000000000001";
-    public const string MartialPowerFeralWarriorExpanded     = "d0040702-0000-4000-8000-000000000001";
-    public const string MartialPowerGladiatorManeuver        = "d0040801-0000-4000-8000-000000000001";
-    public const string MartialPowerGladiatorExpanded        = "d0040802-0000-4000-8000-000000000001";
-    public const string MartialPowerInfiltratorManeuver      = "d0040901-0000-4000-8000-000000000001";
-    public const string MartialPowerInfiltratorExpanded      = "d0040902-0000-4000-8000-000000000001";
-    public const string MartialPowerInterceptorManeuver      = "d0040a01-0000-4000-8000-000000000001";
-    public const string MartialPowerInterceptorExpanded      = "d0040a02-0000-4000-8000-000000000001";
-    public const string MartialPowerMindKnightManeuver       = "d0040b01-0000-4000-8000-000000000001";
-    public const string MartialPowerMindKnightExpanded       = "d0040b02-0000-4000-8000-000000000001";
-    public const string MartialPowerSurvivorManeuver         = "d0040c01-0000-4000-8000-000000000001";
-    public const string MartialPowerSurvivorExpanded         = "d0040c02-0000-4000-8000-000000000001";
+    public const string MartialPowerActivatable     = "9b862cda-0b5e-4b6d-a1b3-4a8c03bd8818";
+    public const string MartialPowerActivatableBuff = "ccdf480c-4a35-4f4f-b35d-023fffb3f905";
 
-    // Martial Power "selected mode" buffs — one per variant. Selector variant applies its own
-    // selection buff and removes the other 23. Layout: d005{path:01-0c}{slot:01=basic, 02=expanded}
-    public const string MartialPowerSelectedWeaponmasterManeuver  = "d0050101-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedWeaponmasterExpanded  = "d0050102-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedBrawlerManeuver       = "d0050201-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedBrawlerExpanded       = "d0050202-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedArcherManeuver        = "d0050301-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedArcherExpanded        = "d0050302-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedAsceticManeuver       = "d0050401-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedAsceticExpanded       = "d0050402-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedAssassinsManeuver     = "d0050501-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedAssassinsExpanded     = "d0050502-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedDervishManeuver       = "d0050601-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedDervishExpanded       = "d0050602-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedFeralWarriorManeuver  = "d0050701-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedFeralWarriorExpanded  = "d0050702-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedGladiatorManeuver     = "d0050801-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedGladiatorExpanded     = "d0050802-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedInfiltratorManeuver   = "d0050901-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedInfiltratorExpanded   = "d0050902-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedInterceptorManeuver   = "d0050a01-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedInterceptorExpanded   = "d0050a02-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedMindKnightManeuver    = "d0050b01-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedMindKnightExpanded    = "d0050b02-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedSurvivorManeuver      = "d0050c01-0000-4000-8000-000000000001";
-    public const string MartialPowerSelectedSurvivorExpanded      = "d0050c02-0000-4000-8000-000000000001";
+    // ── 2nd-level powers ─────────────────────────────────────────────────
+    public const string PowerBodyAdjustment                  = "83316df3-4170-4c0d-8c41-22c4ff66dfc1";
+    public const string PowerBodyPurification                = "30494eaa-f4d0-47a0-a86b-e768106f385e";
+    public const string PowerStrengthOfMyEnemy               = "96fae0a3-50d1-4c6b-bc10-419d7c661f48";
+    public const string PowerStrengthOfMyEnemyEnemyDebuff    = "9936cafd-93d7-4d09-af24-cf6bd701f4d6";
+    public const string PowerStrengthOfMyEnemyCasterBuff     = "34a25994-c048-41f4-9804-8f975f57da10";
+    public const string PowerStrengthOfMyEnemyBuff          = "122e8f25-5625-432a-aead-5f5e2e617a1a";
+    public const string PowerAnimalAffinity                  = "c5663cc3-7342-4c38-856d-68ee0ff5d293";
+    public const string PowerAnimalAffinityStrength          = "cbf55898-6412-4398-b155-05e439b55e42";
+    public const string PowerAnimalAffinityStrengthBuff      = "db152423-2b99-4f92-ba14-ba331626eaf9";
+    public const string PowerAnimalAffinityDexterity         = "271f361f-c843-430d-bf8d-9778471b3a30";
+    public const string PowerAnimalAffinityDexterityBuff     = "a402c0e2-6d7c-42e6-844e-29c61ae647a9";
+    public const string PowerAnimalAffinityConstitution      = "2fe7412e-b203-4123-9ad3-b72a02ac79a1";
+    public const string PowerAnimalAffinityConstitutionBuff  = "0fd7c1ea-970a-414d-9da0-b5e1057d1436";
+    public const string PowerAnimalAffinityIntelligence      = "cc1c7023-054d-4ae2-b951-9457f8e0d223";
+    public const string PowerAnimalAffinityIntelligenceBuff  = "b7047590-27ae-45c0-8cf8-1cebb8d11d2b";
+    public const string PowerAnimalAffinityWisdom            = "88cc26d6-e926-4982-bf16-58bf861a3b1a";
+    public const string PowerAnimalAffinityWisdomBuff        = "ca068add-ae99-44e8-97cf-d03145ed15de";
+    public const string PowerAnimalAffinityCharisma          = "af1ff05b-8cf8-4a11-b118-2eda401be5f2";
+    public const string PowerAnimalAffinityCharismaBuff      = "386b06e4-15c4-45d3-a309-95a7920e9493";
+    public const string PowerDetectHostileIntent             = "44f1db5d-9e6f-4fec-8876-a8ca7c95fd21";
+    public const string PowerDetectHostileIntentBuff         = "0680497e-d936-4201-ae93-794eca8f9029";
+    public const string PowerHustle                          = "02bf4471-1e88-411f-a072-e9628a2e5390";
+    public const string PowerHustleBuff                      = "29cba4bc-4346-4374-87be-c8ea806ef797";
 
-    // Martial Power Activatable toggle + its active buff (the one with the on-hit trigger)
-    public const string MartialPowerActivatable        = "d0060001-0000-4000-8000-000000000001";
-    public const string MartialPowerActivatableBuff    = "d0060002-0000-4000-8000-000000000001";
+    // ── Psionic feats ─────────────────────────────────────────────────────
+    public const string PsionicBodyFeat          = "772711d2-1c37-4afb-852a-94124d1e2e64";
+    public const string SpeedOfThoughtFeat       = "3d8c44ec-fa7d-440d-acbc-6e458bef180a";
+    public const string SpeedOfThoughtBuff       = "21ecf3d4-21db-43bb-a3ce-fbb895af0b98";
+    public const string PsionicDodgeFeat         = "18e62323-cc52-4f81-982d-57de8addccb6";
+    public const string PsionicDodgeBuff         = "9f4194e8-3c40-4317-a826-cf218e3b2472";
+    public const string CriticalRefocusFeat      = "86f7987c-caee-4fa6-a8c8-c0e52b984a43";
+    public const string GreaterPsionicWeaponFeat = "531a4c41-01e6-4860-a3dc-b2c124e8111d";
+    public const string PsionicFistFeat          = "ed7161df-4b58-41f8-ada9-a46168fa1861";
+    public const string GreaterPsionicFistFeat   = "316556a0-a097-4c6a-afe3-9680776e2557";
+    public const string PsionicShotFeat          = "bb0fdacf-2da5-4ed5-91ab-83c7995ad819";
+    public const string GreaterPsionicShotFeat   = "d4f72fed-c0ed-4b69-b658-0af2ac9f9099";
+    public const string RapidMetabolismFeat      = "591d3b3c-acff-4456-b0f4-c05cdce78d49";
+    public const string RapidMetabolismBuff      = "b138ef5a-e6b6-48d6-ab41-3212bead7f19";
+    public const string OverchannelFeat          = "1be4b762-c6cd-4607-8908-912a2b30f483";
+    public const string CombatManifestationFeat  = "646c15c2-d708-475a-be38-3a72917d3966";
+    public const string DeepImpactFeat           = "3df4b129-a2c4-4073-ac10-11441462c900";
+    public const string DeepImpactDebuff         = "b2249006-f5fd-461c-926e-832ab24072f6";
+    public const string ExpandedKnowledgeFeat    = "f84cf294-c32a-4568-914f-a649dab112dd";
+    public const string UpTheWallsFeat           = "74be44c5-d82f-468e-8b0e-19bb945d210b";
+    public const string UpTheWallsBuff           = "855de559-b08f-43a3-b112-8f85e387796e";
+    public const string PsionicEndowmentFeat     = "9561b13f-d4fd-492f-83ae-85d0f8f9be2f";
+    public const string PsionicEndowmentBuff     = "75d54bb0-8061-4a60-a33c-832f6ed1f62f";
+    public const string PsionicCriticalFeat      = "6c2ec38d-0160-4c01-951a-06a6066cb581";
+    public const string WoundingAttackFeat       = "ba41ef92-8813-441a-836d-95f58a07ba05";
+    public const string WoundingAttackBuff       = "1af891ea-7562-441d-84bb-4cd7a8f7a4c1";
+    public const string WoundingAttackAbility    = "c9d26a2a-fa57-4213-ac0e-81039ceaa8d7";
+    public const string FellShotFeat             = "ba1a97c4-f569-417d-9fd6-a025a157b51e";
+    public const string FellShotDebuff           = "ab458948-67c7-4790-8ebd-2bd9379aade7";
+    public const string UnavoidableStrikeFeat    = "32e4108c-d82a-424d-8950-7138296c970b";
+    public const string UnavoidableStrikeDebuff  = "727c624c-2353-4d3f-8d4a-b356f6d103c7";
+    public const string IntuitiveFightingFeat    = "27843897-fb9c-41a6-9a1c-4d6fb260502e";
+    public const string IntuitiveFightingBuff    = "b14091f0-df95-44f5-aabc-a0dcb1c19786";
+    public const string RecklessOffenseFeat      = "f29283ed-f696-4834-b003-85abc9feafe1";
+    public const string RecklessOffenseBuff      = "627e4a21-5b45-4cdf-8f55-796c3365eae9";
+    public const string RecklessOffenseActivatable = "fbf97a24-8130-4aa2-9604-c4d9aacfd509";
+    public const string AlignedAttackFeat        = "717a2789-20a5-40d6-acb0-6d8b58f65583";
 
-    // ── Phase 8: 2nd-level powers ──
-    public const string PowerBodyAdjustment            = "e0010001-0000-4000-8000-000000000001";
-    public const string PowerBodyPurification          = "e0020001-0000-4000-8000-000000000001";
-    public const string PowerStrengthOfMyEnemy         = "e0030001-0000-4000-8000-000000000001";
-    public const string PowerStrengthOfMyEnemyEnemyDebuff = "e0030002-0000-4000-8000-000000000001";
-    public const string PowerStrengthOfMyEnemyCasterBuff  = "e0030003-0000-4000-8000-000000000001";
-    public const string PowerStrengthOfMyEnemyBuff     = "e0030004-0000-4000-8000-000000000001";
-    // Animal Affinity uses AbilityVariants — parent + 3 variants (one per physical stat)
-    public const string PowerAnimalAffinity            = "e0040001-0000-4000-8000-000000000001";
-    public const string PowerAnimalAffinityStrength    = "e0040002-0000-4000-8000-000000000001";
-    public const string PowerAnimalAffinityStrengthBuff = "e0040003-0000-4000-8000-000000000001";
-    public const string PowerAnimalAffinityDexterity   = "e0040004-0000-4000-8000-000000000001";
-    public const string PowerAnimalAffinityDexterityBuff = "e0040005-0000-4000-8000-000000000001";
-    public const string PowerAnimalAffinityConstitution = "e0040006-0000-4000-8000-000000000001";
-    public const string PowerAnimalAffinityConstitutionBuff = "e0040007-0000-4000-8000-000000000001";
-    public const string PowerAnimalAffinityIntelligence = "e0040008-0000-4000-8000-000000000001";
-    public const string PowerAnimalAffinityIntelligenceBuff = "e0040009-0000-4000-8000-000000000001";
-    public const string PowerAnimalAffinityWisdom      = "e004000a-0000-4000-8000-000000000001";
-    public const string PowerAnimalAffinityWisdomBuff  = "e004000b-0000-4000-8000-000000000001";
-    public const string PowerAnimalAffinityCharisma    = "e004000c-0000-4000-8000-000000000001";
-    public const string PowerAnimalAffinityCharismaBuff = "e004000d-0000-4000-8000-000000000001";
-    public const string PowerDetectHostileIntent       = "e0050001-0000-4000-8000-000000000001";
-    public const string PowerDetectHostileIntentBuff   = "e0050002-0000-4000-8000-000000000001";
-    public const string PowerHustle                    = "e0060001-0000-4000-8000-000000000001";
-    public const string PowerHustleBuff                = "e0060002-0000-4000-8000-000000000001";
+    // ── 5th-level powers ─────────────────────────────────────────────────
+    public const string PowerTrueMetabolism      = "c0e70249-6f5e-4923-aa24-020ef2ed07ef";
+    public const string PowerTrueMetabolismBuff  = "1080c524-a095-4d0c-8b4d-a7e79c0032af";
+    public const string PowerAdaptBody           = "bc924bf7-e311-4a97-bb1e-7fc1bfe57f46";
+    public const string PowerAdaptBodyFire       = "bfae2183-295d-4b4b-a4aa-2cb5c02a88c1";
+    public const string PowerAdaptBodyFireBuff   = "f09ec9a3-ba4b-43d1-afdf-554bd95613ae";
+    public const string PowerAdaptBodyCold       = "6f44b565-56ed-49bd-8014-4d5381e8bfb9";
+    public const string PowerAdaptBodyColdBuff   = "9e791313-0c37-46ed-9c86-136fd86353ac";
+    public const string PowerAdaptBodyElectric   = "712158cd-bf95-4447-8348-d74396d11ed5";
+    public const string PowerAdaptBodyElectricBuff = "bf33b2ba-0d23-4956-b881-142f81b1a434";
+    public const string PowerAdaptBodyAcid       = "34c81b18-c6d1-4f11-b92a-e0ecb0af535c";
+    public const string PowerAdaptBodyAcidBuff   = "ce7b332d-cedb-41de-bcf9-78a467b22faa";
+    public const string PowerTrueSeeing          = "799e9be1-99dc-4fb3-a91b-2831551c5c01";
 
-    // ── Phase 6b: Psionic feats ──
-    // f001-f00b: Tier 1; f00c-f013: Tier 2 (reserved)
-    public const string PsionicBodyFeat                = "f0010001-0000-4000-8000-000000000001";
-    public const string SpeedOfThoughtFeat             = "f0020001-0000-4000-8000-000000000001";
-    public const string SpeedOfThoughtBuff             = "f0020002-0000-4000-8000-000000000001";
-    public const string PsionicDodgeFeat               = "f0030001-0000-4000-8000-000000000001";
-    public const string PsionicDodgeBuff               = "f0030002-0000-4000-8000-000000000001";
-    public const string CriticalRefocusFeat            = "f0040001-0000-4000-8000-000000000001";
-    public const string GreaterPsionicWeaponFeat       = "f0050001-0000-4000-8000-000000000001";
-    public const string PsionicFistFeat                = "f0060001-0000-4000-8000-000000000001";
-    public const string GreaterPsionicFistFeat         = "f0070001-0000-4000-8000-000000000001";
-    public const string PsionicShotFeat                = "f0080001-0000-4000-8000-000000000001";
-    public const string GreaterPsionicShotFeat         = "f0090001-0000-4000-8000-000000000001";
-    // Tier 2 reserved GUIDs (for Psionic Body feat count — add feats here as implemented)
-    public const string RapidMetabolismFeat            = "f00a0001-0000-4000-8000-000000000001";
-    public const string RapidMetabolismBuff            = "f00a0002-0000-4000-8000-000000000001";
-    public const string OverchannelFeat                = "f00b0001-0000-4000-8000-000000000001";
-    public const string CombatManifestationFeat        = "f00c0001-0000-4000-8000-000000000001";
-    public const string DeepImpactFeat                 = "f00d0001-0000-4000-8000-000000000001";
-    public const string DeepImpactDebuff               = "f00d0002-0000-4000-8000-000000000001";
-    public const string ExpandedKnowledgeFeat          = "f00e0001-0000-4000-8000-000000000001";
-    public const string UpTheWallsFeat                 = "f00f0001-0000-4000-8000-000000000001";
-    public const string UpTheWallsBuff                 = "f00f0002-0000-4000-8000-000000000001";
-    public const string PsionicEndowmentFeat           = "f0100001-0000-4000-8000-000000000001";
-    public const string PsionicEndowmentBuff           = "f0100002-0000-4000-8000-000000000001";
+    // ── 6th-level powers ─────────────────────────────────────────────────
+    public const string PowerDisintegratePsionic  = "0bb920ad-1bbe-43f5-81da-9176dcbc339b";
+    public const string PowerMindBlankPersonal    = "d12ed557-70a5-420d-8e7d-747c90b31850";
+    public const string PowerMindBlankPersonalBuff = "fb166fb5-8022-4f1f-a5c7-2d4b9adea33f";
+    public const string PowerOakBody             = "3fd38783-2c14-453c-9f5f-2ae2b0a1f0de";
+    public const string PowerOakBodyBuff         = "815c7a00-18e0-474a-938e-c89d72ad1b79";
+    public const string PowerBodyOfIron          = "8b69fe2e-406d-48ce-875b-c67b6d59588f";
+    public const string PowerBodyOfIronBuff      = "ab8b0ced-6d61-4871-8b6a-3090ef4b15af";
 
-    // ── Phase 14: 5th-level powers ──
-    public const string PowerTrueMetabolism             = "e0100001-0000-4000-8000-000000000001";
-    public const string PowerTrueMetabolismBuff         = "e0100002-0000-4000-8000-000000000001";
-    public const string PowerAdaptBody                  = "e0110001-0000-4000-8000-000000000001";
-    public const string PowerAdaptBodyFire              = "e0110002-0000-4000-8000-000000000001";
-    public const string PowerAdaptBodyFireBuff          = "e0110003-0000-4000-8000-000000000001";
-    public const string PowerAdaptBodyCold              = "e0110004-0000-4000-8000-000000000001";
-    public const string PowerAdaptBodyColdBuff          = "e0110005-0000-4000-8000-000000000001";
-    public const string PowerAdaptBodyElectric          = "e0110006-0000-4000-8000-000000000001";
-    public const string PowerAdaptBodyElectricBuff      = "e0110007-0000-4000-8000-000000000001";
-    public const string PowerAdaptBodyAcid              = "e0110008-0000-4000-8000-000000000001";
-    public const string PowerAdaptBodyAcidBuff          = "e0110009-0000-4000-8000-000000000001";
-    public const string PowerTrueSeeing                 = "e0120001-0000-4000-8000-000000000001";
-    // ── Phase 14: 6th-level powers ──
-    public const string PowerDisintegratePsionic        = "e0130001-0000-4000-8000-000000000001";
-    public const string PowerMindBlankPersonal           = "e0140001-0000-4000-8000-000000000001";
-    public const string PowerMindBlankPersonalBuff       = "e0140002-0000-4000-8000-000000000001";
-    public const string PowerOakBody                    = "e0150001-0000-4000-8000-000000000001";
-    public const string PowerOakBodyBuff                = "e0150002-0000-4000-8000-000000000001";
+    // ── Level 20 capstone ─────────────────────────────────────────────────
+    public const string EternalWarriorFeature  = "51d67668-4bfa-4976-8717-7d35acab9fbd";
+    public const string EternalWarriorAbility  = "afd53a7f-8704-4eb3-9c6b-b57afc5f8ef2";
+    public const string EternalWarriorBuff     = "8421551e-e2bb-4289-bb8e-56c42f3e7347";
+    public const string EternalWarriorResource = "3d89fce0-b5e5-415e-8d13-d6d0a5d00037";
 
-    // ── Phase 15: Class capstone ──
-    public const string EternalWarriorFeature  = "f0000001-0000-4000-8000-000000000001";
-    public const string EternalWarriorAbility  = "f0000002-0000-4000-8000-000000000001";
-    public const string EternalWarriorBuff     = "f0000003-0000-4000-8000-000000000001";
-    public const string EternalWarriorResource = "f0000004-0000-4000-8000-000000000001";
+    // ── 1st-level powers (new batch) ─────────────────────────────────────
+    public const string PowerMetaphysicalClaw        = "fcaa4483-e0d0-4638-99d8-90ea99352180";
+    public const string PowerMetaphysicalClawBuff    = "2218eadb-ae6f-4174-ba56-72de38ab156e";
+    public const string PowerExpansion               = "8ab23579-fdfc-434f-b701-3090e0a8dd6d";
+    public const string PowerCompression             = "7e1f61e0-f6b6-4385-86c9-b45959fa8333";
+    public const string PowerConcealingAmorpha       = "a71580af-d6be-47a6-a610-296c2f0e7f81";
 
-    // ── Phase 14: 4th-level powers ──
-    public const string PowerDimensionDoor              = "e00c0001-0000-4000-8000-000000000001";
-    public const string PowerFreedomOfMovement          = "e00d0001-0000-4000-8000-000000000001";
-    public const string PowerWeaponOfEnergy             = "e00e0001-0000-4000-8000-000000000001";
-    public const string PowerWeaponOfEnergyFire         = "e00e0002-0000-4000-8000-000000000001";
-    public const string PowerWeaponOfEnergyFireBuff     = "e00e0003-0000-4000-8000-000000000001";
-    public const string PowerWeaponOfEnergyCold         = "e00e0004-0000-4000-8000-000000000001";
-    public const string PowerWeaponOfEnergyColdBuff     = "e00e0005-0000-4000-8000-000000000001";
-    public const string PowerWeaponOfEnergyElectric     = "e00e0006-0000-4000-8000-000000000001";
-    public const string PowerWeaponOfEnergyElectricBuff = "e00e0007-0000-4000-8000-000000000001";
-    public const string PowerWeaponOfEnergyAcid         = "e00e0008-0000-4000-8000-000000000001";
-    public const string PowerWeaponOfEnergyAcidBuff     = "e00e0009-0000-4000-8000-000000000001";
-    public const string PowerSteadfastPerception        = "e00f0001-0000-4000-8000-000000000001";
-    public const string PowerSteadfastPerceptionBuff    = "e00f0002-0000-4000-8000-000000000001";
+    // ── 2nd-level powers (new batch) ─────────────────────────────────────
+    public const string PowerPsionicLionsCharge      = "d8fe2e16-820f-4ad5-aa51-cc754d6e7a02";
+    public const string PowerPsionicLionsChargeBuff  = "3c9c366f-6f48-49b5-9638-9398ac879ad5";
 
-    // ── Phase 9: 3rd-level powers ──
-    public const string PowerVampiricBlade             = "e0070001-0000-4000-8000-000000000001";
-    public const string PowerVampiricBladeBuff         = "e0070002-0000-4000-8000-000000000001";
-    public const string PowerVampiricBladeTempHPBuff   = "e0070003-0000-4000-8000-000000000001";
-    public const string PowerMentalBarrier             = "e0080001-0000-4000-8000-000000000001";
-    public const string PowerMentalBarrierBuff         = "e0080002-0000-4000-8000-000000000001";
-    public const string PowerConcealingAmorphaGreater  = "e0090001-0000-4000-8000-000000000001";
-    public const string PowerConcealingAmorphaGreaterBuff = "e0090002-0000-4000-8000-000000000001";
-    public const string PowerGraftWeapon               = "e00a0001-0000-4000-8000-000000000001";
-    public const string PowerGraftWeaponBuff           = "e00a0002-0000-4000-8000-000000000001";
-    public const string PowerKeenEdgePsionic           = "e00b0001-0000-4000-8000-000000000001";
+    // ── 3rd-level powers ─────────────────────────────────────────────────
+    public const string PowerEvadeBurst              = "3e9a8b05-3cc4-40dd-9134-ff223f356672";
+    public const string PowerEvadeBurstBuff          = "624bc4b5-1162-42c6-98a9-efe61d3335f9";
+    public const string PowerUbiquitousVision        = "19c28276-ab11-46f5-8bc0-2fe66f9c2e61";
+    public const string PowerUbiquitousVisionBuff    = "d8c8786c-3df8-42a1-80e7-b6656741a519";
+    public const string PowerPhysicalAcceleration    = "f80b477a-1884-4a94-9fe5-56f5f515e43b";
+    public const string PowerDimensionSlide          = "5fb915a0-231a-434c-9d49-e5f680b1165e";
+    public const string PowerVampiricBlade           = "c7808c67-47cf-4e61-bf02-38af86449443";
+    public const string PowerVampiricBladeBuff       = "cfd1514b-176f-4738-9df6-f6d0620878a9";
+    public const string PowerVampiricBladeTempHPBuff = "5426f158-37bb-4a9b-8508-eeaae72eea0d";
+    public const string PowerMentalBarrier           = "70fe6322-ad11-4e49-9bac-59cde353a81f";
+    public const string PowerMentalBarrierBuff       = "94156c7d-06bc-4e7d-bc99-5606ac165e87";
+    public const string PowerConcealingAmorphaGreater     = "d2b04088-6bd7-4248-8e8c-686ee5aaedf9";
+    public const string PowerConcealingAmorphaGreaterBuff = "49d6736d-7b2d-4c63-8c7c-13393b7402e2";
+    public const string PowerGraftWeapon             = "8cf00295-01ba-4ef7-9c45-677e0788bced";
+    public const string PowerGraftWeaponBuff         = "4f50d23a-9121-4e3e-9733-17a21ff9f746";
+    public const string PowerKeenEdgePsionic         = "52e52c80-24fd-44e0-83ee-6b68fb994dbd";
+
+    // ── 4th-level powers ─────────────────────────────────────────────────
+    public const string PowerInertialBarrier         = "b82ece7f-25bd-4980-b79e-77d02e2ad842";
+    public const string PowerInertialBarrierBuff     = "df58d06b-e6f6-4444-a4d8-66433032a003";
+    public const string PowerZealousFury             = "8712a2e8-8fb8-45e3-a572-9fb1a4888b84";
+    public const string PowerZealousFuryBuff         = "9d815a02-c93f-4832-94b2-2d3124b42ebe";
+    public const string PowerEnergyAdaptation        = "2faa6fd6-87c9-4835-be69-32588b105fec";
+    public const string PowerEnergyAdaptationFire    = "6b680694-0adb-459c-bc67-3e14506f6521";
+    public const string PowerEnergyAdaptationFireBuff = "3c9e0aad-3b02-4fe5-95e6-07331629bf58";
+    public const string PowerEnergyAdaptationCold    = "9683fb6c-3616-4255-b4f5-e8f581acfd70";
+    public const string PowerEnergyAdaptationColdBuff = "30cde910-205f-4ec5-8432-aa22fb5fd9f1";
+    public const string PowerEnergyAdaptationElec    = "f3f1702e-909a-49c9-8339-d8d72654e6d3";
+    public const string PowerEnergyAdaptationElecBuff = "714eb70b-d628-488b-bf2e-44b75670fec8";
+    public const string PowerEnergyAdaptationAcid    = "e65b1556-5068-4e00-81f1-822cd1c92f14";
+    public const string PowerEnergyAdaptationAcidBuff = "82426e3e-875a-4126-9105-f128fb543cb3";
+    public const string PowerEnergyAdaptationSonic   = "99b02cba-a615-4c86-8cfb-4948f524521b";
+    public const string PowerEnergyAdaptationSonicBuff = "5e2ac24c-984b-4400-88b1-79912036f2ac";
+    public const string PowerBattleTransformation    = "a8878087-dc8d-4a52-baff-d9439f8416cf";
+    public const string PowerBattleTransformationBuff = "994096a0-fe24-4fc4-9b09-c92cca160ae6";
+    public const string PowerDimensionDoor           = "6094f147-9dcd-48e4-bd75-58a501348122";
+    public const string PowerFreedomOfMovement       = "730865f7-8759-4134-9eea-0933634f7c8c";
+    public const string PowerWeaponOfEnergy          = "bdaa6681-3ed7-48b6-b741-5b38be008174";
+    public const string PowerWeaponOfEnergyFire      = "aa7c6d5e-9cf4-44ed-9d64-6933e75aab56";
+    public const string PowerWeaponOfEnergyFireBuff  = "9d3aac95-a16f-48ee-95c5-ca2d1d0e8c57";
+    public const string PowerWeaponOfEnergyCold      = "8165bbac-0a9e-451c-b267-fcb615c0e6ee";
+    public const string PowerWeaponOfEnergyColdBuff  = "3c68a35a-15da-4b2c-acbe-58be9b06720f";
+    public const string PowerWeaponOfEnergyElectric  = "97c8ae63-d847-4b0c-aa77-73638cdf5695";
+    public const string PowerWeaponOfEnergyElectricBuff = "6009198e-8133-4301-aa09-28b79682e312";
+    public const string PowerWeaponOfEnergyAcid      = "57ba6d94-bfa9-45ac-85db-36b06918f745";
+    public const string PowerWeaponOfEnergyAcidBuff  = "e82e1bb9-9e3c-44c8-9dc4-9f6bb8fb8349";
+    public const string PowerSteadfastPerception     = "a736af3c-b7c8-4b83-998f-1d150627d914";
+    public const string PowerSteadfastPerceptionBuff = "56cc7a10-19a3-4ee3-b1de-cd072c7de8ef";
 }

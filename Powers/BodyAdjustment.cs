@@ -23,7 +23,7 @@ public static class BodyAdjustment
         AbilityConfigurator.New("PWBodyAdjustment", Guids.PowerBodyAdjustment)
             .SetDisplayName(Loc.Str("PW.BodyAdjustment.Name", "Body Adjustment", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.BodyAdjustment.Desc",
-                "Through psionic biomanipulation, you heal yourself for 2d8 + your manifester level (max +10) hit points.",
+                "Through psionic biomanipulation, you heal yourself. Heals 2d8 + 1d8 per 2 manifester levels above 3.",
                 tagEncyclopediaEntries: false))
             .SetIcon(AbilityRefs.CureModerateWounds.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
@@ -32,9 +32,13 @@ public static class BodyAdjustment
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(2, Guids.SpellList)
             .AddAbilityEffectRunAction(
-                ActionsBuilder.New().HealTarget(
-                    value: ContextDice.Value(DiceType.D8, 2, ContextValues.Rank())))
-            .AddContextRankConfig(ContextRankConfigs.CasterLevel(max: 10))
+                ActionsBuilder.New()
+                    .Add(new ContextActionLog { Message = "[BodyAdjustment] healing (rank=dice count; 2d8 at ML3 → 10d8 at ML20)", LogRank = true })
+                    .HealTarget(
+                        value: ContextDice.Value(DiceType.D8, ContextValues.Rank(), 0)))
+            .AddContextRankConfig(
+                ContextRankConfigs.CasterLevel().WithCustomProgression(
+                    (4, 2), (6, 3), (8, 4), (10, 5), (12, 6), (14, 7), (16, 8), (18, 9), (20, 10)))
             .AddSpellComponent(SpellSchool.Conjuration)
             .Configure();
     }

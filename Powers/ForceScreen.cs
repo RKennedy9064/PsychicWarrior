@@ -1,34 +1,51 @@
 using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints.Classes.Spells;
-using Kingmaker.UnitLogic.Abilities.Components;
+using Kingmaker.EntitySystem.Stats;
+using Kingmaker.Enums;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.Mechanics;
+using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Powers;
 
 public static class ForceScreen
 {
-    private const string ShieldSpellGuid = "ef768022b0785eb43a18969903c537c4";
-    private const string ShieldBuffGuid = "9c0fa9b438ada3f43864be8dd8b3e741";
-
     public static void Configure()
     {
+        var buff = BuffConfigurator.New("PWForceScreenBuff", Guids.PowerForceScreenBuff)
+            .SetDisplayName(Loc.Str("PW.ForceScreen.BuffName", "Force Screen"))
+            .SetDescription(Loc.Str("PW.ForceScreen.BuffDesc",
+                "An invisible disk of force hovers before you, granting a shield bonus to AC scaling with manifester level (+4 at ML 1, +1 per 2 levels)."))
+            .SetIcon(AbilityRefs.ShieldOfFaith.Reference.Get().Icon)
+            .AddContextStatBonus(descriptor: ModifierDescriptor.Shield, stat: StatType.AC, value: ContextValues.Rank())
+            .AddContextRankConfig(
+                ContextRankConfigs.CasterLevel().WithCustomProgression(
+                    (2, 4), (4, 5), (6, 6), (8, 7), (10, 8), (12, 9), (14, 10), (16, 11), (18, 12), (20, 13)))
+            .Configure();
+
         AbilityConfigurator.New("PWForceScreen", Guids.PowerForceScreen)
-            .CopyFrom(ShieldSpellGuid, typeof(AbilityEffectRunAction))
             .SetDisplayName(Loc.Str("PW.ForceScreen.Name", "Force Screen"))
-            .SetDescription(Loc.Str("PW.ForceScreen.Desc", "You create an invisible mobile disk of force that hovers in front of you. It grants a +4 shield bonus to Armor Class."))
+            .SetDescription(Loc.Str("PW.ForceScreen.Desc",
+                "You create an invisible mobile disk of force that hovers in front of you. It grants a shield bonus to AC scaling with manifester level (+4 at ML 1, +1 per 2 levels)."))
+            .SetIcon(AbilityRefs.ShieldOfFaith.Reference.Get().Icon)
+            .SetType(AbilityType.Supernatural)
+            .SetRange(AbilityRange.Personal)
+            .SetActionType(UnitCommand.CommandType.Standard)
+            .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(1, Guids.SpellList)
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
-                    .ApplyBuff(
-                        buff: ShieldBuffGuid,
-                        durationValue: ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes)))
-            .AddContextRankConfig(
-                ContextRankConfigs.CasterLevel())
+                    .Add(new ContextActionLog { Message = "[ForceScreen] applying shield (rank=ML; buff scales +4..+13 at ML 1..20)", LogRank = true })
+                    .ApplyBuff(buff, ContextDuration.Variable(ContextValues.Rank(), DurationRate.Minutes)))
+            .AddContextRankConfig(ContextRankConfigs.CasterLevel())
             .AddSpellComponent(SpellSchool.Abjuration)
             .Configure();
     }

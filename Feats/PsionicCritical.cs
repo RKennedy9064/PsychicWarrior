@@ -10,44 +10,40 @@ using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.Enums;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
-using Kingmaker.UnitLogic.Mechanics;
+using PsychicWarrior.HarmonyPatches;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Feats;
 
-public static class PsionicShot
+public static class PsionicCritical
 {
     public static void Configure()
     {
-        FeatureConfigurator.New("PsionicShotFeat", Guids.PsionicShotFeat)
-            .SetDisplayName(Loc.Str("PW.PsionicShot.Name", "Psionic Shot"))
-            .SetDescription(Loc.Str("PW.PsionicShot.Desc",
-                "While psionically focused, your ranged attacks deal additional damage scaling with manifester level (1d6 at ML 1, 2d6 at ML 2, 3d6 at ML 4)."))
-            .SetIcon(FeatureRefs.PointBlankShot.Reference.Get().Icon)
+        PsionicProficiencyPatch.RegisterPsionicFeat(Guids.PsionicCriticalFeat);
+
+        FeatureConfigurator.New("PsionicCriticalFeat", Guids.PsionicCriticalFeat)
+            .SetDisplayName(Loc.Str("PW.PsionicCritical.Name", "Psionic Critical"))
+            .SetDescription(Loc.Str("PW.PsionicCritical.Desc",
+                "While psionically focused, your critical hits deal an additional 1d8 points of damage."))
+            .SetIcon(FeatureRefs.VitalStrikeFeature.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
-            .AddPrerequisiteFeature(FeatureRefs.PointBlankShot.ToString())
-            .AddContextRankConfig(ContextRankConfigs.CasterLevel().WithCustomProgression((1, 1), (3, 2), (20, 3)))
             .AddInitiatorAttackWithWeaponTrigger(
                 action: ActionsBuilder.New().Conditional(
                     ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff),
                     ifTrue: ActionsBuilder.New()
-                        .Add(new ContextActionLog { Message = "[PsionicShot] ranged hit while focused", LogRank = true })
-                        .DealDamage(
-                            DamageTypes.Physical(),
-                            ContextDice.Value(DiceType.D6, ContextValues.Rank(), 0))),
+                        .Add(new ContextActionLog { Message = "[PsionicCritical] crit+focused — dealing 1d8" })
+                        .DealDamage(DamageTypes.Physical(), ContextDice.Value(DiceType.D8, 1, 0))),
                 onlyHit: true,
-                checkWeaponRangeType: true,
-                rangeType: WeaponRangeType.Ranged)
+                criticalHit: true)
             .AddRecommendedClass(Guids.PsychicWarriorClass)
             .Configure();
 
-        SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.PsionicShotFeat);
-        SafeAddFeatToSelection(FeatureSelectionRefs.FighterFeatSelection.ToString(), Guids.PsionicShotFeat);
-        SafeAddFeatToSelection(Guids.BonusFeatSelection, Guids.PsionicShotFeat);
+        SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.PsionicCriticalFeat);
+        SafeAddFeatToSelection(FeatureSelectionRefs.FighterFeatSelection.ToString(), Guids.PsionicCriticalFeat);
+        SafeAddFeatToSelection(Guids.BonusFeatSelection, Guids.PsionicCriticalFeat);
     }
 
     private static void SafeAddFeatToSelection(string selectionGuid, string featGuid)

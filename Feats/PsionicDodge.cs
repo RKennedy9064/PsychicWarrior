@@ -45,8 +45,13 @@ public static class PsionicDodge
             .AddBuffActions(
                 activated: ActionsBuilder.New().Conditional(
                     ConditionsBuilder.New().CasterHasFact(Guids.PsionicDodgeFeat),
-                    ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsionicDodgeBuff)),
-                deactivated: ActionsBuilder.New().RemoveBuff(Guids.PsionicDodgeBuff))
+                    ifTrue: ActionsBuilder.New()
+                        .Add(new ContextActionLogStat { Stat = StatType.AC, Label = "[PsionicDodge] before AC" })
+                        .ApplyBuffPermanent(Guids.PsionicDodgeBuff)
+                        .Add(new ContextActionLogStat { Stat = StatType.AC, Label = "[PsionicDodge] after  AC (expect +1 dodge)" })),
+                deactivated: ActionsBuilder.New()
+                    .Add(new ContextActionLogStat { Stat = StatType.AC, Label = "[PsionicDodge] focus lost — AC (pre-remove)" })
+                    .RemoveBuff(Guids.PsionicDodgeBuff))
             .Configure();
 
         SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.PsionicDodgeFeat);

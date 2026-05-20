@@ -13,6 +13,7 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Enums;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
+using Kingmaker.UnitLogic.Mechanics;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Feats;
@@ -23,16 +24,19 @@ public static class PsionicWeapon
     {
         var feat = FeatureConfigurator.New("PsionicWeaponFeat", Guids.PsionicWeaponFeat)
             .SetDisplayName(Loc.Str("PW.PsionicWeapon.Name", "Psionic Weapon"))
-            .SetDescription(Loc.Str("PW.PsionicWeapon.Desc", "While psionically focused, your melee attacks deal an additional 1d6 damage."))
+            .SetDescription(Loc.Str("PW.PsionicWeapon.Desc", "While psionically focused, your melee attacks deal additional damage scaling with manifester level (1d6 at ML 1, 2d6 at ML 2, 3d6 at ML 4)."))
             .SetIcon(FeatureRefs.VitalStrikeFeature.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
+            .AddContextRankConfig(ContextRankConfigs.CasterLevel().WithCustomProgression((1, 1), (3, 2), (20, 3)))
             .AddInitiatorAttackWithWeaponTrigger(
                 action: ActionsBuilder.New().Conditional(
                     ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff),
-                    ifTrue: ActionsBuilder.New().DealDamage(
-                        DamageTypes.Physical(),
-                        ContextDice.Value(DiceType.D6, 1))),
+                    ifTrue: ActionsBuilder.New()
+                        .Add(new ContextActionLog { Message = "[PsionicWeapon] melee hit while focused", LogRank = true })
+                        .DealDamage(
+                            DamageTypes.Physical(),
+                            ContextDice.Value(DiceType.D6, ContextValues.Rank(), 0))),
                 onlyHit: true,
                 checkWeaponRangeType: true,
                 rangeType: WeaponRangeType.Melee)

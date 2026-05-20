@@ -45,8 +45,13 @@ public static class SpeedOfThought
             .AddBuffActions(
                 activated: ActionsBuilder.New().Conditional(
                     ConditionsBuilder.New().CasterHasFact(Guids.SpeedOfThoughtFeat),
-                    ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SpeedOfThoughtBuff)),
-                deactivated: ActionsBuilder.New().RemoveBuff(Guids.SpeedOfThoughtBuff))
+                    ifTrue: ActionsBuilder.New()
+                        .Add(new ContextActionLogStat { Stat = StatType.Speed, Label = "[SpeedOfThought] before Speed" })
+                        .ApplyBuffPermanent(Guids.SpeedOfThoughtBuff)
+                        .Add(new ContextActionLogStat { Stat = StatType.Speed, Label = "[SpeedOfThought] after  Speed (expect +10)" })),
+                deactivated: ActionsBuilder.New()
+                    .Add(new ContextActionLogStat { Stat = StatType.Speed, Label = "[SpeedOfThought] focus lost — Speed (pre-remove)" })
+                    .RemoveBuff(Guids.SpeedOfThoughtBuff))
             .Configure();
 
         SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.SpeedOfThoughtFeat);

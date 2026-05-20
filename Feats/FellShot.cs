@@ -3,6 +3,7 @@ using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
@@ -12,46 +13,52 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
-using Kingmaker.RuleSystem;
-using Kingmaker.RuleSystem.Rules.Damage;
-using Kingmaker.UnitLogic.Mechanics;
+using Kingmaker.UnitLogic;
 using PsychicWarrior.HarmonyPatches;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Feats;
 
-public static class GreaterPsionicShot
+public static class FellShot
 {
     public static void Configure()
     {
-        PsionicProficiencyPatch.RegisterPsionicFeat(Guids.GreaterPsionicShotFeat);
+        PsionicProficiencyPatch.RegisterPsionicFeat(Guids.FellShotFeat);
 
-        FeatureConfigurator.New("GreaterPsionicShotFeat", Guids.GreaterPsionicShotFeat)
-            .SetDisplayName(Loc.Str("PW.GreaterPsionicShot.Name", "Greater Psionic Shot"))
-            .SetDescription(Loc.Str("PW.GreaterPsionicShot.Desc",
-                "While psionically focused, your ranged attacks deal additional damage scaling with manifester level (1d6 at ML 1, 2d6 at ML 2, 3d6 at ML 4). Stacks with Psionic Shot."))
+        BuffConfigurator.New("FellShotDebuff", Guids.FellShotDebuff)
+            .SetDisplayName(Loc.Str("PW.FellShot.DebuffName", "Fell Shot"))
+            .SetDescription(Loc.Str("PW.FellShot.DebuffDesc",
+                "This target has been struck with psionic force and loses their Dexterity bonus to AC."))
+            .SetIcon(FeatureRefs.PointBlankShot.Reference.Get().Icon)
+            .AddCondition(UnitCondition.LoseDexterityToAC)
+            .Configure();
+
+        FeatureConfigurator.New("FellShotFeat", Guids.FellShotFeat)
+            .SetDisplayName(Loc.Str("PW.FellShot.Name", "Fell Shot"))
+            .SetDescription(Loc.Str("PW.FellShot.Desc",
+                "While psionically focused, your ranged attacks treat the target as flat-footed for 1 round."))
             .SetIcon(FeatureRefs.PointBlankShot.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
+            .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddPrerequisiteFeature(Guids.PsionicShotFeat)
-            .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 5)
-            .AddContextRankConfig(ContextRankConfigs.CasterLevel().WithCustomProgression((1, 1), (3, 2), (20, 3)))
+            .AddPrerequisiteStatValue(StatType.Dexterity, 13)
+            .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 6)
+            .AddPrerequisiteFeature(FeatureRefs.PointBlankShot.ToString())
             .AddInitiatorAttackWithWeaponTrigger(
                 action: ActionsBuilder.New().Conditional(
                     ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff),
                     ifTrue: ActionsBuilder.New()
-                        .Add(new ContextActionLog { Message = "[GreaterPsionicShot] ranged hit while focused", LogRank = true })
-                        .DealDamage(
-                            DamageTypes.Physical(),
-                            ContextDice.Value(DiceType.D6, ContextValues.Rank(), 0))),
+                        .Add(new ContextActionLog { Message = "[FellShot] ranged hit while focused — applying flat-footed 1r" })
+                        .ApplyBuff(Guids.FellShotDebuff, ContextDuration.Fixed(1))),
                 onlyHit: true,
                 checkWeaponRangeType: true,
                 rangeType: WeaponRangeType.Ranged)
             .AddRecommendedClass(Guids.PsychicWarriorClass)
             .Configure();
 
-        SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.GreaterPsionicShotFeat);
-        SafeAddFeatToSelection(FeatureSelectionRefs.FighterFeatSelection.ToString(), Guids.GreaterPsionicShotFeat);
-        SafeAddFeatToSelection(Guids.BonusFeatSelection, Guids.GreaterPsionicShotFeat);
+        SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.FellShotFeat);
+        SafeAddFeatToSelection(FeatureSelectionRefs.FighterFeatSelection.ToString(), Guids.FellShotFeat);
+        SafeAddFeatToSelection(Guids.BonusFeatSelection, Guids.FellShotFeat);
     }
 
     private static void SafeAddFeatToSelection(string selectionGuid, string featGuid)

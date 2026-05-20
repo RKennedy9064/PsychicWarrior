@@ -19,43 +19,45 @@ using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Feats;
 
-public static class DeepImpact
+public static class UnavoidableStrike
 {
     public static void Configure()
     {
-        PsionicProficiencyPatch.RegisterPsionicFeat(Guids.DeepImpactFeat);
+        PsionicProficiencyPatch.RegisterPsionicFeat(Guids.UnavoidableStrikeFeat);
 
-        BuffConfigurator.New("DeepImpactDebuff", Guids.DeepImpactDebuff)
-            .SetDisplayName(Loc.Str("PW.DeepImpact.DebuffName", "Deep Impact"))
-            .SetDescription(Loc.Str("PW.DeepImpact.DebuffDesc",
+        BuffConfigurator.New("UnavoidableStrikeDebuff", Guids.UnavoidableStrikeDebuff)
+            .SetDisplayName(Loc.Str("PW.UnavoidableStrike.DebuffName", "Unavoidable Strike"))
+            .SetDescription(Loc.Str("PW.UnavoidableStrike.DebuffDesc",
                 "This target has been struck with psionic force and loses their Dexterity bonus to AC."))
-            .SetIcon(FeatureRefs.VitalStrikeFeature.Reference.Get().Icon)
+            .SetIcon(FeatureRefs.ImprovedUnarmedStrike.Reference.Get().Icon)
             .AddCondition(UnitCondition.LoseDexterityToAC)
             .Configure();
 
-        FeatureConfigurator.New("DeepImpactFeat", Guids.DeepImpactFeat)
-            .SetDisplayName(Loc.Str("PW.DeepImpact.Name", "Deep Impact"))
-            .SetDescription(Loc.Str("PW.DeepImpact.Desc",
-                "While psionically focused, your melee attacks treat the target as flat-footed for 1 round."))
-            .SetIcon(FeatureRefs.VitalStrikeFeature.Reference.Get().Icon)
+        FeatureConfigurator.New("UnavoidableStrikeFeat", Guids.UnavoidableStrikeFeat)
+            .SetDisplayName(Loc.Str("PW.UnavoidableStrike.Name", "Unavoidable Strike"))
+            .SetDescription(Loc.Str("PW.UnavoidableStrike.Desc",
+                "While psionically focused, your unarmed and natural weapon attacks treat the target as flat-footed for 1 round."))
+            .SetIcon(FeatureRefs.ImprovedUnarmedStrike.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
-            .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 5)
+            .AddPrerequisiteFeature(Guids.PsionicFistFeat)
+            .AddPrerequisiteStatValue(StatType.Strength, 13)
+            .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 6)
             .AddInitiatorAttackWithWeaponTrigger(
                 action: ActionsBuilder.New().Conditional(
                     ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff),
                     ifTrue: ActionsBuilder.New()
-                        .Add(new ContextActionLog { Message = "[DeepImpact] melee hit while focused — applying flat-footed 1r" })
-                        .ApplyBuff(Guids.DeepImpactDebuff, ContextDuration.Fixed(1))),
+                        .Add(new ContextActionLog { Message = "[UnavoidableStrike] melee hit while focused — applying flat-footed 1r" })
+                        .ApplyBuff(Guids.UnavoidableStrikeDebuff, ContextDuration.Fixed(1))),
                 onlyHit: true,
                 checkWeaponRangeType: true,
                 rangeType: WeaponRangeType.Melee)
             .AddRecommendedClass(Guids.PsychicWarriorClass)
             .Configure();
 
-        SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.DeepImpactFeat);
-        SafeAddFeatToSelection(FeatureSelectionRefs.FighterFeatSelection.ToString(), Guids.DeepImpactFeat);
-        SafeAddFeatToSelection(Guids.BonusFeatSelection, Guids.DeepImpactFeat);
+        SafeAddFeatToSelection(FeatureSelectionRefs.BasicFeatSelection.ToString(), Guids.UnavoidableStrikeFeat);
+        SafeAddFeatToSelection(FeatureSelectionRefs.FighterFeatSelection.ToString(), Guids.UnavoidableStrikeFeat);
+        SafeAddFeatToSelection(Guids.BonusFeatSelection, Guids.UnavoidableStrikeFeat);
     }
 
     private static void SafeAddFeatToSelection(string selectionGuid, string featGuid)

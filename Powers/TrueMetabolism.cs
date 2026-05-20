@@ -23,16 +23,19 @@ public static class TrueMetabolism
         var buff = BuffConfigurator.New("PWTrueMetabolismBuff", Guids.PowerTrueMetabolismBuff)
             .SetDisplayName(Loc.Str("PW.TrueMetabolism.BuffName", "True Metabolism", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.TrueMetabolism.BuffDesc",
-                "You are regenerating rapidly, healing 5 hit points each round.",
+                "You are regenerating rapidly. Fast healing 5 at ML 9, improving by 1 per 4 manifester levels.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
-            .AddEffectFastHealing(heal: 5)
+            .AddEffectFastHealing(0, ContextValues.Rank())
+            .AddContextRankConfig(
+                ContextRankConfigs.CasterLevel().WithCustomProgression(
+                    (12, 5), (16, 6), (20, 7)))
             .Configure();
 
         AbilityConfigurator.New("PWTrueMetabolism", Guids.PowerTrueMetabolism)
             .SetDisplayName(Loc.Str("PW.TrueMetabolism.Name", "True Metabolism", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.TrueMetabolism.Desc",
-                "Your cells regenerate at a remarkable rate. You gain fast healing 5 for 1 round per manifester level.",
+                "Your cells regenerate at a remarkable rate. Fast healing 5 at ML 9, improving by 1 per 4 manifester levels.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
@@ -41,9 +44,9 @@ public static class TrueMetabolism
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(5, Guids.SpellList)
             .AddAbilityEffectRunAction(
-                ActionsBuilder.New().ApplyBuff(
-                    buff,
-                    ContextDuration.Variable(ContextValues.Rank(), DurationRate.Rounds)))
+                ActionsBuilder.New()
+                    .Add(new ContextActionLog { Message = "[TrueMetabolism] applying fast healing (rank=ML; buff scales FH5/FH6/FH7 at ML 9/13/17)", LogRank = true })
+                    .ApplyBuff(buff, ContextDuration.Variable(ContextValues.Rank(), DurationRate.Rounds)))
             .AddContextRankConfig(ContextRankConfigs.CasterLevel())
             .AddSpellComponent(SpellSchool.Transmutation)
             .Configure();

@@ -41,6 +41,9 @@ public static class PsychicWarriorSpellbook
                 }
 
                 // 1st-level powers
+                bp.SpellsByLevel[1].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerMetaphysicalClaw));
+                bp.SpellsByLevel[1].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerExpansion));
+                bp.SpellsByLevel[1].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerCompression));
                 bp.SpellsByLevel[1].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerVigor));
                 bp.SpellsByLevel[1].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerForceScreen));
                 bp.SpellsByLevel[1].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerInertialArmor));
@@ -49,6 +52,8 @@ public static class PsychicWarriorSpellbook
                 bp.SpellsByLevel[1].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerMetaphysicalWeapon));
 
                 // 2nd-level powers
+                bp.SpellsByLevel[2].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerPsionicLionsCharge));
+                bp.SpellsByLevel[2].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerConcealingAmorpha));
                 bp.SpellsByLevel[2].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerBodyAdjustment));
                 bp.SpellsByLevel[2].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerBodyPurification));
                 bp.SpellsByLevel[2].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerStrengthOfMyEnemy));
@@ -62,17 +67,26 @@ public static class PsychicWarriorSpellbook
                 bp.SpellsByLevel[5].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerTrueSeeing));
 
                 // 6th-level powers
+                bp.SpellsByLevel[6].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerBodyOfIron));
                 bp.SpellsByLevel[6].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerDisintegratePsionic));
                 bp.SpellsByLevel[6].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerMindBlankPersonal));
                 bp.SpellsByLevel[6].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerOakBody));
 
                 // 4th-level powers
+                bp.SpellsByLevel[4].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerEnergyAdaptation));
+                bp.SpellsByLevel[4].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerBattleTransformation));
+                bp.SpellsByLevel[4].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerInertialBarrier));
+                bp.SpellsByLevel[4].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerZealousFury));
                 bp.SpellsByLevel[4].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerDimensionDoor));
                 bp.SpellsByLevel[4].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerFreedomOfMovement));
                 bp.SpellsByLevel[4].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerWeaponOfEnergy));
                 bp.SpellsByLevel[4].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerSteadfastPerception));
 
                 // 3rd-level powers
+                bp.SpellsByLevel[3].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerEvadeBurst));
+                bp.SpellsByLevel[3].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerUbiquitousVision));
+                bp.SpellsByLevel[3].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerPhysicalAcceleration));
+                bp.SpellsByLevel[3].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerDimensionSlide));
                 bp.SpellsByLevel[3].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerVampiricBlade));
                 bp.SpellsByLevel[3].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerMentalBarrier));
                 bp.SpellsByLevel[3].m_Spells.Add(BlueprintTool.GetRef<BlueprintAbilityReference>(Guids.PowerConcealingAmorphaGreater));

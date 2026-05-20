@@ -1,6 +1,7 @@
 .vs/
 .claude/
 bin/
+docs/
 obj/
 BLUEPRINT.md
 GAPS.md

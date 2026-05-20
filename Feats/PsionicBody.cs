@@ -38,6 +38,14 @@ public static class PsionicBody
         Guids.ExpandedKnowledgeFeat,
         Guids.UpTheWallsFeat,
         Guids.PsionicEndowmentFeat,
+        // Tier 1 new feats
+        Guids.PsionicCriticalFeat,
+        Guids.WoundingAttackFeat,
+        Guids.FellShotFeat,
+        Guids.UnavoidableStrikeFeat,
+        Guids.IntuitiveFightingFeat,
+        Guids.RecklessOffenseFeat,
+        Guids.AlignedAttackFeat,
     ];
 
     public static void Configure()

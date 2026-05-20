@@ -54,12 +54,19 @@ public static class BlueprintInit
         Run(nameof(Features.TalentsSelection),       Features.TalentsSelection.Configure,        logger);
 
         // ── Phase 3: 1st-level powers ──────────────────────────────────────────
+        Run(nameof(Powers.Expansion),                Powers.Expansion.Configure,                 logger);
+        Run(nameof(Powers.Compression),              Powers.Compression.Configure,               logger);
+        Run(nameof(Powers.MetaphysicalClaw),         Powers.MetaphysicalClaw.Configure,          logger);
         Run(nameof(Powers.Vigor),                    Powers.Vigor.Configure,                     logger);
         Run(nameof(Powers.ForceScreen),              Powers.ForceScreen.Configure,               logger);
         Run(nameof(Powers.InertialArmor),            Powers.InertialArmor.Configure,             logger);
         Run(nameof(Powers.ThickenSkin),              Powers.ThickenSkin.Configure,               logger);
         Run(nameof(Powers.Biofeedback),              Powers.Biofeedback.Configure,               logger);
         Run(nameof(Powers.MetaphysicalWeapon),       Powers.MetaphysicalWeapon.Configure,        logger);
+
+        // ── Phase 3b: 2nd-level powers ─────────────────────────────────────────
+        Run(nameof(Powers.PsionicLionsCharge),       Powers.PsionicLionsCharge.Configure,        logger);
+        Run(nameof(Powers.ConcealingAmorpha),        Powers.ConcealingAmorpha.Configure,         logger);
 
         // ── Phase 8: 2nd-level powers ──────────────────────────────────────────
         Run(nameof(Powers.BodyAdjustment),           Powers.BodyAdjustment.Configure,            logger);
@@ -75,6 +82,7 @@ public static class BlueprintInit
         Run(nameof(Powers.TrueSeeing),               Powers.TrueSeeing.Configure,                logger);
 
         // ── Phase 14: 6th-level powers ─────────────────────────────────────────
+        Run(nameof(Powers.BodyOfIron),               Powers.BodyOfIron.Configure,                logger);
         Run(nameof(Powers.DisintegratePsionic),      Powers.DisintegratePsionic.Configure,       logger);
         Run(nameof(Powers.MindBlankPersonalPsionic),Powers.MindBlankPersonalPsionic.Configure, logger);
         Run(nameof(Powers.OakBody),                  Powers.OakBody.Configure,                   logger);
@@ -84,6 +92,18 @@ public static class BlueprintInit
         Run(nameof(Powers.FreedomOfMovement),        Powers.FreedomOfMovement.Configure,         logger);
         Run(nameof(Powers.WeaponOfEnergy),           Powers.WeaponOfEnergy.Configure,            logger);
         Run(nameof(Powers.SteadfastPerception),      Powers.SteadfastPerception.Configure,       logger);
+
+        // ── Phase 3c: 3rd-level powers ─────────────────────────────────────────
+        Run(nameof(Powers.PhysicalAcceleration),     Powers.PhysicalAcceleration.Configure,      logger);
+        Run(nameof(Powers.DimensionSlide),           Powers.DimensionSlide.Configure,            logger);
+        Run(nameof(Powers.EvadeBurst),               Powers.EvadeBurst.Configure,                logger);
+        Run(nameof(Powers.UbiquitousVision),         Powers.UbiquitousVision.Configure,          logger);
+
+        // ── Phase 3d: 4th-level powers ─────────────────────────────────────────
+        Run(nameof(Powers.InertialBarrier),          Powers.InertialBarrier.Configure,           logger);
+        Run(nameof(Powers.ZealousFury),              Powers.ZealousFury.Configure,               logger);
+        Run(nameof(Powers.EnergyAdaptation),         Powers.EnergyAdaptation.Configure,          logger);
+        Run(nameof(Powers.BattleTransformation),     Powers.BattleTransformation.Configure,      logger);
 
         // ── Phase 9: 3rd-level powers ──────────────────────────────────────────
         Run(nameof(Powers.VampiricBlade),            Powers.VampiricBlade.Configure,             logger);
@@ -136,6 +156,15 @@ public static class BlueprintInit
         Run(nameof(Feats.DeepImpact),                Feats.DeepImpact.Configure,                 logger);
         Run(nameof(Feats.UpTheWalls),                Feats.UpTheWalls.Configure,                 logger);
         Run(nameof(Feats.PsionicEndowment),          Feats.PsionicEndowment.Configure,           logger);
+
+        // ── Tier 1 feats ──────────────────────────────────────────────────────
+        Run(nameof(Feats.PsionicCritical),           Feats.PsionicCritical.Configure,            logger);
+        Run(nameof(Feats.RecklessOffense),           Feats.RecklessOffense.Configure,            logger);
+        Run(nameof(Feats.AlignedAttack),             Feats.AlignedAttack.Configure,              logger);
+        Run(nameof(Feats.WoundingAttack),            Feats.WoundingAttack.Configure,             logger);
+        Run(nameof(Feats.FellShot),                  Feats.FellShot.Configure,                   logger);
+        Run(nameof(Feats.UnavoidableStrike),         Feats.UnavoidableStrike.Configure,          logger);
+        Run(nameof(Feats.IntuitiveFighting),         Feats.IntuitiveFighting.Configure,          logger);
 
         // ── Phase 15: Level 20 Capstone ───────────────────────────────────────
         Run(nameof(Features.EternalWarrior),             Features.EternalWarrior.Configure,             logger);

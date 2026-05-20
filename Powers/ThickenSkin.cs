@@ -22,15 +22,18 @@ public static class ThickenSkin
         var buff = BuffConfigurator.New("PWThickenSkinBuff", Guids.PowerThickenSkinBuff)
             .SetDisplayName(Loc.Str("PW.ThickenSkin.BuffName", "Thicken Skin"))
             .SetDescription(Loc.Str("PW.ThickenSkin.BuffDesc",
-                "Your skin thickens and toughens, granting a +1 natural armor bonus to AC."))
+                "Your skin thickens and toughens, granting a natural armor bonus to AC scaling with manifester level (+1 at ML 1, +2 at ML 7, +3 at ML 13, +4 at ML 19)."))
             .SetIcon(AbilityRefs.Barkskin.Reference.Get().Icon)
-            .AddStatBonus(descriptor: ModifierDescriptor.NaturalArmor, stat: Kingmaker.EntitySystem.Stats.StatType.AC, value: 1)
+            .AddContextStatBonus(descriptor: ModifierDescriptor.NaturalArmor, stat: Kingmaker.EntitySystem.Stats.StatType.AC, value: ContextValues.Rank())
+            .AddContextRankConfig(
+                ContextRankConfigs.CasterLevel().WithCustomProgression(
+                    (6, 1), (12, 2), (18, 3), (20, 4)))
             .Configure();
 
         AbilityConfigurator.New("PWThickenSkin", Guids.PowerThickenSkin)
             .SetDisplayName(Loc.Str("PW.ThickenSkin.Name", "Thicken Skin"))
             .SetDescription(Loc.Str("PW.ThickenSkin.Desc",
-                "Your skin thickens and toughens, granting a +1 natural armor bonus to AC for 1 hour."))
+                "Your skin thickens and toughens, granting a natural armor bonus to AC scaling with manifester level (+1 at ML 1, +2 at ML 7, +3 at ML 13, +4 at ML 19)."))
             .SetIcon(AbilityRefs.Barkskin.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
@@ -39,7 +42,9 @@ public static class ThickenSkin
             .AddSpellListComponent(1, Guids.SpellList)
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
+                    .Add(new ContextActionLog { Message = "[ThickenSkin] applying natural armor (rank=ML; buff scales +1/+2/+3/+4 at ML 1/7/13/19)", LogRank = true })
                     .ApplyBuff(buff, ContextDuration.Fixed(1, DurationRate.Hours)))
+            .AddContextRankConfig(ContextRankConfigs.CasterLevel())
             .AddSpellComponent(SpellSchool.Transmutation)
             .Configure();
     }
