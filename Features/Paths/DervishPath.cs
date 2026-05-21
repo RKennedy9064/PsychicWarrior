@@ -67,11 +67,14 @@ public static class DervishPath
 
         // Expanded — Whirlwind Step: Haste-like spinning attack for 1 round
         var expandedBuff = BuffConfigurator.New("DervishExpandedManeuverBuff", Guids.DervishExpandedBuff)
-            .CopyFrom(BuffRefs.HasteBuff)
             .SetDisplayName(Loc.Str("PW.DervishExpanded.BuffName", "Whirlwind Step"))
             .SetDescription(Loc.Str("PW.DervishExpanded.BuffDesc",
                 "You spin in a deadly whirlwind: gain the benefits of haste (extra attack, +1 dodge AC, +1 Reflex, +30 ft speed)."))
             .SetIcon(icon)
+            .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.AC, value: 1)
+            .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.SaveReflex, value: 1)
+            .AddBuffMovementSpeed(descriptor: ModifierDescriptor.Enhancement, value: 30)
+            .AddBuffExtraAttack(haste: true, number: 1)
             .Configure();
 
         var expandedAbility = AbilityConfigurator.New("DervishExpandedManeuverAbility", Guids.DervishExpandedAbility)
@@ -87,6 +90,7 @@ public static class DervishPath
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
+                    .Add(new ContextActionLog { Message = "[DervishPath] Whirlwind Step: applying haste 1 round" })
                     .ApplyBuff(expandedBuff, ContextDuration.Fixed(1)))
             .AddAbilityShowIfCasterHasFact(not: false, unitFact: Guids.DervishExpandedFeature)
             .Configure();

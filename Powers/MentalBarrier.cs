@@ -41,7 +41,7 @@ public static class MentalBarrier
         AbilityConfigurator.New("PWMentalBarrier", Guids.PowerMentalBarrier)
             .SetDisplayName(Loc.Str("PW.MentalBarrier.Name", "Mental Barrier", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.MentalBarrier.Desc",
-                "You raise a barrier of pure mental energy, gaining a +4 deflection bonus to AC at ML 5, improving by 1 per 2 manifester levels.",
+                "You raise a barrier of pure mental energy for 1 round per manifester level, gaining a +4 deflection bonus to AC at ML 5, improving by 1 per 2 manifester levels.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)

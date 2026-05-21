@@ -1,7 +1,6 @@
 using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
-using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
@@ -25,16 +24,6 @@ public static class ConcealingAmorphaGreater
     {
         var icon = AbilityRefs.Displacement.Reference.Get().Icon;
 
-        // Wrap WoTR's DisplacementBuff so we can apply it with our duration scaling and naming
-        var buff = BuffConfigurator.New("PWConcealingAmorphaGreaterBuff", Guids.PowerConcealingAmorphaGreaterBuff)
-            .CopyFrom(BuffRefs.DisplacementBuff)
-            .SetDisplayName(Loc.Str("PW.ConcealingAmorphaGreater.BuffName", "Concealing Amorpha, Greater", tagEncyclopediaEntries: false))
-            .SetDescription(Loc.Str("PW.ConcealingAmorphaGreater.BuffDesc",
-                "Psionic matter surrounds you, granting 50% miss chance against attacks.",
-                tagEncyclopediaEntries: false))
-            .SetIcon(icon)
-            .Configure();
-
         AbilityConfigurator.New("PWConcealingAmorphaGreater", Guids.PowerConcealingAmorphaGreater)
             .SetDisplayName(Loc.Str("PW.ConcealingAmorphaGreater.Name", "Concealing Amorpha, Greater", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.ConcealingAmorphaGreater.Desc",
@@ -45,12 +34,12 @@ public static class ConcealingAmorphaGreater
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
-            .AddSpellListComponent(3, Guids.SpellList)
             .AddAbilityEffectRunAction(
-                ActionsBuilder.New().ApplyBuff(
-                    buff,
-                    ContextDuration.Variable(ContextValues.Rank(), DurationRate.Rounds)))
+                ActionsBuilder.New()
+                    .Add(new ContextActionLog { Message = "[ConcealingAmorphaGreater] applying 50% miss chance (1 round/ML)", LogRank = true })
+                    .ApplyBuff(BuffRefs.DisplacementBuff.ToString(), ContextDuration.Variable(ContextValues.Rank(), DurationRate.Rounds)))
             .AddContextRankConfig(ContextRankConfigs.CasterLevel())
+            .AddSpellListComponent(3, Guids.SpellList)
             .AddSpellComponent(SpellSchool.Conjuration)
             .Configure();
     }

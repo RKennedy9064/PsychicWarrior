@@ -33,7 +33,7 @@ public static class InertialArmor
         AbilityConfigurator.New("PWInertialArmor", Guids.PowerInertialArmor)
             .SetDisplayName(Loc.Str("PW.InertialArmor.Name", "Inertial Armor"))
             .SetDescription(Loc.Str("PW.InertialArmor.Desc",
-                "You create an invisible psychokinetic field around your body. You gain an armor bonus to AC scaling with manifester level (+4 at ML 1, +1 per 2 levels). Unlike mundane armor, inertial armor never results in armor check penalties or arcane spell failure."))
+                "You create an invisible psychokinetic field around your body for 1 hour. You gain an armor bonus to AC scaling with manifester level (+4 at ML 1, +1 per 2 levels). Unlike mundane armor, inertial armor never results in armor check penalties or arcane spell failure."))
             .SetIcon(AbilityRefs.MageArmor.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)

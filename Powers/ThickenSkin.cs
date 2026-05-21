@@ -33,7 +33,7 @@ public static class ThickenSkin
         AbilityConfigurator.New("PWThickenSkin", Guids.PowerThickenSkin)
             .SetDisplayName(Loc.Str("PW.ThickenSkin.Name", "Thicken Skin"))
             .SetDescription(Loc.Str("PW.ThickenSkin.Desc",
-                "Your skin thickens and toughens, granting a natural armor bonus to AC. The bonus increases by 1 for every 3 manifester levels (+1 at ML 1, +2 at ML 4, +3 at ML 7, +4 at ML 10, +5 at ML 13, +6 at ML 16, +7 at ML 19)."))
+                "Your skin thickens and toughens, granting a natural armor bonus to AC for 1 hour. The bonus increases by 1 for every 3 manifester levels (+1 at ML 1, +2 at ML 4, +3 at ML 7, +4 at ML 10, +5 at ML 13, +6 at ML 16, +7 at ML 19)."))
             .SetIcon(AbilityRefs.Barkskin.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)

@@ -68,11 +68,11 @@ public static class FeralWarriorPath
 
         // Expanded — Feral Rend: keen weapon edge (doubled threat range) for 1 round
         var expandedBuff = BuffConfigurator.New("FeralWarriorExpandedManeuverBuff", Guids.FeralWarriorExpandedBuff)
-            .CopyFrom(BuffRefs.ArcaneWeaponKeenBuff)
             .SetDisplayName(Loc.Str("PW.FeralWarriorExpanded.BuffName", "Feral Rend"))
             .SetDescription(Loc.Str("PW.FeralWarriorExpanded.BuffDesc",
                 "Your weapons take on a feral edge — doubled critical threat range."))
             .SetIcon(icon)
+            .AddWeaponCriticalEdgeIncreaseStackable(value: 1)
             .Configure();
 
         var expandedAbility = AbilityConfigurator.New("FeralWarriorExpandedManeuverAbility", Guids.FeralWarriorExpandedAbility)
@@ -88,6 +88,7 @@ public static class FeralWarriorPath
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
+                    .Add(new ContextActionLog { Message = "[FeralWarriorPath] Feral Rend: applying keen crit edge 1 round" })
                     .ApplyBuff(expandedBuff, ContextDuration.Fixed(1)))
             .AddAbilityShowIfCasterHasFact(not: false, unitFact: Guids.FeralWarriorExpandedFeature)
             .Configure();

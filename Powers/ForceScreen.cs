@@ -34,7 +34,7 @@ public static class ForceScreen
         AbilityConfigurator.New("PWForceScreen", Guids.PowerForceScreen)
             .SetDisplayName(Loc.Str("PW.ForceScreen.Name", "Force Screen"))
             .SetDescription(Loc.Str("PW.ForceScreen.Desc",
-                "You create an invisible mobile disk of force that hovers in front of you. It grants a shield bonus to AC scaling with manifester level (+4 at ML 1, +1 per 2 levels)."))
+                "You create an invisible mobile disk of force that hovers in front of you. It grants a shield bonus to AC scaling with manifester level (+4 at ML 1, +1 per 2 levels) for 1 minute per manifester level."))
             .SetIcon(AbilityRefs.ShieldOfFaith.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)

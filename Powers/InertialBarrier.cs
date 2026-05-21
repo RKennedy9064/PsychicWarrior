@@ -34,7 +34,7 @@ public static class InertialBarrier
         AbilityConfigurator.New("PWInertialBarrier", Guids.PowerInertialBarrier)
             .SetDisplayName(Loc.Str("PW.InertialBarrier.Name", "Inertial Barrier"))
             .SetDescription(Loc.Str("PW.InertialBarrier.Desc",
-                "You surround your body with an invisible field of psionic force. DR 5/— at ML 7, improving by 1 per 2 manifester levels."))
+                "You surround your body with an invisible field of psionic force for 10 minutes per manifester level. DR 5/— at ML 7, improving by 1 per 2 manifester levels."))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)

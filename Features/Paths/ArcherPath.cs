@@ -67,11 +67,14 @@ public static class ArcherPath
 
         // Expanded — Twin Shot: Haste-like acceleration for 1 round
         var expandedBuff = BuffConfigurator.New("ArcherExpandedManeuverBuff", Guids.ArcherExpandedBuff)
-            .CopyFrom(BuffRefs.HasteBuff)
             .SetDisplayName(Loc.Str("PW.ArcherExpanded.BuffName", "Twin Shot"))
             .SetDescription(Loc.Str("PW.ArcherExpanded.BuffDesc",
                 "Psionic acceleration drives your arms: gain the benefits of haste — extra attack on full attacks, +1 dodge AC, +1 Reflex, +30 ft speed."))
             .SetIcon(icon)
+            .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.AC, value: 1)
+            .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.SaveReflex, value: 1)
+            .AddBuffMovementSpeed(descriptor: ModifierDescriptor.Enhancement, value: 30)
+            .AddBuffExtraAttack(haste: true, number: 1)
             .Configure();
 
         var expandedAbility = AbilityConfigurator.New("ArcherExpandedManeuverAbility", Guids.ArcherExpandedAbility)
@@ -87,6 +90,7 @@ public static class ArcherPath
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
+                    .Add(new ContextActionLog { Message = "[ArcherPath] Twin Shot: applying haste 1 round" })
                     .ApplyBuff(expandedBuff, ContextDuration.Fixed(1)))
             .AddAbilityShowIfCasterHasFact(not: false, unitFact: Guids.ArcherExpandedFeature)
             .Configure();

@@ -6,6 +6,7 @@ using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints.Classes.Spells;
+using Kingmaker.RuleSystem;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.Mechanics;
@@ -26,7 +27,10 @@ public static class TrueMetabolism
                 "You are regenerating rapidly. Fast healing 5 at ML 9, improving by 1 per 4 manifester levels.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
-            .AddEffectFastHealing(0, ContextValues.Rank())
+            .AddBuffActions(
+                newRound: ActionsBuilder.New()
+                    .Add(new ContextActionLog { Message = "[TrueMetabolism] fast healing tick", LogRank = true })
+                    .HealTarget(ContextDice.Value(DiceType.One, ContextValues.Rank(), 0)))
             .AddContextRankConfig(
                 ContextRankConfigs.CasterLevel().WithCustomProgression(
                     (12, 5), (16, 6), (20, 7)))
@@ -35,7 +39,7 @@ public static class TrueMetabolism
         AbilityConfigurator.New("PWTrueMetabolism", Guids.PowerTrueMetabolism)
             .SetDisplayName(Loc.Str("PW.TrueMetabolism.Name", "True Metabolism", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.TrueMetabolism.Desc",
-                "Your cells regenerate at a remarkable rate. Fast healing 5 at ML 9, improving by 1 per 4 manifester levels.",
+                "Your cells regenerate at a remarkable rate for 1 round per manifester level. Fast healing 5 at ML 9, improving by 1 per 4 manifester levels.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)

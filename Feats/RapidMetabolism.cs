@@ -11,6 +11,8 @@ using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.RuleSystem;
+using Kingmaker.UnitLogic.Mechanics;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Feats;
@@ -24,7 +26,10 @@ public static class RapidMetabolism
             .SetDescription(Loc.Str("PW.RapidMetabolism.Desc",
                 "While psionically focused, you gain fast healing scaling with manifester level: FH 1 at ML 1–4, FH 2 at ML 5–9, FH 3 at ML 10–14, FH 4 at ML 15–19, FH 5 at ML 20."))
             .SetIcon(FeatureRefs.Toughness.Reference.Get().Icon)
-            .AddEffectFastHealing(0, ContextValues.Rank())
+            .AddBuffActions(
+                newRound: ActionsBuilder.New()
+                    .Add(new ContextActionLog { Message = "[RapidMetabolism] fast healing tick", LogRank = true })
+                    .HealTarget(ContextDice.Value(DiceType.One, ContextValues.Rank(), 0)))
             .AddContextRankConfig(
                 ContextRankConfigs.CasterLevel().WithCustomProgression(
                     (4, 1), (9, 2), (14, 3), (19, 4), (20, 5)))

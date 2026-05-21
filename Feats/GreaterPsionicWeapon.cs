@@ -12,6 +12,7 @@ using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
+using Kingmaker.Enums.Damage;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Mechanics;
@@ -29,19 +30,18 @@ public static class GreaterPsionicWeapon
         FeatureConfigurator.New("GreaterPsionicWeaponFeat", Guids.GreaterPsionicWeaponFeat)
             .SetDisplayName(Loc.Str("PW.GreaterPsionicWeapon.Name", "Greater Psionic Weapon"))
             .SetDescription(Loc.Str("PW.GreaterPsionicWeapon.Desc",
-                "While psionically focused, your melee attacks deal additional damage scaling with manifester level (1d6 at ML 1, 2d6 at ML 2, 3d6 at ML 4). Stacks with Psionic Weapon."))
+                "While psionically focused, your melee attacks deal an additional 1d6 force damage at ML 1, 2d6 at ML 6, 3d6 at ML 11, 4d6 at ML 16. Stacks with Psionic Weapon for a total up to 8d6 force at ML 16."))
             .SetIcon(FeatureRefs.VitalStrikeFeatureImproved.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.PsionicWeaponFeat)
             .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 5)
-            .AddContextRankConfig(ContextRankConfigs.CasterLevel().WithCustomProgression((1, 1), (3, 2), (20, 3)))
+            .AddContextRankConfig(ContextRankConfigs.CasterLevel().WithCustomProgression((5, 1), (10, 2), (15, 3), (20, 4)))
             .AddInitiatorAttackWithWeaponTrigger(
                 action: ActionsBuilder.New().Conditional(
                     ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff),
                     ifTrue: ActionsBuilder.New()
-                        .Add(new ContextActionLog { Message = "[GreaterPsionicWeapon] melee hit while focused", LogRank = true })
                         .DealDamage(
-                            DamageTypes.Physical(),
+                            DamageTypes.Energy(DamageEnergyType.Magic),
                             ContextDice.Value(DiceType.D6, ContextValues.Rank(), 0))),
                 onlyHit: true,
                 checkWeaponRangeType: true,

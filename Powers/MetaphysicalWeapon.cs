@@ -34,7 +34,7 @@ public static class MetaphysicalWeapon
         AbilityConfigurator.New("PWMetaphysicalWeapon", Guids.PowerMetaphysicalWeapon)
             .SetDisplayName(Loc.Str("PW.MetaphysicalWeapon.Name", "Metaphysical Weapon"))
             .SetDescription(Loc.Str("PW.MetaphysicalWeapon.Desc",
-                "You imbue your weapon with psychic energy, granting a +1 enhancement bonus to attack rolls and damage rolls at ML 1, improving by 1 per 4 levels (max +5 at ML 17)."))
+                "You imbue your weapon with psychic energy for 1 minute per manifester level, granting a +1 enhancement bonus to attack rolls and damage rolls at ML 1, improving by 1 per 4 levels (max +5 at ML 17)."))
             .SetIcon(AbilityRefs.MagicWeapon.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)

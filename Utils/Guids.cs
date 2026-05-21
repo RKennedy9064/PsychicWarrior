@@ -19,6 +19,7 @@ public static class Guids
     public const string PsionicMeditationFeat    = "f97adbd7-1bbb-479b-9cf0-38d344f6c855";
     public const string GainPsionicFocusMoveAbility = "dd58c7df-3eea-4691-ada3-ca3d8aa57ae4";
     public const string PsionicWeaponFeat        = "19d01da1-af69-43d9-8043-fd9af97c0fe3";
+    public const string PsionicWeaponBuff        = "a3c72d18-bb54-4e91-9f12-8d3c04a15e27";
 
     // ── Path infrastructure ───────────────────────────────────────────────
     public const string PathSelectionLevel1      = "b0ff4d20-2424-4bbd-abc4-25f6ea6fba0d";
@@ -347,6 +348,7 @@ public static class Guids
     public const string PsionicDodgeBuff         = "9f4194e8-3c40-4317-a826-cf218e3b2472";
     public const string CriticalRefocusFeat      = "86f7987c-caee-4fa6-a8c8-c0e52b984a43";
     public const string GreaterPsionicWeaponFeat = "531a4c41-01e6-4860-a3dc-b2c124e8111d";
+    public const string GreaterPsionicWeaponBuff = "b4d83e29-cc65-5fa2-af23-9e4d15b26f38";
     public const string PsionicFistFeat          = "ed7161df-4b58-41f8-ada9-a46168fa1861";
     public const string GreaterPsionicFistFeat   = "316556a0-a097-4c6a-afe3-9680776e2557";
     public const string PsionicShotFeat          = "bb0fdacf-2da5-4ed5-91ab-83c7995ad819";
