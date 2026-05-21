@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -39,29 +39,30 @@ public static class AdaptBody
             AbilityRefs.AcidArrow.Reference.Get().Icon);
 
         BuildVariant("PWAdaptBodyFire", Guids.PowerAdaptBodyFire,
-            "Adapt Body — Fire", "fire", fireBuff,
+            "Adapt Body â€” Fire", "fire", fireBuff,
             AbilityRefs.BurningHands.Reference.Get().Icon);
 
         BuildVariant("PWAdaptBodyCold", Guids.PowerAdaptBodyCold,
-            "Adapt Body — Cold", "cold", coldBuff,
+            "Adapt Body â€” Cold", "cold", coldBuff,
             AbilityRefs.RayOfFrost.Reference.Get().Icon);
 
         BuildVariant("PWAdaptBodyElectric", Guids.PowerAdaptBodyElectric,
-            "Adapt Body — Electric", "electricity", electricBuff,
+            "Adapt Body â€” Electric", "electricity", electricBuff,
             AbilityRefs.CallLightning.Reference.Get().Icon);
 
         BuildVariant("PWAdaptBodyAcid", Guids.PowerAdaptBodyAcid,
-            "Adapt Body — Acid", "acid", acidBuff,
+            "Adapt Body â€” Acid", "acid", acidBuff,
             AbilityRefs.AcidArrow.Reference.Get().Icon);
 
         AbilityConfigurator.New("PWAdaptBody", Guids.PowerAdaptBody)
             .SetDisplayName(Loc.Str("PW.AdaptBody.Name", "Adapt Body", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.AdaptBody.Desc",
-                "Your body rapidly adapts to hostile environmental conditions. Choose an energy type (fire, cold, electricity, or acid). You gain resistance 30 to that energy type for 10 minutes per manifester level.",
+                "Your body rapidly adapts to hostile environmental conditions. Choose an energy type (fire, cold, electricity, or acid). You gain resistance 30 to that energy type.",
                 tagEncyclopediaEntries: false))
             .SetIcon(AbilityRefs.BurningHands.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.10MinPerML", "10 minutes per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(5, Guids.SpellList)
@@ -95,11 +96,12 @@ public static class AdaptBody
         AbilityConfigurator.New(name, guid)
             .SetDisplayName(Loc.Str($"PW.{name}.Name", displayName, tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str($"PW.{name}.Desc",
-                $"Your body adapts to {energyName} energy. You gain resistance 30 to {energyName} damage for 10 minutes per manifester level.",
+                $"Your body adapts to {energyName} energy. You gain resistance 30 to {energyName} damage.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.10MinPerML", "10 minutes per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddAbilityEffectRunAction(

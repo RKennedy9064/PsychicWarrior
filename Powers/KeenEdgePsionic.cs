@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.References;
@@ -22,10 +22,11 @@ public static class KeenEdgePsionic
         AbilityConfigurator.New("PWKeenEdge", Guids.PowerKeenEdgePsionic)
             .SetDisplayName(Loc.Str("PW.KeenEdgePsionic.Name", "Keen Edge, Psionic", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.KeenEdgePsionic.Desc",
-                "Psionic energy hones the edge of your weapon, doubling its threat range for 10 minutes per manifester level. The effect does not stack with other effects that increase threat range."))
+                "Psionic energy hones the edge of your weapon, doubling its threat range. The effect does not stack with other effects that increase threat range."))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.10MinPerML", "10 minutes per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddAbilityEffectRunAction(

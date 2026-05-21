@@ -10,6 +10,7 @@ using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.UnitLogic;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Feats;
@@ -23,6 +24,7 @@ public static class UpTheWalls
             .SetDescription(Loc.Str("PW.UpTheWalls.Desc",
                 "While psionically focused, you do not provoke attacks of opportunity when moving."))
             .SetIcon(FeatureRefs.Mobility.Reference.Get().Icon)
+            .AddCondition(UnitCondition.ImmuneToAttackOfOpportunity)
             .Configure();
 
         FeatureConfigurator.New("UpTheWallsFeat", Guids.UpTheWallsFeat)
@@ -33,6 +35,11 @@ public static class UpTheWalls
             .SetGroups(FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddRecommendedClass(Guids.PsychicWarriorClass)
+            .AddFactContextActions(
+                activated: ActionsBuilder.New().Conditional(
+                    ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff),
+                    ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.UpTheWallsBuff)),
+                deactivated: ActionsBuilder.New().RemoveBuff(Guids.UpTheWallsBuff))
             .Configure();
 
         BuffConfigurator.For(Guids.PsionicFocusBuff)

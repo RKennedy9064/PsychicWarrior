@@ -64,6 +64,7 @@ public static class WeaponOfEnergy
             .SetIcon(AbilityRefs.BurningHands.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1RoundPerML", "1 round per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(4, Guids.SpellList)

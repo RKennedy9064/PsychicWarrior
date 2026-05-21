@@ -37,6 +37,11 @@ public static class PsionicDodge
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddRecommendedClass(Guids.PsychicWarriorClass)
+            .AddFactContextActions(
+                activated: ActionsBuilder.New().Conditional(
+                    ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff),
+                    ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsionicDodgeBuff)),
+                deactivated: ActionsBuilder.New().RemoveBuff(Guids.PsionicDodgeBuff))
             .Configure();
 
         // When focus is gained, apply the bonus buff if the unit has this feat.

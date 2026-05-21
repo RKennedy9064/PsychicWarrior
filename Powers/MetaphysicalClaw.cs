@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -34,10 +34,11 @@ public static class MetaphysicalClaw
         AbilityConfigurator.New("PWMetaphysicalClaw", Guids.PowerMetaphysicalClaw)
             .SetDisplayName(Loc.Str("PW.MetaphysicalClaw.Name", "Metaphysical Claw"))
             .SetDescription(Loc.Str("PW.MetaphysicalClaw.Desc",
-                "You imbue your natural weapons with psychic energy, granting a +1 enhancement bonus to attack rolls and damage rolls for 1 minute per manifester level."))
+                "You imbue your natural weapons with psychic energy, granting a +1 enhancement bonus to attack rolls and damage rolls."))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1MinPerML", "1 minute per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddAbilityEffectRunAction(

@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -20,20 +20,20 @@ using PsychicWarrior.Utils;
 namespace PsychicWarrior.Powers;
 
 /// <summary>
-/// Strength of My Enemy (Psychometabolism → Divination) — Self-imbue.
+/// Strength of My Enemy (Psychometabolism â†’ Divination) â€” Self-imbue.
 ///
 /// RAW: "Each successful melee attack you make while manifesting this power grants you a +1
 /// enhancement bonus to Strength as you absorb 2 points of Strength from your opponent. The
 /// maximum enhancement bonus you can gain from this power is +6."
 ///
 /// Implementation:
-///   • Main buff applied to caster for 1 round/level (Personal range).
-///   • Main buff carries <c>AddInitiatorAttackWithWeaponTrigger</c> on melee hit.
-///   • On hit, a Conditional checks the caster's current rank of the caster-stack buff. If
+///   â€¢ Main buff applied to caster/level (Personal range).
+///   â€¢ Main buff carries <c>AddInitiatorAttackWithWeaponTrigger</c> on melee hit.
+///   â€¢ On hit, a Conditional checks the caster's current rank of the caster-stack buff. If
 ///     the rank is below 6, both buffs are applied:
 ///       - Caster gets the rank-stacking buff (StackingType.Rank, max 6, +1 enhancement Str per rank)
 ///       - Enemy gets a stackable buff (StackingType.Stack, -2 untyped Str)
-///   • The conditional cap on the caster's buff rank prevents enemy stacks beyond what RAW allows.
+///   â€¢ The conditional cap on the caster's buff rank prevents enemy stacks beyond what RAW allows.
 /// </summary>
 public static class StrengthOfMyEnemy
 {
@@ -62,7 +62,7 @@ public static class StrengthOfMyEnemy
         var enemyDebuff = BuffConfigurator.New("PWStrengthOfMyEnemyEnemyDebuff", Guids.PowerStrengthOfMyEnemyEnemyDebuff)
             .SetDisplayName(Loc.Str("PW.StrengthOfMyEnemy.EnemyDebuff.Name", "Strength Drained", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.StrengthOfMyEnemy.EnemyDebuff.Desc",
-                "Your Strength has been psionically drained — 2 points per stack.",
+                "Your Strength has been psionically drained â€” 2 points per stack.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetStacking(StackingType.Stack)
@@ -104,6 +104,7 @@ public static class StrengthOfMyEnemy
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1RoundPerML", "1 round per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(2, Guids.SpellList)

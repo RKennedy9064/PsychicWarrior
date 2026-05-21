@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -39,11 +39,12 @@ public static class TrueMetabolism
         AbilityConfigurator.New("PWTrueMetabolism", Guids.PowerTrueMetabolism)
             .SetDisplayName(Loc.Str("PW.TrueMetabolism.Name", "True Metabolism", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.TrueMetabolism.Desc",
-                "Your cells regenerate at a remarkable rate for 1 round per manifester level. Fast healing 5 at ML 9, improving by 1 per 4 manifester levels.",
+                "Your cells regenerate at a remarkable rate. Fast healing 5 at ML 9, improving by 1 per 4 manifester levels.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1RoundPerML", "1 round per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(5, Guids.SpellList)

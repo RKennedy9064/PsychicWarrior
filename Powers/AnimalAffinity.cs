@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -19,8 +19,8 @@ using PsychicWarrior.Utils;
 namespace PsychicWarrior.Powers;
 
 /// <summary>
-/// Animal Affinity (Transmutation) — Gain +4 enhancement bonus to one ability score of your
-/// choice (Strength, Dexterity, Constitution, Intelligence, Wisdom, or Charisma) for 1 minute/level.
+/// Animal Affinity (Transmutation) â€” Gain +4 enhancement bonus to one ability score of your
+/// choice (Strength, Dexterity, Constitution, Intelligence, Wisdom, or Charisma)/level.
 ///
 /// Implemented as a parent ability with six variants (alchemist-mutagen pattern). The parent is
 /// what shows up in the spellbook and action bar; clicking expands to show the six stat options.
@@ -39,48 +39,49 @@ public static class AnimalAffinity
         BuildVariant(
             "PWAnimalAffinityStrength", Guids.PowerAnimalAffinityStrength,
             "PWAnimalAffinityStrengthBuff", Guids.PowerAnimalAffinityStrengthBuff,
-            "Animal Affinity — Strength", "Boar",
+            "Animal Affinity â€” Strength", "Boar",
             StatType.Strength, iconStr);
 
         BuildVariant(
             "PWAnimalAffinityDexterity", Guids.PowerAnimalAffinityDexterity,
             "PWAnimalAffinityDexterityBuff", Guids.PowerAnimalAffinityDexterityBuff,
-            "Animal Affinity — Dexterity", "Cat",
+            "Animal Affinity â€” Dexterity", "Cat",
             StatType.Dexterity, iconDex);
 
         BuildVariant(
             "PWAnimalAffinityConstitution", Guids.PowerAnimalAffinityConstitution,
             "PWAnimalAffinityConstitutionBuff", Guids.PowerAnimalAffinityConstitutionBuff,
-            "Animal Affinity — Constitution", "Bear",
+            "Animal Affinity â€” Constitution", "Bear",
             StatType.Constitution, iconCon);
 
         BuildVariant(
             "PWAnimalAffinityIntelligence", Guids.PowerAnimalAffinityIntelligence,
             "PWAnimalAffinityIntelligenceBuff", Guids.PowerAnimalAffinityIntelligenceBuff,
-            "Animal Affinity — Intelligence", "Fox",
+            "Animal Affinity â€” Intelligence", "Fox",
             StatType.Intelligence, iconInt);
 
         BuildVariant(
             "PWAnimalAffinityWisdom", Guids.PowerAnimalAffinityWisdom,
             "PWAnimalAffinityWisdomBuff", Guids.PowerAnimalAffinityWisdomBuff,
-            "Animal Affinity — Wisdom", "Owl",
+            "Animal Affinity â€” Wisdom", "Owl",
             StatType.Wisdom, iconWis);
 
         BuildVariant(
             "PWAnimalAffinityCharisma", Guids.PowerAnimalAffinityCharisma,
             "PWAnimalAffinityCharismaBuff", Guids.PowerAnimalAffinityCharismaBuff,
-            "Animal Affinity — Charisma", "Eagle",
+            "Animal Affinity â€” Charisma", "Eagle",
             StatType.Charisma, iconCha);
 
-        // Parent ability — the entry in the spellbook/action bar. Clicking expands the variant menu.
+        // Parent ability â€” the entry in the spellbook/action bar. Clicking expands the variant menu.
         AbilityConfigurator.New("PWAnimalAffinity", Guids.PowerAnimalAffinity)
             .SetDisplayName(Loc.Str("PW.AnimalAffinity.Name", "Animal Affinity", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.AnimalAffinity.Desc",
-                "Channel the spirit of a great beast: gain a +4 enhancement bonus to one ability score of your choice (Strength, Dexterity, Constitution, Intelligence, Wisdom, or Charisma) for 1 minute per manifester level.",
+                "Channel the spirit of a great beast: gain a +4 enhancement bonus to one ability score of your choice (Strength, Dexterity, Constitution, Intelligence, Wisdom, or Charisma).",
                 tagEncyclopediaEntries: false))
             .SetIcon(iconStr)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1MinPerML", "1 minute per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(2, Guids.SpellList)
@@ -115,11 +116,12 @@ public static class AnimalAffinity
         return AbilityConfigurator.New(abilityName, abilityGuid)
             .SetDisplayName(Loc.Str($"PW.{abilityName}.Name", displayName, tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str($"PW.{abilityName}.Desc",
-                $"Channel the spirit of the {beastName}, gaining +4 enhancement bonus to {stat} for 1 minute per manifester level.",
+                $"Channel the spirit of the {beastName}, gaining +4 enhancement bonus to {stat}.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1MinPerML", "1 minute per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddAbilityEffectRunAction(

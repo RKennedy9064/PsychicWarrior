@@ -23,8 +23,14 @@ public static class UpTheWallsPatch
         if (unit == null) return true;
 
         _buff ??= BlueprintTool.Get<BlueprintBuff>(Guids.UpTheWallsBuff);
-        if (_buff == null) return true;
+        if (_buff == null)
+        {
+            UnityEngine.Debug.LogWarning("[UpTheWallsPatch] buff blueprint is null");
+            return true;
+        }
 
-        return !unit.Buffs.HasFact(_buff);
+        bool hasBuff = unit.Buffs.HasFact(_buff);
+        UnityEngine.Debug.Log($"[UpTheWallsPatch] unit={unit.CharacterName} hasBuff={hasBuff} → {(hasBuff ? "SUPPRESSED" : "allowed")}");
+        return !hasBuff;
     }
 }

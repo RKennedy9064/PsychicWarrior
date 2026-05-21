@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.References;
@@ -22,10 +22,11 @@ public static class ConcealingAmorpha
         AbilityConfigurator.New("PWConcealingAmorpha", Guids.PowerConcealingAmorpha)
             .SetDisplayName(Loc.Str("PW.ConcealingAmorpha.Name", "Concealing Amorpha"))
             .SetDescription(Loc.Str("PW.ConcealingAmorpha.Desc",
-                "You surround yourself with a distortion of ectoplasmic shimmer that grants you a 20% miss chance for 1 minute per manifester level."))
+                "You surround yourself with a distortion of ectoplasmic shimmer that grants you a 20% miss chance."))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1MinPerML", "1 minute per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddAbilityEffectRunAction(

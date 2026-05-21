@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -25,7 +25,7 @@ public static class UbiquitousVision
         var buff = BuffConfigurator.New("PWUbiquitousVisionBuff", Guids.PowerUbiquitousVisionBuff)
             .SetDisplayName(Loc.Str("PW.UbiquitousVision.BuffName", "Ubiquitous Vision"))
             .SetDescription(Loc.Str("PW.UbiquitousVision.BuffDesc",
-                "360° psionic vision. You gain +4 insight bonus to Perception and cannot be flanked."))
+                "360Â° psionic vision. You gain +4 insight bonus to Perception and cannot be flanked."))
             .SetIcon(icon)
             .AddStatBonus(descriptor: ModifierDescriptor.Insight, stat: StatType.SkillPerception, value: 4)
             .AddFortification(50)
@@ -34,10 +34,11 @@ public static class UbiquitousVision
         AbilityConfigurator.New("PWUbiquitousVision", Guids.PowerUbiquitousVision)
             .SetDisplayName(Loc.Str("PW.UbiquitousVision.Name", "Ubiquitous Vision"))
             .SetDescription(Loc.Str("PW.UbiquitousVision.Desc",
-                "Your psionic senses expand to perceive all directions simultaneously. You gain a +4 insight bonus to Perception checks and a 50% chance to negate flanking and sneak attacks for 10 minutes per manifester level."))
+                "Your psionic senses expand to perceive all directions simultaneously. You gain a +4 insight bonus to Perception checks and a 50% chance to negate flanking and sneak attacks."))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.10MinPerML", "10 minutes per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddAbilityEffectRunAction(

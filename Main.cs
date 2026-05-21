@@ -11,9 +11,16 @@ public static class Main
         LogWrapper logger = LogWrapper.Get("PsychicWarrior");
 
         var harmony = new Harmony(modEntry.Info.Id);
-        harmony.PatchAll();
-
-        logger.Info("PsychicWarrior loaded");
+        try
+        {
+            harmony.PatchAll();
+            logger.Info("PsychicWarrior: PatchAll succeeded");
+        }
+        catch (System.Exception e)
+        {
+            logger.Error($"PsychicWarrior: PatchAll threw: {e}");
+            UnityEngine.Debug.LogError($"[PsychicWarrior] PatchAll threw: {e}");
+        }
 
         return true;
     }

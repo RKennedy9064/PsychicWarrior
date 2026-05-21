@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -17,10 +17,10 @@ using PsychicWarrior.Utils;
 namespace PsychicWarrior.Powers;
 
 /// <summary>
-/// Hustle (Transmutation) — Gain a haste-like boost for 1 round.
+/// Hustle (Transmutation) â€” Gain a haste-like boost.
 ///
 /// Simplified from RAW (which grants an extra move action this round). WoTR doesn't model
-/// per-round action economy the same way, so we apply a Haste-style buff for 1 round.
+/// per-round action economy the same way, so we apply a Haste-style buff.
 /// </summary>
 public static class Hustle
 {
@@ -43,11 +43,12 @@ public static class Hustle
         AbilityConfigurator.New("PWHustle", Guids.PowerHustle)
             .SetDisplayName(Loc.Str("PW.Hustle.Name", "Hustle", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.Hustle.Desc",
-                "You psionically accelerate yourself. For 1 round per manifester level you gain the benefits of haste: +30 ft. speed, +1 dodge bonus to AC and Reflex saves, and an extra attack at your highest BAB on a full attack.",
+                "You psionically accelerate yourself. You gain the benefits of haste: +30 ft. speed, +1 dodge bonus to AC and Reflex saves, and an extra attack at your highest BAB on a full attack.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1RoundPerML", "1 round per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(2, Guids.SpellList)

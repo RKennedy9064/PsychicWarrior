@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -27,7 +27,7 @@ public static class BodyOfIron
         var buff = BuffConfigurator.New("PWBodyOfIronBuff", Guids.PowerBodyOfIronBuff)
             .SetDisplayName(Loc.Str("PW.BodyOfIron.BuffName", "Body of Iron"))
             .SetDescription(Loc.Str("PW.BodyOfIron.BuffDesc",
-                "Your body becomes iron. You gain DR 15/adamantine, +6 Strength, –6 Dexterity, immunity to critical hits, mind-affecting effects, poison, disease, and stun."))
+                "Your body becomes iron. You gain DR 15/adamantine, +6 Strength, â€“6 Dexterity, immunity to critical hits, mind-affecting effects, poison, disease, and stun."))
             .SetIcon(icon)
             .AddComponent(new AddDamageResistancePhysical
             {
@@ -47,10 +47,11 @@ public static class BodyOfIron
         AbilityConfigurator.New("PWBodyOfIron", Guids.PowerBodyOfIron)
             .SetDisplayName(Loc.Str("PW.BodyOfIron.Name", "Body of Iron"))
             .SetDescription(Loc.Str("PW.BodyOfIron.Desc",
-                "Your body transforms into living iron. You gain DR 15/adamantine, +6 Strength, –6 Dexterity, immunity to critical hits, mind-affecting effects, poison, disease, and stun for 1 minute per manifester level."))
+                "Your body transforms into living iron. You gain DR 15/adamantine, +6 Strength, â€“6 Dexterity, immunity to critical hits, mind-affecting effects, poison, disease, and stun."))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1MinPerML", "1 minute per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddAbilityEffectRunAction(

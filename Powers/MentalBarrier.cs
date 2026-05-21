@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -17,8 +17,8 @@ using PsychicWarrior.Utils;
 namespace PsychicWarrior.Powers;
 
 /// <summary>
-/// Mental Barrier (Abjuration) — Project a barrier of mental energy. +4 deflection bonus to AC
-/// for 1 round per manifester level.
+/// Mental Barrier (Abjuration) â€” Project a barrier of mental energy. +4 deflection bonus to AC
+///.
 /// </summary>
 public static class MentalBarrier
 {
@@ -41,11 +41,12 @@ public static class MentalBarrier
         AbilityConfigurator.New("PWMentalBarrier", Guids.PowerMentalBarrier)
             .SetDisplayName(Loc.Str("PW.MentalBarrier.Name", "Mental Barrier", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.MentalBarrier.Desc",
-                "You raise a barrier of pure mental energy for 1 round per manifester level, gaining a +4 deflection bonus to AC at ML 5, improving by 1 per 2 manifester levels.",
+                "You raise a barrier of pure mental energy, gaining a +4 deflection bonus to AC at ML 5, improving by 1 per 2 manifester levels.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1RoundPerML", "1 round per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(3, Guids.SpellList)

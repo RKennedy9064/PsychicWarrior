@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -36,11 +36,12 @@ public static class SteadfastPerception
         AbilityConfigurator.New("PWSteadfastPerception", Guids.PowerSteadfastPerception)
             .SetDisplayName(Loc.Str("PW.SteadfastPerception.Name", "Steadfast Perception", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.SteadfastPerception.Desc",
-                "Your psionic senses become impossibly sharp. You gain a +6 competence bonus to Perception checks and become immune to blindness and deafness for 1 minute per manifester level.",
+                "Your psionic senses become impossibly sharp. You gain a +6 competence bonus to Perception checks and become immune to blindness and deafness.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1MinPerML", "1 minute per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(4, Guids.SpellList)

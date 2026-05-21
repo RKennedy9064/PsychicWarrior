@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -17,7 +17,7 @@ using PsychicWarrior.Utils;
 namespace PsychicWarrior.Powers;
 
 /// <summary>
-/// Graft Weapon (Psychometabolism → Transmutation) — Your hand and weapon become one psionic
+/// Graft Weapon (Psychometabolism â†’ Transmutation) â€” Your hand and weapon become one psionic
 /// instrument. RAW makes you immune to being disarmed; since disarm isn't a meaningful mechanic in
 /// WoTR, the unified hand-weapon precision instead grants a scaling enhancement bonus to attack
 /// and damage rolls (+2 at CL 8, +3 at 12, +4 at 16, +5 at 20; floor +2, max +5; formula CL/4).
@@ -50,11 +50,12 @@ public static class GraftWeapon
         AbilityConfigurator.New("PWGraftWeapon", Guids.PowerGraftWeapon)
             .SetDisplayName(Loc.Str("PW.GraftWeapon.Name", "Graft Weapon", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.GraftWeapon.Desc",
-                "You meld your hand and weapon together into a unified psionic instrument. You gain an enhancement bonus to attack and damage rolls (+2, increasing by +1 per 4 manifester levels to a maximum of +5) for 1 minute per manifester level.",
+                "You meld your hand and weapon together into a unified psionic instrument. You gain an enhancement bonus to attack and damage rolls (+2, increasing by +1 per 4 manifester levels to a maximum of +5).",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1MinPerML", "1 minute per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(3, Guids.SpellList)

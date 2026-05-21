@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -31,10 +31,11 @@ public static class EnergyAdaptation
         AbilityConfigurator.New("PWEnergyAdaptation", Guids.PowerEnergyAdaptation)
             .SetDisplayName(Loc.Str("PW.EnergyAdaptation.Name", "Energy Adaptation"))
             .SetDescription(Loc.Str("PW.EnergyAdaptation.Desc",
-                "You adapt your body to resist a chosen energy type. Choose fire, cold, electricity, acid, or sonic — you gain resistance 10 to that energy type for 10 minutes per manifester level."))
+                "You adapt your body to resist a chosen energy type. Choose fire, cold, electricity, acid, or sonic â€” you gain resistance 10 to that energy type."))
             .SetIcon(AbilityRefs.ResistFire.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.10MinPerML", "10 minutes per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(4, Guids.SpellList)
@@ -63,12 +64,13 @@ public static class EnergyAdaptation
             .Configure();
 
         AbilityConfigurator.New($"PWEnergyAdaptation{energyName}", abilityGuid)
-            .SetDisplayName(Loc.Str($"PW.EnergyAdaptation{energyName}.Name", $"Energy Adaptation — {energyName}"))
+            .SetDisplayName(Loc.Str($"PW.EnergyAdaptation{energyName}.Name", $"Energy Adaptation â€” {energyName}"))
             .SetDescription(Loc.Str($"PW.EnergyAdaptation{energyName}.Desc",
-                $"You gain resistance 10 to {energyName.ToLower()} damage for 10 minutes per manifester level."))
+                $"You gain resistance 10 to {energyName.ToLower()} damage."))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.10MinPerML", "10 minutes per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddAbilityEffectRunAction(

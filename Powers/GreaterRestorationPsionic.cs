@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -31,7 +31,7 @@ public static class MindBlankPersonalPsionic
         AbilityConfigurator.New("PWMindBlankPersonal", Guids.PowerMindBlankPersonal)
             .SetDisplayName(Loc.Str("PW.MindBlankPersonal.Name", "Mind Blank, Personal (Psionic)", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.MindBlankPersonal.Desc",
-                "You are protected from all spells and effects that detect, influence, or read emotions or thoughts. You become immune to all mind-affecting spells and powers for 1 minute per manifester level.",
+                "You are protected from all spells and effects that detect, influence, or read emotions or thoughts. You become immune to all mind-affecting spells and powers.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)

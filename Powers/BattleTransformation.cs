@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -39,10 +39,11 @@ public static class BattleTransformation
         AbilityConfigurator.New("PWBattleTransformation", Guids.PowerBattleTransformation)
             .SetDisplayName(Loc.Str("PW.BattleTransformation.Name", "Battle Transformation"))
             .SetDescription(Loc.Str("PW.BattleTransformation.Desc",
-                "You psionically transform your body for combat. You gain +2 luck bonus to attack rolls, damage rolls, and Strength, plus temporary hit points equal to your manifester level. Lasts 1 round per manifester level."))
+                "You psionically transform your body for combat. You gain +2 luck bonus to attack rolls, damage rolls, and Strength, plus temporary hit points equal to your manifester level."))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1RoundPerML", "1 round per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddAbilityEffectRunAction(

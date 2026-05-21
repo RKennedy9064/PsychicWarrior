@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -28,10 +28,11 @@ public static class Burst
         AbilityConfigurator.New("PWBurst", Guids.PowerBurst)
             .SetDisplayName(Loc.Str("PW.Burst.Name", "Burst"))
             .SetDescription(Loc.Str("PW.Burst.Desc",
-                "You gain a +10-foot enhancement bonus to your speed for 1 round."))
+                "You gain a +10-foot enhancement bonus to your speed."))
             .SetIcon(AbilityRefs.ExpeditiousRetreat.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1Round", "1 round"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddAbilityEffectRunAction(

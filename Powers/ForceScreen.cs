@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -34,10 +34,11 @@ public static class ForceScreen
         AbilityConfigurator.New("PWForceScreen", Guids.PowerForceScreen)
             .SetDisplayName(Loc.Str("PW.ForceScreen.Name", "Force Screen"))
             .SetDescription(Loc.Str("PW.ForceScreen.Desc",
-                "You create an invisible mobile disk of force that hovers in front of you. It grants a shield bonus to AC scaling with manifester level (+4 at ML 1, +1 per 2 levels) for 1 minute per manifester level."))
+                "You create an invisible mobile disk of force that hovers in front of you. It grants a shield bonus to AC scaling with manifester level (+4 at ML 1, +1 per 2 levels)."))
             .SetIcon(AbilityRefs.ShieldOfFaith.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1MinPerML", "1 minute per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(1, Guids.SpellList)

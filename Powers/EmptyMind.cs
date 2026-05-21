@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -29,10 +29,11 @@ public static class EmptyMind
         AbilityConfigurator.New("PWEmptyMind", Guids.PowerEmptyMind)
             .SetDisplayName(Loc.Str("PW.EmptyMind.Name", "Empty Mind"))
             .SetDescription(Loc.Str("PW.EmptyMind.Desc",
-                "You empty your mind, focusing inward. You gain a +2 insight bonus to Will saving throws for 1 minute."))
+                "You empty your mind, focusing inward. You gain a +2 insight bonus to Will saving throws."))
             .SetIcon(AbilityRefs.MindBlank.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1Min", "1 minute"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddAbilityEffectRunAction(

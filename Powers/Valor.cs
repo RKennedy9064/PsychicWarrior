@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -32,10 +32,11 @@ public static class Valor
         AbilityConfigurator.New("PWValor", Guids.PowerValor)
             .SetDisplayName(Loc.Str("PW.Valor.Name", "Valor"))
             .SetDescription(Loc.Str("PW.Valor.Desc",
-                "You steel yourself with psionic resolve. You gain a +1 morale bonus to saving throws against fear effects for 10 minutes."))
+                "You steel yourself with psionic resolve. You gain a +1 morale bonus to saving throws against fear effects."))
             .SetIcon(AbilityRefs.RemoveFear.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.10Min", "10 minutes"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddAbilityEffectRunAction(

@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -20,7 +20,7 @@ using PsychicWarrior.Utils;
 namespace PsychicWarrior.Powers;
 
 /// <summary>
-/// Vampiric Blade (Psychometabolism → Transmutation) — RAW Psionic Unleashed.
+/// Vampiric Blade (Psychometabolism â†’ Transmutation) â€” RAW Psionic Unleashed.
 ///
 /// You imbue your weapon with soul-stealing energy. While active, each successful melee weapon hit
 /// deals an extra 2d6 negative-energy damage to the target, and you gain temporary hit points equal
@@ -82,6 +82,7 @@ public static class VampiricBlade
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1RoundPerML", "1 round per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(3, Guids.SpellList)

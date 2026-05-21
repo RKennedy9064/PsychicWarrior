@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -23,7 +23,7 @@ public static class InertialBarrier
         var buff = BuffConfigurator.New("PWInertialBarrierBuff", Guids.PowerInertialBarrierBuff)
             .SetDisplayName(Loc.Str("PW.InertialBarrier.BuffName", "Inertial Barrier"))
             .SetDescription(Loc.Str("PW.InertialBarrier.BuffDesc",
-                "Your body is surrounded by an invisible field of psionic force. DR 5/— at ML 7, improving by 1 per 2 manifester levels."))
+                "Your body is surrounded by an invisible field of psionic force. DR 5/â€” at ML 7, improving by 1 per 2 manifester levels."))
             .SetIcon(icon)
             .AddDamageResistancePhysical(value: ContextValues.Rank())
             .AddContextRankConfig(
@@ -34,15 +34,16 @@ public static class InertialBarrier
         AbilityConfigurator.New("PWInertialBarrier", Guids.PowerInertialBarrier)
             .SetDisplayName(Loc.Str("PW.InertialBarrier.Name", "Inertial Barrier"))
             .SetDescription(Loc.Str("PW.InertialBarrier.Desc",
-                "You surround your body with an invisible field of psionic force for 10 minutes per manifester level. DR 5/— at ML 7, improving by 1 per 2 manifester levels."))
+                "You surround your body with an invisible field of psionic force. DR 5/â€” at ML 7, improving by 1 per 2 manifester levels."))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.10MinPerML", "10 minutes per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
-                    .Add(new ContextActionLog { Message = "[InertialBarrier] applying DR (scales 5→11 with ML)", LogRank = true })
+                    .Add(new ContextActionLog { Message = "[InertialBarrier] applying DR (scales 5â†’11 with ML)", LogRank = true })
                     .ApplyBuff(buff, ContextDuration.Variable(ContextValues.Rank(), DurationRate.TenMinutes)))
             .AddContextRankConfig(ContextRankConfigs.CasterLevel())
             .AddSpellListComponent(4, Guids.SpellList)

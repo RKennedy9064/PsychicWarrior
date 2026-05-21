@@ -37,6 +37,11 @@ public static class SpeedOfThought
             .SetGroups(FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddRecommendedClass(Guids.PsychicWarriorClass)
+            .AddFactContextActions(
+                activated: ActionsBuilder.New().Conditional(
+                    ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff),
+                    ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.SpeedOfThoughtBuff)),
+                deactivated: ActionsBuilder.New().RemoveBuff(Guids.SpeedOfThoughtBuff))
             .Configure();
 
         // When focus is gained, apply the speed buff if the unit has this feat.

@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -30,10 +30,11 @@ public static class Deceleration
         AbilityConfigurator.New("PWDeceleration", Guids.PowerDeceleration)
             .SetDisplayName(Loc.Str("PW.Deceleration.Name", "Deceleration"))
             .SetDescription(Loc.Str("PW.Deceleration.Desc",
-                "You project a telekinetic force to slow a target. The target's movement speed is reduced by 10 feet for 1 minute (Will negates)."))
+                "You project a telekinetic force to slow a target. The target's movement speed is reduced by 10 feet(Will negates)."))
             .SetIcon(AbilityRefs.Slow.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Close)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1Min", "1 minute"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Point)
             .SetCanTargetEnemies(true)

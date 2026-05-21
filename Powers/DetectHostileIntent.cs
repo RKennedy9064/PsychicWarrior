@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -17,8 +17,8 @@ using PsychicWarrior.Utils;
 namespace PsychicWarrior.Powers;
 
 /// <summary>
-/// Detect Hostile Intent (Divination) — Sense incoming attacks. Grants Uncanny Dodge (cannot be
-/// caught flat-footed) plus +2 Initiative for 10 minutes per manifester level.
+/// Detect Hostile Intent (Divination) â€” Sense incoming attacks. Grants Uncanny Dodge (cannot be
+/// caught flat-footed) plus +2 Initiative.
 /// </summary>
 public static class DetectHostileIntent
 {
@@ -39,11 +39,12 @@ public static class DetectHostileIntent
         AbilityConfigurator.New("PWDetectHostileIntent", Guids.PowerDetectHostileIntent)
             .SetDisplayName(Loc.Str("PW.DetectHostileIntent.Name", "Detect Hostile Intent", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.DetectHostileIntent.Desc",
-                "You attune your mind to detect incoming attacks. For 10 minutes per manifester level, you cannot be caught flat-footed (Uncanny Dodge) and gain +2 Initiative.",
+                "You attune your mind to detect incoming attacks. You cannot be caught flat-footed (Uncanny Dodge) and gain +2 Initiative.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.10MinPerML", "10 minutes per manifester level"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(2, Guids.SpellList)

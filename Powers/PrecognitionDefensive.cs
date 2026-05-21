@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -28,10 +28,11 @@ public static class PrecognitionDefensive
         AbilityConfigurator.New("PWPrecognitionDefensive", Guids.PowerPrecognitionDefensive)
             .SetDisplayName(Loc.Str("PW.PrecognitionDef.Name", "Precognition, Defensive"))
             .SetDescription(Loc.Str("PW.PrecognitionDef.Desc",
-                "Your psionic foresight warns you of incoming attacks. You gain a +1 insight bonus to AC for 1 round."))
+                "Your psionic foresight warns you of incoming attacks. You gain a +1 insight bonus to AC."))
             .SetIcon(AbilityRefs.TrueStrike.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1Round", "1 round"))
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddAbilityEffectRunAction(

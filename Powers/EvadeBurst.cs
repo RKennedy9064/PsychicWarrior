@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -25,7 +25,7 @@ public static class EvadeBurst
         var buff = BuffConfigurator.New("PWEvadeBurstBuff", Guids.PowerEvadeBurstBuff)
             .SetDisplayName(Loc.Str("PW.EvadeBurst.BuffName", "Evade Burst"))
             .SetDescription(Loc.Str("PW.EvadeBurst.BuffDesc",
-                "You have Evasion — on a successful Reflex save against an area effect, you take no damage instead of half."))
+                "You have Evasion â€” on a successful Reflex save against an area effect, you take no damage instead of half."))
             .SetIcon(icon)
             .AddEvasion(SavingThrowType.Reflex)
             .Configure();
@@ -33,10 +33,11 @@ public static class EvadeBurst
         AbilityConfigurator.New("PWEvadeBurst", Guids.PowerEvadeBurst)
             .SetDisplayName(Loc.Str("PW.EvadeBurst.Name", "Evade Burst"))
             .SetDescription(Loc.Str("PW.EvadeBurst.Desc",
-                "Swift Action. You psionically attune your reflexes. For 1 round per manifester level, you gain Evasion — on a successful Reflex save against an area effect, you take no damage instead of half."))
+                "Swift Action. You psionically attune your reflexes. You gain Evasion â€” on a successful Reflex save against an area effect, you take no damage instead of half."))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
+            .SetLocalizedDuration(Loc.Str("PW.Duration.1RoundPerML", "1 round per manifester level"))
             .SetActionType(UnitCommand.CommandType.Swift)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddAbilityEffectRunAction(
