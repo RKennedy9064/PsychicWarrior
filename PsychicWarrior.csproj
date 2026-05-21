@@ -18,7 +18,7 @@
 		</Reference>
 
 		<Reference Include="UnityEngine.CoreModule">
-		  <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+		  <HintPath>$(WrathPath)\Wrath_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
 		</Reference>
 
 		<Reference Include="UnityModManager">

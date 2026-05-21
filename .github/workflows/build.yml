@@ -1,0 +1,22 @@
+name: Build
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download game DLLs
+        env:
+          GH_TOKEN: ${{ secrets.LIBS_TOKEN }}
+        run: |
+          New-Item -ItemType Directory -Force "C:\WrathGame\Wrath_Data\Managed"
+          gh release download game-libs --dir "C:\WrathGame\Wrath_Data\Managed" --repo RKennedy9064/PsychicWarrior-libs
+
+      - name: Build
+        run: dotnet build /p:WrathPath="C:\WrathGame" --configuration Release
