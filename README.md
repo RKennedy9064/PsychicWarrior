@@ -25,15 +25,11 @@ Several tabletop rules had to be adapted or replaced due to engine limitations:
 
 | Tabletop Rule | WotR Adaptation |
 |---|---|
-| Power point economy | Replaced with a spellbook per-day slot system; manifester level still drives scaling |
-| Focus as move/swift action with skill check | Simplified: focus is applied as a buff, no check required |
-| `AddEffectFastHealing` fires both `HealRate` and `Heal` independently | Fast healing powers use `AddBuffActions(newRound: HealTarget(...))` to avoid double-ticking |
-| `CopyFrom` on blueprints | Only copies display properties, not mechanical components — all powers re-implement their mechanics directly |
-| `UnitCondition.ImmuneToAttackOfOpportunity` | Prevents a unit from *making* AoOs, not from *provoking* them — Up the Walls uses a Harmony patch on `UnitCombatEngagementController.ProvokeAttackOfOpportunity` instead |
-| Conditional scaling bonus weapon damage | `AddInitiatorAttackWithWeaponTrigger` + `DealDamage` always shows as a separate combat log entry; no engine component supports conditional scaled dice inline with base weapon damage |
-| Force damage type | No explicit Force enum exists in WotR; represented as `DamageEnergyType.Magic` |
-| Temp HP from Vigor | Matches *False Life* scaling — applies `FalseLifeBuff` directly rather than a custom implementation |
-| Telekinetic Punch | Added a Will save (not in original talent description) to match the tabletop power it references |
+| Power point economy | Replaced with a per-day spell slot system; manifester level still drives all scaling |
+| Focus acquisition (move/swift action, Concentration check) | Simplified: gaining focus requires no skill check |
+| Psionic Weapon / Fist / Shot bonus damage | Appears as a separate entry in the combat log rather than being folded into the base attack roll |
+| Vigor temp HP | Capped to match *False Life* scaling rather than being uncapped as written |
+| Telekinetic Punch (tabletop: attack roll only, no save) | Added a Will save to negate, matching the *Telekinetic Punch* power it is based on |
 
 ---
 
@@ -151,11 +147,6 @@ Several tabletop rules had to be adapted or replaced due to engine limitations:
 | Survivor | Resilience and healing |
 
 Twisting Paths pathweaving allows multipath feat selection at later levels.
-
-### Harmony Patches
-
-- **UpTheWallsPatch** — Suppresses movement-triggered AoOs for units with the Up the Walls buff by prefixing `UnitCombatEngagementController.ProvokeAttackOfOpportunity`
-- **PsionicProficiencyPatch** — Tracks psionic feats so Psionic Body can count them; enables the Psionic Meditation swift-action refocus window
 
 ---
 
