@@ -25,30 +25,33 @@ public static class PathSkillBonus
 {
     public static void Configure()
     {
-        var icon = FeatureRefs.PowerAttackFeature.Reference.Get().Icon;
+        var athleticsIcon  = FeatureRefs.SkillFocusPhysique.Reference.Get().Icon;
+        var mobilityIcon   = FeatureRefs.SkillFocusAcrobatics.Reference.Get().Icon;
+        var perceptionIcon = FeatureRefs.SkillFocusPerception.Reference.Get().Icon;
+        var stealthIcon    = FeatureRefs.SkillFocusStealth.Reference.Get().Icon;
 
         var athletics = MakeSkill(
             "PathSkillAthletics", Guids.PathSkillAthletics,
-            "Athletics", StatType.SkillAthletics, icon,
+            "Athletics", StatType.SkillAthletics, athleticsIcon,
             Guids.WeaponmasterPath, Guids.BrawlerPath, Guids.DervishPath,
             Guids.FeralWarriorPath, Guids.GladiatorPath);
 
         var mobility = MakeSkill(
             "PathSkillMobility", Guids.PathSkillMobility,
-            "Mobility", StatType.SkillMobility, icon,
+            "Mobility", StatType.SkillMobility, mobilityIcon,
             Guids.BrawlerPath, Guids.AsceticPath, Guids.AssassinsPath,
             Guids.DervishPath, Guids.InfiltratorPath, Guids.InterceptorPath);
 
         var perception = MakeSkill(
             "PathSkillPerception", Guids.PathSkillPerception,
-            "Perception", StatType.SkillPerception, icon,
+            "Perception", StatType.SkillPerception, perceptionIcon,
             Guids.WeaponmasterPath, Guids.ArcherPath, Guids.AsceticPath,
             Guids.GladiatorPath, Guids.InterceptorPath, Guids.MindKnightPath,
             Guids.SurvivorPath);
 
         var stealth = MakeSkill(
             "PathSkillStealth", Guids.PathSkillStealth,
-            "Stealth", StatType.SkillStealth, icon,
+            "Stealth", StatType.SkillStealth, stealthIcon,
             Guids.ArcherPath, Guids.AssassinsPath, Guids.FeralWarriorPath,
             Guids.InfiltratorPath, Guids.MindKnightPath, Guids.SurvivorPath);
 
@@ -57,7 +60,7 @@ public static class PathSkillBonus
             .SetDescription(Loc.Str("PW.PathSkillSel.Desc",
                 "Select one skill associated with your warrior path to gain a +2 competence bonus (maximum +6 for any one skill).",
                 tagEncyclopediaEntries: false))
-            .SetIcon(icon)
+            .SetIcon(perceptionIcon)
             .SetIsClassFeature(true)
             .SetIgnorePrerequisites(false)
             .AddToAllFeatures(athletics, mobility, perception, stealth)

@@ -16,7 +16,7 @@ public static class Focus
 {
     public static void Configure()
     {
-        var focusIcon = AbilityRefs.TrueStrike.Reference.Get().Icon;
+        var focusIcon = AbilityRefs.RestorationLesser.Reference.Get().Icon;
 
         var focusBuff = BuffConfigurator.New("PsionicFocusBuff", Guids.PsionicFocusBuff)
             .SetDisplayName(Loc.Str("PW.Focus.Name", "Psionic Focus"))

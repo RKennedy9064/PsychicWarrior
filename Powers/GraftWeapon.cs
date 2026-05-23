@@ -17,7 +17,7 @@ using PsychicWarrior.Utils;
 namespace PsychicWarrior.Powers;
 
 /// <summary>
-/// Graft Weapon (Psychometabolism â†’ Transmutation) â€” Your hand and weapon become one psionic
+/// Graft Weapon (Psychometabolism â†' Transmutation)  -  Your hand and weapon become one psionic
 /// instrument. RAW makes you immune to being disarmed; since disarm isn't a meaningful mechanic in
 /// WoTR, the unified hand-weapon precision instead grants a scaling enhancement bonus to attack
 /// and damage rolls (+2 at CL 8, +3 at 12, +4 at 16, +5 at 20; floor +2, max +5; formula CL/4).
@@ -27,7 +27,7 @@ public static class GraftWeapon
 {
     public static void Configure()
     {
-        var icon = AbilityRefs.MagicWeaponGreater.Reference.Get().Icon;
+        var icon = AbilityRefs.AlignWeapon.Reference.Get().Icon;
 
         var buff = BuffConfigurator.New("PWGraftWeaponBuff", Guids.PowerGraftWeaponBuff)
             .SetDisplayName(Loc.Str("PW.GraftWeapon.BuffName", "Graft Weapon", tagEncyclopediaEntries: false))

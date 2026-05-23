@@ -22,6 +22,8 @@ public static class InterceptorPath
     public static void Configure()
     {
         var icon = FeatureRefs.CombatReflexes.Reference.Get().Icon;
+        var maneuverIcon = AbilityRefs.DivineFavor.Reference.Get().Icon;
+        var expandedIcon = AbilityRefs.StoneskinCommunal.Reference.Get().Icon;
 
         var trance = TranceHelper.BuildTrance(
             baseName: "Interceptor",
@@ -43,7 +45,7 @@ public static class InterceptorPath
             .SetDisplayName(Loc.Str("PW.InterceptorManeuver.BuffName", "Interceptor Maneuver"))
             .SetDescription(Loc.Str("PW.InterceptorManeuver.BuffDesc",
                 "You enter a counter-attack stance, gaining +2 competence to attack and +2 competence to damage for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalAttackBonus, value: 2)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalDamage, value: 2)
             .Configure();
@@ -52,7 +54,7 @@ public static class InterceptorPath
             .SetDisplayName(Loc.Str("PW.InterceptorManeuverAb.Name", "Interceptor Maneuver"))
             .SetDescription(Loc.Str("PW.InterceptorManeuverAb.Desc",
                 "Swift Action. Expend psionic focus to enter a protective counter-attack stance, gaining +2 competence to attack and damage for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -69,7 +71,7 @@ public static class InterceptorPath
             .SetDisplayName(Loc.Str("PW.InterceptorExpanded.BuffName", "Save Another"))
             .SetDescription(Loc.Str("PW.InterceptorExpanded.BuffDesc",
                 "You harden your body to absorb blows meant for allies: DR 5/— for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .AddComponent(new AddDamageResistancePhysical { Value = 5, BypassedByMaterial = false })
             .Configure();
 
@@ -77,7 +79,7 @@ public static class InterceptorPath
             .SetDisplayName(Loc.Str("PW.InterceptorExpandedAb.Name", "Save Another"))
             .SetDescription(Loc.Str("PW.InterceptorExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to harden your body and absorb blows meant for allies: gain DR 5/— for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -94,7 +96,7 @@ public static class InterceptorPath
             .SetDisplayName(Loc.Str("PW.InterceptorExpandedFeat.Name", "Save Another"))
             .SetDescription(Loc.Str("PW.InterceptorExpandedFeat.Desc",
                 "You learn the Save Another maneuver: a swift-action self-buff granting DR 5/— for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetIsClassFeature()
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerInterceptorExpanded)
             .AddPrerequisiteFeature(Guids.InterceptorPath)

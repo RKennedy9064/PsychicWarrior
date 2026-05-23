@@ -17,14 +17,14 @@ using PsychicWarrior.Utils;
 namespace PsychicWarrior.Powers;
 
 /// <summary>
-/// Mental Barrier (Abjuration) â€” Project a barrier of mental energy. +4 deflection bonus to AC
+/// Mental Barrier (Abjuration)  -  Project a barrier of mental energy. +4 deflection bonus to AC
 ///.
 /// </summary>
 public static class MentalBarrier
 {
     public static void Configure()
     {
-        var icon = AbilityRefs.ShieldOfFaith.Reference.Get().Icon;
+        var icon = AbilityRefs.MageShield.Reference.Get().Icon;
 
         var buff = BuffConfigurator.New("PWMentalBarrierBuff", Guids.PowerMentalBarrierBuff)
             .SetDisplayName(Loc.Str("PW.MentalBarrier.BuffName", "Mental Barrier", tagEncyclopediaEntries: false))

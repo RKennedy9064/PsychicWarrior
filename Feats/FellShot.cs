@@ -29,7 +29,7 @@ public static class FellShot
             .SetDisplayName(Loc.Str("PW.FellShot.DebuffName", "Fell Shot"))
             .SetDescription(Loc.Str("PW.FellShot.DebuffDesc",
                 "This target has been struck with psionic force and loses their Dexterity bonus to AC."))
-            .SetIcon(FeatureRefs.PointBlankShot.Reference.Get().Icon)
+            .SetIcon(FeatureRefs.PreciseShot.Reference.Get().Icon)
             .AddCondition(UnitCondition.LoseDexterityToAC)
             .Configure();
 
@@ -37,7 +37,7 @@ public static class FellShot
             .SetDisplayName(Loc.Str("PW.FellShot.Name", "Fell Shot"))
             .SetDescription(Loc.Str("PW.FellShot.Desc",
                 "While psionically focused, your ranged attacks treat the target as flat-footed for 1 round."))
-            .SetIcon(FeatureRefs.PointBlankShot.Reference.Get().Icon)
+            .SetIcon(FeatureRefs.PreciseShot.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddPrerequisiteFeature(Guids.PsionicShotFeat)

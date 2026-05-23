@@ -30,7 +30,7 @@ public static class GreaterPsionicShot
             .SetDisplayName(Loc.Str("PW.GreaterPsionicShot.Name", "Greater Psionic Shot"))
             .SetDescription(Loc.Str("PW.GreaterPsionicShot.Desc",
                 "While psionically focused, your ranged attacks deal additional damage scaling with manifester level (1d6 at ML 1, 2d6 at ML 2, 3d6 at ML 4). Stacks with Psionic Shot."))
-            .SetIcon(FeatureRefs.PointBlankShot.Reference.Get().Icon)
+            .SetIcon(FeatureRefs.Manyshot.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.PsionicShotFeat)
             .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 5)

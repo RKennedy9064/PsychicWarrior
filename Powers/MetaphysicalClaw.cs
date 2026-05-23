@@ -20,7 +20,7 @@ public static class MetaphysicalClaw
 {
     public static void Configure()
     {
-        var icon = AbilityRefs.MagicWeapon.Reference.Get().Icon;
+        var icon = AbilityRefs.MagicFang.Reference.Get().Icon;
 
         var buff = BuffConfigurator.New("PWMetaphysicalClawBuff", Guids.PowerMetaphysicalClawBuff)
             .SetDisplayName(Loc.Str("PW.MetaphysicalClaw.BuffName", "Metaphysical Claw"))

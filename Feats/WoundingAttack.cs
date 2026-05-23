@@ -33,7 +33,7 @@ public static class WoundingAttack
             .SetDisplayName(Loc.Str("PW.WoundingAttack.BuffName", "Wounding Attack"))
             .SetDescription(Loc.Str("PW.WoundingAttack.BuffDesc",
                 "Your next melee attack deals 1d4 additional damage from psychic wounding."))
-            .SetIcon(FeatureRefs.VitalStrikeFeature.Reference.Get().Icon)
+            .SetIcon(AbilityRefs.InflictModerateWounds.Reference.Get().Icon)
             .AddInitiatorAttackWithWeaponTrigger(
                 action: ActionsBuilder.New()
                     .Add(new ContextActionLog { Message = "[WoundingAttack] trigger: melee hit — dealing 1d4" })
@@ -49,7 +49,7 @@ public static class WoundingAttack
             .SetDisplayName(Loc.Str("PW.WoundingAttackAb.Name", "Wounding Attack"))
             .SetDescription(Loc.Str("PW.WoundingAttackAb.Desc",
                 "Swift Action. Expend psionic focus. Your next melee attack that hits deals an additional 1d4 damage."))
-            .SetIcon(FeatureRefs.VitalStrikeFeature.Reference.Get().Icon)
+            .SetIcon(AbilityRefs.InflictModerateWounds.Reference.Get().Icon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -65,7 +65,7 @@ public static class WoundingAttack
             .SetDisplayName(Loc.Str("PW.WoundingAttack.Name", "Wounding Attack"))
             .SetDescription(Loc.Str("PW.WoundingAttack.Desc",
                 "As a swift action, expend psionic focus to charge your next melee attack with psychic energy. If the attack hits, it deals an additional 1d4 damage. Requires BAB +8."))
-            .SetIcon(FeatureRefs.VitalStrikeFeature.Reference.Get().Icon)
+            .SetIcon(AbilityRefs.InflictModerateWounds.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 8)

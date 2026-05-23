@@ -19,7 +19,7 @@ public static class DimensionSlide
             .SetDisplayName(Loc.Str("PW.DimensionSlide.Name", "Dimension Slide"))
             .SetDescription(Loc.Str("PW.DimensionSlide.Desc",
                 "You teleport to any visible location within close range (25 ft. + 5 ft./2 levels). You do not provoke attacks of opportunity from this movement."))
-            .SetIcon(AbilityRefs.DimensionDoor.Reference.Get().Icon)
+            .SetIcon(AbilityRefs.Blink.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Close)
             .SetActionType(UnitCommand.CommandType.Standard)

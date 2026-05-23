@@ -22,7 +22,9 @@ public static class SurvivorPath
 {
     public static void Configure()
     {
-        var icon = FeatureRefs.Toughness.Reference.Get().Icon;
+        var icon = FeatureRefs.GreatFortitude.Reference.Get().Icon;
+        var maneuverIcon = FeatureRefs.IronWill.Reference.Get().Icon;
+        var expandedIcon = AbilityRefs.FalseLife.Reference.Get().Icon;
 
         var trance = TranceHelper.BuildTrance(
             baseName: "Survivor",
@@ -48,7 +50,7 @@ public static class SurvivorPath
             .SetDisplayName(Loc.Str("PW.SurvivorManeuver.BuffName", "Survivor Maneuver"))
             .SetDescription(Loc.Str("PW.SurvivorManeuver.BuffDesc",
                 "You steel yourself against magic and harm, gaining +4 competence to Fortitude and Will saves for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveFortitude, value: 4)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveWill, value: 4)
             .Configure();
@@ -57,7 +59,7 @@ public static class SurvivorPath
             .SetDisplayName(Loc.Str("PW.SurvivorManeuverAb.Name", "Survivor Maneuver"))
             .SetDescription(Loc.Str("PW.SurvivorManeuverAb.Desc",
                 "Swift Action. Expend psionic focus to steel yourself against magic and physical harm, gaining +4 competence to Fortitude and Will saves for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -74,7 +76,7 @@ public static class SurvivorPath
             .SetDisplayName(Loc.Str("PW.SurvivorExpanded.BuffName", "Survivor's Resolve"))
             .SetDescription(Loc.Str("PW.SurvivorExpanded.BuffDesc",
                 "Psionic resolve hardens flesh — temporary hit points equal to your manifester level."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .AddTemporaryHitPointsFromAbilityValue(
                 descriptor: ModifierDescriptor.UntypedStackable,
                 value: ContextValues.Rank())
@@ -84,7 +86,7 @@ public static class SurvivorPath
             .SetDisplayName(Loc.Str("PW.SurvivorExpandedAb.Name", "Survivor's Resolve"))
             .SetDescription(Loc.Str("PW.SurvivorExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to gain temporary hit points equal to your manifester level (1 minute)."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -102,7 +104,7 @@ public static class SurvivorPath
             .SetDisplayName(Loc.Str("PW.SurvivorExpandedFeat.Name", "Survivor's Resolve"))
             .SetDescription(Loc.Str("PW.SurvivorExpandedFeat.Desc",
                 "You learn the Survivor's Resolve maneuver: a swift-action self-buff granting temporary hit points equal to your manifester level for 1 minute."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetIsClassFeature()
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerSurvivorExpanded)
             .AddPrerequisiteFeature(Guids.SurvivorPath)

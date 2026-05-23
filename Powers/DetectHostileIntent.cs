@@ -17,14 +17,14 @@ using PsychicWarrior.Utils;
 namespace PsychicWarrior.Powers;
 
 /// <summary>
-/// Detect Hostile Intent (Divination) â€” Sense incoming attacks. Grants Uncanny Dodge (cannot be
+/// Detect Hostile Intent (Divination)  -  Sense incoming attacks. Grants Uncanny Dodge (cannot be
 /// caught flat-footed) plus +2 Initiative.
 /// </summary>
 public static class DetectHostileIntent
 {
     public static void Configure()
     {
-        var icon = AbilityRefs.TrueStrike.Reference.Get().Icon;
+        var icon = FeatureRefs.Alertness.Reference.Get().Icon;
 
         var buff = BuffConfigurator.New("PWDetectHostileIntentBuff", Guids.PowerDetectHostileIntentBuff)
             .SetDisplayName(Loc.Str("PW.DetectHostileIntent.BuffName", "Detect Hostile Intent", tagEncyclopediaEntries: false))

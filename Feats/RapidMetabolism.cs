@@ -25,7 +25,7 @@ public static class RapidMetabolism
             .SetDisplayName(Loc.Str("PW.RapidMetabolism.Name", "Rapid Metabolism"))
             .SetDescription(Loc.Str("PW.RapidMetabolism.Desc",
                 "While psionically focused, you gain fast healing scaling with manifester level: FH 1 at ML 1–4, FH 2 at ML 5–9, FH 3 at ML 10–14, FH 4 at ML 15–19, FH 5 at ML 20."))
-            .SetIcon(FeatureRefs.Toughness.Reference.Get().Icon)
+            .SetIcon(FeatureRefs.Endurance.Reference.Get().Icon)
             .AddBuffActions(
                 newRound: ActionsBuilder.New()
                     .Add(new ContextActionLog { Message = "[RapidMetabolism] fast healing tick", LogRank = true })
@@ -39,7 +39,7 @@ public static class RapidMetabolism
             .SetDisplayName(Loc.Str("PW.RapidMetabolism.Name", "Rapid Metabolism"))
             .SetDescription(Loc.Str("PW.RapidMetabolism.Desc",
                 "While psionically focused, you gain fast healing scaling with manifester level: FH 1 at ML 1–4, FH 2 at ML 5–9, FH 3 at ML 10–14, FH 4 at ML 15–19, FH 5 at ML 20."))
-            .SetIcon(FeatureRefs.Toughness.Reference.Get().Icon)
+            .SetIcon(FeatureRefs.Endurance.Reference.Get().Icon)
             .SetGroups(FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddRecommendedClass(Guids.PsychicWarriorClass)

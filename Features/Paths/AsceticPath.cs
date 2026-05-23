@@ -22,7 +22,9 @@ public static class AsceticPath
 {
     public static void Configure()
     {
-        var icon = FeatureRefs.Dodge.Reference.Get().Icon;
+        var icon = FeatureRefs.Mobility.Reference.Get().Icon;
+        var maneuverIcon = AbilityRefs.ShieldOfFaith.Reference.Get().Icon;
+        var expandedIcon = AbilityRefs.Aid.Reference.Get().Icon;
 
         var trance = TranceHelper.BuildTrance(
             baseName: "Ascetic",
@@ -45,7 +47,7 @@ public static class AsceticPath
             .SetDisplayName(Loc.Str("PW.AsceticManeuver.BuffName", "Ascetic Maneuver"))
             .SetDescription(Loc.Str("PW.AsceticManeuver.BuffDesc",
                 "You gain a +4 dodge bonus to AC for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.AC, value: 4)
             .Configure();
 
@@ -53,7 +55,7 @@ public static class AsceticPath
             .SetDisplayName(Loc.Str("PW.AsceticManeuverAb.Name", "Ascetic Maneuver"))
             .SetDescription(Loc.Str("PW.AsceticManeuverAb.Desc",
                 "Swift Action. Expend psionic focus to enter a defensive stance, gaining +4 dodge to AC for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -70,14 +72,14 @@ public static class AsceticPath
         BuffConfigurator.New("AsceticExpandedManeuverBuff", Guids.AsceticExpandedBuff)
             .SetDisplayName(Loc.Str("PW.AsceticExpanded.BuffName", "Wholeness of Body"))
             .SetDescription(Loc.Str("PW.AsceticExpanded.BuffDesc", "Psychometabolic self-healing."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .Configure();
 
         var expandedAbility = AbilityConfigurator.New("AsceticExpandedManeuverAbility", Guids.AsceticExpandedAbility)
             .SetDisplayName(Loc.Str("PW.AsceticExpandedAb.Name", "Wholeness of Body"))
             .SetDescription(Loc.Str("PW.AsceticExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to heal yourself for hit points equal to your manifester level."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -96,7 +98,7 @@ public static class AsceticPath
             .SetDisplayName(Loc.Str("PW.AsceticExpandedFeat.Name", "Wholeness of Body"))
             .SetDescription(Loc.Str("PW.AsceticExpandedFeat.Desc",
                 "You learn the Wholeness of Body maneuver: a swift action that heals you for hit points equal to your manifester level."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetIsClassFeature()
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerAsceticExpanded)
             .AddPrerequisiteFeature(Guids.AsceticPath)

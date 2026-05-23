@@ -18,7 +18,7 @@ public static class ZealousFury
 {
     public static void Configure()
     {
-        var icon = AbilityRefs.Rage.Reference.Get().Icon;
+        var icon = AbilityRefs.HeroismGreater.Reference.Get().Icon;
 
         var buff = BuffConfigurator.New("PWZealousFuryBuff", Guids.PowerZealousFuryBuff)
             .SetDisplayName(Loc.Str("PW.ZealousFury.BuffName", "Zealous Fury"))

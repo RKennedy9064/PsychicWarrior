@@ -20,12 +20,12 @@ public static class UbiquitousVision
 {
     public static void Configure()
     {
-        var icon = AbilityRefs.TrueSeeing.Reference.Get().Icon;
+        var icon = AbilityRefs.Foresight.Reference.Get().Icon;
 
         var buff = BuffConfigurator.New("PWUbiquitousVisionBuff", Guids.PowerUbiquitousVisionBuff)
             .SetDisplayName(Loc.Str("PW.UbiquitousVision.BuffName", "Ubiquitous Vision"))
             .SetDescription(Loc.Str("PW.UbiquitousVision.BuffDesc",
-                "360Â° psionic vision. You gain +4 insight bonus to Perception and cannot be flanked."))
+                "360-degree psionic vision. You gain +4 insight bonus to Perception and cannot be flanked."))
             .SetIcon(icon)
             .AddStatBonus(descriptor: ModifierDescriptor.Insight, stat: StatType.SkillPerception, value: 4)
             .AddFortification(50)

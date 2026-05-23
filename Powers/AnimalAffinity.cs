@@ -19,7 +19,7 @@ using PsychicWarrior.Utils;
 namespace PsychicWarrior.Powers;
 
 /// <summary>
-/// Animal Affinity (Transmutation) â€” Gain +4 enhancement bonus to one ability score of your
+/// Animal Affinity (Transmutation)  -  Gain +4 enhancement bonus to one ability score of your
 /// choice (Strength, Dexterity, Constitution, Intelligence, Wisdom, or Charisma)/level.
 ///
 /// Implemented as a parent ability with six variants (alchemist-mutagen pattern). The parent is
@@ -39,40 +39,40 @@ public static class AnimalAffinity
         BuildVariant(
             "PWAnimalAffinityStrength", Guids.PowerAnimalAffinityStrength,
             "PWAnimalAffinityStrengthBuff", Guids.PowerAnimalAffinityStrengthBuff,
-            "Animal Affinity â€” Strength", "Boar",
+            "Animal Affinity  -  Strength", "Boar",
             StatType.Strength, iconStr);
 
         BuildVariant(
             "PWAnimalAffinityDexterity", Guids.PowerAnimalAffinityDexterity,
             "PWAnimalAffinityDexterityBuff", Guids.PowerAnimalAffinityDexterityBuff,
-            "Animal Affinity â€” Dexterity", "Cat",
+            "Animal Affinity  -  Dexterity", "Cat",
             StatType.Dexterity, iconDex);
 
         BuildVariant(
             "PWAnimalAffinityConstitution", Guids.PowerAnimalAffinityConstitution,
             "PWAnimalAffinityConstitutionBuff", Guids.PowerAnimalAffinityConstitutionBuff,
-            "Animal Affinity â€” Constitution", "Bear",
+            "Animal Affinity  -  Constitution", "Bear",
             StatType.Constitution, iconCon);
 
         BuildVariant(
             "PWAnimalAffinityIntelligence", Guids.PowerAnimalAffinityIntelligence,
             "PWAnimalAffinityIntelligenceBuff", Guids.PowerAnimalAffinityIntelligenceBuff,
-            "Animal Affinity â€” Intelligence", "Fox",
+            "Animal Affinity  -  Intelligence", "Fox",
             StatType.Intelligence, iconInt);
 
         BuildVariant(
             "PWAnimalAffinityWisdom", Guids.PowerAnimalAffinityWisdom,
             "PWAnimalAffinityWisdomBuff", Guids.PowerAnimalAffinityWisdomBuff,
-            "Animal Affinity â€” Wisdom", "Owl",
+            "Animal Affinity  -  Wisdom", "Owl",
             StatType.Wisdom, iconWis);
 
         BuildVariant(
             "PWAnimalAffinityCharisma", Guids.PowerAnimalAffinityCharisma,
             "PWAnimalAffinityCharismaBuff", Guids.PowerAnimalAffinityCharismaBuff,
-            "Animal Affinity â€” Charisma", "Eagle",
+            "Animal Affinity  -  Charisma", "Eagle",
             StatType.Charisma, iconCha);
 
-        // Parent ability â€” the entry in the spellbook/action bar. Clicking expands the variant menu.
+        // Parent ability  -  the entry in the spellbook/action bar. Clicking expands the variant menu.
         AbilityConfigurator.New("PWAnimalAffinity", Guids.PowerAnimalAffinity)
             .SetDisplayName(Loc.Str("PW.AnimalAffinity.Name", "Animal Affinity", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.AnimalAffinity.Desc",

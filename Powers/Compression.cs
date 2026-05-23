@@ -22,7 +22,7 @@ public static class Compression
         AbilityConfigurator.New("PWCompression", Guids.PowerCompression)
             .SetDisplayName(Loc.Str("PW.Compression.Name", "Compression"))
             .SetDescription(Loc.Str("PW.Compression.Desc",
-                "Your body shrinks to Small size, granting +2 Dexterity, â€“2 Strength, +1 bonus to attack rolls and AC."))
+                "Your body shrinks to Small size, granting +2 Dexterity, -2 Strength, +1 bonus to attack rolls and AC."))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)

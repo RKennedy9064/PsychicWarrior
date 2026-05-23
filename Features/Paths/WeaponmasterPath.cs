@@ -23,7 +23,8 @@ public static class WeaponmasterPath
     public static void Configure()
     {
         var icon = FeatureRefs.PowerAttackFeature.Reference.Get().Icon;
-        var maneuverIcon = AbilityRefs.DivineFavor.Reference.Get().Icon;
+        var maneuverIcon = FeatureRefs.WeaponSpecializationGreatsword.Reference.Get().Icon;
+        var expandedIcon = AbilityRefs.ExpeditiousRetreat.Reference.Get().Icon;
 
         // Trance (and grouped path-powers parent) — see TranceHelper for shape
         var trance = TranceHelper.BuildTrance(
@@ -75,7 +76,7 @@ public static class WeaponmasterPath
             .SetDisplayName(Loc.Str("PW.WMExpanded.BuffName", "Burst of Speed"))
             .SetDescription(Loc.Str("PW.WMExpanded.BuffDesc",
                 "A psionic burst of momentum carries you forward: +30 ft speed and +4 competence to attack rolls."))
-            .SetIcon(maneuverIcon)
+            .SetIcon(expandedIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Enhancement, stat: StatType.Speed, value: 30)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalAttackBonus, value: 4)
             .Configure();
@@ -84,7 +85,7 @@ public static class WeaponmasterPath
             .SetDisplayName(Loc.Str("PW.WMExpandedAb.Name", "Burst of Speed"))
             .SetDescription(Loc.Str("PW.WMExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to unleash a burst of psionic momentum: +30 ft speed and +4 competence to attack rolls for 1 round."))
-            .SetIcon(maneuverIcon)
+            .SetIcon(expandedIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -101,7 +102,7 @@ public static class WeaponmasterPath
             .SetDisplayName(Loc.Str("PW.WMExpandedFeat.Name", "Burst of Speed"))
             .SetDescription(Loc.Str("PW.WMExpandedFeat.Desc",
                 "You learn the Burst of Speed maneuver: a swift-action self-buff granting +30 ft speed and +4 competence to attack rolls for 1 round."))
-            .SetIcon(maneuverIcon)
+            .SetIcon(expandedIcon)
             .SetIsClassFeature()
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerWeaponmasterExpanded)
             .AddPrerequisiteFeature(Guids.WeaponmasterPath)

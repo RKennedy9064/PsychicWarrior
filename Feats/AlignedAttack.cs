@@ -29,7 +29,7 @@ public static class AlignedAttack
             .SetDisplayName(Loc.Str("PW.AlignedAttack.Name", "Aligned Attack"))
             .SetDescription(Loc.Str("PW.AlignedAttack.Desc",
                 "While psionically focused, your melee attacks deal an additional 2d6 damage, as your strikes are infused with aligned psionic energy that bypasses damage reduction based on alignment."))
-            .SetIcon(FeatureRefs.VitalStrikeFeature.Reference.Get().Icon)
+            .SetIcon(AbilityRefs.BlessWeapon.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 6)

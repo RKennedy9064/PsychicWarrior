@@ -22,6 +22,8 @@ public static class AssassinsPath
     public static void Configure()
     {
         var icon = AbilityRefs.VampiricTouch.Reference.Get().Icon;
+        var maneuverIcon = AbilityRefs.TrueStrike.Reference.Get().Icon;
+        var expandedIcon = AbilityRefs.Heroism.Reference.Get().Icon;
 
         var trance = TranceHelper.BuildTrance(
             baseName: "Assassins",
@@ -45,7 +47,7 @@ public static class AssassinsPath
             .SetDisplayName(Loc.Str("PW.AssassinsManeuver.BuffName", "Assassin's Maneuver"))
             .SetDescription(Loc.Str("PW.AssassinsManeuver.BuffDesc",
                 "Your next attack deals +7 bonus damage from precision psionic energy."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalDamage, value: 7)
             .AddInitiatorAttackRollTrigger(ActionsBuilder.New().RemoveBuff(Guids.AssassinsManeuverBuff))
             .Configure();
@@ -54,7 +56,7 @@ public static class AssassinsPath
             .SetDisplayName(Loc.Str("PW.AssassinsManeuverAb.Name", "Assassin's Maneuver"))
             .SetDescription(Loc.Str("PW.AssassinsManeuverAb.Desc",
                 "Swift Action. Expend psionic focus to channel precision energy into your next strike, dealing +7 bonus damage."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -71,7 +73,7 @@ public static class AssassinsPath
             .SetDisplayName(Loc.Str("PW.AssassinsExpanded.BuffName", "Mindblade Strike"))
             .SetDescription(Loc.Str("PW.AssassinsExpanded.BuffDesc",
                 "Pure mental focus: +4 competence damage, +4 competence to all saves."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalDamage, value: 4)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveFortitude, value: 4)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveReflex, value: 4)
@@ -82,7 +84,7 @@ public static class AssassinsPath
             .SetDisplayName(Loc.Str("PW.AssassinsExpandedAb.Name", "Mindblade Strike"))
             .SetDescription(Loc.Str("PW.AssassinsExpandedAb.Desc",
                 "Swift Action. Expend psionic focus and enter a state of pure mental focus: +4 competence damage and +4 competence to all saves for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -99,7 +101,7 @@ public static class AssassinsPath
             .SetDisplayName(Loc.Str("PW.AssassinsExpandedFeat.Name", "Mindblade Strike"))
             .SetDescription(Loc.Str("PW.AssassinsExpandedFeat.Desc",
                 "You learn the Mindblade Strike maneuver: a swift-action self-buff granting +4 competence damage and +4 competence to all saves for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetIsClassFeature()
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerAssassinsExpanded)
             .AddPrerequisiteFeature(Guids.AssassinsPath)

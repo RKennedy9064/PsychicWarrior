@@ -21,8 +21,9 @@ public static class BrawlerPath
 {
     public static void Configure()
     {
-        var icon = FeatureRefs.ImprovedUnarmedStrike.Reference.Get().Icon;
+        var icon = FeatureRefs.ImprovedBullRush.Reference.Get().Icon;
         var maneuverIcon = AbilityRefs.BullsStrength.Reference.Get().Icon;
+        var expandedIcon = FeatureRefs.Toughness.Reference.Get().Icon;
 
         // Trance + grouped path-powers parent
         var trance = TranceHelper.BuildTrance(
@@ -75,7 +76,7 @@ public static class BrawlerPath
             .SetDisplayName(Loc.Str("PW.BrawlerExpanded.BuffName", "Steel Sinews"))
             .SetDescription(Loc.Str("PW.BrawlerExpanded.BuffDesc",
                 "Your sinews harden against blows. You gain +4 dodge bonus to AC and Fast Healing 2 for 1 round."))
-            .SetIcon(maneuverIcon)
+            .SetIcon(expandedIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.AC, value: 4)
             .AddEffectFastHealing(heal: 2)
             .Configure();
@@ -84,7 +85,7 @@ public static class BrawlerPath
             .SetDisplayName(Loc.Str("PW.BrawlerExpandedAb.Name", "Steel Sinews"))
             .SetDescription(Loc.Str("PW.BrawlerExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to harden your sinews. Gain +4 dodge bonus to AC and Fast Healing 2 for 1 round."))
-            .SetIcon(maneuverIcon)
+            .SetIcon(expandedIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -101,7 +102,7 @@ public static class BrawlerPath
             .SetDisplayName(Loc.Str("PW.BrawlerExpandedFeat.Name", "Steel Sinews"))
             .SetDescription(Loc.Str("PW.BrawlerExpandedFeat.Desc",
                 "You learn the Steel Sinews maneuver: a swift-action self-buff that grants +4 dodge AC and Fast Healing 2 for 1 round."))
-            .SetIcon(maneuverIcon)
+            .SetIcon(expandedIcon)
             .SetIsClassFeature()
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerBrawlerExpanded)
             .AddPrerequisiteFeature(Guids.BrawlerPath)

@@ -22,6 +22,8 @@ public static class InfiltratorPath
     public static void Configure()
     {
         var icon = AbilityRefs.CauseFear.Reference.Get().Icon;
+        var maneuverIcon = FeatureRefs.SkillFocusDiplomacy.Reference.Get().Icon;
+        var expandedIcon = AbilityRefs.Blur.Reference.Get().Icon;
 
         var trance = TranceHelper.BuildTrance(
             baseName: "Infiltrator",
@@ -43,7 +45,7 @@ public static class InfiltratorPath
             .SetDisplayName(Loc.Str("PW.InfiltratorManeuver.BuffName", "Infiltrator Maneuver"))
             .SetDescription(Loc.Str("PW.InfiltratorManeuver.BuffDesc",
                 "Your psionic aura radiates menace. You gain +4 competence to Persuasion and +2 competence to damage for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SkillPersuasion, value: 4)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalDamage, value: 2)
             .Configure();
@@ -52,7 +54,7 @@ public static class InfiltratorPath
             .SetDisplayName(Loc.Str("PW.InfiltratorManeuverAb.Name", "Infiltrator Maneuver"))
             .SetDescription(Loc.Str("PW.InfiltratorManeuverAb.Desc",
                 "Swift Action. Expend psionic focus to project a menacing aura, gaining +4 competence to Persuasion and +2 competence to damage for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -69,7 +71,7 @@ public static class InfiltratorPath
             .SetDisplayName(Loc.Str("PW.InfiltratorExpanded.BuffName", "Hidden Step"))
             .SetDescription(Loc.Str("PW.InfiltratorExpanded.BuffDesc",
                 "Psionic shadow-step: +20 ft enhancement speed and +6 competence to Stealth for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Enhancement, stat: StatType.Speed, value: 20)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SkillStealth, value: 6)
             .Configure();
@@ -78,7 +80,7 @@ public static class InfiltratorPath
             .SetDisplayName(Loc.Str("PW.InfiltratorExpandedAb.Name", "Hidden Step"))
             .SetDescription(Loc.Str("PW.InfiltratorExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to glide as a shadow: +20 ft enhancement speed and +6 competence to Stealth for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -95,7 +97,7 @@ public static class InfiltratorPath
             .SetDisplayName(Loc.Str("PW.InfiltratorExpandedFeat.Name", "Hidden Step"))
             .SetDescription(Loc.Str("PW.InfiltratorExpandedFeat.Desc",
                 "You learn the Hidden Step maneuver: a swift-action self-buff granting +20 ft speed and +6 competence to Stealth for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetIsClassFeature()
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerInfiltratorExpanded)
             .AddPrerequisiteFeature(Guids.InfiltratorPath)

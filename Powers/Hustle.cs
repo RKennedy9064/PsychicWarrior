@@ -17,7 +17,7 @@ using PsychicWarrior.Utils;
 namespace PsychicWarrior.Powers;
 
 /// <summary>
-/// Hustle (Transmutation) â€” Gain a haste-like boost.
+/// Hustle (Transmutation)  -  Gain a haste-like boost.
 ///
 /// Simplified from RAW (which grants an extra move action this round). WoTR doesn't model
 /// per-round action economy the same way, so we apply a Haste-style buff.
@@ -26,7 +26,7 @@ public static class Hustle
 {
     public static void Configure()
     {
-        var icon = AbilityRefs.Haste.Reference.Get().Icon;
+        var icon = AbilityRefs.Longstrider.Reference.Get().Icon;
 
         var buff = BuffConfigurator.New("PWHustleBuff", Guids.PowerHustleBuff)
             .SetDisplayName(Loc.Str("PW.Hustle.BuffName", "Hustle", tagEncyclopediaEntries: false))

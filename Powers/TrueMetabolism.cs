@@ -19,7 +19,7 @@ public static class TrueMetabolism
 {
     public static void Configure()
     {
-        var icon = AbilityRefs.Restoration.Reference.Get().Icon;
+        var icon = AbilityRefs.CureCriticalWounds.Reference.Get().Icon;
 
         var buff = BuffConfigurator.New("PWTrueMetabolismBuff", Guids.PowerTrueMetabolismBuff)
             .SetDisplayName(Loc.Str("PW.TrueMetabolism.BuffName", "True Metabolism", tagEncyclopediaEntries: false))

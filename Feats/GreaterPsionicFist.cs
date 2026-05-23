@@ -30,7 +30,7 @@ public static class GreaterPsionicFist
             .SetDisplayName(Loc.Str("PW.GreaterPsionicFist.Name", "Greater Psionic Fist"))
             .SetDescription(Loc.Str("PW.GreaterPsionicFist.Desc",
                 "While psionically focused, your unarmed strikes deal additional damage scaling with manifester level (1d6 at ML 1, 2d6 at ML 2, 3d6 at ML 4). Stacks with Psionic Fist."))
-            .SetIcon(FeatureRefs.ImprovedUnarmedStrike.Reference.Get().Icon)
+            .SetIcon(FeatureRefs.StunningFist.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.PsionicFistFeat)
             .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 5)

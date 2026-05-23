@@ -21,7 +21,9 @@ public static class MindKnightPath
 {
     public static void Configure()
     {
-        var icon = AbilityRefs.DivineFavor.Reference.Get().Icon;
+        var tranceIcon   = AbilityRefs.DivineFavor.Reference.Get().Icon;
+        var maneuverIcon = AbilityRefs.TrueStrike.Reference.Get().Icon;
+        var mentalIcon   = AbilityRefs.Bless.Reference.Get().Icon;
 
         var trance = TranceHelper.BuildTrance(
             baseName: "MindKnight",
@@ -34,7 +36,7 @@ public static class MindKnightPath
             expandedManeuverAbilityGuid: Guids.MindKnightExpandedAbility,
             displayName: "Mind Knight",
             featureDescription: "Your psionic focus sharpens your mental acuity in battle. You gain a +1 competence bonus to Initiative and a +1 competence bonus to attack rolls.",
-            icon: icon,
+            icon: tranceIcon,
             addBuffComponents: b => b
                 .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.Initiative, value: 1)
                 .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalAttackBonus, value: 1));
@@ -43,7 +45,7 @@ public static class MindKnightPath
             .SetDisplayName(Loc.Str("PW.MindKnightManeuver.BuffName", "Mind Knight Maneuver"))
             .SetDescription(Loc.Str("PW.MindKnightManeuver.BuffDesc",
                 "Your mind sharpens your blade. You gain +2 competence to attack rolls and +2 competence to damage for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalAttackBonus, value: 2)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalDamage, value: 2)
             .Configure();
@@ -52,7 +54,7 @@ public static class MindKnightPath
             .SetDisplayName(Loc.Str("PW.MindKnightManeuverAb.Name", "Mind Knight Maneuver"))
             .SetDescription(Loc.Str("PW.MindKnightManeuverAb.Desc",
                 "Swift Action. Expend psionic focus to sharpen your mental connection to your weapon, gaining +2 competence to attack and damage for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -69,7 +71,7 @@ public static class MindKnightPath
             .SetDisplayName(Loc.Str("PW.MindKnightExpanded.BuffName", "Mental Strike"))
             .SetDescription(Loc.Str("PW.MindKnightExpanded.BuffDesc",
                 "Heightened combat awareness: +4 Initiative and +4 dodge bonus to AC for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(mentalIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Insight, stat: StatType.Initiative, value: 4)
             .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.AC, value: 4)
             .Configure();
@@ -78,7 +80,7 @@ public static class MindKnightPath
             .SetDisplayName(Loc.Str("PW.MindKnightExpandedAb.Name", "Mental Strike"))
             .SetDescription(Loc.Str("PW.MindKnightExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to sharpen combat awareness: +4 insight Initiative and +4 dodge bonus to AC for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(mentalIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -95,7 +97,7 @@ public static class MindKnightPath
             .SetDisplayName(Loc.Str("PW.MindKnightExpandedFeat.Name", "Mental Strike"))
             .SetDescription(Loc.Str("PW.MindKnightExpandedFeat.Desc",
                 "You learn the Mental Strike maneuver: a swift-action self-buff granting +4 insight Initiative and +4 dodge bonus to AC for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(mentalIcon)
             .SetIsClassFeature()
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerMindKnightExpanded)
             .AddPrerequisiteFeature(Guids.MindKnightPath)
@@ -105,7 +107,7 @@ public static class MindKnightPath
             .SetDisplayName(Loc.Str("PW.MindKnightPath.Name", "Mind Knight Path"))
             .SetDescription(Loc.Str("PW.MindKnightPath.Desc",
                 "You focus on mental precision in combat. You gain +1 competence to Initiative and attack rolls (trance) and can expend psionic focus for +2 competence to attack and damage (maneuver)."))
-            .SetIcon(icon)
+            .SetIcon(tranceIcon)
             .SetIsClassFeature()
             .AddFacts(new() { trance.ToString() })
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerMindKnightManeuver)

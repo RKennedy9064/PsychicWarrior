@@ -23,7 +23,7 @@ public static class TelekineticPunch
             .SetDisplayName(Loc.Str("PW.TelekineticPunch.Name", "Telekinetic Punch"))
             .SetDescription(Loc.Str("PW.TelekineticPunch.Desc",
                 "You deliver a telekinetic punch to your target, dealing 1d4+1 points of force damage. A successful Will save negates the damage."))
-            .SetIcon(AbilityRefs.MagicMissile.Reference.Get().Icon)
+            .SetIcon(AbilityRefs.TelekineticFist.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Close)
             .SetActionType(UnitCommand.CommandType.Standard)

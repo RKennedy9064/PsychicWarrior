@@ -21,7 +21,7 @@ public static class PrecognitionDefensive
         var buff = BuffConfigurator.New("PWPrecognitionDefensiveBuff", Guids.PowerPrecognitionDefensiveBuff)
             .SetDisplayName(Loc.Str("PW.PrecognitionDef.BuffName", "Precognition, Defensive"))
             .SetDescription(Loc.Str("PW.PrecognitionDef.BuffDesc", "+1 insight bonus to AC."))
-            .SetIcon(AbilityRefs.TrueStrike.Reference.Get().Icon)
+            .SetIcon(AbilityRefs.MirrorImage.Reference.Get().Icon)
             .AddStatBonus(descriptor: ModifierDescriptor.Insight, stat: StatType.AC, value: 1)
             .Configure();
 
@@ -29,7 +29,7 @@ public static class PrecognitionDefensive
             .SetDisplayName(Loc.Str("PW.PrecognitionDef.Name", "Precognition, Defensive"))
             .SetDescription(Loc.Str("PW.PrecognitionDef.Desc",
                 "Your psionic foresight warns you of incoming attacks. You gain a +1 insight bonus to AC."))
-            .SetIcon(AbilityRefs.TrueStrike.Reference.Get().Icon)
+            .SetIcon(AbilityRefs.MirrorImage.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
             .SetLocalizedDuration(Loc.Str("PW.Duration.1Round", "1 round"))

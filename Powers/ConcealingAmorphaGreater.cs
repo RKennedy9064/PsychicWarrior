@@ -14,7 +14,7 @@ using PsychicWarrior.Utils;
 namespace PsychicWarrior.Powers;
 
 /// <summary>
-/// Concealing Amorpha, Greater (Metacreativity â†’ Conjuration) â€” Surround yourself with quasi-real
+/// Concealing Amorpha, Greater (Metacreativity â†' Conjuration)  -  Surround yourself with quasi-real
 /// psionic matter, gaining displacement (50% miss chance).
 /// Reuses WoTR's DisplacementBuff for the actual miss-chance mechanic.
 /// </summary>

@@ -22,7 +22,7 @@ public static class Expansion
         AbilityConfigurator.New("PWExpansion", Guids.PowerExpansion)
             .SetDisplayName(Loc.Str("PW.Expansion.Name", "Expansion"))
             .SetDescription(Loc.Str("PW.Expansion.Desc",
-                "Your body grows to Large size, granting +2 Strength, â€“2 Dexterity, â€“1 penalty to attack rolls and AC."))
+                "Your body grows to Large size, granting +2 Strength, -2 Dexterity, -1 penalty to attack rolls and AC."))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)

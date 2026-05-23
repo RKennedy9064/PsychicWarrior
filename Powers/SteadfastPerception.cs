@@ -21,7 +21,7 @@ public static class SteadfastPerception
 {
     public static void Configure()
     {
-        var icon = AbilityRefs.TrueStrike.Reference.Get().Icon;
+        var icon = AbilityRefs.SeeInvisibility.Reference.Get().Icon;
 
         var buff = BuffConfigurator.New("PWSteadfastPerceptionBuff", Guids.PowerSteadfastPerceptionBuff)
             .SetDisplayName(Loc.Str("PW.SteadfastPerception.BuffName", "Steadfast Perception", tagEncyclopediaEntries: false))

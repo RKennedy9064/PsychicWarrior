@@ -21,8 +21,8 @@ public static class Biofeedback
         var buff = BuffConfigurator.New("PWBiofeedbackBuff", Guids.PowerBiofeedbackBuff)
             .SetDisplayName(Loc.Str("PW.Biofeedback.BuffName", "Biofeedback"))
             .SetDescription(Loc.Str("PW.Biofeedback.BuffDesc",
-                "A psionic biofeedback loop reduces all physical damage you take. DR 2/â€” at ML 1, improving by 1 per 3 manifester levels."))
-            .SetIcon(AbilityRefs.Stoneskin.Reference.Get().Icon)
+                "A psionic biofeedback loop reduces all physical damage you take. DR 2/- at ML 1, improving by 1 per 3 manifester levels."))
+            .SetIcon(AbilityRefs.IronBody.Reference.Get().Icon)
             .AddDamageResistancePhysical(value: ContextValues.Rank())
             .AddContextRankConfig(
                 ContextRankConfigs.CasterLevel().WithCustomProgression(
@@ -32,8 +32,8 @@ public static class Biofeedback
         AbilityConfigurator.New("PWBiofeedback", Guids.PowerBiofeedback)
             .SetDisplayName(Loc.Str("PW.Biofeedback.Name", "Biofeedback"))
             .SetDescription(Loc.Str("PW.Biofeedback.Desc",
-                "You create a biofeedback loop that protects you from harm. DR 2/â€” at ML 1, improving by 1 per 3 manifester levels."))
-            .SetIcon(AbilityRefs.Stoneskin.Reference.Get().Icon)
+                "You create a biofeedback loop that protects you from harm. DR 2/- at ML 1, improving by 1 per 3 manifester levels."))
+            .SetIcon(AbilityRefs.IronBody.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
             .SetLocalizedDuration(Loc.Str("PW.Duration.1Hour", "1 hour"))

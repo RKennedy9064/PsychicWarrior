@@ -20,12 +20,12 @@ public static class OakBody
 {
     public static void Configure()
     {
-        var icon = AbilityRefs.Stoneskin.Reference.Get().Icon;
+        var icon = AbilityRefs.ProtectionFromArrows.Reference.Get().Icon;
 
         var buff = BuffConfigurator.New("PWOakBodyBuff", Guids.PowerOakBodyBuff)
             .SetDisplayName(Loc.Str("PW.OakBody.BuffName", "Oak Body", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.OakBody.BuffDesc",
-                "Your body has transformed into living wood. You have DR 10/â€”, +4 Strength, +4 natural armor, âˆ’4 Dexterity, and immunity to mind-affecting effects.",
+                "Your body has transformed into living wood. You have DR 10/-, +4 Strength, +4 natural armor, -4 Dexterity, and immunity to mind-affecting effects.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .AddDamageResistancePhysical(value: ContextValues.Constant(10))
@@ -38,7 +38,7 @@ public static class OakBody
         AbilityConfigurator.New("PWOakBody", Guids.PowerOakBody)
             .SetDisplayName(Loc.Str("PW.OakBody.Name", "Oak Body", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.OakBody.Desc",
-                "Your body transforms into living wood. For 1 minute per manifester level you gain DR 10/â€”, a +4 enhancement bonus to Strength, a +4 natural armor bonus to AC, a âˆ’4 penalty to Dexterity, and immunity to mind-affecting effects.",
+                "Your body transforms into living wood. For 1 minute per manifester level you gain DR 10/-, a +4 enhancement bonus to Strength, a +4 natural armor bonus to AC, a âˆ'4 penalty to Dexterity, and immunity to mind-affecting effects.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)

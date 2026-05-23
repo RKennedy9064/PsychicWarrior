@@ -31,7 +31,7 @@ public static class EnergyAdaptation
         AbilityConfigurator.New("PWEnergyAdaptation", Guids.PowerEnergyAdaptation)
             .SetDisplayName(Loc.Str("PW.EnergyAdaptation.Name", "Energy Adaptation"))
             .SetDescription(Loc.Str("PW.EnergyAdaptation.Desc",
-                "You adapt your body to resist a chosen energy type. Choose fire, cold, electricity, acid, or sonic â€” you gain resistance 10 to that energy type."))
+                "You adapt your body to resist a chosen energy type. Choose fire, cold, electricity, acid, or sonic - you gain resistance 10 to that energy type."))
             .SetIcon(AbilityRefs.ResistFire.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
@@ -64,7 +64,7 @@ public static class EnergyAdaptation
             .Configure();
 
         AbilityConfigurator.New($"PWEnergyAdaptation{energyName}", abilityGuid)
-            .SetDisplayName(Loc.Str($"PW.EnergyAdaptation{energyName}.Name", $"Energy Adaptation â€” {energyName}"))
+            .SetDisplayName(Loc.Str($"PW.EnergyAdaptation{energyName}.Name", $"Energy Adaptation: {energyName}"))
             .SetDescription(Loc.Str($"PW.EnergyAdaptation{energyName}.Desc",
                 $"You gain resistance 10 to {energyName.ToLower()} damage."))
             .SetIcon(icon)

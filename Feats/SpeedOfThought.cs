@@ -25,7 +25,7 @@ public static class SpeedOfThought
             .SetDisplayName(Loc.Str("PW.SpeedOfThought.Name", "Speed of Thought"))
             .SetDescription(Loc.Str("PW.SpeedOfThought.Desc",
                 "While psionically focused, you gain a +10 ft enhancement bonus to your land speed."))
-            .SetIcon(FeatureRefs.Dodge.Reference.Get().Icon)
+            .SetIcon(FeatureRefs.Improved_Initiative.Reference.Get().Icon)
             .AddStatBonus(descriptor: ModifierDescriptor.Enhancement, stat: StatType.Speed, value: 10)
             .Configure();
 
@@ -33,7 +33,7 @@ public static class SpeedOfThought
             .SetDisplayName(Loc.Str("PW.SpeedOfThought.Name", "Speed of Thought"))
             .SetDescription(Loc.Str("PW.SpeedOfThought.Desc",
                 "While psionically focused, you gain a +10 ft enhancement bonus to your land speed."))
-            .SetIcon(FeatureRefs.Dodge.Reference.Get().Icon)
+            .SetIcon(FeatureRefs.Improved_Initiative.Reference.Get().Icon)
             .SetGroups(FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddRecommendedClass(Guids.PsychicWarriorClass)

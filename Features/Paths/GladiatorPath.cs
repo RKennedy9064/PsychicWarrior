@@ -22,6 +22,8 @@ public static class GladiatorPath
     public static void Configure()
     {
         var icon = AbilityRefs.BullsStrength.Reference.Get().Icon;
+        var maneuverIcon = FeatureRefs.ImprovedBullRush.Reference.Get().Icon;
+        var expandedIcon = AbilityRefs.Bless.Reference.Get().Icon;
 
         var trance = TranceHelper.BuildTrance(
             baseName: "Gladiator",
@@ -44,7 +46,7 @@ public static class GladiatorPath
             .SetDisplayName(Loc.Str("PW.GladiatorManeuver.BuffName", "Gladiator Maneuver"))
             .SetDescription(Loc.Str("PW.GladiatorManeuver.BuffDesc",
                 "You gain a +4 competence bonus to CMB for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalCMB, value: 4)
             .Configure();
 
@@ -52,7 +54,7 @@ public static class GladiatorPath
             .SetDisplayName(Loc.Str("PW.GladiatorManeuverAb.Name", "Gladiator Maneuver"))
             .SetDescription(Loc.Str("PW.GladiatorManeuverAb.Desc",
                 "Swift Action. Expend psionic focus to gain a +4 competence bonus to CMB for 1 round, enhancing trip, disarm, and other maneuvers."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -69,7 +71,7 @@ public static class GladiatorPath
             .SetDisplayName(Loc.Str("PW.GladiatorExpanded.BuffName", "Gladiator's Will"))
             .SetDescription(Loc.Str("PW.GladiatorExpanded.BuffDesc",
                 "Iron focus carries you through anything: +4 competence to all saving throws for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveFortitude, value: 4)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveReflex, value: 4)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SaveWill, value: 4)
@@ -79,7 +81,7 @@ public static class GladiatorPath
             .SetDisplayName(Loc.Str("PW.GladiatorExpandedAb.Name", "Gladiator's Will"))
             .SetDescription(Loc.Str("PW.GladiatorExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to steel your resolve: gain +4 competence to all saving throws for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -96,7 +98,7 @@ public static class GladiatorPath
             .SetDisplayName(Loc.Str("PW.GladiatorExpandedFeat.Name", "Gladiator's Will"))
             .SetDescription(Loc.Str("PW.GladiatorExpandedFeat.Desc",
                 "You learn the Gladiator's Will maneuver: a swift-action self-buff granting +4 competence to all saving throws for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetIsClassFeature()
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerGladiatorExpanded)
             .AddPrerequisiteFeature(Guids.GladiatorPath)

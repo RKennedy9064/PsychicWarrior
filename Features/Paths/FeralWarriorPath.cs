@@ -21,7 +21,9 @@ public static class FeralWarriorPath
 {
     public static void Configure()
     {
-        var icon = FeatureRefs.ImprovedUnarmedStrike.Reference.Get().Icon;
+        var icon = AbilityRefs.Rage.Reference.Get().Icon;
+        var maneuverIcon = AbilityRefs.MagicFang.Reference.Get().Icon;
+        var expandedIcon = FeatureRefs.ImprovedCriticalLongsword.Reference.Get().Icon;
 
         var trance = TranceHelper.BuildTrance(
             baseName: "FeralWarrior",
@@ -45,7 +47,7 @@ public static class FeralWarriorPath
             .SetDisplayName(Loc.Str("PW.FeralWarriorManeuver.BuffName", "Feral Warrior Maneuver"))
             .SetDescription(Loc.Str("PW.FeralWarriorManeuver.BuffDesc",
                 "Your next attack deals +7 bonus damage channeled through your feral psionic energy."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalDamage, value: 7)
             .AddInitiatorAttackRollTrigger(ActionsBuilder.New().RemoveBuff(Guids.FeralWarriorManeuverBuff))
             .Configure();
@@ -54,7 +56,7 @@ public static class FeralWarriorPath
             .SetDisplayName(Loc.Str("PW.FeralWarriorManeuverAb.Name", "Feral Warrior Maneuver"))
             .SetDescription(Loc.Str("PW.FeralWarriorManeuverAb.Desc",
                 "Swift Action. Expend psionic focus to channel feral energy into your next strike, dealing +7 bonus damage."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -71,7 +73,7 @@ public static class FeralWarriorPath
             .SetDisplayName(Loc.Str("PW.FeralWarriorExpanded.BuffName", "Feral Rend"))
             .SetDescription(Loc.Str("PW.FeralWarriorExpanded.BuffDesc",
                 "Your weapons take on a feral edge — doubled critical threat range."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .AddWeaponCriticalEdgeIncreaseStackable(value: 1)
             .Configure();
 
@@ -79,7 +81,7 @@ public static class FeralWarriorPath
             .SetDisplayName(Loc.Str("PW.FeralWarriorExpandedAb.Name", "Feral Rend"))
             .SetDescription(Loc.Str("PW.FeralWarriorExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to imbue your weapons with feral edge — doubled critical threat range for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -97,7 +99,7 @@ public static class FeralWarriorPath
             .SetDisplayName(Loc.Str("PW.FeralWarriorExpandedFeat.Name", "Feral Rend"))
             .SetDescription(Loc.Str("PW.FeralWarriorExpandedFeat.Desc",
                 "You learn the Feral Rend maneuver: a swift-action self-buff that imbues your weapons with feral edge — doubled critical threat range for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetIsClassFeature()
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerFeralWarriorExpanded)
             .AddPrerequisiteFeature(Guids.FeralWarriorPath)

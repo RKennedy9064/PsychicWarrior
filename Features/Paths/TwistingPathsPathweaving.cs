@@ -37,7 +37,7 @@ public static class TwistingPathsPathweaving
 
     private static void ConfigureTwistingPaths()
     {
-        var icon = AbilityRefs.DivineFavor.Reference.Get().Icon;
+        var icon = AbilityRefs.SpellResistance.Reference.Get().Icon;
 
         // All 12 trance activatables — Twisting Paths reduces their toggle cost from Standard to Swift
         var trances = new List<Blueprint<BlueprintActivatableAbilityReference>>

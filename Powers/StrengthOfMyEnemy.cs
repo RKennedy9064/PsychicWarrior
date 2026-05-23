@@ -20,7 +20,7 @@ using PsychicWarrior.Utils;
 namespace PsychicWarrior.Powers;
 
 /// <summary>
-/// Strength of My Enemy (Psychometabolism â†’ Divination) â€” Self-imbue.
+/// Strength of My Enemy (Psychometabolism â†' Divination)  -  Self-imbue.
 ///
 /// RAW: "Each successful melee attack you make while manifesting this power grants you a +1
 /// enhancement bonus to Strength as you absorb 2 points of Strength from your opponent. The
@@ -39,7 +39,7 @@ public static class StrengthOfMyEnemy
 {
     public static void Configure()
     {
-        var icon = AbilityRefs.VampiricTouch.Reference.Get().Icon;
+        var icon = AbilityRefs.Enervation.Reference.Get().Icon;
 
         // Caster-stacking buff: each rank adds +1 enhancement Strength, max 6 ranks.
         var casterBuff = BuffConfigurator.New("PWStrengthOfMyEnemyCasterBuff", Guids.PowerStrengthOfMyEnemyCasterBuff)
@@ -62,7 +62,7 @@ public static class StrengthOfMyEnemy
         var enemyDebuff = BuffConfigurator.New("PWStrengthOfMyEnemyEnemyDebuff", Guids.PowerStrengthOfMyEnemyEnemyDebuff)
             .SetDisplayName(Loc.Str("PW.StrengthOfMyEnemy.EnemyDebuff.Name", "Strength Drained", tagEncyclopediaEntries: false))
             .SetDescription(Loc.Str("PW.StrengthOfMyEnemy.EnemyDebuff.Desc",
-                "Your Strength has been psionically drained â€” 2 points per stack.",
+                "Your Strength has been psionically drained  -  2 points per stack.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetStacking(StackingType.Stack)

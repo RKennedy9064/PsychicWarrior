@@ -20,7 +20,7 @@ using PsychicWarrior.Utils;
 namespace PsychicWarrior.Powers;
 
 /// <summary>
-/// Vampiric Blade (Psychometabolism â†’ Transmutation) â€” RAW Psionic Unleashed.
+/// Vampiric Blade (Psychometabolism â†' Transmutation)  -  RAW Psionic Unleashed.
 ///
 /// You imbue your weapon with soul-stealing energy. While active, each successful melee weapon hit
 /// deals an extra 2d6 negative-energy damage to the target, and you gain temporary hit points equal

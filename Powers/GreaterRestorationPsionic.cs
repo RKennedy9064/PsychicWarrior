@@ -17,7 +17,7 @@ public static class MindBlankPersonalPsionic
 {
     public static void Configure()
     {
-        var icon = AbilityRefs.OwlsWisdom.Reference.Get().Icon;
+        var icon = AbilityRefs.Heal.Reference.Get().Icon;
 
         var buff = BuffConfigurator.New("PWMindBlankPersonalBuff", Guids.PowerMindBlankPersonalBuff)
             .SetDisplayName(Loc.Str("PW.MindBlankPersonal.BuffName", "Mind Blank, Personal", tagEncyclopediaEntries: false))

@@ -29,7 +29,7 @@ public static class DeepImpact
             .SetDisplayName(Loc.Str("PW.DeepImpact.DebuffName", "Deep Impact"))
             .SetDescription(Loc.Str("PW.DeepImpact.DebuffDesc",
                 "This target has been struck with psionic force and loses their Dexterity bonus to AC."))
-            .SetIcon(FeatureRefs.VitalStrikeFeature.Reference.Get().Icon)
+            .SetIcon(AbilityRefs.DisruptingWeapon.Reference.Get().Icon)
             .AddCondition(UnitCondition.LoseDexterityToAC)
             .Configure();
 
@@ -37,7 +37,7 @@ public static class DeepImpact
             .SetDisplayName(Loc.Str("PW.DeepImpact.Name", "Deep Impact"))
             .SetDescription(Loc.Str("PW.DeepImpact.Desc",
                 "While psionically focused, your melee attacks treat the target as flat-footed for 1 round."))
-            .SetIcon(FeatureRefs.VitalStrikeFeature.Reference.Get().Icon)
+            .SetIcon(AbilityRefs.DisruptingWeapon.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 5)

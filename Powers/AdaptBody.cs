@@ -39,19 +39,19 @@ public static class AdaptBody
             AbilityRefs.AcidArrow.Reference.Get().Icon);
 
         BuildVariant("PWAdaptBodyFire", Guids.PowerAdaptBodyFire,
-            "Adapt Body â€” Fire", "fire", fireBuff,
+            "Adapt Body  -  Fire", "fire", fireBuff,
             AbilityRefs.BurningHands.Reference.Get().Icon);
 
         BuildVariant("PWAdaptBodyCold", Guids.PowerAdaptBodyCold,
-            "Adapt Body â€” Cold", "cold", coldBuff,
+            "Adapt Body  -  Cold", "cold", coldBuff,
             AbilityRefs.RayOfFrost.Reference.Get().Icon);
 
         BuildVariant("PWAdaptBodyElectric", Guids.PowerAdaptBodyElectric,
-            "Adapt Body â€” Electric", "electricity", electricBuff,
+            "Adapt Body  -  Electric", "electricity", electricBuff,
             AbilityRefs.CallLightning.Reference.Get().Icon);
 
         BuildVariant("PWAdaptBodyAcid", Guids.PowerAdaptBodyAcid,
-            "Adapt Body â€” Acid", "acid", acidBuff,
+            "Adapt Body  -  Acid", "acid", acidBuff,
             AbilityRefs.AcidArrow.Reference.Get().Icon);
 
         AbilityConfigurator.New("PWAdaptBody", Guids.PowerAdaptBody)

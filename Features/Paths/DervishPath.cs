@@ -22,6 +22,8 @@ public static class DervishPath
     public static void Configure()
     {
         var icon = FeatureRefs.TwoWeaponFighting.Reference.Get().Icon;
+        var maneuverIcon = FeatureRefs.TwoWeaponFightingImproved.Reference.Get().Icon;
+        var expandedIcon = AbilityRefs.Haste.Reference.Get().Icon;
 
         var trance = TranceHelper.BuildTrance(
             baseName: "Dervish",
@@ -44,7 +46,7 @@ public static class DervishPath
             .SetDisplayName(Loc.Str("PW.DervishManeuver.BuffName", "Dervish Maneuver"))
             .SetDescription(Loc.Str("PW.DervishManeuver.BuffDesc",
                 "You enter a whirling combat stance, gaining +2 competence to attack rolls and +2 competence to damage rolls for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalAttackBonus, value: 2)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalDamage, value: 2)
             .Configure();
@@ -53,7 +55,7 @@ public static class DervishPath
             .SetDisplayName(Loc.Str("PW.DervishManeuverAb.Name", "Dervish Maneuver"))
             .SetDescription(Loc.Str("PW.DervishManeuverAb.Desc",
                 "Swift Action. Expend psionic focus to enter a whirling combat stance, gaining +2 competence to attack and damage for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -70,7 +72,7 @@ public static class DervishPath
             .SetDisplayName(Loc.Str("PW.DervishExpanded.BuffName", "Whirlwind Step"))
             .SetDescription(Loc.Str("PW.DervishExpanded.BuffDesc",
                 "You spin in a deadly whirlwind: gain the benefits of haste (extra attack, +1 dodge AC, +1 Reflex, +30 ft speed)."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.AC, value: 1)
             .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.SaveReflex, value: 1)
             .AddBuffMovementSpeed(descriptor: ModifierDescriptor.Enhancement, value: 30)
@@ -81,7 +83,7 @@ public static class DervishPath
             .SetDisplayName(Loc.Str("PW.DervishExpandedAb.Name", "Whirlwind Step"))
             .SetDescription(Loc.Str("PW.DervishExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to enter a whirlwind dance: gain haste for 1 round (extra attack on full attacks, +1 dodge AC, +1 Reflex, +30 ft speed)."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -99,7 +101,7 @@ public static class DervishPath
             .SetDisplayName(Loc.Str("PW.DervishExpandedFeat.Name", "Whirlwind Step"))
             .SetDescription(Loc.Str("PW.DervishExpandedFeat.Desc",
                 "You learn the Whirlwind Step maneuver: a swift-action haste-like buff for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetIsClassFeature()
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerDervishExpanded)
             .AddPrerequisiteFeature(Guids.DervishPath)

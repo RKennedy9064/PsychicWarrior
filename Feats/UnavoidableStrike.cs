@@ -29,7 +29,7 @@ public static class UnavoidableStrike
             .SetDisplayName(Loc.Str("PW.UnavoidableStrike.DebuffName", "Unavoidable Strike"))
             .SetDescription(Loc.Str("PW.UnavoidableStrike.DebuffDesc",
                 "This target has been struck with psionic force and loses their Dexterity bonus to AC."))
-            .SetIcon(FeatureRefs.ImprovedUnarmedStrike.Reference.Get().Icon)
+            .SetIcon(FeatureRefs.WeaponFocusUnarmed.Reference.Get().Icon)
             .AddCondition(UnitCondition.LoseDexterityToAC)
             .Configure();
 
@@ -37,7 +37,7 @@ public static class UnavoidableStrike
             .SetDisplayName(Loc.Str("PW.UnavoidableStrike.Name", "Unavoidable Strike"))
             .SetDescription(Loc.Str("PW.UnavoidableStrike.Desc",
                 "While psionically focused, your unarmed and natural weapon attacks treat the target as flat-footed for 1 round."))
-            .SetIcon(FeatureRefs.ImprovedUnarmedStrike.Reference.Get().Icon)
+            .SetIcon(FeatureRefs.WeaponFocusUnarmed.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddPrerequisiteFeature(Guids.PsionicFistFeat)

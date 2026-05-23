@@ -21,7 +21,9 @@ public static class ArcherPath
 {
     public static void Configure()
     {
-        var icon = FeatureRefs.PointBlankShot.Reference.Get().Icon;
+        var icon = FeatureRefs.RapidShotFeature.Reference.Get().Icon;
+        var maneuverIcon = FeatureRefs.Manyshot.Reference.Get().Icon;
+        var expandedIcon = AbilityRefs.Haste.Reference.Get().Icon;
 
         var trance = TranceHelper.BuildTrance(
             baseName: "Archer",
@@ -44,7 +46,7 @@ public static class ArcherPath
             .SetDisplayName(Loc.Str("PW.ArcherManeuver.BuffName", "Archer Maneuver"))
             .SetDescription(Loc.Str("PW.ArcherManeuver.BuffDesc",
                 "Your next attack gains a +4 competence bonus to the attack roll."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalAttackBonus, value: 4)
             .AddInitiatorAttackRollTrigger(ActionsBuilder.New().RemoveBuff(Guids.ArcherManeuverBuff))
             .Configure();
@@ -53,7 +55,7 @@ public static class ArcherPath
             .SetDisplayName(Loc.Str("PW.ArcherManeuverAb.Name", "Archer Maneuver"))
             .SetDescription(Loc.Str("PW.ArcherManeuverAb.Desc",
                 "Swift Action. Expend psionic focus to channel precision into your next attack, gaining a +4 competence bonus to the attack roll."))
-            .SetIcon(icon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -70,7 +72,7 @@ public static class ArcherPath
             .SetDisplayName(Loc.Str("PW.ArcherExpanded.BuffName", "Twin Shot"))
             .SetDescription(Loc.Str("PW.ArcherExpanded.BuffDesc",
                 "Psionic acceleration drives your arms: gain the benefits of haste — extra attack on full attacks, +1 dodge AC, +1 Reflex, +30 ft speed."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.AC, value: 1)
             .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.SaveReflex, value: 1)
             .AddBuffMovementSpeed(descriptor: ModifierDescriptor.Enhancement, value: 30)
@@ -81,7 +83,7 @@ public static class ArcherPath
             .SetDisplayName(Loc.Str("PW.ArcherExpandedAb.Name", "Twin Shot"))
             .SetDescription(Loc.Str("PW.ArcherExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to unleash a Twin Shot: gain the benefits of haste for 1 round (extra attack on full attacks, +1 dodge AC, +1 Reflex, +30 ft speed)."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -99,7 +101,7 @@ public static class ArcherPath
             .SetDisplayName(Loc.Str("PW.ArcherExpandedFeat.Name", "Twin Shot"))
             .SetDescription(Loc.Str("PW.ArcherExpandedFeat.Desc",
                 "You learn the Twin Shot maneuver: a swift-action haste-like buff for 1 round."))
-            .SetIcon(icon)
+            .SetIcon(expandedIcon)
             .SetIsClassFeature()
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerArcherExpanded)
             .AddPrerequisiteFeature(Guids.ArcherPath)

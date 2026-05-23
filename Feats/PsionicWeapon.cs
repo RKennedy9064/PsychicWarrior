@@ -27,7 +27,7 @@ public static class PsionicWeapon
             .SetDisplayName(Loc.Str("PW.PsionicWeapon.Name", "Psionic Weapon"))
             .SetDescription(Loc.Str("PW.PsionicWeapon.Desc",
                 "While psionically focused, your melee attacks deal additional force damage scaling with manifester level: 1d6 at ML 1, 2d6 at ML 6, 3d6 at ML 11, 4d6 at ML 16."))
-            .SetIcon(FeatureRefs.VitalStrikeFeature.Reference.Get().Icon)
+            .SetIcon(AbilityRefs.MagicWeaponGreater.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddContextRankConfig(ContextRankConfigs.CasterLevel().WithCustomProgression((5, 1), (10, 2), (15, 3), (20, 4)))

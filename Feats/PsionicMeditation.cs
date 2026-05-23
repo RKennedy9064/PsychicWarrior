@@ -16,7 +16,7 @@ public static class PsionicMeditation
         var feat = FeatureConfigurator.New("PsionicMeditationFeat", Guids.PsionicMeditationFeat)
             .SetDisplayName(Loc.Str("PW.PsionicMeditation.Name", "Psionic Meditation"))
             .SetDescription(Loc.Str("PW.PsionicMeditation.Desc", "You can take a move action to gain psionic focus, rather than a standard action."))
-            .SetIcon(FeatureRefs.CombatCasting.Reference.Get().Icon)
+            .SetIcon(AbilityRefs.RestorationLesser.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddFacts([Guids.GainPsionicFocusMoveAbility])
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
