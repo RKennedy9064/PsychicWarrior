@@ -22,17 +22,10 @@ jobs:
       - name: Build
         run: dotnet build /p:WrathPath="C:\WrathGame" --configuration Release
 
-      - name: Read version
-        if: github.ref == 'refs/heads/master'
-        run: |
-          $version = (Get-Content Info.json | ConvertFrom-Json).Version
-          echo "VERSION=$version" >> $env:GITHUB_ENV
-
       - name: Extract changelog section
         if: github.ref == 'refs/heads/master'
         run: |
           $content = Get-Content CHANGELOG.md -Raw
-          # Split on section headers; [0] is the title, [1] is the first version block (without "## [")
           $sections = $content -split '(?m)^## \['
           if ($sections.Length -lt 2) {
             "See CHANGELOG.md" | Out-File release_notes.txt -Encoding utf8
@@ -40,24 +33,20 @@ jobs:
             ("## [" + $sections[1].Trim()) | Out-File release_notes.txt -Encoding utf8
           }
 
-      - name: Package
-        if: github.ref == 'refs/heads/master'
-        run: |
-          $version = $env:VERSION
-          $out = "bin\Release\net472"
-          Compress-Archive -Path "$out\PsychicWarrior.dll", "$out\BlueprintCore.dll", "$out\Info.json" `
-            -DestinationPath "PsychicWarrior-$version.zip"
-
-      - name: Release
+      - name: Package and Release
         if: github.ref == 'refs/heads/master'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          $version = $env:VERSION
-          gh release create "v$version" `
-            "PsychicWarrior-$version.zip" `
+          $version = (Get-Content Info.json | ConvertFrom-Json).Version
+          Write-Host "Releasing version: $version"
+          $out = "bin\Release\net472"
+          $zip = "PsychicWarrior-$version.zip"
+          Compress-Archive -Path "$out\PsychicWarrior.dll", "$out\BlueprintCore.dll", "$out\Info.json" `
+            -DestinationPath $zip
+          gh release delete "v$version" --yes --cleanup-tag --repo ${{ github.repository }} 2>$null
+          gh release create "v$version" $zip `
             --repo ${{ github.repository }} `
             --title "v$version" `
             --notes-file release_notes.txt `
-            --prerelease `
-            --clobber
+            --prerelease
