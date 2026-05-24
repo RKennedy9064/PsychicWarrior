@@ -89,7 +89,7 @@ internal static class TranceHelper
             .SetDescription(Loc.Str($"PW.{baseName}Trance.Desc", featureDescription, tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { Guids.GetTranceActivatableGuid(baseName), parentAbilityGuid })
+            .AddFacts(new() { Guids.GetTranceActivatableGuid(baseName) })
             .Configure();
     }
 }

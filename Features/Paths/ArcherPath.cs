@@ -7,11 +7,13 @@ using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
+using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.FactLogic;
+using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using PsychicWarrior.Utils;
 
@@ -35,12 +37,20 @@ public static class ArcherPath
             maneuverAbilityGuid: Guids.ArcherManeuverAbility,
             expandedManeuverAbilityGuid: Guids.ArcherExpandedAbility,
             displayName: "Archer",
-            featureDescription: "Your psionic focus steadies your aim. You gain a +1 competence bonus to attack rolls.",
+            featureDescription: "Beginning at 3rd level, your psionic focus steadies your aim. You gain a +1 competence bonus to attack rolls made with ranged or thrown weapons (natural weapons do not count), increasing by 1 every four psychic warrior levels (+2 at 7th, +3 at 11th, +4 at 15th, +5 at 19th).",
             icon: icon,
-            addBuffComponents: b => b.AddStatBonus(
-                descriptor: ModifierDescriptor.Competence,
-                stat: StatType.AdditionalAttackBonus,
-                value: 1));
+            addBuffComponents: b =>
+            {
+                b.AddContextRankConfig(ContextRankConfigs.CasterLevel()
+                    .WithCustomProgression((2, 0), (6, 1), (10, 2), (14, 3), (18, 4), (20, 5)));
+                b.AddComponent(new AttackTypeAttackBonus
+                {
+                    Type = WeaponRangeType.Ranged,
+                    AttackBonus = 0,
+                    Descriptor = ModifierDescriptor.Competence,
+                    Value = new ContextValue { ValueType = ContextValueType.Rank }
+                });
+            });
 
         var maneuverBuff = BuffConfigurator.New("ArcherManeuverBuff", Guids.ArcherManeuverBuff)
             .SetDisplayName(Loc.Str("PW.ArcherManeuver.BuffName", "Archer Maneuver"))
@@ -103,6 +113,7 @@ public static class ArcherPath
                 "You learn the Twin Shot maneuver: a swift-action haste-like buff for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
+            .AddFacts(new() { Guids.ArcherPathParent })
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerArcherExpanded)
             .AddPrerequisiteFeature(Guids.ArcherPath)
             .Configure();

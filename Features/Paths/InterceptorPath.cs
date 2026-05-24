@@ -35,11 +35,15 @@ public static class InterceptorPath
             maneuverAbilityGuid: Guids.InterceptorManeuverAbility,
             expandedManeuverAbilityGuid: Guids.InterceptorExpandedAbility,
             displayName: "Interceptor",
-            featureDescription: "Your psionic focus heightens your protective instincts. You gain a +1 competence bonus to attack and damage rolls.",
+            featureDescription: "Beginning at 3rd level, your psionic focus heightens your protective instincts. You gain a +1 competence bonus to attack and damage rolls, increasing by 1 every four psychic warrior levels (+2 at 7th, +3 at 11th, +4 at 15th, +5 at 19th).",
             icon: icon,
-            addBuffComponents: b => b
-                .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalAttackBonus, value: 1)
-                .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalDamage, value: 1));
+            addBuffComponents: b =>
+            {
+                b.AddContextRankConfig(ContextRankConfigs.CasterLevel()
+                    .WithCustomProgression((2, 0), (6, 1), (10, 2), (14, 3), (18, 4), (20, 5)));
+                b.AddContextStatBonus(stat: StatType.AdditionalAttackBonus, descriptor: ModifierDescriptor.Competence, value: ContextValues.Rank());
+                b.AddContextStatBonus(stat: StatType.AdditionalDamage, descriptor: ModifierDescriptor.Competence, value: ContextValues.Rank());
+            });
 
         var maneuverBuff = BuffConfigurator.New("InterceptorManeuverBuff", Guids.InterceptorManeuverBuff)
             .SetDisplayName(Loc.Str("PW.InterceptorManeuver.BuffName", "Interceptor Maneuver"))
@@ -98,6 +102,7 @@ public static class InterceptorPath
                 "You learn the Save Another maneuver: a swift-action self-buff granting DR 5/— for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
+            .AddFacts(new() { Guids.InterceptorPathParent })
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerInterceptorExpanded)
             .AddPrerequisiteFeature(Guids.InterceptorPath)
             .Configure();

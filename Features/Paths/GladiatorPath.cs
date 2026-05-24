@@ -35,12 +35,17 @@ public static class GladiatorPath
             maneuverAbilityGuid: Guids.GladiatorManeuverAbility,
             expandedManeuverAbilityGuid: Guids.GladiatorExpandedAbility,
             displayName: "Gladiator",
-            featureDescription: "Your psionic focus enhances your combat maneuver capabilities. You gain a +2 competence bonus to CMB.",
+            featureDescription: "Beginning at 3rd level, your psionic focus enhances your combat maneuver capabilities. You gain a +2 competence bonus to CMB, increasing by 1 every four psychic warrior levels (+3 at 7th, +4 at 11th, +5 at 15th, +6 at 19th).",
             icon: icon,
-            addBuffComponents: b => b.AddStatBonus(
-                descriptor: ModifierDescriptor.Competence,
-                stat: StatType.AdditionalCMB,
-                value: 2));
+            addBuffComponents: b =>
+            {
+                b.AddContextRankConfig(ContextRankConfigs.CasterLevel()
+                    .WithCustomProgression((2, 0), (6, 2), (10, 3), (14, 4), (18, 5), (20, 6)));
+                b.AddContextStatBonus(
+                    stat: StatType.AdditionalCMB,
+                    descriptor: ModifierDescriptor.Competence,
+                    value: ContextValues.Rank());
+            });
 
         var maneuverBuff = BuffConfigurator.New("GladiatorManeuverBuff", Guids.GladiatorManeuverBuff)
             .SetDisplayName(Loc.Str("PW.GladiatorManeuver.BuffName", "Gladiator Maneuver"))
@@ -100,6 +105,7 @@ public static class GladiatorPath
                 "You learn the Gladiator's Will maneuver: a swift-action self-buff granting +4 competence to all saving throws for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
+            .AddFacts(new() { Guids.GladiatorPathParent })
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerGladiatorExpanded)
             .AddPrerequisiteFeature(Guids.GladiatorPath)
             .Configure();

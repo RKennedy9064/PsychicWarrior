@@ -106,6 +106,7 @@ public static class SurvivorPath
                 "You learn the Survivor's Resolve maneuver: a swift-action self-buff granting temporary hit points equal to your manifester level for 1 minute."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
+            .AddFacts(new() { Guids.SurvivorPathParent })
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerSurvivorExpanded)
             .AddPrerequisiteFeature(Guids.SurvivorPath)
             .Configure();

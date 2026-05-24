@@ -39,17 +39,22 @@ public static class DervishPath
             maneuverAbilityGuid: Guids.DervishManeuverAbility,
             expandedManeuverAbilityGuid: Guids.DervishExpandedAbility,
             displayName: "Dervish",
-            featureDescription: "Your psionic focus sharpens your dual-weapon strikes. You gain a +1 competence bonus to attack rolls.",
+            featureDescription: "Beginning at 3rd level, while maintaining psionic focus, you gain a +1 competence bonus to attack rolls when wielding two weapons. This bonus increases by 1 every four psychic warrior levels thereafter (+2 at 7th, +3 at 11th, +4 at 15th, +5 at 19th).",
             icon: icon,
-            addBuffComponents: b => b.AddComponent(new AttackBonusConditional
+            addBuffComponents: b =>
             {
-                Descriptor = ModifierDescriptor.Competence,
-                Bonus = new ContextValue { ValueType = ContextValueType.Simple, Value = 1 },
-                Conditions = new ConditionsChecker
+                b.AddContextRankConfig(ContextRankConfigs.CasterLevel()
+                    .WithCustomProgression((2, 0), (6, 1), (10, 2), (14, 3), (18, 4), (20, 5)));
+                b.AddComponent(new AttackBonusConditional
                 {
-                    Conditions = new Condition[] { new ContextConditionCasterHasTwoWeapons() }
-                }
-            }));
+                    Descriptor = ModifierDescriptor.Competence,
+                    Bonus = new ContextValue { ValueType = ContextValueType.Rank },
+                    Conditions = new ConditionsChecker
+                    {
+                        Conditions = new Condition[] { new ContextConditionCasterHasTwoWeapons() }
+                    }
+                });
+            });
 
         var maneuverBuff = BuffConfigurator.New("DervishManeuverBuff", Guids.DervishManeuverBuff)
             .SetDisplayName(Loc.Str("PW.DervishManeuver.BuffName", "Dervish Maneuver"))
@@ -112,6 +117,7 @@ public static class DervishPath
                 "You learn the Whirlwind Step maneuver: a swift-action haste-like buff for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
+            .AddFacts(new() { Guids.DervishPathParent })
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerDervishExpanded)
             .AddPrerequisiteFeature(Guids.DervishPath)
             .Configure();

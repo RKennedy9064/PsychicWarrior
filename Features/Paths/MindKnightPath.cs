@@ -35,11 +35,15 @@ public static class MindKnightPath
             maneuverAbilityGuid: Guids.MindKnightManeuverAbility,
             expandedManeuverAbilityGuid: Guids.MindKnightExpandedAbility,
             displayName: "Mind Knight",
-            featureDescription: "Your psionic focus sharpens your mental acuity in battle. You gain a +1 competence bonus to Initiative and a +1 competence bonus to attack rolls.",
+            featureDescription: "Beginning at 3rd level, your psionic focus sharpens your mental acuity in battle. You gain a +1 competence bonus to Initiative and to attack rolls with your call weaponry weapon, increasing by 1 every four psychic warrior levels (+2 at 7th, +3 at 11th, +4 at 15th, +5 at 19th).",
             icon: tranceIcon,
-            addBuffComponents: b => b
-                .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.Initiative, value: 1)
-                .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalAttackBonus, value: 1));
+            addBuffComponents: b =>
+            {
+                b.AddContextRankConfig(ContextRankConfigs.CasterLevel()
+                    .WithCustomProgression((2, 0), (6, 1), (10, 2), (14, 3), (18, 4), (20, 5)));
+                b.AddContextStatBonus(stat: StatType.Initiative, descriptor: ModifierDescriptor.Competence, value: ContextValues.Rank());
+                b.AddContextStatBonus(stat: StatType.AdditionalAttackBonus, descriptor: ModifierDescriptor.Competence, value: ContextValues.Rank());
+            });
 
         var maneuverBuff = BuffConfigurator.New("MindKnightManeuverBuff", Guids.MindKnightManeuverBuff)
             .SetDisplayName(Loc.Str("PW.MindKnightManeuver.BuffName", "Mind Knight Maneuver"))
@@ -99,6 +103,7 @@ public static class MindKnightPath
                 "You learn the Mental Strike maneuver: a swift-action self-buff granting +4 insight Initiative and +4 dodge bonus to AC for 1 round."))
             .SetIcon(mentalIcon)
             .SetIsClassFeature()
+            .AddFacts(new() { Guids.MindKnightPathParent })
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerMindKnightExpanded)
             .AddPrerequisiteFeature(Guids.MindKnightPath)
             .Configure();

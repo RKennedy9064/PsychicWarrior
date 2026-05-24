@@ -104,6 +104,7 @@ public static class BrawlerPath
                 "You learn the Steel Sinews maneuver: a swift-action self-buff that grants +4 dodge AC and Fast Healing 2 for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
+            .AddFacts(new() { Guids.BrawlerPathParent })
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerBrawlerExpanded)
             .AddPrerequisiteFeature(Guids.BrawlerPath)
             .Configure();

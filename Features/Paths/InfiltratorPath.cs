@@ -35,11 +35,16 @@ public static class InfiltratorPath
             maneuverAbilityGuid: Guids.InfiltratorManeuverAbility,
             expandedManeuverAbilityGuid: Guids.InfiltratorExpandedAbility,
             displayName: "Infiltrator",
-            featureDescription: "Your psionic focus makes you more effective at social manipulation and precision strikes. You gain a +2 competence bonus to Persuasion and +1 competence bonus to damage rolls.",
+            featureDescription: "Beginning at 3rd level, your psionic focus makes you more effective at social manipulation and precision strikes. You gain a +2 competence bonus to Persuasion and +1 competence bonus to damage rolls, each increasing by 1 every four psychic warrior levels.",
             icon: icon,
-            addBuffComponents: b => b
-                .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SkillPersuasion, value: 2)
-                .AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.AdditionalDamage, value: 1));
+            addBuffComponents: b =>
+            {
+                b.AddStatBonus(descriptor: ModifierDescriptor.Competence, stat: StatType.SkillPersuasion, value: 1);
+                b.AddContextRankConfig(ContextRankConfigs.CasterLevel()
+                    .WithCustomProgression((2, 0), (6, 1), (10, 2), (14, 3), (18, 4), (20, 5)));
+                b.AddContextStatBonus(stat: StatType.SkillPersuasion, descriptor: ModifierDescriptor.Competence, value: ContextValues.Rank());
+                b.AddContextStatBonus(stat: StatType.AdditionalDamage, descriptor: ModifierDescriptor.Competence, value: ContextValues.Rank());
+            });
 
         var maneuverBuff = BuffConfigurator.New("InfiltratorManeuverBuff", Guids.InfiltratorManeuverBuff)
             .SetDisplayName(Loc.Str("PW.InfiltratorManeuver.BuffName", "Infiltrator Maneuver"))
@@ -99,6 +104,7 @@ public static class InfiltratorPath
                 "You learn the Hidden Step maneuver: a swift-action self-buff granting +20 ft speed and +6 competence to Stealth for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
+            .AddFacts(new() { Guids.InfiltratorPathParent })
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerInfiltratorExpanded)
             .AddPrerequisiteFeature(Guids.InfiltratorPath)
             .Configure();

@@ -36,12 +36,17 @@ public static class AsceticPath
             maneuverAbilityGuid: Guids.AsceticManeuverAbility,
             expandedManeuverAbilityGuid: Guids.AsceticExpandedAbility,
             displayName: "Ascetic",
-            featureDescription: "Your psionic discipline allows you to move and react with supernatural efficiency. You gain a +1 competence bonus to AC.",
+            featureDescription: "Beginning at 3rd level, your psionic discipline allows you to move and react with supernatural efficiency. You gain a +1 competence bonus to AC, increasing by 1 every four psychic warrior levels (+2 at 7th, +3 at 11th, +4 at 15th, +5 at 19th).",
             icon: icon,
-            addBuffComponents: b => b.AddStatBonus(
-                descriptor: ModifierDescriptor.Competence,
-                stat: StatType.AC,
-                value: 1));
+            addBuffComponents: b =>
+            {
+                b.AddContextRankConfig(ContextRankConfigs.CasterLevel()
+                    .WithCustomProgression((2, 0), (6, 1), (10, 2), (14, 3), (18, 4), (20, 5)));
+                b.AddContextStatBonus(
+                    stat: StatType.AC,
+                    descriptor: ModifierDescriptor.Competence,
+                    value: ContextValues.Rank());
+            });
 
         var maneuverBuff = BuffConfigurator.New("AsceticManeuverBuff", Guids.AsceticManeuverBuff)
             .SetDisplayName(Loc.Str("PW.AsceticManeuver.BuffName", "Ascetic Maneuver"))
@@ -100,6 +105,7 @@ public static class AsceticPath
                 "You learn the Wholeness of Body maneuver: a swift action that heals you for hit points equal to your manifester level."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
+            .AddFacts(new() { Guids.AsceticPathParent })
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerAsceticExpanded)
             .AddPrerequisiteFeature(Guids.AsceticPath)
             .Configure();

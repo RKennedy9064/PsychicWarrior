@@ -35,12 +35,17 @@ public static class AssassinsPath
             maneuverAbilityGuid: Guids.AssassinsManeuverAbility,
             expandedManeuverAbilityGuid: Guids.AssassinsExpandedAbility,
             displayName: "Assassin's",
-            featureDescription: "Your psionic focus sharpens your strikes against unsuspecting enemies. You gain a +2 competence bonus to damage rolls.",
+            featureDescription: "Beginning at 3rd level, your psionic focus sharpens your strikes against unsuspecting enemies. You gain a +2 competence bonus to damage rolls, increasing by 1 every four psychic warrior levels (+3 at 7th, +4 at 11th, +5 at 15th, +6 at 19th).",
             icon: icon,
-            addBuffComponents: b => b.AddStatBonus(
-                descriptor: ModifierDescriptor.Competence,
-                stat: StatType.AdditionalDamage,
-                value: 2));
+            addBuffComponents: b =>
+            {
+                b.AddContextRankConfig(ContextRankConfigs.CasterLevel()
+                    .WithCustomProgression((2, 0), (6, 2), (10, 3), (14, 4), (18, 5), (20, 6)));
+                b.AddContextStatBonus(
+                    stat: StatType.AdditionalDamage,
+                    descriptor: ModifierDescriptor.Competence,
+                    value: ContextValues.Rank());
+            });
 
         // +7 ≈ 2d6 average; removes after next attack
         var maneuverBuff = BuffConfigurator.New("AssassinsManeuverBuff", Guids.AssassinsManeuverBuff)
@@ -103,6 +108,7 @@ public static class AssassinsPath
                 "You learn the Mindblade Strike maneuver: a swift-action self-buff granting +4 competence damage and +4 competence to all saves for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
+            .AddFacts(new() { Guids.AssassinsPathParent })
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerAssassinsExpanded)
             .AddPrerequisiteFeature(Guids.AssassinsPath)
             .Configure();
