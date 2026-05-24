@@ -7,11 +7,15 @@ using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
+using Kingmaker.Designers.Mechanics.Facts;
+using Kingmaker.ElementsSystem;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.FactLogic;
+using Kingmaker.UnitLogic.Mechanics;
+using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using PsychicWarrior.Utils;
 
@@ -37,10 +41,15 @@ public static class DervishPath
             displayName: "Dervish",
             featureDescription: "Your psionic focus sharpens your dual-weapon strikes. You gain a +1 competence bonus to attack rolls.",
             icon: icon,
-            addBuffComponents: b => b.AddStatBonus(
-                descriptor: ModifierDescriptor.Competence,
-                stat: StatType.AdditionalAttackBonus,
-                value: 1));
+            addBuffComponents: b => b.AddComponent(new AttackBonusConditional
+            {
+                Descriptor = ModifierDescriptor.Competence,
+                Bonus = new ContextValue { ValueType = ContextValueType.Simple, Value = 1 },
+                Conditions = new ConditionsChecker
+                {
+                    Conditions = new Condition[] { new ContextConditionCasterHasTwoWeapons() }
+                }
+            }));
 
         var maneuverBuff = BuffConfigurator.New("DervishManeuverBuff", Guids.DervishManeuverBuff)
             .SetDisplayName(Loc.Str("PW.DervishManeuver.BuffName", "Dervish Maneuver"))
