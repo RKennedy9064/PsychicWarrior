@@ -24,7 +24,7 @@ public static class MentalBarrier
 {
     public static void Configure()
     {
-        var icon = AbilityRefs.MageShield.Reference.Get().Icon;
+        var icon = AbilityRefs.ShieldOfFaith.Reference.Get().Icon;
 
         var buff = BuffConfigurator.New("PWMentalBarrierBuff", Guids.PowerMentalBarrierBuff)
             .SetDisplayName(Loc.Str("PW.MentalBarrier.BuffName", "Mental Barrier", tagEncyclopediaEntries: false))

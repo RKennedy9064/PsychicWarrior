@@ -24,7 +24,7 @@ public static class ForceScreen
             .SetDisplayName(Loc.Str("PW.ForceScreen.BuffName", "Force Screen"))
             .SetDescription(Loc.Str("PW.ForceScreen.BuffDesc",
                 "An invisible disk of force hovers before you, granting a shield bonus to AC scaling with manifester level (+4 at ML 1, +1 per 2 levels)."))
-            .SetIcon(AbilityRefs.ShieldOfFaith.Reference.Get().Icon)
+            .SetIcon(AbilityRefs.MageShield.Reference.Get().Icon)
             .AddContextStatBonus(descriptor: ModifierDescriptor.Shield, stat: StatType.AC, value: ContextValues.Rank())
             .AddContextRankConfig(
                 ContextRankConfigs.CasterLevel().WithCustomProgression(
@@ -35,7 +35,7 @@ public static class ForceScreen
             .SetDisplayName(Loc.Str("PW.ForceScreen.Name", "Force Screen"))
             .SetDescription(Loc.Str("PW.ForceScreen.Desc",
                 "You create an invisible mobile disk of force that hovers in front of you. It grants a shield bonus to AC scaling with manifester level (+4 at ML 1, +1 per 2 levels)."))
-            .SetIcon(AbilityRefs.ShieldOfFaith.Reference.Get().Icon)
+            .SetIcon(AbilityRefs.MageShield.Reference.Get().Icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
             .SetLocalizedDuration(Loc.Str("PW.Duration.1MinPerML", "1 minute per manifester level"))
