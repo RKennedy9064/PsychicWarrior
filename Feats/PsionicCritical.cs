@@ -1,18 +1,12 @@
 using System.Linq;
-using BlueprintCore.Actions.Builder;
-using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using BlueprintCore.Blueprints.References;
-using BlueprintCore.Conditions.Builder;
-using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils;
-using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.RuleSystem;
-using Kingmaker.RuleSystem.Rules.Damage;
 using PsychicWarrior.HarmonyPatches;
+using PsychicWarrior.Mechanics;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Feats;
@@ -30,14 +24,7 @@ public static class PsionicCritical
             .SetIcon(FeatureRefs.VitalStrikeFeature.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
-            .AddInitiatorAttackWithWeaponTrigger(
-                action: ActionsBuilder.New().Conditional(
-                    ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff),
-                    ifTrue: ActionsBuilder.New()
-                        .Add(new ContextActionLog { Message = "[PsionicCritical] crit+focused — dealing 1d8" })
-                        .DealDamage(DamageTypes.Physical(), ContextDice.Value(DiceType.D8, 1, 0))),
-                onlyHit: true,
-                criticalHit: true)
+            .AddComponent(new PsionicCriticalDamage())
             .AddRecommendedClass(Guids.PsychicWarriorClass)
             .Configure();
 
