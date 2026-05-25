@@ -7,15 +7,13 @@ using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Items.Weapons;
-using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.FactLogic;
-using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
+using PsychicWarrior.Mechanics;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Features.Paths;
@@ -39,31 +37,9 @@ public static class WeaponmasterPath
             maneuverAbilityGuid: Guids.WeaponmasterManeuver,
             expandedManeuverAbilityGuid: Guids.WeaponmasterExpandedManeuverAbility,
             displayName: "Weaponmaster",
-            featureDescription: "Beginning at 3rd level, you gain a +1 competence bonus to attack rolls made with manufactured weapons (natural weapons do not count), increasing by 1 every four psychic warrior levels (+2 at 7th, +3 at 11th, +4 at 15th, +5 at 19th).",
+            featureDescription: "Beginning at 3rd level, you gain a +1 competence bonus to attack rolls made with manufactured weapons, increasing by 1 every four psychic warrior levels (+2 at 7th, +3 at 11th, +4 at 15th, +5 at 19th).",
             icon: icon,
-            addBuffComponents: b =>
-            {
-                b.AddContextRankConfig(ContextRankConfigs.CasterLevel()
-                    .WithCustomProgression((2, 0), (6, 1), (10, 2), (14, 3), (18, 4), (20, 5)));
-                var contextRank = new ContextValue { ValueType = ContextValueType.Rank };
-                foreach (var group in new[]
-                {
-                    WeaponFighterGroup.Axes, WeaponFighterGroup.BladesHeavy, WeaponFighterGroup.BladesLight,
-                    WeaponFighterGroup.Double, WeaponFighterGroup.Flails, WeaponFighterGroup.Hammers,
-                    WeaponFighterGroup.Monk, WeaponFighterGroup.Polearms, WeaponFighterGroup.Spears,
-                    WeaponFighterGroup.Close
-                })
-                {
-                    b.AddComponent(new WeaponGroupAttackBonus
-                    {
-                        WeaponGroup = group,
-                        AttackBonus = 1,
-                        Descriptor = ModifierDescriptor.Competence,
-                        multiplyByContext = true,
-                        contextMultiplier = contextRank
-                    });
-                }
-            });
+            addBuffComponents: b => b.AddComponent(new WeaponmasterTranceAttackBonus()));
 
         // Maneuver buff: +2 dodge to AC + +2 competence to next attack (riposte spirit)
         var maneuverBuff = BuffConfigurator.New("WeaponmasterManeuverBuff", Guids.WeaponmasterManeuverBuff)

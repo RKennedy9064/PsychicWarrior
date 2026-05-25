@@ -14,6 +14,8 @@
 - Secondary path: expanded maneuver is now correctly granted at level 9 alongside the secondary path selection (fixes split/corrupted maneuver menu icon and missing expanded maneuver option)
 - All paths: selecting the same path as both primary and secondary is now correctly prevented (greyed out in the secondary selection if already chosen as primary)
 - All paths: expandable maneuver button now shows a unified icon instead of a diagonal split (both maneuver and expanded maneuver now use the same icon)
+- Weaponmaster Trance: attack bonus now correctly applies to all manufactured weapon attacks
+- Feral Warrior Trance: attack bonus now correctly applies to natural weapon and unarmed attacks
 
 ## [0.1.0] - 2026-05-24
 
