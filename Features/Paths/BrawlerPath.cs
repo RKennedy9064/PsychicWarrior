@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Actions.Builder;
+﻿﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -71,7 +71,7 @@ public static class BrawlerPath
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
             .Configure();
 
-        // Expanded â€” Steel Sinews: counter-attack reflex, +4 dodge AC + Fast Healing 2 for 1 round
+        // Expanded — Steel Sinews: counter-attack reflex, +4 dodge AC + Fast Healing 2 for 1 round
         var expandedBuff = BuffConfigurator.New("BrawlerExpandedManeuverBuff", Guids.BrawlerExpandedManeuverBuff)
             .SetDisplayName(Loc.Str("PW.BrawlerExpanded.BuffName", "Steel Sinews"))
             .SetDescription(Loc.Str("PW.BrawlerExpanded.BuffDesc",

@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Actions.Builder;
+﻿﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -36,7 +36,7 @@ public static class SurvivorPath
             maneuverAbilityGuid: Guids.SurvivorManeuverAbility,
             expandedManeuverAbilityGuid: Guids.SurvivorExpandedAbility,
             displayName: "Survivor",
-            featureDescription: "Your psionic focus toughens your body. You gain DR 2/â€” and Mettle (when you succeed on a Fortitude or Will saving throw against an effect that normally allows a partial save, you instead take no effect at all).",
+            featureDescription: "Your psionic focus toughens your body. You gain DR 2/— and Mettle (when you succeed on a Fortitude or Will saving throw against an effect that normally allows a partial save, you instead take no effect at all).",
             icon: icon,
             addBuffComponents: b =>
             {
@@ -71,11 +71,11 @@ public static class SurvivorPath
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
             .Configure();
 
-        // Expanded â€” Survivor's Resolve: temp HP equal to caster level for 1 minute
+        // Expanded — Survivor's Resolve: temp HP equal to caster level for 1 minute
         var expandedBuff = BuffConfigurator.New("SurvivorExpandedManeuverBuff", Guids.SurvivorExpandedBuff)
             .SetDisplayName(Loc.Str("PW.SurvivorExpanded.BuffName", "Survivor's Resolve"))
             .SetDescription(Loc.Str("PW.SurvivorExpanded.BuffDesc",
-                "Psionic resolve hardens flesh â€” temporary hit points equal to your manifester level."))
+                "Psionic resolve hardens flesh — temporary hit points equal to your manifester level."))
             .SetIcon(expandedIcon)
             .AddTemporaryHitPointsFromAbilityValue(
                 descriptor: ModifierDescriptor.UntypedStackable,
@@ -113,7 +113,7 @@ public static class SurvivorPath
         FeatureConfigurator.New("SurvivorPath", Guids.SurvivorPath)
             .SetDisplayName(Loc.Str("PW.SurvivorPath.Name", "Survivor Path"))
             .SetDescription(Loc.Str("PW.SurvivorPath.Desc",
-                "You focus on endurance and resilience. Your trance grants DR 2/â€” and Mettle (partial-effect Fort/Will saves are negated entirely on a success). Your maneuver lets you expend psionic focus to spike your Fortitude and Will saves."))
+                "You focus on endurance and resilience. Your trance grants DR 2/— and Mettle (partial-effect Fort/Will saves are negated entirely on a success). Your maneuver lets you expend psionic focus to spike your Fortitude and Will saves."))
             .SetIcon(icon)
             .SetIsClassFeature()
             .AddFacts([trance.ToString()])

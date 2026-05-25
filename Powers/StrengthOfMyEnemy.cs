@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Actions.Builder;
+﻿﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -27,13 +27,13 @@ namespace PsychicWarrior.Powers;
 /// maximum enhancement bonus you can gain from this power is +6."
 ///
 /// Implementation:
-///   â€¢ Main buff applied to caster/level (Personal range).
-///   â€¢ Main buff carries <c>AddInitiatorAttackWithWeaponTrigger</c> on melee hit.
-///   â€¢ On hit, a Conditional checks the caster's current rank of the caster-stack buff. If
+///   —¢ Main buff applied to caster/level (Personal range).
+///   —¢ Main buff carries <c>AddInitiatorAttackWithWeaponTrigger</c> on melee hit.
+///   —¢ On hit, a Conditional checks the caster's current rank of the caster-stack buff. If
 ///     the rank is below 6, both buffs are applied:
 ///       - Caster gets the rank-stacking buff (StackingType.Rank, max 6, +1 enhancement Str per rank)
 ///       - Enemy gets a stackable buff (StackingType.Stack, -2 untyped Str)
-///   â€¢ The conditional cap on the caster's buff rank prevents enemy stacks beyond what RAW allows.
+///   —¢ The conditional cap on the caster's buff rank prevents enemy stacks beyond what RAW allows.
 /// </summary>
 public static class StrengthOfMyEnemy
 {

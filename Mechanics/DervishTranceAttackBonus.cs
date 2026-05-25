@@ -33,6 +33,10 @@ public class DervishTranceAttackBonus : UnitFactComponentDelegate,
         // Skip if not dual-wielding: secondary hand must have a weapon (not shield, not empty)
         if (!secondary.HasWeapon || secondary.HasShield)
             return;
+        // Skip if secondary hand holds a natural weapon or unarmed strike
+        var secondaryBp = secondary.MaybeWeapon?.Blueprint;
+        if (secondaryBp == null || secondaryBp.IsNatural || secondaryBp.Category == WeaponCategory.UnarmedStrike)
+            return;
         // Skip if primary hand is gripping a two-handed weapon
         if (body.CurrentHandsEquipmentSet.GripType == GripType.TwoHanded)
             return;

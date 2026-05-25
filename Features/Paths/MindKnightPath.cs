@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Actions.Builder;
+﻿﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -70,7 +70,7 @@ public static class MindKnightPath
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
             .Configure();
 
-        // Expanded â€” Mental Strike: +4 Initiative + +4 dodge AC for 1 round (combat awareness)
+        // Expanded — Mental Strike: +4 Initiative + +4 dodge AC for 1 round (combat awareness)
         var expandedBuff = BuffConfigurator.New("MindKnightExpandedManeuverBuff", Guids.MindKnightExpandedBuff)
             .SetDisplayName(Loc.Str("PW.MindKnightExpanded.BuffName", "Mental Strike"))
             .SetDescription(Loc.Str("PW.MindKnightExpanded.BuffDesc",

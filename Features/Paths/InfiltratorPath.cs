@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Actions.Builder;
+﻿﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -71,7 +71,7 @@ public static class InfiltratorPath
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
             .Configure();
 
-        // Expanded â€” Hidden Step: +20 speed (enhancement) + +6 stealth for 1 round
+        // Expanded — Hidden Step: +20 speed (enhancement) + +6 stealth for 1 round
         var expandedBuff = BuffConfigurator.New("InfiltratorExpandedManeuverBuff", Guids.InfiltratorExpandedBuff)
             .SetDisplayName(Loc.Str("PW.InfiltratorExpanded.BuffName", "Hidden Step"))
             .SetDescription(Loc.Str("PW.InfiltratorExpanded.BuffDesc",

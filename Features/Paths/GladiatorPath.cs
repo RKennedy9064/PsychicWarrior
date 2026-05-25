@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Actions.Builder;
+﻿﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -71,7 +71,7 @@ public static class GladiatorPath
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
             .Configure();
 
-        // Expanded â€” Gladiator's Will: +4 competence to all saves for 1 round
+        // Expanded — Gladiator's Will: +4 competence to all saves for 1 round
         var expandedBuff = BuffConfigurator.New("GladiatorExpandedManeuverBuff", Guids.GladiatorExpandedBuff)
             .SetDisplayName(Loc.Str("PW.GladiatorExpanded.BuffName", "Gladiator's Will"))
             .SetDescription(Loc.Str("PW.GladiatorExpanded.BuffDesc",
