@@ -16,6 +16,7 @@
 - All paths: expandable maneuver button now shows a unified icon instead of a diagonal split (both maneuver and expanded maneuver now use the same icon)
 - Weaponmaster Trance: attack bonus now correctly applies to all manufactured weapon attacks
 - Feral Warrior Trance: attack bonus now correctly applies to natural weapon and unarmed attacks
+- Martial Power: each variant now has a distinct icon matching its path maneuver (instead of all showing the same hammer icon)
 
 ## [0.1.0] - 2026-05-24
 
