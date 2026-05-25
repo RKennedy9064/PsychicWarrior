@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -54,7 +54,7 @@ public static class FeralWarriorPath
                 });
             });
 
-        // +7 ≈ 2d6 average; removes after next attack
+        // +7 â‰ˆ 2d6 average; removes after next attack
         var maneuverBuff = BuffConfigurator.New("FeralWarriorManeuverBuff", Guids.FeralWarriorManeuverBuff)
             .SetDisplayName(Loc.Str("PW.FeralWarriorManeuver.BuffName", "Feral Warrior Maneuver"))
             .SetDescription(Loc.Str("PW.FeralWarriorManeuver.BuffDesc",
@@ -80,20 +80,20 @@ public static class FeralWarriorPath
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
             .Configure();
 
-        // Expanded — Feral Rend: keen weapon edge (doubled threat range) for 1 round
+        // Expanded â€” Feral Rend: keen weapon edge (doubled threat range) for 1 round
         var expandedBuff = BuffConfigurator.New("FeralWarriorExpandedManeuverBuff", Guids.FeralWarriorExpandedBuff)
             .SetDisplayName(Loc.Str("PW.FeralWarriorExpanded.BuffName", "Feral Rend"))
             .SetDescription(Loc.Str("PW.FeralWarriorExpanded.BuffDesc",
-                "Your weapons take on a feral edge — doubled critical threat range."))
+                "Your weapons take on a feral edge â€” doubled critical threat range."))
             .SetIcon(expandedIcon)
             .AddWeaponCriticalEdgeIncreaseStackable(value: 1)
             .Configure();
 
-        var expandedAbility = AbilityConfigurator.New("FeralWarriorExpandedManeuverAbility", Guids.FeralWarriorExpandedAbility)
-            .SetDisplayName(Loc.Str("PW.FeralWarriorExpandedAb.Name", "Feral Rend"))
-            .SetDescription(Loc.Str("PW.FeralWarriorExpandedAb.Desc",
-                "Swift Action. Expend psionic focus to imbue your weapons with feral edge — doubled critical threat range for 1 round."))
-            .SetIcon(expandedIcon)
+        var expandedAbility = AbilityConfigurator.New(“FeralWarriorExpandedManeuverAbility”, Guids.FeralWarriorExpandedAbility)
+            .SetDisplayName(Loc.Str(“PW.FeralWarriorExpandedAb.Name”, “Feral Rend”))
+            .SetDescription(Loc.Str(“PW.FeralWarriorExpandedAb.Desc”,
+                “Swift Action. Expend psionic focus to imbue your weapons with feral edge â€” doubled critical threat range for 1 round.”))
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -110,10 +110,9 @@ public static class FeralWarriorPath
         FeatureConfigurator.New("FeralWarriorExpandedManeuver", Guids.FeralWarriorExpandedFeature)
             .SetDisplayName(Loc.Str("PW.FeralWarriorExpandedFeat.Name", "Feral Rend"))
             .SetDescription(Loc.Str("PW.FeralWarriorExpandedFeat.Desc",
-                "You learn the Feral Rend maneuver: a swift-action self-buff that imbues your weapons with feral edge — doubled critical threat range for 1 round."))
+                "You learn the Feral Rend maneuver: a swift-action self-buff that imbues your weapons with feral edge â€” doubled critical threat range for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
-            .AddFacts([Guids.FeralWarriorPathParent])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerFeralWarriorExpanded)
             .AddPrerequisiteFeature(Guids.FeralWarriorPath)
             .Configure();
@@ -126,6 +125,7 @@ public static class FeralWarriorPath
             .SetIsClassFeature()
             .AddFacts([trance.ToString()])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerFeralWarriorManeuver)
+            .AddPrerequisiteNoFeature(Guids.FeralWarriorPath)
             .Configure();
     }
 }

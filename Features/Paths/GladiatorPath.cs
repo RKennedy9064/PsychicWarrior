@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -71,7 +71,7 @@ public static class GladiatorPath
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
             .Configure();
 
-        // Expanded — Gladiator's Will: +4 competence to all saves for 1 round
+        // Expanded â€” Gladiator's Will: +4 competence to all saves for 1 round
         var expandedBuff = BuffConfigurator.New("GladiatorExpandedManeuverBuff", Guids.GladiatorExpandedBuff)
             .SetDisplayName(Loc.Str("PW.GladiatorExpanded.BuffName", "Gladiator's Will"))
             .SetDescription(Loc.Str("PW.GladiatorExpanded.BuffDesc",
@@ -86,7 +86,7 @@ public static class GladiatorPath
             .SetDisplayName(Loc.Str("PW.GladiatorExpandedAb.Name", "Gladiator's Will"))
             .SetDescription(Loc.Str("PW.GladiatorExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to steel your resolve: gain +4 competence to all saving throws for 1 round."))
-            .SetIcon(expandedIcon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -105,7 +105,6 @@ public static class GladiatorPath
                 "You learn the Gladiator's Will maneuver: a swift-action self-buff granting +4 competence to all saving throws for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
-            .AddFacts([Guids.GladiatorPathParent])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerGladiatorExpanded)
             .AddPrerequisiteFeature(Guids.GladiatorPath)
             .Configure();
@@ -118,6 +117,7 @@ public static class GladiatorPath
             .SetIsClassFeature()
             .AddFacts([trance.ToString()])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerGladiatorManeuver)
+            .AddPrerequisiteNoFeature(Guids.GladiatorPath)
             .Configure();
     }
 }

@@ -44,7 +44,7 @@ public static class PsychicWarriorClass
             .AddToLevelEntries(6, Guids.MartialPowerFeature)
             .AddToLevelEntries(7, Guids.PathSkillBonusSelection)
             .AddToLevelEntries(8, Guids.BonusFeatSelection)
-            .AddToLevelEntries(9, Guids.SecondaryPathSelection)
+            .AddToLevelEntries(9, Guids.SecondaryPathSelection, Guids.PathExpandedManeuver)
             .AddToLevelEntries(10, Guids.PathSkillBonusSelection)
             .AddToLevelEntries(11, Guids.BonusFeatSelection)
             .AddToLevelEntries(12, Guids.TwistingPaths)

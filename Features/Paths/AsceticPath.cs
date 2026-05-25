@@ -84,7 +84,7 @@ public static class AsceticPath
             .SetDisplayName(Loc.Str("PW.AsceticExpandedAb.Name", "Wholeness of Body"))
             .SetDescription(Loc.Str("PW.AsceticExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to heal yourself for hit points equal to your manifester level."))
-            .SetIcon(expandedIcon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -105,7 +105,6 @@ public static class AsceticPath
                 "You learn the Wholeness of Body maneuver: a swift action that heals you for hit points equal to your manifester level."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
-            .AddFacts([Guids.AsceticPathParent])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerAsceticExpanded)
             .AddPrerequisiteFeature(Guids.AsceticPath)
             .Configure();
@@ -118,6 +117,7 @@ public static class AsceticPath
             .SetIsClassFeature()
             .AddFacts([trance.ToString()])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerAsceticManeuver)
+            .AddPrerequisiteNoFeature(Guids.AsceticPath)
             .Configure();
     }
 }

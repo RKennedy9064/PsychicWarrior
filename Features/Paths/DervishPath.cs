@@ -81,7 +81,7 @@ public static class DervishPath
             .SetDisplayName(Loc.Str("PW.DervishExpandedAb.Name", "Whirlwind Step"))
             .SetDescription(Loc.Str("PW.DervishExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to enter a whirlwind dance: gain haste for 1 round (extra attack on full attacks, +1 dodge AC, +1 Reflex, +30 ft speed)."))
-            .SetIcon(expandedIcon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -101,7 +101,6 @@ public static class DervishPath
                 "You learn the Whirlwind Step maneuver: a swift-action haste-like buff for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
-            .AddFacts([Guids.DervishPathParent])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerDervishExpanded)
             .AddPrerequisiteFeature(Guids.DervishPath)
             .Configure();
@@ -114,6 +113,7 @@ public static class DervishPath
             .SetIsClassFeature()
             .AddFacts([trance.ToString()])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerDervishManeuver)
+            .AddPrerequisiteNoFeature(Guids.DervishPath)
             .Configure();
     }
 }

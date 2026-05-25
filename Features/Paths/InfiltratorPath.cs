@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -71,7 +71,7 @@ public static class InfiltratorPath
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
             .Configure();
 
-        // Expanded — Hidden Step: +20 speed (enhancement) + +6 stealth for 1 round
+        // Expanded â€” Hidden Step: +20 speed (enhancement) + +6 stealth for 1 round
         var expandedBuff = BuffConfigurator.New("InfiltratorExpandedManeuverBuff", Guids.InfiltratorExpandedBuff)
             .SetDisplayName(Loc.Str("PW.InfiltratorExpanded.BuffName", "Hidden Step"))
             .SetDescription(Loc.Str("PW.InfiltratorExpanded.BuffDesc",
@@ -85,7 +85,7 @@ public static class InfiltratorPath
             .SetDisplayName(Loc.Str("PW.InfiltratorExpandedAb.Name", "Hidden Step"))
             .SetDescription(Loc.Str("PW.InfiltratorExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to glide as a shadow: +20 ft enhancement speed and +6 competence to Stealth for 1 round."))
-            .SetIcon(expandedIcon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -104,7 +104,6 @@ public static class InfiltratorPath
                 "You learn the Hidden Step maneuver: a swift-action self-buff granting +20 ft speed and +6 competence to Stealth for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
-            .AddFacts([Guids.InfiltratorPathParent])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerInfiltratorExpanded)
             .AddPrerequisiteFeature(Guids.InfiltratorPath)
             .Configure();
@@ -117,6 +116,7 @@ public static class InfiltratorPath
             .SetIsClassFeature()
             .AddFacts([trance.ToString()])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerInfiltratorManeuver)
+            .AddPrerequisiteNoFeature(Guids.InfiltratorPath)
             .Configure();
     }
 }

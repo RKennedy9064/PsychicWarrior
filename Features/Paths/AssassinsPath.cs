@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -47,7 +47,7 @@ public static class AssassinsPath
                     value: ContextValues.Rank());
             });
 
-        // +7 ≈ 2d6 average; removes after next attack
+        // +7 â‰ˆ 2d6 average; removes after next attack
         var maneuverBuff = BuffConfigurator.New("AssassinsManeuverBuff", Guids.AssassinsManeuverBuff)
             .SetDisplayName(Loc.Str("PW.AssassinsManeuver.BuffName", "Assassin's Maneuver"))
             .SetDescription(Loc.Str("PW.AssassinsManeuver.BuffDesc",
@@ -73,7 +73,7 @@ public static class AssassinsPath
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
             .Configure();
 
-        // Expanded — Mindblade Strike: +4 saves and +4 competence damage for 1 round (mind-over-body focus)
+        // Expanded â€” Mindblade Strike: +4 saves and +4 competence damage for 1 round (mind-over-body focus)
         var expandedBuff = BuffConfigurator.New("AssassinsExpandedManeuverBuff", Guids.AssassinsExpandedBuff)
             .SetDisplayName(Loc.Str("PW.AssassinsExpanded.BuffName", "Mindblade Strike"))
             .SetDescription(Loc.Str("PW.AssassinsExpanded.BuffDesc",
@@ -89,7 +89,7 @@ public static class AssassinsPath
             .SetDisplayName(Loc.Str("PW.AssassinsExpandedAb.Name", "Mindblade Strike"))
             .SetDescription(Loc.Str("PW.AssassinsExpandedAb.Desc",
                 "Swift Action. Expend psionic focus and enter a state of pure mental focus: +4 competence damage and +4 competence to all saves for 1 round."))
-            .SetIcon(expandedIcon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -108,7 +108,6 @@ public static class AssassinsPath
                 "You learn the Mindblade Strike maneuver: a swift-action self-buff granting +4 competence damage and +4 competence to all saves for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
-            .AddFacts([Guids.AssassinsPathParent])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerAssassinsExpanded)
             .AddPrerequisiteFeature(Guids.AssassinsPath)
             .Configure();
@@ -122,6 +121,7 @@ public static class AssassinsPath
             .SetIsClassFeature()
             .AddFacts([trance.ToString()])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerAssassinsManeuver)
+            .AddPrerequisiteNoFeature(Guids.AssassinsPath)
             .Configure();
     }
 }

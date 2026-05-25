@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -70,20 +70,20 @@ public static class InterceptorPath
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
             .Configure();
 
-        // Expanded — Save Another: DR 5/— for 1 round (take damage for allies)
+        // Expanded â€” Save Another: DR 5/â€” for 1 round (take damage for allies)
         var expandedBuff = BuffConfigurator.New("InterceptorExpandedManeuverBuff", Guids.InterceptorExpandedBuff)
             .SetDisplayName(Loc.Str("PW.InterceptorExpanded.BuffName", "Save Another"))
             .SetDescription(Loc.Str("PW.InterceptorExpanded.BuffDesc",
-                "You harden your body to absorb blows meant for allies: DR 5/— for 1 round."))
+                "You harden your body to absorb blows meant for allies: DR 5/â€” for 1 round."))
             .SetIcon(expandedIcon)
             .AddComponent(new AddDamageResistancePhysical { Value = 5, BypassedByMaterial = false })
             .Configure();
 
-        var expandedAbility = AbilityConfigurator.New("InterceptorExpandedManeuverAbility", Guids.InterceptorExpandedAbility)
-            .SetDisplayName(Loc.Str("PW.InterceptorExpandedAb.Name", "Save Another"))
-            .SetDescription(Loc.Str("PW.InterceptorExpandedAb.Desc",
-                "Swift Action. Expend psionic focus to harden your body and absorb blows meant for allies: gain DR 5/— for 1 round."))
-            .SetIcon(expandedIcon)
+        var expandedAbility = AbilityConfigurator.New(“InterceptorExpandedManeuverAbility”, Guids.InterceptorExpandedAbility)
+            .SetDisplayName(Loc.Str(“PW.InterceptorExpandedAb.Name”, “Save Another”))
+            .SetDescription(Loc.Str(“PW.InterceptorExpandedAb.Desc”,
+                “Swift Action. Expend psionic focus to harden your body and absorb blows meant for allies: gain DR 5/â€” for 1 round.”))
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -99,10 +99,9 @@ public static class InterceptorPath
         FeatureConfigurator.New("InterceptorExpandedManeuver", Guids.InterceptorExpandedFeature)
             .SetDisplayName(Loc.Str("PW.InterceptorExpandedFeat.Name", "Save Another"))
             .SetDescription(Loc.Str("PW.InterceptorExpandedFeat.Desc",
-                "You learn the Save Another maneuver: a swift-action self-buff granting DR 5/— for 1 round."))
+                "You learn the Save Another maneuver: a swift-action self-buff granting DR 5/â€” for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
-            .AddFacts([Guids.InterceptorPathParent])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerInterceptorExpanded)
             .AddPrerequisiteFeature(Guids.InterceptorPath)
             .Configure();
@@ -115,6 +114,7 @@ public static class InterceptorPath
             .SetIsClassFeature()
             .AddFacts([trance.ToString()])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerInterceptorManeuver)
+            .AddPrerequisiteNoFeature(Guids.InterceptorPath)
             .Configure();
     }
 }

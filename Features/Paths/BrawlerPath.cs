@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -45,7 +45,7 @@ public static class BrawlerPath
                     value: new ContextValue { ValueType = ContextValueType.Rank })
                 .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Wisdom)));
 
-        // Maneuver buff: +7 competence to damage (≈2d6) on next attack, then removes itself
+        // Maneuver buff: +7 competence to damage (â‰ˆ2d6) on next attack, then removes itself
         var maneuverBuff = BuffConfigurator.New("BrawlerManeuverBuff", Guids.BrawlerManeuverBuff)
             .SetDisplayName(Loc.Str("PW.BrawlerManeuver.BuffName", "Brawler Maneuver"))
             .SetDescription(Loc.Str("PW.BrawlerManeuver.BuffDesc",
@@ -71,7 +71,7 @@ public static class BrawlerPath
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
             .Configure();
 
-        // Expanded — Steel Sinews: counter-attack reflex, +4 dodge AC + Fast Healing 2 for 1 round
+        // Expanded â€” Steel Sinews: counter-attack reflex, +4 dodge AC + Fast Healing 2 for 1 round
         var expandedBuff = BuffConfigurator.New("BrawlerExpandedManeuverBuff", Guids.BrawlerExpandedManeuverBuff)
             .SetDisplayName(Loc.Str("PW.BrawlerExpanded.BuffName", "Steel Sinews"))
             .SetDescription(Loc.Str("PW.BrawlerExpanded.BuffDesc",
@@ -85,7 +85,7 @@ public static class BrawlerPath
             .SetDisplayName(Loc.Str("PW.BrawlerExpandedAb.Name", "Steel Sinews"))
             .SetDescription(Loc.Str("PW.BrawlerExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to harden your sinews. Gain +4 dodge bonus to AC and Fast Healing 2 for 1 round."))
-            .SetIcon(expandedIcon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -104,7 +104,6 @@ public static class BrawlerPath
                 "You learn the Steel Sinews maneuver: a swift-action self-buff that grants +4 dodge AC and Fast Healing 2 for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
-            .AddFacts([Guids.BrawlerPathParent])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerBrawlerExpanded)
             .AddPrerequisiteFeature(Guids.BrawlerPath)
             .Configure();
@@ -118,6 +117,7 @@ public static class BrawlerPath
             .SetIsClassFeature()
             .AddFacts([trance.ToString()])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerBrawlerManeuver)
+            .AddPrerequisiteNoFeature(Guids.BrawlerPath)
             .Configure();
     }
 }

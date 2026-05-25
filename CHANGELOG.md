@@ -9,6 +9,10 @@
 - Rapid Metabolism / Intuitive Fighting / Psionic Endowment: buffs now apply immediately when the feat is taken while already psionically focused (previously required toggling focus off and back on)
 - Dervish Trance: attack bonus now shows in the character sheet attack tooltip and correctly fires on the same rule as the Two-Weapon Fighting penalty
 - Dervish Trance: attack bonus now correctly only applies when wielding two weapons (secondary hand has a weapon, not a shield, and grip is not two-handed)
+- Secondary path: maneuver menu (expandable action bar button) now correctly appears when a path is selected as a secondary path at level 9
+- Secondary path: expanded maneuver is now correctly granted at level 9 alongside the secondary path selection (fixes split/corrupted maneuver menu icon and missing expanded maneuver option)
+- All paths: selecting the same path as both primary and secondary is now correctly prevented (greyed out in the secondary selection if already chosen as primary)
+- All paths: expandable maneuver button now shows a unified icon instead of a diagonal split (both maneuver and expanded maneuver now use the same icon)
 
 ## [0.1.0] - 2026-05-24
 

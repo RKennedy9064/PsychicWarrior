@@ -106,7 +106,7 @@ public static class WeaponmasterPath
             .SetDisplayName(Loc.Str("PW.WMExpandedAb.Name", "Burst of Speed"))
             .SetDescription(Loc.Str("PW.WMExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to unleash a burst of psionic momentum: +30 ft speed and +4 competence to attack rolls for 1 round."))
-            .SetIcon(expandedIcon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -125,7 +125,6 @@ public static class WeaponmasterPath
                 "You learn the Burst of Speed maneuver: a swift-action self-buff granting +30 ft speed and +4 competence to attack rolls for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
-            .AddFacts([Guids.WeaponmasterPathParent])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerWeaponmasterExpanded)
             .AddPrerequisiteFeature(Guids.WeaponmasterPath)
             .Configure();
@@ -139,6 +138,7 @@ public static class WeaponmasterPath
             .SetIsClassFeature()
             .AddFacts([trance.ToString()])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerWeaponmasterManeuver)
+            .AddPrerequisiteNoFeature(Guids.WeaponmasterPath)
             .Configure();
     }
 }

@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -70,7 +70,7 @@ public static class MindKnightPath
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
             .Configure();
 
-        // Expanded — Mental Strike: +4 Initiative + +4 dodge AC for 1 round (combat awareness)
+        // Expanded â€” Mental Strike: +4 Initiative + +4 dodge AC for 1 round (combat awareness)
         var expandedBuff = BuffConfigurator.New("MindKnightExpandedManeuverBuff", Guids.MindKnightExpandedBuff)
             .SetDisplayName(Loc.Str("PW.MindKnightExpanded.BuffName", "Mental Strike"))
             .SetDescription(Loc.Str("PW.MindKnightExpanded.BuffDesc",
@@ -84,7 +84,7 @@ public static class MindKnightPath
             .SetDisplayName(Loc.Str("PW.MindKnightExpandedAb.Name", "Mental Strike"))
             .SetDescription(Loc.Str("PW.MindKnightExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to sharpen combat awareness: +4 insight Initiative and +4 dodge bonus to AC for 1 round."))
-            .SetIcon(mentalIcon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -103,7 +103,6 @@ public static class MindKnightPath
                 "You learn the Mental Strike maneuver: a swift-action self-buff granting +4 insight Initiative and +4 dodge bonus to AC for 1 round."))
             .SetIcon(mentalIcon)
             .SetIsClassFeature()
-            .AddFacts([Guids.MindKnightPathParent])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerMindKnightExpanded)
             .AddPrerequisiteFeature(Guids.MindKnightPath)
             .Configure();
@@ -116,6 +115,7 @@ public static class MindKnightPath
             .SetIsClassFeature()
             .AddFacts([trance.ToString()])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerMindKnightManeuver)
+            .AddPrerequisiteNoFeature(Guids.MindKnightPath)
             .Configure();
     }
 }

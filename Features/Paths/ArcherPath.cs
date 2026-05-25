@@ -1,4 +1,4 @@
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -77,11 +77,11 @@ public static class ArcherPath
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
             .Configure();
 
-        // Expanded — Twin Shot: Haste-like acceleration for 1 round
+        // Expanded â€” Twin Shot: Haste-like acceleration for 1 round
         var expandedBuff = BuffConfigurator.New("ArcherExpandedManeuverBuff", Guids.ArcherExpandedBuff)
             .SetDisplayName(Loc.Str("PW.ArcherExpanded.BuffName", "Twin Shot"))
             .SetDescription(Loc.Str("PW.ArcherExpanded.BuffDesc",
-                "Psionic acceleration drives your arms: gain the benefits of haste — extra attack on full attacks, +1 dodge AC, +1 Reflex, +30 ft speed."))
+                "Psionic acceleration drives your arms: gain the benefits of haste â€” extra attack on full attacks, +1 dodge AC, +1 Reflex, +30 ft speed."))
             .SetIcon(expandedIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.AC, value: 1)
             .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.SaveReflex, value: 1)
@@ -93,7 +93,7 @@ public static class ArcherPath
             .SetDisplayName(Loc.Str("PW.ArcherExpandedAb.Name", "Twin Shot"))
             .SetDescription(Loc.Str("PW.ArcherExpandedAb.Desc",
                 "Swift Action. Expend psionic focus to unleash a Twin Shot: gain the benefits of haste for 1 round (extra attack on full attacks, +1 dodge AC, +1 Reflex, +30 ft speed)."))
-            .SetIcon(expandedIcon)
+            .SetIcon(maneuverIcon)
             .SetType(AbilityType.Extraordinary)
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
@@ -113,7 +113,6 @@ public static class ArcherPath
                 "You learn the Twin Shot maneuver: a swift-action haste-like buff for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
-            .AddFacts([Guids.ArcherPathParent])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerArcherExpanded)
             .AddPrerequisiteFeature(Guids.ArcherPath)
             .Configure();
@@ -126,6 +125,7 @@ public static class ArcherPath
             .SetIsClassFeature()
             .AddFacts([trance.ToString()])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerArcherManeuver)
+            .AddPrerequisiteNoFeature(Guids.ArcherPath)
             .Configure();
     }
 }
