@@ -5,6 +5,10 @@
 ### Fixed
 - Psionic Weapon: bonus damage now correctly scales with manifester level (1d6 → 2d6 → 3d6 → 4d6) instead of always dealing 1d6
 - Greater Psionic Weapon: same scaling fix as Psionic Weapon
+- Psionic Weapon / Greater Psionic Weapon: multiple separate dice rolls now combined into a single Xd6 roll in the combat log
+- Rapid Metabolism / Intuitive Fighting / Psionic Endowment: buffs now apply immediately when the feat is taken while already psionically focused (previously required toggling focus off and back on)
+- Dervish Trance: attack bonus now shows in the character sheet attack tooltip and correctly fires on the same rule as the Two-Weapon Fighting penalty
+- Dervish Trance: attack bonus now correctly only applies when wielding two weapons (secondary hand has a weapon, not a shield, and grip is not two-handed)
 
 ## [0.1.0] - 2026-05-24
 

@@ -7,16 +7,13 @@ using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
-using Kingmaker.Designers.Mechanics.Facts;
-using Kingmaker.ElementsSystem;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.FactLogic;
-using Kingmaker.UnitLogic.Mechanics;
-using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
+using PsychicWarrior.Mechanics;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Features.Paths;
@@ -41,20 +38,7 @@ public static class DervishPath
             displayName: "Dervish",
             featureDescription: "Beginning at 3rd level, while maintaining psionic focus, you gain a +1 competence bonus to attack rolls when wielding two weapons. This bonus increases by 1 every four psychic warrior levels thereafter (+2 at 7th, +3 at 11th, +4 at 15th, +5 at 19th).",
             icon: icon,
-            addBuffComponents: b =>
-            {
-                b.AddContextRankConfig(ContextRankConfigs.CasterLevel()
-                    .WithCustomProgression((2, 0), (6, 1), (10, 2), (14, 3), (18, 4), (20, 5)));
-                b.AddComponent(new AttackBonusConditional
-                {
-                    Descriptor = ModifierDescriptor.Competence,
-                    Bonus = new ContextValue { ValueType = ContextValueType.Rank },
-                    Conditions = new ConditionsChecker
-                    {
-                        Conditions = new Condition[] { new ContextConditionCasterHasTwoWeapons() }
-                    }
-                });
-            });
+            addBuffComponents: b => b.AddComponent(new DervishTranceAttackBonus()));
 
         var maneuverBuff = BuffConfigurator.New("DervishManeuverBuff", Guids.DervishManeuverBuff)
             .SetDisplayName(Loc.Str("PW.DervishManeuver.BuffName", "Dervish Maneuver"))
