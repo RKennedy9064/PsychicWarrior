@@ -15,6 +15,7 @@ using Kingmaker.Enums;
 using Kingmaker.Enums.Damage;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
+using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using PsychicWarrior.Utils;
@@ -28,17 +29,6 @@ public static class PsionicWeapon
         BuffConfigurator.New("PsionicWeaponBuff", Guids.PsionicWeaponBuff)
             .SetDisplayName(Loc.Str("PW.PsionicWeapon.Name", "Psionic Weapon"))
             .SetFlags(BlueprintBuff.Flags.HiddenInUi)
-            .AddContextRankConfig(ContextRankConfigs.CasterLevel().WithCustomProgression((5, 1), (10, 2), (15, 3), (20, 4)))
-            .AddInitiatorAttackWithWeaponTrigger(
-                action: ActionsBuilder.New().Conditional(
-                    ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff),
-                    ifTrue: ActionsBuilder.New()
-                        .DealDamage(
-                            DamageTypes.Energy(DamageEnergyType.Magic),
-                            ContextDice.Value(DiceType.D6, ContextValues.Rank(), 0))),
-                onlyHit: true,
-                checkWeaponRangeType: true,
-                rangeType: WeaponRangeType.Melee)
             .Configure();
 
         FeatureConfigurator.New("PsionicWeaponFeat", Guids.PsionicWeaponFeat)
@@ -48,7 +38,23 @@ public static class PsionicWeapon
             .SetIcon(AbilityRefs.MagicWeaponGreater.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
-            .AddFacts([Guids.PsionicWeaponBuff])
+            .AddInitiatorAttackWithWeaponTrigger(
+                action: ActionsBuilder.New().Conditional(
+                    ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff),
+                    ifTrue: ActionsBuilder.New()
+                        .ChangeSharedValueTo(ContextValues.Constant(1), AbilitySharedValue.Damage)
+                        .Conditional(
+                            ConditionsBuilder.New().CharacterClass(checkCaster: true, clazz: Guids.PsychicWarriorClass, minLevel: 6),
+                            ifTrue: ActionsBuilder.New().ChangeSharedValueAddTo(ContextValues.Constant(1), AbilitySharedValue.Damage))
+                        .Conditional(
+                            ConditionsBuilder.New().CharacterClass(checkCaster: true, clazz: Guids.PsychicWarriorClass, minLevel: 11),
+                            ifTrue: ActionsBuilder.New().ChangeSharedValueAddTo(ContextValues.Constant(1), AbilitySharedValue.Damage))
+                        .Conditional(
+                            ConditionsBuilder.New().CharacterClass(checkCaster: true, clazz: Guids.PsychicWarriorClass, minLevel: 16),
+                            ifTrue: ActionsBuilder.New().ChangeSharedValueAddTo(ContextValues.Constant(1), AbilitySharedValue.Damage))
+                        .DealDamage(DamageTypes.Energy(DamageEnergyType.Magic),
+                            ContextDice.Value(DiceType.D6, ContextValues.Shared(AbilitySharedValue.Damage), ContextValues.Constant(0)))),
+                onlyHit: true, checkWeaponRangeType: true, rangeType: WeaponRangeType.Melee)
             .AddRecommendedClass(Guids.PsychicWarriorClass)
             .Configure();
 
