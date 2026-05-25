@@ -30,6 +30,7 @@ public static class GreaterPsionicWeapon
         PsionicProficiencyPatch.RegisterPsionicFeat(Guids.GreaterPsionicWeaponFeat);
 
         BuffConfigurator.New("GreaterPsionicWeaponBuff", Guids.GreaterPsionicWeaponBuff)
+            .SetDisplayName(Loc.Str("PW.GreaterPsionicWeapon.Name", "Greater Psionic Weapon"))
             .SetFlags(BlueprintBuff.Flags.HiddenInUi)
             .AddContextRankConfig(ContextRankConfigs.CasterLevel().WithCustomProgression((5, 1), (10, 2), (15, 3), (20, 4)))
             .AddInitiatorAttackWithWeaponTrigger(

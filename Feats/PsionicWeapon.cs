@@ -26,6 +26,7 @@ public static class PsionicWeapon
     public static void Configure()
     {
         BuffConfigurator.New("PsionicWeaponBuff", Guids.PsionicWeaponBuff)
+            .SetDisplayName(Loc.Str("PW.PsionicWeapon.Name", "Psionic Weapon"))
             .SetFlags(BlueprintBuff.Flags.HiddenInUi)
             .AddContextRankConfig(ContextRankConfigs.CasterLevel().WithCustomProgression((5, 1), (10, 2), (15, 3), (20, 4)))
             .AddInitiatorAttackWithWeaponTrigger(
