@@ -26,8 +26,8 @@ public static class CriticalRefocus
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddInitiatorAttackWithWeaponTrigger(
                 action: ActionsBuilder.New().Conditional(
-                    ConditionsBuilder.New().HasFact(Guids.PsionicFocusBuff, negate: true),
-                    ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsionicFocusBuff)),
+                    ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff, negate: true),
+                    ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsionicFocusBuff, toCaster: true)),
                 criticalHit: true,
                 onlyHit: true)
             .AddRecommendedClass(Guids.PsychicWarriorClass)
