@@ -130,7 +130,7 @@ public static class TwistingPathsPathweaving
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { Guids.PathweavingAbility })
+            .AddFacts([Guids.PathweavingAbility])
             .AddAbilityResources(resource: Guids.PathweavingResource, restoreAmount: true)
             .Configure();
     }

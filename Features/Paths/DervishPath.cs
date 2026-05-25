@@ -74,7 +74,7 @@ public static class DervishPath
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
-            .AddAbilityCasterHasFacts(new() { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) })
+            .AddAbilityCasterHasFacts([BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff)])
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
@@ -102,7 +102,7 @@ public static class DervishPath
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
-            .AddAbilityCasterHasFacts(new() { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) })
+            .AddAbilityCasterHasFacts([BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff)])
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
@@ -117,7 +117,7 @@ public static class DervishPath
                 "You learn the Whirlwind Step maneuver: a swift-action haste-like buff for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
-            .AddFacts(new() { Guids.DervishPathParent })
+            .AddFacts([Guids.DervishPathParent])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerDervishExpanded)
             .AddPrerequisiteFeature(Guids.DervishPath)
             .Configure();
@@ -128,7 +128,7 @@ public static class DervishPath
                 "You focus on swift dual-weapon mastery. You gain a +1 competence bonus to attack rolls (trance) and can expend psionic focus to enter a whirling combat stance (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { trance.ToString() })
+            .AddFacts([trance.ToString()])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerDervishManeuver)
             .Configure();
     }

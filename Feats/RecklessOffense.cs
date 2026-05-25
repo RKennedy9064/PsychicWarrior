@@ -47,7 +47,7 @@ public static class RecklessOffense
             .SetIcon(FeatureRefs.PowerAttackFeature.Reference.Get().Icon)
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 1)
-            .AddFacts(new() { Guids.RecklessOffenseActivatable })
+            .AddFacts([Guids.RecklessOffenseActivatable])
             .AddRecommendedClass(Guids.PsychicWarriorClass)
             .Configure();
 

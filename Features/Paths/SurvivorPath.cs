@@ -64,7 +64,7 @@ public static class SurvivorPath
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
-            .AddAbilityCasterHasFacts(new() { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) })
+            .AddAbilityCasterHasFacts([BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff)])
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
@@ -91,7 +91,7 @@ public static class SurvivorPath
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
-            .AddAbilityCasterHasFacts(new() { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) })
+            .AddAbilityCasterHasFacts([BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff)])
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
@@ -106,7 +106,7 @@ public static class SurvivorPath
                 "You learn the Survivor's Resolve maneuver: a swift-action self-buff granting temporary hit points equal to your manifester level for 1 minute."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
-            .AddFacts(new() { Guids.SurvivorPathParent })
+            .AddFacts([Guids.SurvivorPathParent])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerSurvivorExpanded)
             .AddPrerequisiteFeature(Guids.SurvivorPath)
             .Configure();
@@ -117,7 +117,7 @@ public static class SurvivorPath
                 "You focus on endurance and resilience. Your trance grants DR 2/— and Mettle (partial-effect Fort/Will saves are negated entirely on a success). Your maneuver lets you expend psionic focus to spike your Fortitude and Will saves."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { trance.ToString() })
+            .AddFacts([trance.ToString()])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerSurvivorManeuver)
             .Configure();
     }

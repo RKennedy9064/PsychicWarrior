@@ -64,7 +64,7 @@ public static class InfiltratorPath
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
-            .AddAbilityCasterHasFacts(new() { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) })
+            .AddAbilityCasterHasFacts([BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff)])
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
@@ -90,7 +90,7 @@ public static class InfiltratorPath
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
-            .AddAbilityCasterHasFacts(new() { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) })
+            .AddAbilityCasterHasFacts([BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff)])
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
@@ -104,7 +104,7 @@ public static class InfiltratorPath
                 "You learn the Hidden Step maneuver: a swift-action self-buff granting +20 ft speed and +6 competence to Stealth for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
-            .AddFacts(new() { Guids.InfiltratorPathParent })
+            .AddFacts([Guids.InfiltratorPathParent])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerInfiltratorExpanded)
             .AddPrerequisiteFeature(Guids.InfiltratorPath)
             .Configure();
@@ -115,7 +115,7 @@ public static class InfiltratorPath
                 "You focus on deception and precise lethal strikes. You gain +2 competence to Persuasion and +1 to damage (trance), and can expend psionic focus for enhanced menace (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { trance.ToString() })
+            .AddFacts([trance.ToString()])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerInfiltratorManeuver)
             .Configure();
     }

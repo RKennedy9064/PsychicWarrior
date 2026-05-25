@@ -64,7 +64,7 @@ public static class GladiatorPath
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
-            .AddAbilityCasterHasFacts(new() { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) })
+            .AddAbilityCasterHasFacts([BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff)])
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
@@ -91,7 +91,7 @@ public static class GladiatorPath
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
-            .AddAbilityCasterHasFacts(new() { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) })
+            .AddAbilityCasterHasFacts([BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff)])
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
@@ -105,7 +105,7 @@ public static class GladiatorPath
                 "You learn the Gladiator's Will maneuver: a swift-action self-buff granting +4 competence to all saving throws for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
-            .AddFacts(new() { Guids.GladiatorPathParent })
+            .AddFacts([Guids.GladiatorPathParent])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerGladiatorExpanded)
             .AddPrerequisiteFeature(Guids.GladiatorPath)
             .Configure();
@@ -116,7 +116,7 @@ public static class GladiatorPath
                 "You focus on combat maneuvers and arena fighting. You gain a permanent +2 competence bonus to CMB (trance) and can expend psionic focus for an additional +4 to CMB (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { trance.ToString() })
+            .AddFacts([trance.ToString()])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerGladiatorManeuver)
             .Configure();
     }

@@ -2,6 +2,10 @@
 
 ## [0.1.1] - Unreleased
 
+### Fixed
+- Psionic Weapon: bonus damage now correctly scales with manifester level (1d6 → 2d6 → 3d6 → 4d6) instead of always dealing 1d6
+- Greater Psionic Weapon: same scaling fix as Psionic Weapon
+
 ## [0.1.0] - 2026-05-24
 
 ### Fixed

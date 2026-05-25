@@ -63,7 +63,7 @@ public static class MindKnightPath
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
-            .AddAbilityCasterHasFacts(new() { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) })
+            .AddAbilityCasterHasFacts([BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff)])
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
@@ -89,7 +89,7 @@ public static class MindKnightPath
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
-            .AddAbilityCasterHasFacts(new() { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) })
+            .AddAbilityCasterHasFacts([BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff)])
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
@@ -103,7 +103,7 @@ public static class MindKnightPath
                 "You learn the Mental Strike maneuver: a swift-action self-buff granting +4 insight Initiative and +4 dodge bonus to AC for 1 round."))
             .SetIcon(mentalIcon)
             .SetIsClassFeature()
-            .AddFacts(new() { Guids.MindKnightPathParent })
+            .AddFacts([Guids.MindKnightPathParent])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerMindKnightExpanded)
             .AddPrerequisiteFeature(Guids.MindKnightPath)
             .Configure();
@@ -114,7 +114,7 @@ public static class MindKnightPath
                 "You focus on mental precision in combat. You gain +1 competence to Initiative and attack rolls (trance) and can expend psionic focus for +2 competence to attack and damage (maneuver)."))
             .SetIcon(tranceIcon)
             .SetIsClassFeature()
-            .AddFacts(new() { trance.ToString() })
+            .AddFacts([trance.ToString()])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerMindKnightManeuver)
             .Configure();
     }

@@ -60,9 +60,7 @@ public static class PsychicWarriorBonusFeat
 
         FeatureSelectionConfigurator.For(Guids.BonusFeatSelection)
             .OnConfigure(bp =>
-                bp.m_Features = psionicFeats
-                    .Select(g => BlueprintTool.GetRef<BlueprintFeatureReference>(g))
-                    .ToArray())
+                bp.m_Features = [.. psionicFeats.Select(g => BlueprintTool.GetRef<BlueprintFeatureReference>(g))])
             .Configure();
 
         // The CharGen "class specific" toggle filters by FeatureTag.ClassSpecific on each feat,

@@ -3,6 +3,7 @@ using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
@@ -15,6 +16,7 @@ using Kingmaker.Enums;
 using Kingmaker.Enums.Damage;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using PsychicWarrior.HarmonyPatches;
 using PsychicWarrior.Utils;
@@ -27,14 +29,8 @@ public static class GreaterPsionicWeapon
     {
         PsionicProficiencyPatch.RegisterPsionicFeat(Guids.GreaterPsionicWeaponFeat);
 
-        FeatureConfigurator.New("GreaterPsionicWeaponFeat", Guids.GreaterPsionicWeaponFeat)
-            .SetDisplayName(Loc.Str("PW.GreaterPsionicWeapon.Name", "Greater Psionic Weapon"))
-            .SetDescription(Loc.Str("PW.GreaterPsionicWeapon.Desc",
-                "While psionically focused, your melee attacks deal an additional 1d6 force damage at ML 1, 2d6 at ML 6, 3d6 at ML 11, 4d6 at ML 16. Stacks with Psionic Weapon for a total up to 8d6 force at ML 16."))
-            .SetIcon(FeatureRefs.VitalStrikeFeatureImproved.Reference.Get().Icon)
-            .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
-            .AddPrerequisiteFeature(Guids.PsionicWeaponFeat)
-            .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 5)
+        BuffConfigurator.New("GreaterPsionicWeaponBuff", Guids.GreaterPsionicWeaponBuff)
+            .SetFlags(BlueprintBuff.Flags.HiddenInUi)
             .AddContextRankConfig(ContextRankConfigs.CasterLevel().WithCustomProgression((5, 1), (10, 2), (15, 3), (20, 4)))
             .AddInitiatorAttackWithWeaponTrigger(
                 action: ActionsBuilder.New().Conditional(
@@ -46,6 +42,17 @@ public static class GreaterPsionicWeapon
                 onlyHit: true,
                 checkWeaponRangeType: true,
                 rangeType: WeaponRangeType.Melee)
+            .Configure();
+
+        FeatureConfigurator.New("GreaterPsionicWeaponFeat", Guids.GreaterPsionicWeaponFeat)
+            .SetDisplayName(Loc.Str("PW.GreaterPsionicWeapon.Name", "Greater Psionic Weapon"))
+            .SetDescription(Loc.Str("PW.GreaterPsionicWeapon.Desc",
+                "While psionically focused, your melee attacks deal an additional 1d6 force damage at ML 1, 2d6 at ML 6, 3d6 at ML 11, 4d6 at ML 16. Stacks with Psionic Weapon for a total up to 8d6 force at ML 16."))
+            .SetIcon(FeatureRefs.VitalStrikeFeatureImproved.Reference.Get().Icon)
+            .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
+            .AddPrerequisiteFeature(Guids.PsionicWeaponFeat)
+            .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 5)
+            .AddFacts([Guids.GreaterPsionicWeaponBuff])
             .AddRecommendedClass(Guids.PsychicWarriorClass)
             .Configure();
 

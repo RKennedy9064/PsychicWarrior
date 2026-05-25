@@ -64,7 +64,7 @@ public static class BrawlerPath
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
-            .AddAbilityCasterHasFacts(new() { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) })
+            .AddAbilityCasterHasFacts([BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff)])
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
@@ -90,7 +90,7 @@ public static class BrawlerPath
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
-            .AddAbilityCasterHasFacts(new() { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) })
+            .AddAbilityCasterHasFacts([BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff)])
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
@@ -104,7 +104,7 @@ public static class BrawlerPath
                 "You learn the Steel Sinews maneuver: a swift-action self-buff that grants +4 dodge AC and Fast Healing 2 for 1 round."))
             .SetIcon(expandedIcon)
             .SetIsClassFeature()
-            .AddFacts(new() { Guids.BrawlerPathParent })
+            .AddFacts([Guids.BrawlerPathParent])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerBrawlerExpanded)
             .AddPrerequisiteFeature(Guids.BrawlerPath)
             .Configure();
@@ -116,7 +116,7 @@ public static class BrawlerPath
                 "and you can expend psionic focus to deal +7 bonus damage on your next strike (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { trance.ToString() })
+            .AddFacts([trance.ToString()])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerBrawlerManeuver)
             .Configure();
     }

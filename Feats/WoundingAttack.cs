@@ -54,7 +54,7 @@ public static class WoundingAttack
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Swift)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
-            .AddAbilityCasterHasFacts(new() { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) })
+            .AddAbilityCasterHasFacts([BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff)])
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New()
                     .RemoveBuff(Guids.PsionicFocusBuff)
@@ -69,7 +69,7 @@ public static class WoundingAttack
             .SetGroups(FeatureGroup.CombatFeat, FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddPrerequisiteStatValue(StatType.BaseAttackBonus, 8)
-            .AddFacts(new() { Guids.WoundingAttackAbility })
+            .AddFacts([Guids.WoundingAttackAbility])
             .AddRecommendedClass(Guids.PsychicWarriorClass)
             .Configure();
 

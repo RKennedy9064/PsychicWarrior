@@ -1,4 +1,4 @@
-﻿using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -32,7 +32,7 @@ public static class DetectHostileIntent
                 "You cannot be caught flat-footed and gain +2 Initiative.",
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
-            .AddFacts(new() { FeatureRefs.UncannyDodge.ToString() })
+            .AddFacts([FeatureRefs.UncannyDodge.ToString()])
             .AddStatBonus(descriptor: ModifierDescriptor.Insight, stat: StatType.Initiative, value: 2)
             .Configure();
 

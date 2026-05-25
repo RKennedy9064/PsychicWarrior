@@ -73,7 +73,7 @@ public static class EternalWarrior
             .SetRange(AbilityRange.Personal)
             .SetActionType(UnitCommand.CommandType.Free)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
-            .AddAbilityCasterHasFacts(new() { BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff) })
+            .AddAbilityCasterHasFacts([BlueprintTool.GetRef<BlueprintUnitFactReference>(Guids.PsionicFocusBuff)])
             .AddAbilityResourceLogic(amount: 1, isSpendResource: true, requiredResource: Guids.EternalWarriorResource)
             .AddAbilityEffectRunAction(
                 ActionsBuilder.New().ApplyBuff(buff, ContextDuration.Fixed(50)))
@@ -88,7 +88,7 @@ public static class EternalWarrior
                 tagEncyclopediaEntries: false))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts(new() { Guids.EternalWarriorAbility })
+            .AddFacts([Guids.EternalWarriorAbility])
             .AddAbilityResources(resource: Guids.EternalWarriorResource, restoreAmount: true)
             .Configure();
     }

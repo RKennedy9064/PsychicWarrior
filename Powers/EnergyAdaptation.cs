@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using BlueprintCore.Actions.Builder;
+﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
@@ -39,14 +38,14 @@ public static class EnergyAdaptation
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(4, Guids.SpellList)
-            .AddAbilityVariants(variants: new List<Blueprint<BlueprintAbilityReference>>
-            {
+            .AddAbilityVariants(variants:
+            [
                 Guids.PowerEnergyAdaptationFire,
                 Guids.PowerEnergyAdaptationCold,
                 Guids.PowerEnergyAdaptationElec,
                 Guids.PowerEnergyAdaptationAcid,
                 Guids.PowerEnergyAdaptationSonic,
-            })
+            ])
             .AddSpellComponent(SpellSchool.Transmutation)
             .Configure();
     }
