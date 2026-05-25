@@ -4,6 +4,8 @@
 
 ### Fixed
 - Critical Refocus: scoring a critical hit now correctly regains psionic focus for the attacker (previously had no effect)
+- Martial Power: on-hit maneuver effects and the once-per-round cooldown now correctly apply to the attacker (previously had no effect)
+- Martial Power: maneuver buffs now last 2 rounds so they are active at the start of your next turn
 - Psionic Weapon: bonus damage now correctly scales with manifester level (1d6 → 2d6 → 3d6 → 4d6) instead of always dealing 1d6
 - Greater Psionic Weapon: same scaling fix as Psionic Weapon
 - Psionic Weapon / Greater Psionic Weapon: multiple separate dice rolls now combined into a single Xd6 roll in the combat log

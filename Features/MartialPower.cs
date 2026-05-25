@@ -195,10 +195,10 @@ public static class MartialPower
             .SetIcon(icon)
             .AddInitiatorAttackWithWeaponTrigger(
                 action: ActionsBuilder.New().Conditional(
-                    conditions: ConditionsBuilder.New().HasFact(Guids.MartialPowerUsedBuff, negate: true),
+                    conditions: ConditionsBuilder.New().CasterHasFact(Guids.MartialPowerUsedBuff, negate: true),
                     ifTrue: ActionsBuilder.New()
-                        .ApplyBuff(maneuverBuffGuid, ContextDuration.Fixed(1))
-                        .ApplyBuff(Guids.MartialPowerUsedBuff, ContextDuration.Fixed(1))),
+                        .ApplyBuff(maneuverBuffGuid, ContextDuration.Fixed(2), toCaster: true)
+                        .ApplyBuff(Guids.MartialPowerUsedBuff, ContextDuration.Fixed(1), toCaster: true)),
                 onlyHit: true,
                 checkWeaponRangeType: true,
                 rangeType: WeaponRangeType.Melee)
