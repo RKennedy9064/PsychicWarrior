@@ -43,6 +43,11 @@ public static class RapidMetabolism
             .SetGroups(FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddRecommendedClass(Guids.PsychicWarriorClass)
+            .AddFactContextActions(
+                activated: ActionsBuilder.New().Conditional(
+                    ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff),
+                    ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.RapidMetabolismBuff)),
+                deactivated: ActionsBuilder.New().RemoveBuff(Guids.RapidMetabolismBuff))
             .Configure();
 
         BuffConfigurator.For(Guids.PsionicFocusBuff)

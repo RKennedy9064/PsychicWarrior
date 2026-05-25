@@ -35,6 +35,11 @@ public static class PsionicEndowment
             .SetGroups(FeatureGroup.Feat)
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddRecommendedClass(Guids.PsychicWarriorClass)
+            .AddFactContextActions(
+                activated: ActionsBuilder.New().Conditional(
+                    ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff),
+                    ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.PsionicEndowmentBuff)),
+                deactivated: ActionsBuilder.New().RemoveBuff(Guids.PsionicEndowmentBuff))
             .Configure();
 
         BuffConfigurator.For(Guids.PsionicFocusBuff)

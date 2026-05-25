@@ -47,6 +47,11 @@ public static class IntuitiveFighting
             .AddPrerequisiteFeature(Guids.GainPsionicFocusFeature)
             .AddPrerequisiteFeature(FeatureRefs.BlindFight.ToString())
             .AddRecommendedClass(Guids.PsychicWarriorClass)
+            .AddFactContextActions(
+                activated: ActionsBuilder.New().Conditional(
+                    ConditionsBuilder.New().CasterHasFact(Guids.PsionicFocusBuff),
+                    ifTrue: ActionsBuilder.New().ApplyBuffPermanent(Guids.IntuitiveFightingBuff)),
+                deactivated: ActionsBuilder.New().RemoveBuff(Guids.IntuitiveFightingBuff))
             .Configure();
 
         // Inject into PsionicFocusBuff — apply buff while focused, remove when focus lost
