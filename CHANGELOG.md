@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.1.2] - Unreleased
+
+### Added
+- Mind Knight Path: Call Weaponry feature — at 3rd, 7th, 11th, 15th, and 19th level, choose a weapon to psionically call to your primary hand at will
+  - Supports every weapon the character is proficient with; exotic weapons (e.g. Elven Curved Blade) appear automatically once the matching exotic weapon proficiency is taken
+  - Only one called weapon may be active at a time; switching calls dismisses the previous weapon
+  - First weapon choice granted at 1st level (when the path is taken); additional choices at 3rd, 7th, 11th, 15th, and 19th level (six total)
+  - Enhancement bonus scales with psychic warrior level: +1 at 3rd, +2 at 7th, +3 at 11th, +4 at 15th, +5 at 19th
+  - Called weapon is locked in the primary hand slot while active and cannot be unequipped
+- Mind Knight Path: Called weapon now displays an astral glow visual effect (borrowed from Brilliant Energy FX) while active
+- Mind Knight Trance: attack roll bonus now only applies when attacking with the currently called weapon (primary hand); secondary hand attacks and attacks without an active called weapon are unaffected. Initiative bonus remains unconditional.
+
+### Fixed
+- All paths: trance toggle and maneuver menu now correctly appear at 3rd level (previously appeared immediately at 1st level when the path was selected)
+- Mind Knight Path: Call Weaponry first weapon selection now correctly appears immediately when the path is chosen at 1st level — the path is now itself a feature selection, which causes the engine to cascade into the weapon pick automatically
+- Mind Knight Path: Called weapon now correctly appears in the primary hand slot when a Call Weaponry toggle is activated (previously the buff and slot lock applied but no weapon appeared)
+- Mind Knight Path: Called weapon no longer appears as unidentified when summoned
+- Mind Knight Path: Additional weapon selections at 3rd, 7th, 11th, 15th, and 19th level now correctly prompt the player during level-up (previously the selections were silently granted without showing the pick UI)
+- Mind Knight Path: Called weapon enhancement bonus now correctly applies to both attack and damage rolls (previously only applied to damage; now uses a proper weapon enchantment so the bonus appears on the weapon itself)
+- Mind Knight Path: Called weapon enhancement bonus now automatically upgrades when the character gains a psychic warrior level while the weapon is active (no longer requires toggling the weapon off and on after leveling)
+
 ## [0.1.1] - 2026-05-25
 
 ### Fixed

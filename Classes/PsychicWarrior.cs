@@ -26,7 +26,8 @@ public static class PsychicWarriorClass
                         Guids.PathExpandedManeuver,
                         Guids.TalentsSelection,
                         Guids.PathSkillBonusSelection,
-                        Guids.MartialPowerFeature)
+                        Guids.MartialPowerFeature,
+                        Guids.CallWeaponrySelection)
                     .AddGroup(Guids.SecondaryPathSelection, Guids.TwistingPaths, Guids.Pathweaving))
             // Level 1: proficiencies, focus, psionic proficiency, path, 2 talent picks, bonus feat
             .AddToLevelEntries(1,
@@ -38,22 +39,22 @@ public static class PsychicWarriorClass
                 Guids.TalentsSelection,  // talent pick 2
                 Guids.BonusFeatSelection)
             .AddToLevelEntries(2, Guids.BonusFeatSelection)
-            .AddToLevelEntries(3, Guids.PathExpandedManeuver)
+            .AddToLevelEntries(3, Guids.PathExpandedManeuver, Guids.CallWeaponrySelection)
             .AddToLevelEntries(4, Guids.PathSkillBonusSelection)
             .AddToLevelEntries(5, Guids.BonusFeatSelection)
             .AddToLevelEntries(6, Guids.MartialPowerFeature)
-            .AddToLevelEntries(7, Guids.PathSkillBonusSelection)
+            .AddToLevelEntries(7, Guids.PathSkillBonusSelection, Guids.CallWeaponrySelection)
             .AddToLevelEntries(8, Guids.BonusFeatSelection)
             .AddToLevelEntries(9, Guids.SecondaryPathSelection, Guids.PathExpandedManeuver)
             .AddToLevelEntries(10, Guids.PathSkillBonusSelection)
-            .AddToLevelEntries(11, Guids.BonusFeatSelection)
+            .AddToLevelEntries(11, Guids.BonusFeatSelection, Guids.CallWeaponrySelection)
             .AddToLevelEntries(12, Guids.TwistingPaths)
             .AddToLevelEntries(13, Guids.PathSkillBonusSelection)
             .AddToLevelEntries(14, Guids.BonusFeatSelection)
-            .AddToLevelEntries(15, Guids.Pathweaving)
+            .AddToLevelEntries(15, Guids.Pathweaving, Guids.CallWeaponrySelection)
             .AddToLevelEntries(16, Guids.PathSkillBonusSelection)
             .AddToLevelEntries(17, Guids.BonusFeatSelection)
-            .AddToLevelEntries(19, Guids.PathSkillBonusSelection)
+            .AddToLevelEntries(19, Guids.PathSkillBonusSelection, Guids.CallWeaponrySelection)
             .AddToLevelEntries(20, Guids.BonusFeatSelection, Guids.EternalWarriorFeature)
             .Configure();
 

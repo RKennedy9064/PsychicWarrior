@@ -112,7 +112,7 @@ public static class WeaponmasterPath
                 "You focus on martial superiority in melee. You gain a +1 competence bonus to attack rolls (trance) and can expend psionic focus to enter a counter-attack stance (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts([trance.ToString()])
+            .AddFeatureOnClassLevel(feature: trance.ToString(), level: 3, clazz: Guids.PsychicWarriorClass)
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerWeaponmasterManeuver)
             .AddPrerequisiteNoFeature(Guids.WeaponmasterPath)
             .Configure();

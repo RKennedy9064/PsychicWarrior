@@ -1,6 +1,7 @@
 ﻿﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
@@ -13,6 +14,7 @@ using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
+using PsychicWarrior.Mechanics;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Features.Paths;
@@ -35,14 +37,14 @@ public static class MindKnightPath
             maneuverAbilityGuid: Guids.MindKnightManeuverAbility,
             expandedManeuverAbilityGuid: Guids.MindKnightExpandedAbility,
             displayName: "Mind Knight",
-            featureDescription: "Beginning at 3rd level, your psionic focus sharpens your mental acuity in battle. You gain a +1 competence bonus to Initiative and to attack rolls with your call weaponry weapon, increasing by 1 every four psychic warrior levels (+2 at 7th, +3 at 11th, +4 at 15th, +5 at 19th).",
+            featureDescription: "Beginning at 3rd level, your psionic focus sharpens your mental acuity in battle. You gain a +1 competence bonus to Initiative (always) and to attack rolls made with your currently called weapon, increasing by 1 every four psychic warrior levels (+2 at 7th, +3 at 11th, +4 at 15th, +5 at 19th).",
             icon: tranceIcon,
             addBuffComponents: b =>
             {
                 b.AddContextRankConfig(ContextRankConfigs.CasterLevel()
                     .WithCustomProgression((2, 0), (6, 1), (10, 2), (14, 3), (18, 4), (20, 5)));
                 b.AddContextStatBonus(stat: StatType.Initiative, descriptor: ModifierDescriptor.Competence, value: ContextValues.Rank());
-                b.AddContextStatBonus(stat: StatType.AdditionalAttackBonus, descriptor: ModifierDescriptor.Competence, value: ContextValues.Rank());
+                b.AddComponent(new MindKnightTranceAttackBonus());
             });
 
         var maneuverBuff = BuffConfigurator.New("MindKnightManeuverBuff", Guids.MindKnightManeuverBuff)
@@ -107,15 +109,22 @@ public static class MindKnightPath
             .AddPrerequisiteFeature(Guids.MindKnightPath)
             .Configure();
 
-        FeatureConfigurator.New("MindKnightPath", Guids.MindKnightPath)
+        // MindKnightPath is itself a FeatureSelection so that picking it from PathSelectionLevel1
+        // immediately cascades into the level-1 weapon pick via the engine's nested-selection UI.
+        var pathConf = FeatureSelectionConfigurator.New("MindKnightPath", Guids.MindKnightPath)
             .SetDisplayName(Loc.Str("PW.MindKnightPath.Name", "Mind Knight Path"))
             .SetDescription(Loc.Str("PW.MindKnightPath.Desc",
-                "You focus on mental precision in combat. You gain +1 competence to Initiative and attack rolls (trance) and can expend psionic focus for +2 competence to attack and damage (maneuver)."))
+                "You focus on mental precision in combat. You gain +1 competence to Initiative and attack rolls with your called weapon (trance) and can expend psionic focus for +2 competence to attack and damage (maneuver). Choose your first called weapon from the list below; only weapons you are proficient with appear. You gain a new choice at 3rd, 7th, 11th, 15th, and 19th level."))
             .SetIcon(tranceIcon)
             .SetIsClassFeature()
-            .AddFacts([trance.ToString()])
+            .SetIgnorePrerequisites(false)
+            .AddFeatureOnClassLevel(feature: trance.ToString(), level: 3, clazz: Guids.PsychicWarriorClass)
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerMindKnightManeuver)
-            .AddPrerequisiteNoFeature(Guids.MindKnightPath)
-            .Configure();
+            .AddPrerequisiteNoFeature(Guids.MindKnightPath);
+
+        foreach (var f in Powers.CallWeaponry.WeaponFeatureList)
+            pathConf = pathConf.AddToAllFeatures(f);
+
+        pathConf.Configure();
     }
 }

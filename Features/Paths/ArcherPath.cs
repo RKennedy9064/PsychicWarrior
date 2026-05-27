@@ -123,7 +123,7 @@ public static class ArcherPath
                 "You focus on ranged precision. You gain a +1 competence bonus to attack rolls (trance) and can expend psionic focus to enhance your next attack (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts([trance.ToString()])
+            .AddFeatureOnClassLevel(feature: trance.ToString(), level: 3, clazz: Guids.PsychicWarriorClass)
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerArcherManeuver)
             .AddPrerequisiteNoFeature(Guids.ArcherPath)
             .Configure();

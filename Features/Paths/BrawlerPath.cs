@@ -115,7 +115,7 @@ public static class BrawlerPath
                 "and you can expend psionic focus to deal +7 bonus damage on your next strike (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts([trance.ToString()])
+            .AddFeatureOnClassLevel(feature: trance.ToString(), level: 3, clazz: Guids.PsychicWarriorClass)
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerBrawlerManeuver)
             .AddPrerequisiteNoFeature(Guids.BrawlerPath)
             .Configure();

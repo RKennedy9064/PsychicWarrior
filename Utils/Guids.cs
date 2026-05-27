@@ -474,4 +474,9 @@ public static class Guids
     public const string PowerWeaponOfEnergyAcidBuff  = "e82e1bb9-9e3c-44c8-9dc4-9f6bb8fb8349";
     public const string PowerSteadfastPerception     = "a736af3c-b7c8-4b83-998f-1d150627d914";
     public const string PowerSteadfastPerceptionBuff = "56cc7a10-19a3-4ee3-b1de-cd072c7de8ef";
+
+    // ── Call Weaponry (Mind Knight path) ─────────────────────────────────────
+    // Per-weapon GUIDs are generated deterministically via MD5 in CallWeaponry.Configure().
+    public const string CallWeaponrySelection         = "49aa17bd-e8f4-4dea-9cb9-b903e1f869a0";
+    public const string CallWeaponryVisualEnchantment = "c3a17f92-e841-4db5-a923-87d0f1b6c204";
 }

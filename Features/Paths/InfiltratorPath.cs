@@ -114,7 +114,7 @@ public static class InfiltratorPath
                 "You focus on deception and precise lethal strikes. You gain +2 competence to Persuasion and +1 to damage (trance), and can expend psionic focus for enhanced menace (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts([trance.ToString()])
+            .AddFeatureOnClassLevel(feature: trance.ToString(), level: 3, clazz: Guids.PsychicWarriorClass)
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerInfiltratorManeuver)
             .AddPrerequisiteNoFeature(Guids.InfiltratorPath)
             .Configure();

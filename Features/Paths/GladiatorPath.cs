@@ -115,7 +115,7 @@ public static class GladiatorPath
                 "You focus on combat maneuvers and arena fighting. You gain a permanent +2 competence bonus to CMB (trance) and can expend psionic focus for an additional +4 to CMB (maneuver)."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts([trance.ToString()])
+            .AddFeatureOnClassLevel(feature: trance.ToString(), level: 3, clazz: Guids.PsychicWarriorClass)
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerGladiatorManeuver)
             .AddPrerequisiteNoFeature(Guids.GladiatorPath)
             .Configure();

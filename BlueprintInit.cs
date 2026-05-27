@@ -13,7 +13,7 @@ public static class BlueprintInit
     private static bool Initialized;
 
     [HarmonyPostfix]
-    public static void Postfix()
+    public static void Postfix(Kingmaker.Blueprints.JsonSystem.BlueprintsCache __instance)
     {
         if (Initialized) return;
         Initialized = true;
@@ -128,6 +128,7 @@ public static class BlueprintInit
         Run(nameof(Features.Paths.GladiatorPath),         Features.Paths.GladiatorPath.Configure,         logger);
         Run(nameof(Features.Paths.InfiltratorPath),       Features.Paths.InfiltratorPath.Configure,       logger);
         Run(nameof(Features.Paths.InterceptorPath),       Features.Paths.InterceptorPath.Configure,       logger);
+        Run(nameof(Powers.CallWeaponry),                   Powers.CallWeaponry.Configure,                   logger);
         Run(nameof(Features.Paths.MindKnightPath),        Features.Paths.MindKnightPath.Configure,        logger);
         Run(nameof(Features.Paths.SurvivorPath),          Features.Paths.SurvivorPath.Configure,          logger);
         Run(nameof(Features.Paths.PsychicWarriorPathSelection), Features.Paths.PsychicWarriorPathSelection.Configure, logger);

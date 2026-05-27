@@ -116,7 +116,7 @@ public static class SurvivorPath
                 "You focus on endurance and resilience. Your trance grants DR 2/— and Mettle (partial-effect Fort/Will saves are negated entirely on a success). Your maneuver lets you expend psionic focus to spike your Fortitude and Will saves."))
             .SetIcon(icon)
             .SetIsClassFeature()
-            .AddFacts([trance.ToString()])
+            .AddFeatureOnClassLevel(feature: trance.ToString(), level: 3, clazz: Guids.PsychicWarriorClass)
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerSurvivorManeuver)
             .AddPrerequisiteNoFeature(Guids.SurvivorPath)
             .Configure();
