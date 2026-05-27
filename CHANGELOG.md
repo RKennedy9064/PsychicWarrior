@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.1.2] - Unreleased
+## [0.1.2] - 2026-05-27
 
 ### Added
 - Mind Knight Path: Call Weaponry feature — at 3rd, 7th, 11th, 15th, and 19th level, choose a weapon to psionically call to your primary hand at will
