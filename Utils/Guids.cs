@@ -477,6 +477,7 @@ public static class Guids
 
     // ── Call Weaponry (Mind Knight path) ─────────────────────────────────────
     // Per-weapon GUIDs are generated deterministically via MD5 in CallWeaponry.Configure().
-    public const string CallWeaponrySelection         = "49aa17bd-e8f4-4dea-9cb9-b903e1f869a0";
-    public const string CallWeaponryVisualEnchantment = "c3a17f92-e841-4db5-a923-87d0f1b6c204";
+    public const string CallWeaponrySelection            = "49aa17bd-e8f4-4dea-9cb9-b903e1f869a0";
+    public const string CallWeaponryVisualEnchantment    = "c3a17f92-e841-4db5-a923-87d0f1b6c204";
+    public const string MindKnightCallWeaponryProgression = "b2e4f1a3-9c07-4d58-8e6a-123f45d67890";
 }

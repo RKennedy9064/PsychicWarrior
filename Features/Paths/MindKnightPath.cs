@@ -111,6 +111,20 @@ public static class MindKnightPath
 
         // MindKnightPath is itself a FeatureSelection so that picking it from PathSelectionLevel1
         // immediately cascades into the level-1 weapon pick via the engine's nested-selection UI.
+        // Sub-progression to grant the 5 additional Call Weaponry picks exclusively to Mind Knights.
+        // LevelEntries in a progression are the only reliable way to enqueue FeatureSelection picks
+        // in the level-up UI; AddFeatureOnClassLevel silently adds the fact without a pick prompt.
+        ProgressionConfigurator.New("MindKnightCallWeaponryProgression", Guids.MindKnightCallWeaponryProgression)
+            .SetDisplayName(Loc.Str("PW.CW.Selection.Name", "Call Weaponry"))
+            .SetClasses(Guids.PsychicWarriorClass)
+            .SetIsClassFeature(true)
+            .AddToLevelEntries(3, Guids.CallWeaponrySelection)
+            .AddToLevelEntries(7, Guids.CallWeaponrySelection)
+            .AddToLevelEntries(11, Guids.CallWeaponrySelection)
+            .AddToLevelEntries(15, Guids.CallWeaponrySelection)
+            .AddToLevelEntries(19, Guids.CallWeaponrySelection)
+            .Configure();
+
         var pathConf = FeatureSelectionConfigurator.New("MindKnightPath", Guids.MindKnightPath)
             .SetDisplayName(Loc.Str("PW.MindKnightPath.Name", "Mind Knight Path"))
             .SetDescription(Loc.Str("PW.MindKnightPath.Desc",
@@ -119,6 +133,7 @@ public static class MindKnightPath
             .SetIsClassFeature()
             .SetIgnorePrerequisites(false)
             .AddFeatureOnClassLevel(feature: trance.ToString(), level: 3, clazz: Guids.PsychicWarriorClass)
+            .AddFacts([Guids.MindKnightCallWeaponryProgression])
             .AddFeatureIfHasFact(checkedFact: Guids.MartialPowerFeature, feature: Guids.MartialPowerMindKnightManeuver)
             .AddPrerequisiteNoFeature(Guids.MindKnightPath);
 

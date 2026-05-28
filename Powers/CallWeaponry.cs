@@ -71,8 +71,7 @@ public static class CallWeaponry
                 "Choose a weapon to add to your Call Weaponry repertoire. You may psionically call this weapon to your primary hand at will. Only weapons you are proficient with appear in this list. You gain a new weapon choice at 3rd, 7th, 11th, 15th, and 19th level (five additional choices)."))
             .SetIcon(icon)
             .SetIsClassFeature(true)
-            .SetIgnorePrerequisites(false)
-            .AddPrerequisiteFeature(Guids.MindKnightPath);
+            .SetIgnorePrerequisites(false);
 
         foreach (var cat in categories)
         {

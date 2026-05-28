@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.3] - Unreleased
+
+### Fixed
+- Mind Knight Path: Call Weaponry weapon picks at 3rd, 7th, 11th, 15th, and 19th level no longer appear for non-Mind Knight psychic warriors; picks are now granted via a Mind Knight-owned sub-progression and correctly prompt the player during level-up
+
 ## [0.1.2] - 2026-05-27
 
 ### Added
