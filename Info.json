@@ -2,7 +2,7 @@
   "Id": "PsychicWarrior",
   "DisplayName": "PsychicWarrior",
   "Author": "rkennedy9064",
-  "Version": "0.1.3",
+  "Version": "0.1.4",
   "ManagerVersion": "0.24.0",
   "AssemblyName": "PsychicWarrior.dll",
   "EntryMethod": "PsychicWarrior.Main.Load"

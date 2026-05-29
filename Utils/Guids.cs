@@ -346,7 +346,8 @@ public static class Guids
     public const string SpeedOfThoughtBuff       = "21ecf3d4-21db-43bb-a3ce-fbb895af0b98";
     public const string PsionicDodgeFeat         = "18e62323-cc52-4f81-982d-57de8addccb6";
     public const string PsionicDodgeBuff         = "9f4194e8-3c40-4317-a826-cf218e3b2472";
-    public const string CriticalRefocusFeat      = "86f7987c-caee-4fa6-a8c8-c0e52b984a43";
+    public const string CriticalRefocusFeat             = "86f7987c-caee-4fa6-a8c8-c0e52b984a43";
+    public const string AdvancedWeaponmasterPathFeat    = "a1c3e5f7-b2d4-4e68-9f0a-bc12de34fa56";
     public const string GreaterPsionicWeaponFeat = "531a4c41-01e6-4860-a3dc-b2c124e8111d";
     public const string GreaterPsionicWeaponBuff = "b4d83e29-cc65-5fa2-af23-9e4d15b26f38";
     public const string PsionicFistFeat          = "ed7161df-4b58-41f8-ada9-a46168fa1861";

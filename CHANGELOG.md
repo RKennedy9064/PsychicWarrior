@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.4] - Unreleased
+
+### Added
+- Advanced Weaponmaster Path feat: while in Weaponmaster Trance, your trance competence bonus also applies to weapon damage rolls (same manufactured-weapon criteria as the attack bonus; natural attacks excluded). Prerequisites: Weaponmaster path, BAB +6, psychic warrior level 10.
+
 ## [0.1.3] - 2026-05-28
 
 ### Fixed
