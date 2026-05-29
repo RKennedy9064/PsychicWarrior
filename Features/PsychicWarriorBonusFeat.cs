@@ -57,6 +57,7 @@ public static class PsychicWarriorBonusFeat
             Guids.UnavoidableStrikeFeat,
             Guids.IntuitiveFightingFeat,
             Guids.AdvancedWeaponmasterPathFeat,
+            Guids.AdvancedAsceticPathFeat,
         ];
 
         FeatureSelectionConfigurator.For(Guids.BonusFeatSelection)

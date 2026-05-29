@@ -146,6 +146,7 @@ public static class BlueprintInit
         Run(nameof(Feats.PsionicDodge),              Feats.PsionicDodge.Configure,               logger);
         Run(nameof(Feats.CriticalRefocus),              Feats.CriticalRefocus.Configure,              logger);
         Run(nameof(Feats.AdvancedWeaponmasterPath),    Feats.AdvancedWeaponmasterPath.Configure,     logger);
+        Run(nameof(Feats.AdvancedAsceticPath),         Feats.AdvancedAsceticPath.Configure,          logger);
         Run(nameof(Feats.PsionicFist),               Feats.PsionicFist.Configure,                logger);
         Run(nameof(Feats.PsionicShot),               Feats.PsionicShot.Configure,                logger);
         // Greater feats require base feat GUIDs and register with PsionicProficiencyPatch
