@@ -36,6 +36,8 @@ public class AssassinSneakAttack : UnitFactComponentDelegate,
                      || evt.AttackRoll.TargetIsFlanked;
         if (!eligible) return;
 
+        if (evt.AttackRoll.ImmuneToSneakAttack || evt.AttackRoll.FortificationNegatesSneakAttack) return;
+
         _pwClass ??= BlueprintTool.Get<BlueprintCharacterClass>(Guids.PsychicWarriorClass);
         int level = Owner.Progression.GetClassLevel(_pwClass);
         int numDice = level switch
@@ -50,6 +52,7 @@ public class AssassinSneakAttack : UnitFactComponentDelegate,
         if (numDice <= 0) return;
 
         var raw = WeaponInheritedDamage.Build(evt.Weapon, new DiceFormula(numDice, DiceType.D6), alignmentBypassAll: false);
+        raw.Sneak = true;
         Rulebook.Trigger(new RuleDealDamage(evt.Initiator, evt.Target, new DamageBundle(raw)));
     }
 }
