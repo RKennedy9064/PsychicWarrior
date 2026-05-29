@@ -61,6 +61,7 @@ public static class PsychicWarriorBonusFeat
             Guids.AdvancedArcherPathFeat,
             Guids.AdvancedAssassinPathFeat,
             Guids.AdvancedBrawlerPathFeat,
+            Guids.AdvancedDervishPathFeat,
         ];
 
         FeatureSelectionConfigurator.For(Guids.BonusFeatSelection)
