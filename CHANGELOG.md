@@ -5,6 +5,7 @@
 ### Added
 - Advanced Weaponmaster Path feat: while in Weaponmaster Trance, your trance competence bonus also applies to weapon damage rolls (same manufactured-weapon criteria as the attack bonus; natural attacks excluded). Prerequisites: Weaponmaster path, BAB +6, psychic warrior level 10.
 - Advanced Ascetic Path feat: while in Ascetic Trance, your trance competence bonus also applies to all saving throws. Prerequisites: Ascetic path, Psionic Dodge, BAB +6, psychic warrior level 10.
+- Advanced Archer Path feat: while in Archer Trance, half the trance competence bonus applies to damage rolls with ranged and thrown weapons (natural weapons excluded). Prerequisites: Archer path, Point-Blank Shot, Precise Shot, BAB +6, psychic warrior level 10.
 
 ## [0.1.3] - 2026-05-28
 
