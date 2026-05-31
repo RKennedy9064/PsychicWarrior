@@ -354,6 +354,7 @@ public static class Guids
     public const string AdvancedAssassinStaggerBuff     = "f5a7b9c1-b6d8-4f9c-d3e4-fa56ab78de90";
     public const string AdvancedBrawlerPathFeat         = "a6b8c0d2-c7e9-4f0a-e4f5-ab67bc89ef01";
     public const string AdvancedDervishPathFeat         = "b7c9d1e3-d8f0-4a1b-f5a6-bc78cd90fa12";
+    public const string AdvancedFeralWarriorPathFeat    = "c8d0e2f4-e9a1-4b2c-a6b7-cd89de01ab23";
     public const string GreaterPsionicWeaponFeat = "531a4c41-01e6-4860-a3dc-b2c124e8111d";
     public const string GreaterPsionicWeaponBuff = "b4d83e29-cc65-5fa2-af23-9e4d15b26f38";
     public const string PsionicFistFeat          = "ed7161df-4b58-41f8-ada9-a46168fa1861";
