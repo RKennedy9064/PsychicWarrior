@@ -3,6 +3,7 @@
 ## [0.1.4] - Unreleased
 
 ### Added
+- Advanced Mind Knight Path feat: when using the Mind Knight Maneuver, gain a competence bonus to attack rolls equal to +1 per four psychic warrior levels
 - Advanced Feral Path feat: while in Feral Trance, the trance competence bonus also applies to damage rolls with natural attacks and unarmed strikes
 - Advanced Weaponmaster Path feat: while in Weaponmaster Trance, your trance competence bonus also applies to weapon damage rolls
 - Advanced Ascetic Path feat: while in Ascetic Trance, your trance competence bonus also applies to all saving throws

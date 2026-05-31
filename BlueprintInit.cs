@@ -152,6 +152,7 @@ public static class BlueprintInit
         Run(nameof(Feats.AdvancedBrawlerPath),         Feats.AdvancedBrawlerPath.Configure,          logger);
         Run(nameof(Feats.AdvancedDervishPath),         Feats.AdvancedDervishPath.Configure,          logger);
         Run(nameof(Feats.AdvancedFeralWarriorPath),    Feats.AdvancedFeralWarriorPath.Configure,     logger);
+        Run(nameof(Feats.AdvancedMindKnightPath),      Feats.AdvancedMindKnightPath.Configure,       logger);
         Run(nameof(Feats.PsionicFist),               Feats.PsionicFist.Configure,                logger);
         Run(nameof(Feats.PsionicShot),               Feats.PsionicShot.Configure,                logger);
         // Greater feats require base feat GUIDs and register with PsionicProficiencyPatch
