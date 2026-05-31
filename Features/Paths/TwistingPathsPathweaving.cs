@@ -82,7 +82,7 @@ public static class TwistingPathsPathweaving
             .SetMaxAmount(
                 ResourceAmountBuilder.New(0)
                     .IncreaseByLevelStartPlusDivStep(
-                        classes: new[] { Guids.PsychicWarriorClass },
+                        classes: [Guids.PsychicWarriorClass],
                         startingLevel: 15,
                         startingBonus: 1,
                         levelsPerStep: 3,

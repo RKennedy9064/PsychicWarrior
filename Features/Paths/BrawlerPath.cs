@@ -1,4 +1,4 @@
-﻿﻿using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -30,8 +30,6 @@ public static class BrawlerPath
             baseName: "Brawler",
             tranceFeatureGuid: Guids.BrawlerTrance,
             tranceBuffGuid: Guids.BrawlerTranceBuff,
-            tranceToggleStdGuid: Guids.BrawlerTranceToggleStd,
-            tranceToggleSwiftGuid: Guids.BrawlerTranceToggleSwift,
             parentAbilityGuid: Guids.BrawlerPathParent,
             maneuverAbilityGuid: Guids.BrawlerManeuver,
             expandedManeuverAbilityGuid: Guids.BrawlerExpandedManeuverAbility,
@@ -45,7 +43,7 @@ public static class BrawlerPath
                     value: new ContextValue { ValueType = ContextValueType.Rank })
                 .AddContextRankConfig(ContextRankConfigs.StatBonus(StatType.Wisdom)));
 
-        // Maneuver buff: +7 competence to damage (â‰ˆ2d6) on next attack, then removes itself
+        // Maneuver buff: +7 competence to damage (≈2d6) on next attack, then removes itself
         var maneuverBuff = BuffConfigurator.New("BrawlerManeuverBuff", Guids.BrawlerManeuverBuff)
             .SetDisplayName(Loc.Str("PW.BrawlerManeuver.BuffName", "Brawler Maneuver"))
             .SetDescription(Loc.Str("PW.BrawlerManeuver.BuffDesc",
@@ -71,7 +69,7 @@ public static class BrawlerPath
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
             .Configure();
 
-        // Expanded — Steel Sinews: counter-attack reflex, +4 dodge AC + Fast Healing 2 for 1 round
+        // Expanded � Steel Sinews: counter-attack reflex, +4 dodge AC + Fast Healing 2 for 1 round
         var expandedBuff = BuffConfigurator.New("BrawlerExpandedManeuverBuff", Guids.BrawlerExpandedManeuverBuff)
             .SetDisplayName(Loc.Str("PW.BrawlerExpanded.BuffName", "Steel Sinews"))
             .SetDescription(Loc.Str("PW.BrawlerExpanded.BuffDesc",

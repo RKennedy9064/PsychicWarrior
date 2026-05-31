@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.1.4] - 2026-05-31
+## [0.2.0] - 2026-05-31
 
 ### Added
 - Advanced Mind Knight Path feat: when using the Mind Knight Maneuver, gain a competence bonus to attack rolls equal to +1 per four psychic warrior levels

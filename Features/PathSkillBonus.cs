@@ -25,10 +25,10 @@ public static class PathSkillBonus
 {
     public static void Configure()
     {
-        var athleticsIcon  = FeatureRefs.SkillFocusPhysique.Reference.Get().Icon;
-        var mobilityIcon   = FeatureRefs.SkillFocusAcrobatics.Reference.Get().Icon;
+        var athleticsIcon = FeatureRefs.SkillFocusPhysique.Reference.Get().Icon;
+        var mobilityIcon = FeatureRefs.SkillFocusAcrobatics.Reference.Get().Icon;
         var perceptionIcon = FeatureRefs.SkillFocusPerception.Reference.Get().Icon;
-        var stealthIcon    = FeatureRefs.SkillFocusStealth.Reference.Get().Icon;
+        var stealthIcon = FeatureRefs.SkillFocusStealth.Reference.Get().Icon;
 
         var athletics = MakeSkill(
             "PathSkillAthletics", Guids.PathSkillAthletics,

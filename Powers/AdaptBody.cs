@@ -66,13 +66,13 @@ public static class AdaptBody
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(5, Guids.SpellList)
-            .AddAbilityVariants(variants: new List<Blueprint<BlueprintAbilityReference>>
-            {
+            .AddAbilityVariants(variants:
+            [
                 Guids.PowerAdaptBodyFire,
                 Guids.PowerAdaptBodyCold,
                 Guids.PowerAdaptBodyElectric,
                 Guids.PowerAdaptBodyAcid,
-            })
+            ])
             .AddSpellComponent(SpellSchool.Transmutation)
             .Configure();
     }

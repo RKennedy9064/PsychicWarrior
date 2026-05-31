@@ -53,10 +53,7 @@ public static class PsionicProficiencyPatch
         if (owner == null) return;
         if (!PsionicFeatGuids.Contains(owner.AssetGuid.ToString())) return;
 
-        if (_pwClass == null)
-        {
-            _pwClass = BlueprintTool.Get<BlueprintCharacterClass>(Guids.PsychicWarriorClass);
-        }
+        _pwClass ??= BlueprintTool.Get<BlueprintCharacterClass>(Guids.PsychicWarriorClass);
         if (_pwClass == null) return;
 
         var pwLevel = unit.Progression.GetClassLevel(_pwClass);

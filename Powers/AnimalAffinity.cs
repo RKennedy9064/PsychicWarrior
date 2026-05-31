@@ -85,15 +85,15 @@ public static class AnimalAffinity
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(2, Guids.SpellList)
-            .AddAbilityVariants(variants: new List<Blueprint<BlueprintAbilityReference>>
-            {
+            .AddAbilityVariants(variants:
+            [
                 Guids.PowerAnimalAffinityStrength,
                 Guids.PowerAnimalAffinityDexterity,
                 Guids.PowerAnimalAffinityConstitution,
                 Guids.PowerAnimalAffinityIntelligence,
                 Guids.PowerAnimalAffinityWisdom,
                 Guids.PowerAnimalAffinityCharisma,
-            })
+            ])
             .AddSpellComponent(SpellSchool.Transmutation)
             .Configure();
     }

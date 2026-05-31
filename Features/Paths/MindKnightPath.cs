@@ -1,4 +1,4 @@
-﻿﻿using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
@@ -14,7 +14,7 @@ using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
-using PsychicWarrior.Mechanics;
+using PsychicWarrior.Shared.Mechanics;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Features.Paths;
@@ -23,16 +23,14 @@ public static class MindKnightPath
 {
     public static void Configure()
     {
-        var tranceIcon   = AbilityRefs.DivineFavor.Reference.Get().Icon;
+        var tranceIcon = AbilityRefs.DivineFavor.Reference.Get().Icon;
         var maneuverIcon = AbilityRefs.TrueStrike.Reference.Get().Icon;
-        var mentalIcon   = AbilityRefs.Bless.Reference.Get().Icon;
+        var mentalIcon = AbilityRefs.Bless.Reference.Get().Icon;
 
         var trance = TranceHelper.BuildTrance(
             baseName: "MindKnight",
             tranceFeatureGuid: Guids.MindKnightTrance,
             tranceBuffGuid: Guids.MindKnightTranceBuff,
-            tranceToggleStdGuid: Guids.MindKnightTranceToggleStd,
-            tranceToggleSwiftGuid: Guids.MindKnightTranceToggleSwift,
             parentAbilityGuid: Guids.MindKnightPathParent,
             maneuverAbilityGuid: Guids.MindKnightManeuverAbility,
             expandedManeuverAbilityGuid: Guids.MindKnightExpandedAbility,
@@ -72,7 +70,7 @@ public static class MindKnightPath
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
             .Configure();
 
-        // Expanded — Mental Strike: +4 Initiative + +4 dodge AC for 1 round (combat awareness)
+        // Expanded � Mental Strike: +4 Initiative + +4 dodge AC for 1 round (combat awareness)
         var expandedBuff = BuffConfigurator.New("MindKnightExpandedManeuverBuff", Guids.MindKnightExpandedBuff)
             .SetDisplayName(Loc.Str("PW.MindKnightExpanded.BuffName", "Mental Strike"))
             .SetDescription(Loc.Str("PW.MindKnightExpanded.BuffDesc",

@@ -175,3 +175,29 @@ The PostBuild target automatically copies three files to `$(WrathPath)\Mods\Psyc
 ### Running
 
 Launch the game normally through Steam. UMM will load the mod on startup. Errors are written to `Player.log` (in the game's `%AppData%` folder) and prefixed with `[PsychicWarrior]`.
+
+---
+
+## Renaming / Restructuring Notes
+
+This mod may eventually be renamed (e.g. to *Psionics Unleashed*) to reflect the addition of other psionic classes such as the Soulknife. The following rules govern what can and cannot change without breaking existing player saves.
+
+### What is safe to rename
+
+| Item | Notes |
+|---|---|
+| GitHub repository name | External only, no code impact |
+| `DisplayName` in Info.json | Cosmetic — what players see in UMM |
+| `AssemblyName` in the csproj (DLL filename) | Update `EntryMethod` in Info.json to match |
+| C# namespaces (`PsychicWarrior.*`) | Safe — mod-created blueprints are rebuilt from code on every game launch, so type names are never persisted in save files |
+| Folder names inside the project | Safe — no external references |
+
+### What requires care
+
+**UMM mod ID** (`"Id"` in Info.json): UMM uses this to track which mods a save was created with. Changing it causes existing players to see a "missing mod" warning on load. WotR does not crash from this — all blueprint GUIDs still resolve correctly — but it is noisy. Options:
+- Keep `Id` as `PsychicWarrior` and change only `DisplayName` (zero warnings, recommended)
+- Change `Id` and document it as a breaking release in the changelog
+
+### The one rule that must never be broken
+
+**Never change a GUID in `Guids.cs`.** Save files store blueprint references by GUID. If a GUID is removed or changed, the corresponding feat, buff, or feature is silently stripped from any character that had it on load. All other renames are recoverable; GUID changes are not.

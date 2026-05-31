@@ -17,7 +17,7 @@ using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Blueprints.Items.Weapons;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.ActivatableAbilities;
-using PsychicWarrior.Mechanics;
+using PsychicWarrior.Shared.Mechanics;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Powers;
@@ -25,17 +25,17 @@ namespace PsychicWarrior.Powers;
 public static class CallWeaponry
 {
     // Categories that make no sense to "call" as a weapon
-    private static readonly HashSet<WeaponCategory> Excluded = new()
-    {
+    private static readonly HashSet<WeaponCategory> Excluded =
+    [
         WeaponCategory.UnarmedStrike,
         WeaponCategory.KineticBlast,
         WeaponCategory.Touch,
         WeaponCategory.Ray,
         WeaponCategory.Bomb,
-    };
+    ];
 
     // Populated during Configure(); used by MindKnightPath to share features with its selection.
-    public static readonly List<BlueprintFeature> WeaponFeatureList = new();
+    public static readonly List<BlueprintFeature> WeaponFeatureList = [];
 
     private static readonly LogWrapper Log = LogWrapper.Get("PsychicWarrior");
 
@@ -151,8 +151,7 @@ public static class CallWeaponry
             // Blueprint<T>.Reference is a public instance field holding a BlueprintReference<T>
             var refFieldInfo = value.GetType().GetField("Reference", BindingFlags.Public | BindingFlags.Instance);
             if (refFieldInfo == null) return null;
-            var refBase = refFieldInfo.GetValue(value) as BlueprintReferenceBase;
-            if (refBase == null) return null;
+            if (refFieldInfo.GetValue(value) is not BlueprintReferenceBase refBase) return null;
             var guid = refBase.deserializedGuid.ToString();
             if (string.IsNullOrEmpty(guid) || guid == "00000000-0000-0000-0000-000000000000") return null;
             return BlueprintTool.GetRef<BlueprintItemWeaponReference>(guid);
@@ -196,8 +195,8 @@ public static class CallWeaponry
             .SetIsClassFeature()
             .AddFacts([activatable.ToString()])
             .AddPrerequisiteProficiency(
-                armorProficiencies: Array.Empty<ArmorProficiencyGroup>(),
-                weaponProficiencies: new[] { cat })
+                armorProficiencies: [],
+                weaponProficiencies: [cat])
             .Configure();
     }
 }

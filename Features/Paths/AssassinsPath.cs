@@ -1,4 +1,4 @@
-﻿﻿using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -29,8 +29,6 @@ public static class AssassinsPath
             baseName: "Assassins",
             tranceFeatureGuid: Guids.AssassinsTrance,
             tranceBuffGuid: Guids.AssassinsTranceBuff,
-            tranceToggleStdGuid: Guids.AssassinsTranceToggleStd,
-            tranceToggleSwiftGuid: Guids.AssassinsTranceToggleSwift,
             parentAbilityGuid: Guids.AssassinsPathParent,
             maneuverAbilityGuid: Guids.AssassinsManeuverAbility,
             expandedManeuverAbilityGuid: Guids.AssassinsExpandedAbility,
@@ -47,7 +45,7 @@ public static class AssassinsPath
                     value: ContextValues.Rank());
             });
 
-        // +7 â‰ˆ 2d6 average; removes after next attack
+        // +7 ≈ 2d6 average; removes after next attack
         var maneuverBuff = BuffConfigurator.New("AssassinsManeuverBuff", Guids.AssassinsManeuverBuff)
             .SetDisplayName(Loc.Str("PW.AssassinsManeuver.BuffName", "Assassin's Maneuver"))
             .SetDescription(Loc.Str("PW.AssassinsManeuver.BuffDesc",
@@ -73,7 +71,7 @@ public static class AssassinsPath
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
             .Configure();
 
-        // Expanded — Mindblade Strike: +4 saves and +4 competence damage for 1 round (mind-over-body focus)
+        // Expanded � Mindblade Strike: +4 saves and +4 competence damage for 1 round (mind-over-body focus)
         var expandedBuff = BuffConfigurator.New("AssassinsExpandedManeuverBuff", Guids.AssassinsExpandedBuff)
             .SetDisplayName(Loc.Str("PW.AssassinsExpanded.BuffName", "Mindblade Strike"))
             .SetDescription(Loc.Str("PW.AssassinsExpanded.BuffDesc",

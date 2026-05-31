@@ -31,7 +31,7 @@ public static class DimensionSlide
                 var src = AbilityRefs.DimensionDoor.Reference.Get();
                 var teleport = src.ComponentsArray.OfType<AbilityCustomDimensionDoor>().FirstOrDefault();
                 if (teleport != null)
-                    bp.ComponentsArray = bp.ComponentsArray.Append(teleport).ToArray();
+                    bp.ComponentsArray = [.. bp.ComponentsArray, teleport];
             })
             .Configure();
     }

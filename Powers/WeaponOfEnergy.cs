@@ -68,13 +68,13 @@ public static class WeaponOfEnergy
             .SetActionType(UnitCommand.CommandType.Standard)
             .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
             .AddSpellListComponent(4, Guids.SpellList)
-            .AddAbilityVariants(variants: new List<Blueprint<BlueprintAbilityReference>>
-            {
+            .AddAbilityVariants(variants:
+            [
                 Guids.PowerWeaponOfEnergyFire,
                 Guids.PowerWeaponOfEnergyCold,
                 Guids.PowerWeaponOfEnergyElectric,
                 Guids.PowerWeaponOfEnergyAcid,
-            })
+            ])
             .AddSpellComponent(SpellSchool.Evocation)
             .Configure();
     }

@@ -13,7 +13,7 @@ using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
-using PsychicWarrior.Mechanics;
+using PsychicWarrior.Shared.Mechanics;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Features.Paths;
@@ -31,8 +31,6 @@ public static class WeaponmasterPath
             baseName: "Weaponmaster",
             tranceFeatureGuid: Guids.WeaponmasterTrance,
             tranceBuffGuid: Guids.WeaponmasterTranceBuff,
-            tranceToggleStdGuid: Guids.WeaponmasterTranceToggleStd,
-            tranceToggleSwiftGuid: Guids.WeaponmasterTranceToggleSwift,
             parentAbilityGuid: Guids.WeaponmasterPathParent,
             maneuverAbilityGuid: Guids.WeaponmasterManeuver,
             expandedManeuverAbilityGuid: Guids.WeaponmasterExpandedManeuverAbility,

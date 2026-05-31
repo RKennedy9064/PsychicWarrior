@@ -11,9 +11,9 @@ namespace PsychicWarrior.Features;
 public static class PrebuildPsychicWarriorFeatureList
 {
     // External combat feat GUIDs (from FighterFeatSelection, available in BonusFeatSelection)
-    private const string PowerAttack    = "9972f33f977fc724c838e59641b2fca5";
-    private const string Toughness      = "d09b20029e9abfe4480b356c92095623";
-    private const string FuriousFocus   = "f09b89812cc94b89a09069671002b899";
+    private const string PowerAttack = "9972f33f977fc724c838e59641b2fca5";
+    private const string Toughness = "d09b20029e9abfe4480b356c92095623";
+    private const string FuriousFocus = "f09b89812cc94b89a09069671002b899";
     private const string CombatReflexes = "0f8939ae6f220984e8fb568abbdfba95";
 
     public static void Configure()
@@ -28,15 +28,15 @@ public static class PrebuildPsychicWarriorFeatureList
                 levels: 20,
                 raceStat: StatType.Strength,
                 levelsStat: StatType.Wisdom,
-                skills: new[]
-                {
+                skills:
+                [
                     StatType.SkillAthletics,
                     StatType.SkillPerception,
                     StatType.SkillMobility,
                     StatType.SkillStealth,
-                },
-                selections: new[]
-                {
+                ],
+                selections:
+                [
                     // L1: Gladiator path
                     Sel(Guids.PathSelectionLevel1,     Guids.GladiatorPath),
                     // L1: Talent 1 — Burst
@@ -73,7 +73,7 @@ public static class PrebuildPsychicWarriorFeatureList
                     Sel(Guids.PathSkillBonusSelection, Guids.PathSkillAthletics),
                     // L20 bonus feat — Psionic Endowment
                     Sel(Guids.BonusFeatSelection,      Guids.PsionicEndowmentFeat),
-                })
+                ])
             .AddStatsDistributionPreset(
                 targetPoints: 20,
                 strength: 16, dexterity: 12, constitution: 14,
@@ -92,6 +92,6 @@ public static class PrebuildPsychicWarriorFeatureList
         new()
         {
             m_Selection = BlueprintTool.GetRef<BlueprintFeatureSelectionReference>(selectionGuid),
-            m_Features  = [BlueprintTool.GetRef<BlueprintFeatureReference>(featureGuid)],
+            m_Features = [BlueprintTool.GetRef<BlueprintFeatureReference>(featureGuid)],
         };
 }

@@ -21,11 +21,11 @@ public static class EnergyAdaptation
 {
     public static void Configure()
     {
-        BuildVariant("Fire",        Guids.PowerEnergyAdaptationFire,       Guids.PowerEnergyAdaptationFireBuff,  DamageEnergyType.Fire,        AbilityRefs.ResistFire.Reference.Get().Icon);
-        BuildVariant("Cold",        Guids.PowerEnergyAdaptationCold,       Guids.PowerEnergyAdaptationColdBuff,  DamageEnergyType.Cold,        AbilityRefs.ResistCold.Reference.Get().Icon);
-        BuildVariant("Electricity", Guids.PowerEnergyAdaptationElec,       Guids.PowerEnergyAdaptationElecBuff,  DamageEnergyType.Electricity, AbilityRefs.ResistElectricity.Reference.Get().Icon);
-        BuildVariant("Acid",        Guids.PowerEnergyAdaptationAcid,       Guids.PowerEnergyAdaptationAcidBuff,  DamageEnergyType.Acid,        AbilityRefs.ResistAcid.Reference.Get().Icon);
-        BuildVariant("Sonic",       Guids.PowerEnergyAdaptationSonic,      Guids.PowerEnergyAdaptationSonicBuff, DamageEnergyType.Sonic,       AbilityRefs.ResistSonic.Reference.Get().Icon);
+        BuildVariant("Fire", Guids.PowerEnergyAdaptationFire, Guids.PowerEnergyAdaptationFireBuff, DamageEnergyType.Fire, AbilityRefs.ResistFire.Reference.Get().Icon);
+        BuildVariant("Cold", Guids.PowerEnergyAdaptationCold, Guids.PowerEnergyAdaptationColdBuff, DamageEnergyType.Cold, AbilityRefs.ResistCold.Reference.Get().Icon);
+        BuildVariant("Electricity", Guids.PowerEnergyAdaptationElec, Guids.PowerEnergyAdaptationElecBuff, DamageEnergyType.Electricity, AbilityRefs.ResistElectricity.Reference.Get().Icon);
+        BuildVariant("Acid", Guids.PowerEnergyAdaptationAcid, Guids.PowerEnergyAdaptationAcidBuff, DamageEnergyType.Acid, AbilityRefs.ResistAcid.Reference.Get().Icon);
+        BuildVariant("Sonic", Guids.PowerEnergyAdaptationSonic, Guids.PowerEnergyAdaptationSonicBuff, DamageEnergyType.Sonic, AbilityRefs.ResistSonic.Reference.Get().Icon);
 
         AbilityConfigurator.New("PWEnergyAdaptation", Guids.PowerEnergyAdaptation)
             .SetDisplayName(Loc.Str("PW.EnergyAdaptation.Name", "Energy Adaptation"))

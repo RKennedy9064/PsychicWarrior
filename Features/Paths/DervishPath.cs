@@ -13,7 +13,7 @@ using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Commands.Base;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
-using PsychicWarrior.Mechanics;
+using PsychicWarrior.Shared.Mechanics;
 using PsychicWarrior.Utils;
 
 namespace PsychicWarrior.Features.Paths;
@@ -30,8 +30,6 @@ public static class DervishPath
             baseName: "Dervish",
             tranceFeatureGuid: Guids.DervishTrance,
             tranceBuffGuid: Guids.DervishTranceBuff,
-            tranceToggleStdGuid: Guids.DervishTranceToggleStd,
-            tranceToggleSwiftGuid: Guids.DervishTranceToggleSwift,
             parentAbilityGuid: Guids.DervishPathParent,
             maneuverAbilityGuid: Guids.DervishManeuverAbility,
             expandedManeuverAbilityGuid: Guids.DervishExpandedAbility,

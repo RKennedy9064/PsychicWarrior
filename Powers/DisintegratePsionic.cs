@@ -31,10 +31,10 @@ public static class DisintegratePsionic
                 var src = AbilityRefs.Disintegrate.Reference.Get();
                 var runAction = src.ComponentsArray.OfType<AbilityEffectRunAction>().FirstOrDefault();
                 if (runAction != null)
-                    bp.ComponentsArray = bp.ComponentsArray.Append(runAction).ToArray();
+                    bp.ComponentsArray = [.. bp.ComponentsArray, runAction];
                 var deliver = src.ComponentsArray.OfType<AbilityDeliverProjectile>().FirstOrDefault();
                 if (deliver != null)
-                    bp.ComponentsArray = bp.ComponentsArray.Append(deliver).ToArray();
+                    bp.ComponentsArray = [.. bp.ComponentsArray, deliver];
             })
             .Configure();
     }

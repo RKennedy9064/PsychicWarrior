@@ -30,8 +30,6 @@ public static class AsceticPath
             baseName: "Ascetic",
             tranceFeatureGuid: Guids.AsceticTrance,
             tranceBuffGuid: Guids.AsceticTranceBuff,
-            tranceToggleStdGuid: Guids.AsceticTranceToggleStd,
-            tranceToggleSwiftGuid: Guids.AsceticTranceToggleSwift,
             parentAbilityGuid: Guids.AsceticPathParent,
             maneuverAbilityGuid: Guids.AsceticManeuverAbility,
             expandedManeuverAbilityGuid: Guids.AsceticExpandedAbility,

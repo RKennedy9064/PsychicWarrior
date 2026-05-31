@@ -1,4 +1,4 @@
-﻿﻿using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
@@ -31,8 +31,6 @@ public static class ArcherPath
             baseName: "Archer",
             tranceFeatureGuid: Guids.ArcherTrance,
             tranceBuffGuid: Guids.ArcherTranceBuff,
-            tranceToggleStdGuid: Guids.ArcherTranceToggleStd,
-            tranceToggleSwiftGuid: Guids.ArcherTranceToggleSwift,
             parentAbilityGuid: Guids.ArcherPathParent,
             maneuverAbilityGuid: Guids.ArcherManeuverAbility,
             expandedManeuverAbilityGuid: Guids.ArcherExpandedAbility,
@@ -77,11 +75,11 @@ public static class ArcherPath
                     .ApplyBuff(maneuverBuff, ContextDuration.Fixed(1)))
             .Configure();
 
-        // Expanded — Twin Shot: Haste-like acceleration for 1 round
+        // Expanded � Twin Shot: Haste-like acceleration for 1 round
         var expandedBuff = BuffConfigurator.New("ArcherExpandedManeuverBuff", Guids.ArcherExpandedBuff)
             .SetDisplayName(Loc.Str("PW.ArcherExpanded.BuffName", "Twin Shot"))
             .SetDescription(Loc.Str("PW.ArcherExpanded.BuffDesc",
-                "Psionic acceleration drives your arms: gain the benefits of haste — extra attack on full attacks, +1 dodge AC, +1 Reflex, +30 ft speed."))
+                "Psionic acceleration drives your arms: gain the benefits of haste � extra attack on full attacks, +1 dodge AC, +1 Reflex, +30 ft speed."))
             .SetIcon(expandedIcon)
             .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.AC, value: 1)
             .AddStatBonus(descriptor: ModifierDescriptor.Dodge, stat: StatType.SaveReflex, value: 1)

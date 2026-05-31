@@ -36,8 +36,6 @@ internal static class TranceHelper
         string baseName,
         string tranceFeatureGuid,
         string tranceBuffGuid,
-        string tranceToggleStdGuid,         // unused — kept for source compatibility
-        string tranceToggleSwiftGuid,       // unused — kept for source compatibility
         string parentAbilityGuid,
         string maneuverAbilityGuid,
         string expandedManeuverAbilityGuid,
@@ -77,11 +75,11 @@ internal static class TranceHelper
             .SetIcon(icon)
             .SetType(AbilityType.Supernatural)
             .SetRange(AbilityRange.Personal)
-            .AddAbilityVariants(variants: new List<Blueprint<BlueprintAbilityReference>>
-            {
+            .AddAbilityVariants(variants:
+            [
                 maneuverAbilityGuid,
                 expandedManeuverAbilityGuid,
-            })
+            ])
             .Configure();
 
         return FeatureConfigurator.New($"{baseName}Trance", tranceFeatureGuid)
