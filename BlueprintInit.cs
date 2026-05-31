@@ -187,14 +187,24 @@ public static class BlueprintInit
         Run(nameof(Features.PrebuildPsychicWarriorFeatureList), Features.PrebuildPsychicWarriorFeatureList.Configure, logger);
         Run(nameof(Classes.PsychicWarriorClass), Classes.PsychicWarriorClass.Configure, logger);
 
+        // ── SoulKnife ─────────────────────────────────────────────────────────
+        Run(nameof(SoulKnife.SoulKnifeProficiencies),                       SoulKnife.SoulKnifeProficiencies.Configure,                       logger);
+        Run(nameof(SoulKnife.Features.MindBlade.MindBlade),                 SoulKnife.Features.MindBlade.MindBlade.Configure,                 logger);
+        Run(nameof(SoulKnife.Features.MindBlade.PsychicStrike),             SoulKnife.Features.MindBlade.PsychicStrike.Configure,             logger);
+        Run(nameof(SoulKnife.Features.BladeSkills.BladeSkillsSelection),    SoulKnife.Features.BladeSkills.BladeSkillsSelection.Configure,    logger);
+        Run(nameof(SoulKnife.SoulKnifeClass),                               SoulKnife.SoulKnifeClass.Configure,                               logger);
+
         // ── Class registration ─────────────────────────────────────────────────
         try
         {
             var root = BlueprintRoot.Instance;
             var pwClassRef = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Utils.Guids.PsychicWarriorClass);
+            var skClassRef = BlueprintTool.GetRef<BlueprintCharacterClassReference>(Utils.Guids.SoulKnifeClass);
 
             if (!root.Progression.m_CharacterClasses.Contains(pwClassRef))
                 root.Progression.m_CharacterClasses = [.. root.Progression.m_CharacterClasses, pwClassRef];
+            if (!root.Progression.m_CharacterClasses.Contains(skClassRef))
+                root.Progression.m_CharacterClasses = [.. root.Progression.m_CharacterClasses, skClassRef];
         }
         catch (System.Exception e)
         {

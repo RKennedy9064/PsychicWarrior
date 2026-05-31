@@ -484,6 +484,30 @@ public static class Guids
     public const string PowerSteadfastPerception = "a736af3c-b7c8-4b83-998f-1d150627d914";
     public const string PowerSteadfastPerceptionBuff = "56cc7a10-19a3-4ee3-b1de-cd072c7de8ef";
 
+    // ── SoulKnife class ──────────────────────────────────────────────────────
+    public const string SoulKnifeClass               = "7c4a2f91-e3b8-4d65-a017-58c91b2e3f40";
+    public const string SoulKnifeProgression         = "8d5b3aa2-f4c9-4e76-b128-69da2c3f4a51";
+    public const string SoulKnifeProficiencies       = "9e6c4bb3-a5da-4f87-c239-7aeb3d4a5b62";
+
+    // ── Mind Blade ────────────────────────────────────────────────────────────
+    // Per-weapon GUIDs are generated deterministically via MD5 in MindBlade.Configure().
+    public const string MindBladeFeature             = "af7d5cc4-b6eb-4198-d34a-8bfc4e5b6c73";
+
+    // ── Psychic Strike ────────────────────────────────────────────────────────
+    public const string PsychicStrikeFeature         = "d2a08ff7-e91e-440c-067d-be2f718e9fa6";
+    public const string PsychicStrikeChargeBuff      = "e3b19008-fa2f-450d-178e-cf30829fab7b";
+    public const string PsychicStrikeChargeAbility   = "f4c2a119-0b30-460e-29af-d04193ac8c2c";
+    public const string PsychicStrikeRechargeAbility = "05d3b22a-1c41-470f-3ab0-e152040dde3d";
+
+    // ── Blade Skills ──────────────────────────────────────────────────────────
+    public const string BladeSkillsSelection         = "16e4c33b-2d52-481a-4bc1-f263050ece4e";
+    public const string BladeSkillFocusedOffense     = "27f5d44c-3e63-492b-5cd2-374160fdf55f";
+    public const string BladeSkillEvasion            = "38068c5d-4f74-4b4d-7ef4-596381907771";
+    public const string BladeSkillPowerfulStrikes    = "490a9d7e-5085-4c5e-8f05-6a74920188b2";
+
+    // ── SoulKnife bonus feat ──────────────────────────────────────────────────
+    public const string SoulKnifeBonusFeat           = "5a1bae8f-6196-4d6f-9016-7b85a31299c3";
+
     // ── Call Weaponry (Mind Knight path) ─────────────────────────────────────
     // Per-weapon GUIDs are generated deterministically via MD5 in CallWeaponry.Configure().
     public const string CallWeaponrySelection = "49aa17bd-e8f4-4dea-9cb9-b903e1f869a0";

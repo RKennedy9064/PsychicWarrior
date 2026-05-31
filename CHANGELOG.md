@@ -3,6 +3,12 @@
 ## [0.2.0] - 2026-05-31
 
 ### Added
+- Soulknife class (Phase 1 skeleton): full BAB, d10 HD, good Reflex and Will saves, appears in character creation and levels to 20
+- Form Mind Blade: toggle to manifest a light mind blade (1d6, 19-20/×2) bound to the primary hand
+- Psychic Strike: imbue the mind blade with destructive psychic energy (1d8 at 3rd level, scaling every four levels); charge persists through misses and can be recharged as a swift action by expending psionic focus
+- Blade Skills selection (every even level): Focused Offense (Wisdom to attack and damage while focused), Evasion, Powerful Strikes (placeholder)
+
+### Changed
 - Advanced Mind Knight Path feat: when using the Mind Knight Maneuver, gain a competence bonus to attack rolls equal to +1 per four psychic warrior levels
 - Advanced Feral Path feat: while in Feral Trance, the trance competence bonus also applies to damage rolls with natural attacks and unarmed strikes
 - Advanced Weaponmaster Path feat: while in Weaponmaster Trance, your trance competence bonus also applies to weapon damage rolls
