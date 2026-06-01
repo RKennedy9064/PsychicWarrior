@@ -21,6 +21,8 @@ public class PsychicStrikeDamage : UnitFactComponentDelegate,
 {
     private static BlueprintCharacterClass _skClass;
     private static BlueprintBuff _chargeBuff;
+    private static BlueprintFeature _powerfulStrikes;
+    private static BlueprintFeature _vampiricBlade;
 
     public void OnEventAboutToTrigger(RuleAttackWithWeapon evt) { }
 
@@ -45,9 +47,23 @@ public class PsychicStrikeDamage : UnitFactComponentDelegate,
         };
         if (numDice <= 0) return;
 
+        // Blade skill: Powerful Strikes — +1d8 to psychic strike.
+        _powerfulStrikes ??= BlueprintTool.Get<BlueprintFeature>(Guids.BladeSkillPowerfulStrikes);
+        if (_powerfulStrikes != null && Owner.Descriptor.HasFact(_powerfulStrikes))
+            numDice += 1;
+
         buff.Remove();
 
         var raw = WeaponInheritedDamage.Build(evt.Weapon, new DiceFormula(numDice, DiceType.D8), alignmentBypassAll: false);
-        Rulebook.Trigger(new RuleDealDamage(evt.Initiator, evt.Target, new DamageBundle(raw)));
+        var damageRule = Rulebook.Trigger(new RuleDealDamage(evt.Initiator, evt.Target, new DamageBundle(raw)));
+
+        // Blade skill: Vampiric Blade — heal the soulknife for half the psychic strike damage dealt.
+        _vampiricBlade ??= BlueprintTool.Get<BlueprintFeature>(Guids.BladeSkillVampiricBlade);
+        if (_vampiricBlade != null && Owner.Descriptor.HasFact(_vampiricBlade))
+        {
+            int healed = damageRule.Result / 2;
+            if (healed > 0)
+                Rulebook.Trigger(new RuleHealDamage(evt.Initiator, evt.Initiator, healed));
+        }
     }
 }

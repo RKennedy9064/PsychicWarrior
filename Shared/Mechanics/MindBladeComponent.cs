@@ -182,9 +182,16 @@ public class MindBladeComponent : UnitFactComponentDelegate, IUnitLevelUpHandler
         _appliedEnhancementLevel = ApplyEnchantment(item, _appliedEnhancementLevel, classLevel);
     }
 
+    private static BlueprintFeature _improvedEnhancement;
+
     private int ApplyEnchantment(ItemEntityWeapon item, int currentLevel, int classLevel)
     {
         var newLevel = GetEnhancementLevel(classLevel);
+
+        // Blade skill: Improved Enhancement — +1 enhancement bonus (capped at the +5 we can apply).
+        _improvedEnhancement ??= BlueprintTool.Get<BlueprintFeature>(Guids.BladeSkillImprovedEnhancement);
+        if (newLevel > 0 && _improvedEnhancement != null && Owner.Descriptor.HasFact(_improvedEnhancement))
+            newLevel = System.Math.Min(5, newLevel + 1);
 
         if (currentLevel > 0)
         {

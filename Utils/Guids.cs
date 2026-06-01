@@ -529,6 +529,11 @@ public static class Guids
     public const string BladeSkillFocusedOffense     = "27f5d44c-3e63-492b-5cd2-374160fdf55f";
     public const string BladeSkillEvasion            = "38068c5d-4f74-4b4d-7ef4-596381907771";
     public const string BladeSkillPowerfulStrikes    = "490a9d7e-5085-4c5e-8f05-6a74920188b2";
+    public const string BladeSkillFocusedDefense     = "5a1bb08f-6196-4e5c-9d16-8b85a42399c4";
+    public const string BladeSkillImprovedEvasion    = "6b2cc19a-72a7-4f6d-ae27-9c96b53400d5";
+    public const string BladeSkillImprovedEnhancement= "7c3dd2ab-83b8-407e-bf38-ad07c64511e6";
+    public const string BladeSkillVampiricBlade      = "8d4ee3bc-94c9-4180-c049-be18d75622f7";
+    public const string BladeSkillPsionicTraining    = "9e5ff4cd-a5da-4291-d15a-cf29e86733a8";
 
     // ── SoulKnife bonus feat ──────────────────────────────────────────────────
     public const string SoulKnifeBonusFeat           = "5a1bae8f-6196-4d6f-9016-7b85a31299c3";
