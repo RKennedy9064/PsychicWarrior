@@ -73,6 +73,11 @@ public class MindBladeComponent : UnitFactComponentDelegate, IUnitLevelUpHandler
         // but doing it here guarantees correct ordering when the blade is first manifested.)
         ApplyChosenVisual(weapon);
 
+        // Blade skill: Mind Blade Finesse — force the mind blade to use Dexterity for attack rolls
+        // (works for all forms, including two-handed). ApplyChosenVisual resets these fields from the
+        // source weapon each equip, so we (re)apply the override here based on the wielder.
+        ApplyMindBladeFinesse(weapon);
+
         var item = new ItemEntityWeapon(weapon) { IsIdentified = true };
         Log.Info($"[MB] pre-equip ({weapon.name}): canInsertPrimary={slot.CanInsertItem(item)} primaryLocked={slot.Lock.Value} " +
                  $"| possible={slot.IsPossibleInsertItems()} supported={slot.IsItemSupported(item)} " +
@@ -156,6 +161,23 @@ public class MindBladeComponent : UnitFactComponentDelegate, IUnitLevelUpHandler
 
         Log.Warn($"[MB] ApplyChosenVisual: no MindBladeVisualComponent matched type {weaponType.name} " +
                  $"(scanned {scanned} visual features on {Owner.CharacterName})");
+    }
+
+    private static BlueprintFeature _mindBladeFinesse;
+
+    // Blade skill: Mind Blade Finesse. Sets the equipped form's weapon type to use Dexterity for
+    // attack rolls when the wielder has the skill (otherwise leaves the source weapon's setting).
+    private void ApplyMindBladeFinesse(BlueprintItemWeapon weapon)
+    {
+        var weaponType = weapon.m_Type?.Get();
+        if (weaponType == null) return;
+
+        _mindBladeFinesse ??= BlueprintTool.Get<BlueprintFeature>(Guids.BladeSkillMindBladeFinesse);
+        bool hasFinesse = _mindBladeFinesse != null && Owner.Descriptor.HasFact(_mindBladeFinesse);
+
+        weaponType.m_OverrideAttackBonusStat = hasFinesse;
+        if (hasFinesse)
+            weaponType.m_AttackBonusStatOverride = Kingmaker.EntitySystem.Stats.StatType.Dexterity;
     }
 
     public void HandleUnitBeforeLevelUp(UnitEntityData unit) { }

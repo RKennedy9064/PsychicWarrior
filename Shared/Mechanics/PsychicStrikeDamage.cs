@@ -1,6 +1,7 @@
 using System;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums.Damage;
 using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem;
@@ -23,6 +24,9 @@ public class PsychicStrikeDamage : UnitFactComponentDelegate,
     private static BlueprintBuff _chargeBuff;
     private static BlueprintFeature _powerfulStrikes;
     private static BlueprintFeature _vampiricBlade;
+    private static BlueprintFeature _reapersBlade;
+    private static BlueprintFeature _knifeToTheSoul;
+    private static BlueprintFeature _devastatingBlade;
 
     public void OnEventAboutToTrigger(RuleAttackWithWeapon evt) { }
 
@@ -64,6 +68,28 @@ public class PsychicStrikeDamage : UnitFactComponentDelegate,
             int healed = damageRule.Result / 2;
             if (healed > 0)
                 Rulebook.Trigger(new RuleHealDamage(evt.Initiator, evt.Initiator, healed));
+        }
+
+        // Blade skill: Knife to the Soul / Devastating Blade — also deal Intelligence damage.
+        // (Adaptation: applied as a rider in addition to the HP damage, rather than the tabletop
+        // "substitute for HP damage" choice.) Devastating Blade increases the rate.
+        _devastatingBlade ??= BlueprintTool.Get<BlueprintFeature>(Guids.BladeSkillDevastatingBlade);
+        _knifeToTheSoul ??= BlueprintTool.Get<BlueprintFeature>(Guids.BladeSkillKnifeToTheSoul);
+        bool hasDevastating = _devastatingBlade != null && Owner.Descriptor.HasFact(_devastatingBlade);
+        bool hasKnife = _knifeToTheSoul != null && Owner.Descriptor.HasFact(_knifeToTheSoul);
+        if (hasKnife || hasDevastating)
+        {
+            int abilityDamage = hasDevastating ? numDice : System.Math.Max(1, numDice / 2);
+            Rulebook.Trigger(new RuleDealStatDamage(
+                evt.Initiator, evt.Target, StatType.Intelligence, DiceFormula.Zero, abilityDamage));
+        }
+
+        // Blade skill: Reaper's Blade — if the strike drops the target, recharge psychic strike.
+        _reapersBlade ??= BlueprintTool.Get<BlueprintFeature>(Guids.BladeSkillReapersBlade);
+        if (_reapersBlade != null && Owner.Descriptor.HasFact(_reapersBlade)
+            && evt.Target?.Descriptor?.State?.IsDead == true)
+        {
+            Owner.AddBuff(_chargeBuff, Owner);
         }
     }
 }

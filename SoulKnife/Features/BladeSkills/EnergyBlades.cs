@@ -1,0 +1,54 @@
+using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.References;
+using BlueprintCore.Utils.Types;
+using Kingmaker.Enums;
+using Kingmaker.Enums.Damage;
+using Kingmaker.RuleSystem;
+using PsychicWarrior.Utils;
+
+namespace PsychicWarrior.SoulKnife.Features.BladeSkills;
+
+/// <summary>
+/// Blade skills: Fire / Ice / Lightning / Thunder Blade. While the soulknife has the skill, each
+/// successful melee hit with her mind blade deals an extra die of the matching energy type.
+/// (Adaptation: the tabletop "expend psionic focus on hit for a secondary rider" is omitted; the
+/// base energy damage is applied passively. Secondary riders — Firestorm/Freezing Ice/etc. — are
+/// tracked as a later batch.)
+/// </summary>
+public static class EnergyBlades
+{
+    public static void Configure()
+    {
+        Build("SKFireBlade", Guids.BladeSkillFireBlade, "Fire Blade", DamageEnergyType.Fire,
+            AbilityRefs.BurningHands.Reference.Get().Icon);
+        Build("SKIceBlade", Guids.BladeSkillIceBlade, "Ice Blade", DamageEnergyType.Cold,
+            AbilityRefs.RayOfFrost.Reference.Get().Icon);
+        Build("SKLightningBlade", Guids.BladeSkillLightningBlade, "Lightning Blade", DamageEnergyType.Electricity,
+            AbilityRefs.CallLightning.Reference.Get().Icon);
+        Build("SKThunderBlade", Guids.BladeSkillThunderBlade, "Thunder Blade", DamageEnergyType.Sonic,
+            AbilityRefs.ResistSonic.Reference.Get().Icon);
+    }
+
+    private static void Build(string name, string guid, string displayName,
+        DamageEnergyType energyType, UnityEngine.Sprite icon)
+    {
+        var energyName = energyType.ToString().ToLower();
+        FeatureConfigurator.New(name, guid)
+            .SetDisplayName(Loc.Str($"SK.{name}.Name", displayName))
+            .SetDescription(Loc.Str($"SK.{name}.Desc",
+                $"Your mind blade is wreathed in {energyName} energy. Each successful melee hit with your mind blade deals an extra 1d6 {energyName} damage."))
+            .SetIcon(icon)
+            .SetIsClassFeature()
+            .AddPrerequisiteClassLevel(Guids.SoulKnifeClass, 8)
+            .AddInitiatorAttackWithWeaponTrigger(
+                action: ActionsBuilder.New().DealDamage(
+                    damageType: DamageTypes.Energy(energyType),
+                    value: ContextDice.Value(DiceType.D6, 1)),
+                onlyHit: true,
+                checkWeaponRangeType: true,
+                rangeType: WeaponRangeType.Melee)
+            .Configure();
+    }
+}

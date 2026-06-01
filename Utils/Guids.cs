@@ -534,6 +534,57 @@ public static class Guids
     public const string BladeSkillImprovedEnhancement= "7c3dd2ab-83b8-407e-bf38-ad07c64511e6";
     public const string BladeSkillVampiricBlade      = "8d4ee3bc-94c9-4180-c049-be18d75622f7";
     public const string BladeSkillPsionicTraining    = "9e5ff4cd-a5da-4291-d15a-cf29e86733a8";
+    public const string BladeSkillTelekineticEdge    = "af600506-b6eb-43a2-e26b-d03af97844b9";
+    public const string BladeSkillTrapfinder         = "b0711617-c7fc-44b3-f37c-e14b0a8955ca";
+    public const string BladeSkillMindBladeFinesse   = "c1822728-d80d-45c4-048d-f25c1b9a66db";
+    public const string BladeSkillWeaponSpecial      = "d2933839-e91e-46d5-159e-036d2cab77ec";
+    public const string BladeSkillReapersBlade       = "e3a4494a-fa2f-4706-26af-147e3dbc88fd";
+    public const string BladeSkillTelekineticAthleticism = "f4b55a5b-0b30-4817-37b0-258f4ecd990e";
+    public const string BladeSkillDeadlyBlow         = "05c66b7d-1c41-4a39-48c1-369f5fde1b30";
+    public const string BladeSkillGhostStep          = "16d78c8e-2d52-4b4a-59d2-470f60fe2c41";
+    public const string BladeSkillGhostStepAbility   = "27e89d9f-3e63-4c5b-6ae3-581f71ff3d52";
+    public const string BladeSkillCleaveSpace        = "38f9ae0a-4f74-4d6c-7bf4-692f820f4e63";
+    public const string BladeSkillCleaveSpaceAbility = "490abf1b-5085-4e7d-8c05-7a3f931f5f74";
+    public const string BladeSkillReachingBlade      = "5a1bd02c-6196-4f8e-9d16-8b4fa42f6085";
+    public const string BladeSkillReachingBladeToggle= "6b2ce13d-72a7-4a9f-ae27-9c5fb53f7196";
+    public const string BladeSkillReachingBladeBuff  = "7c3df24e-83b8-4ba0-bf38-ad6fc64f82a7";
+
+    // ── Blade Skills: status-effect strikes ───────────────────────────────────
+    public const string BladeSkillStunningBlade      = "8d4f035f-94c9-4cb1-c049-be7fd75f93b8";
+    public const string BladeSkillStunningBladeAbility = "9e500460-a5da-4dc2-d15a-cf8fe86fa4c9";
+    public const string BladeSkillStunnedBuff        = "af611571-b6eb-4ed3-e26b-d09ff970b5da";
+    public const string BladeSkillDazzlingBlade      = "b0722682-c7fc-4fe4-f37c-e1aff081c6eb";
+    public const string BladeSkillDazzlingBladeAbility = "c1833793-d80d-40f5-048d-f2b002f2d7fc";
+    public const string BladeSkillDazzledBuff        = "d29448a4-e91e-4106-159e-03c113f3e80d";
+    public const string BladeSkillWingClip           = "e3a559b5-fa2f-4217-26af-14d224f4f91e";
+    public const string BladeSkillWingClipAbility    = "f4b66ac6-0b30-4328-37b0-25e335f50a2f";
+    public const string BladeSkillWingClipBuff       = "05c77bd7-1c41-4439-48c1-36f446f61b30";
+
+    // ── Blade Skills: psychic-strike riders ────────────────────────────────────
+    public const string BladeSkillKnifeToTheSoul     = "16d88ce8-2d52-454a-59d2-47f557f72c41";
+    public const string BladeSkillDevastatingBlade   = "27e99df9-3e63-465b-6ae3-58f668f83d52";
+    public const string BladeSkillExplodingCritical  = "38faae0a-4f74-476c-7bf4-69f779f94e63";
+    public const string BladeSkillDispellingStrike   = "490bbf1b-5085-487d-8c05-7a0880fa5f74";
+    public const string BladeSkillDispellingStrikeAbility = "5a1cd02c-6196-499e-9d16-8b1991fb6085";
+    public const string BladeSkillPsychokineticBlast = "6b2de13d-72a7-4aaf-ae27-9c2aa20c7196";
+    public const string BladeSkillPsychokineticBlastAbility = "7c3ef24e-83b8-4bb0-bf38-ad3bb31d8207";
+    public const string BladeSkillMarkOfTheChallenger = "8d40035f-94c9-4cc1-c049-be4cc42e9318";
+    public const string BladeSkillMarkOfTheChallengerAbility = "9e511460-a5da-4dd2-d15a-cf5dd53f0429";
+    public const string BladeSkillMarkOfTheChallengerBuff = "af622571-b6eb-4ee3-e26b-d06ee640153a";
+
+    // ── Blade Skills: Energy Blades (Fire/Ice/Lightning/Thunder) ───────────────
+    public const string BladeSkillFireBlade          = "05c66b6c-1c41-4928-48c1-369f5fde0a1f";
+    public const string BladeSkillFireBladeToggle    = "16d77c7d-2d52-4a39-59d2-470f60ef1b20";
+    public const string BladeSkillFireBladeBuff      = "27e88d8e-3e63-4b4a-6ae3-581f71f02c31";
+    public const string BladeSkillIceBlade           = "38f99e9f-4f74-4c5b-7bf4-692f82f13d42";
+    public const string BladeSkillIceBladeToggle     = "490aaf0a-5085-4d6c-8c05-7a3f93f24e53";
+    public const string BladeSkillIceBladeBuff       = "5a1bc01b-6196-4e7d-9d16-8b4fa4f35f64";
+    public const string BladeSkillLightningBlade     = "6b2cd12c-72a7-4f8e-ae27-9c5fb5f46075";
+    public const string BladeSkillLightningBladeToggle = "7c3de23d-83b8-4a9f-bf38-ad6fc6f57186";
+    public const string BladeSkillLightningBladeBuff = "8d4ef34e-94c9-4ba0-c049-be7fd7f68297";
+    public const string BladeSkillThunderBlade       = "9e5fa45f-a5da-4cb1-d15a-cf8fe8f793a8";
+    public const string BladeSkillThunderBladeToggle = "af60b56a-b6eb-4dc2-e26b-d09ff9f8a4b9";
+    public const string BladeSkillThunderBladeBuff   = "b071c67b-c7fc-4ed3-f37c-e1afaaf9b5ca";
 
     // ── SoulKnife bonus feat ──────────────────────────────────────────────────
     public const string SoulKnifeBonusFeat           = "5a1bae8f-6196-4d6f-9016-7b85a31299c3";
