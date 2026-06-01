@@ -190,6 +190,7 @@ public static class BlueprintInit
         // ── SoulKnife ─────────────────────────────────────────────────────────
         Run(nameof(SoulKnife.SoulKnifeProficiencies),                       SoulKnife.SoulKnifeProficiencies.Configure,                       logger);
         Run(nameof(SoulKnife.Features.MindBlade.MindBlade),                 SoulKnife.Features.MindBlade.MindBlade.Configure,                 logger);
+        Run(nameof(SoulKnife.Features.MindBlade.WeaponFocusMindBlade),      SoulKnife.Features.MindBlade.WeaponFocusMindBlade.Configure,      logger);
         Run(nameof(SoulKnife.Features.MindBlade.PsychicStrike),             SoulKnife.Features.MindBlade.PsychicStrike.Configure,             logger);
         Run(nameof(SoulKnife.Features.BladeSkills.BladeSkillsSelection),    SoulKnife.Features.BladeSkills.BladeSkillsSelection.Configure,    logger);
         Run(nameof(SoulKnife.SoulKnifeClass),                               SoulKnife.SoulKnifeClass.Configure,                               logger);

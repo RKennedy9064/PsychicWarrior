@@ -4,7 +4,10 @@
 
 ### Added
 - Soulknife class (Phase 1 skeleton): full BAB, d10 HD, good Reflex and Will saves, appears in character creation and levels to 20
-- Form Mind Blade: toggle to manifest a light mind blade (1d6, 19-20/×2) bound to the primary hand
+- Form Mind Blade: at 1st level, choose the weapon your mind blade manifests as. The blade's damage and critical range are set by the weapon's form — light (1d6), one-handed (1d8), or two-handed (2d6), all 19-20/×2 — and the blade takes on the chosen weapon's appearance. Toggle it on your action bar to summon or dismiss the weapon, which is bound to your primary hand while active. You are always proficient with your mind blade, and it counts as a magic weapon.
+- Mind blade enhancement bonus scales automatically with soulknife level: +1 at 3rd, +2 at 7th, +3 at 9th, +4 at 13th, +5 at 15th
+- Weapon Focus (Mind Blade): available as a 1st-level soulknife bonus feat, granting +1 to attack rolls with your mind blade
+- Soulknife bonus feat at 1st level: choose Weapon Focus (Mind Blade), Power Attack, or Two-Weapon Fighting (Two-Weapon Fighting may be chosen without meeting its normal Dexterity requirement)
 - Psychic Strike: imbue the mind blade with destructive psychic energy (1d8 at 3rd level, scaling every four levels); charge persists through misses and can be recharged as a swift action by expending psionic focus
 - Blade Skills selection (every even level): Focused Offense (Wisdom to attack and damage while focused), Evasion, Powerful Strikes (placeholder)
 

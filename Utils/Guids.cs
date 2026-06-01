@@ -490,8 +490,33 @@ public static class Guids
     public const string SoulKnifeProficiencies       = "9e6c4bb3-a5da-4f87-c239-7aeb3d4a5b62";
 
     // ── Mind Blade ────────────────────────────────────────────────────────────
-    // Per-weapon GUIDs are generated deterministically via MD5 in MindBlade.Configure().
+    // Per-weapon-entry GUIDs are generated deterministically via MD5 in MindBlade.Configure().
     public const string MindBladeFeature             = "af7d5cc4-b6eb-4198-d34a-8bfc4e5b6c73";
+
+    // Custom weapon type blueprints (fixed stats, mutable visuals)
+    public const string MindBladeLightWeaponType     = "b19f8ee7-d91f-4a73-c34b-9c1e6f7d8e95";
+    public const string MindBladeOneHandedWeaponType = "c2a09ff8-ea20-4b84-d45c-ad2f7a8e9fa6";
+    public const string MindBladeTwoHandedWeaponType = "d3b1a009-fb31-4c95-e56d-be3a8b9fadb7";
+
+    // Custom item weapon blueprints
+    public const string MindBladeLightWeapon         = "e4c2b11a-0c42-4da6-f67e-cf4b9cafc8c8";
+    public const string MindBladeOneHandedWeapon     = "f5d3c22b-1d53-4eb7-079f-d05c0dbfd9d9";
+    public const string MindBladeTwoHandedWeapon     = "06e4d33c-2e64-4fc8-180a-e16d1ece0aea";
+
+    // Form buffs and toggles
+    public const string MindBladeLightBuff           = "4ac8177a-62a8-43ac-5c4e-25ab5c2a4e2e";
+    public const string MindBladeOneHandedBuff       = "5bd9288b-73b9-44bd-6d5f-36bc6d3b5f3f";
+    public const string MindBladeTwoHandedBuff       = "6cea399c-84ca-45ce-7e6a-47cd7e4c6040";
+    public const string MindBladeLightToggle         = "7dfb4aad-95db-46df-8f7b-58de8f5d7151";
+    public const string MindBladeOneHandedToggle     = "8eac5bbe-a6ec-47ea-9a8c-69ef9a6e8262";
+    public const string MindBladeTwoHandedToggle     = "9fbd6ccf-b7fd-48fb-ab9d-7afa0b7f9373";
+
+    // Double-weapon form (two-bladed sword, double axe, urgrosh, hooked hammer)
+    public const string MindBladeDoubleWeaponType    = "a0fce11b-c81f-4b1a-9c2d-3e4f5a6b7c8d";
+    public const string MindBladeDoublePrimaryWeapon = "b1adf22c-d92a-4c2b-ad3e-4f5a6b7c8d9e";
+    public const string MindBladeDoubleOffhandWeapon = "c2bef33d-ea3b-4d3c-be4f-5a6b7c8d9eaf";
+    public const string MindBladeDoubleBuff          = "d3caf44e-fb4c-4e4d-cf5a-6b7c8d9eafb0";
+    public const string MindBladeDoubleToggle        = "e4dbf55f-ac5d-4f5e-da6b-7c8d9eafb0c1";
 
     // ── Psychic Strike ────────────────────────────────────────────────────────
     public const string PsychicStrikeFeature         = "d2a08ff7-e91e-440c-067d-be2f718e9fa6";
@@ -507,6 +532,7 @@ public static class Guids
 
     // ── SoulKnife bonus feat ──────────────────────────────────────────────────
     public const string SoulKnifeBonusFeat           = "5a1bae8f-6196-4d6f-9016-7b85a31299c3";
+    public const string WeaponFocusMindBlade         = "6b2cbf90-7297-4e70-a127-8c96b42300d4";
 
     // ── Call Weaponry (Mind Knight path) ─────────────────────────────────────
     // Per-weapon GUIDs are generated deterministically via MD5 in CallWeaponry.Configure().

@@ -19,7 +19,9 @@ public static class SoulKnifeClass
                 "At 1st level, a soulknife gains a bonus combat feat: Power Attack or Two-Weapon Fighting."))
             .SetIcon(FeatureRefs.PowerAttackFeature.Reference.Get().Icon)
             .SetIsClassFeature()
+            .SetIgnorePrerequisites(true)
             .AddToAllFeatures(
+                Guids.WeaponFocusMindBlade,
                 FeatureRefs.PowerAttackFeature.ToString(),
                 FeatureRefs.TwoWeaponFighting.ToString())
             .Configure();

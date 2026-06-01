@@ -57,12 +57,33 @@ public class MindBladeComponent : UnitFactComponentDelegate, IUnitLevelUpHandler
         if (weapon == null) return;
 
         var slot = Owner.Descriptor.Body.PrimaryHand;
-        if (slot.HasItem && slot.Item?.Blueprint == weapon) return;
+        var secondary = Owner.Descriptor.Body.SecondaryHand;
+        Log.Info($"[MB] OnActivate ({weapon.name}): double={weapon.Double} " +
+                 $"primaryHasItem={slot.HasItem} primaryItem={(slot.HasItem ? slot.Item?.Blueprint?.name : "empty")} " +
+                 $"secHasItem={secondary?.HasItem} secLocked={secondary?.Lock.Value}");
+
+        if (slot.HasItem && slot.Item?.Blueprint == weapon)
+        {
+            Log.Info($"[MB] OnActivate ({weapon.name}): early-return, already equipped");
+            return;
+        }
+
+        // Apply the player's chosen appearance to this form's weapon type *before* equipping,
+        // so the new item picks up the right model. (The visual feature also applies on load,
+        // but doing it here guarantees correct ordering when the blade is first manifested.)
+        ApplyChosenVisual(weapon);
 
         var item = new ItemEntityWeapon(weapon) { IsIdentified = true };
+        Log.Info($"[MB] pre-equip ({weapon.name}): canInsertPrimary={slot.CanInsertItem(item)} primaryLocked={slot.Lock.Value} " +
+                 $"| possible={slot.IsPossibleInsertItems()} supported={slot.IsItemSupported(item)} " +
+                 $"canEquip={item.CanBeEquippedBy(Owner.Descriptor)} canTakeOneHand={item.CanTakeOneHand(Owner)}");
+
         Owner.Inventory.Add(item);
         slot.InsertItem(item);
         slot.Lock.Retain();
+
+        Log.Info($"[MB] post-insert ({weapon.name}): primaryHasItem={slot.HasItem} primaryItem={(slot.HasItem ? slot.Item?.Blueprint?.name : "empty")} " +
+                 $"itemWielder={(item.Wielder != null)} secHasItem={secondary?.HasItem} secItem={(secondary != null && secondary.HasItem ? secondary.Item?.Blueprint?.name : "empty")}");
 
         var visualEnch = BlueprintTool.Get<BlueprintWeaponEnchantment>(Guids.CallWeaponryVisualEnchantment);
         if (visualEnch != null)
@@ -73,7 +94,6 @@ public class MindBladeComponent : UnitFactComponentDelegate, IUnitLevelUpHandler
         _appliedEnhancementLevel = ApplyEnchantment(item, 0, classLevel);
 
         EventBus.Subscribe(this);
-        Log.Info($"[MB] Mind blade equipped ({weapon.name}) for {Owner.CharacterName}");
     }
 
     public override void OnDeactivate()
@@ -96,13 +116,61 @@ public class MindBladeComponent : UnitFactComponentDelegate, IUnitLevelUpHandler
         _appliedEnhancementLevel = 0;
     }
 
+    // Finds the visual feature the player selected for this form and applies the chosen weapon's
+    // appearance (3D model on the type) and inventory icon (on the item blueprint) before the
+    // item is created.
+    private void ApplyChosenVisual(BlueprintItemWeapon weapon)
+    {
+        var weaponType = weapon.m_Type?.Get();
+        if (weaponType == null)
+        {
+            Log.Warn($"[MB] ApplyChosenVisual: weapon {weapon.name} has no resolvable type");
+            return;
+        }
+
+        int scanned = 0;
+        foreach (var feature in Owner.Progression.Features.Enumerable)
+        {
+            var vc = feature.Blueprint.GetComponent<MindBladeVisualComponent>();
+            if (vc == null) continue;
+            scanned++;
+
+            // Compare resolved blueprints by identity — string GUID formats differ (dashes vs none).
+            var vcTargetType = BlueprintTool.Get<BlueprintWeaponType>(vc.TargetWeaponTypeGuid);
+            if (vcTargetType != weaponType) continue;
+
+            var sourceWeapon = vc.SourceWeaponRef?.Get();
+            vc.Apply(); // copies the chosen weapon's type onto the form type
+            if (sourceWeapon != null)
+            {
+                // Item-level fields drive the equipped 3D model, name, and inventory icon.
+                weapon.m_VisualParameters = sourceWeapon.m_VisualParameters;
+                weapon.m_DisplayNameText  = sourceWeapon.m_DisplayNameText;
+                if (sourceWeapon.Icon != null) weapon.m_Icon = sourceWeapon.Icon;
+            }
+            var reach = weaponType.m_AttackRange;
+            Log.Info($"[MB] ApplyChosenVisual: matched '{feature.Blueprint.name}', source={sourceWeapon?.name ?? "null"}, " +
+                     $"attackRange={reach} name={sourceWeapon?.m_DisplayNameText}");
+            return;
+        }
+
+        Log.Warn($"[MB] ApplyChosenVisual: no MindBladeVisualComponent matched type {weaponType.name} " +
+                 $"(scanned {scanned} visual features on {Owner.CharacterName})");
+    }
+
     public void HandleUnitBeforeLevelUp(UnitEntityData unit) { }
 
     public void HandleUnitAfterLevelUp(UnitEntityData unit, LevelUpController controller)
     {
-        if (unit != Owner) return;
+        // During char-gen/level-up preview this fires on component instances whose runtime is
+        // not attached; accessing Owner then throws "ComponentRuntime is unavailable". Guard it.
+        UnitEntityData owner;
+        try { owner = Owner; }
+        catch { return; }
 
-        var slot = Owner.Descriptor.Body.PrimaryHand;
+        if (unit != owner) return;
+
+        var slot = owner.Descriptor.Body.PrimaryHand;
         if (!slot.HasItem) return;
 
         var weapon = FindWeapon();
@@ -110,7 +178,7 @@ public class MindBladeComponent : UnitFactComponentDelegate, IUnitLevelUpHandler
         if (slot.Item is not ItemEntityWeapon item) return;
 
         var skClass = BlueprintTool.Get<BlueprintCharacterClass>(Guids.SoulKnifeClass);
-        var classLevel = Owner.Descriptor.Progression.GetClassLevel(skClass);
+        var classLevel = owner.Descriptor.Progression.GetClassLevel(skClass);
         _appliedEnhancementLevel = ApplyEnchantment(item, _appliedEnhancementLevel, classLevel);
     }
 
