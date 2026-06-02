@@ -74,6 +74,12 @@ public static class EnhancedMindBlade
             .SetActivationType(AbilityActivationType.Immediately)
             .SetGroup(ActivatableAbilityGroup.None)
             .SetIsOnByDefault(true)
+            // Display-only resource logic: shows the remaining pool on the icon (the action bar only draws a
+            // count for abilities that have resource logic) but never spends — the enhance toggle consumes
+            // whatever the ability toggles leave behind, computed in MindBladeEnchantments.Recompute.
+            .AddActivatableAbilityResourceLogic(
+                requiredResource: Guids.EnhancedMindBladePoolResource,
+                spendType: ActivatableAbilityResourceLogic.ResourceSpendType.Never)
             .Configure();
 
         // Ability table (cost = +N equivalent, ReqLevel = soulknife level the ability unlocks).
