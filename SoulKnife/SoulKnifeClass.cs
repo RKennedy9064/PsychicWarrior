@@ -38,7 +38,7 @@ public static class SoulKnifeClass
                 Guids.SoulKnifeBonusFeat,
                 Guids.MindBladeFeature)
             .AddToLevelEntries(2, Guids.BladeSkillsSelection)
-            .AddToLevelEntries(3, Guids.PsychicStrikeFeature)
+            .AddToLevelEntries(3, Guids.PsychicStrikeFeature, Guids.EnhancedMindBladeFeature)
             .AddToLevelEntries(4, Guids.BladeSkillsSelection)
             .AddToLevelEntries(5)
             .AddToLevelEntries(6, Guids.BladeSkillsSelection)

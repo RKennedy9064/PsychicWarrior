@@ -503,6 +503,12 @@ public static class Guids
     public const string MindBladeOneHandedWeapon     = "f5d3c22b-1d53-4eb7-079f-d05c0dbfd9d9";
     public const string MindBladeTwoHandedWeapon     = "06e4d33c-2e64-4fc8-180a-e16d1ece0aea";
 
+    // Enhanced Mind Blade (enhancement pool + special-ability toggles)
+    // Per-ability toggle/buff GUIDs are generated deterministically via MD5 in EnhancedMindBlade.Configure().
+    public const string EnhancedMindBladeFeature       = "1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d";
+    public const string EnhancedMindBladeEnhanceToggle = "2b3c4d5e-6f7a-4b8c-9d0e-1f2a3b4c5d6e";
+    public const string EnhancedMindBladeEnhanceBuff   = "3c4d5e6f-7a8b-4c9d-0e1f-2a3b4c5d6e7f";
+
     // Form buffs and toggles
     public const string MindBladeLightBuff           = "4ac8177a-62a8-43ac-5c4e-25ab5c2a4e2e";
     public const string MindBladeOneHandedBuff       = "5bd9288b-73b9-44bd-6d5f-36bc6d3b5f3f";

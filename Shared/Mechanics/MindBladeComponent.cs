@@ -23,9 +23,6 @@ public class MindBladeComponent : UnitFactComponentDelegate, IUnitLevelUpHandler
     public WeaponCategory Category;
     public BlueprintItemWeaponReference WeaponRef;
 
-    [NonSerialized]
-    private int _appliedEnhancementLevel;
-
     private static readonly Dictionary<WeaponCategory, BlueprintItemWeapon> s_Cache = [];
     private static readonly LogWrapper Log = LogWrapper.Get("PsychicWarrior");
 
@@ -94,9 +91,8 @@ public class MindBladeComponent : UnitFactComponentDelegate, IUnitLevelUpHandler
         if (visualEnch != null)
             item.AddEnchantment(visualEnch, null);
 
-        var skClass = BlueprintTool.Get<BlueprintCharacterClass>(Guids.SoulKnifeClass);
-        var classLevel = Owner.Descriptor.Progression.GetClassLevel(skClass);
-        _appliedEnhancementLevel = ApplyEnchantment(item, 0, classLevel);
+        // Enhanced Mind Blade: apply the player's current enhancement-pool allocation to the new item.
+        MindBladeEnchantments.Recompute(Owner);
 
         EventBus.Subscribe(this);
     }
@@ -117,8 +113,6 @@ public class MindBladeComponent : UnitFactComponentDelegate, IUnitLevelUpHandler
             item?.Collection?.Remove(item);
             Log.Info($"[MB] Mind blade dismissed for {Owner.CharacterName}");
         }
-
-        _appliedEnhancementLevel = 0;
     }
 
     // Finds the visual feature the player selected for this form and applies the chosen weapon's
@@ -192,66 +186,7 @@ public class MindBladeComponent : UnitFactComponentDelegate, IUnitLevelUpHandler
 
         if (unit != owner) return;
 
-        var slot = owner.Descriptor.Body.PrimaryHand;
-        if (!slot.HasItem) return;
-
-        var weapon = FindWeapon();
-        if (weapon == null || slot.Item?.Blueprint != weapon) return;
-        if (slot.Item is not ItemEntityWeapon item) return;
-
-        var skClass = BlueprintTool.Get<BlueprintCharacterClass>(Guids.SoulKnifeClass);
-        var classLevel = owner.Descriptor.Progression.GetClassLevel(skClass);
-        _appliedEnhancementLevel = ApplyEnchantment(item, _appliedEnhancementLevel, classLevel);
+        // Enhanced Mind Blade pool may have grown — reapply the current allocation.
+        MindBladeEnchantments.Recompute(owner);
     }
-
-    private static BlueprintFeature _improvedEnhancement;
-
-    private int ApplyEnchantment(ItemEntityWeapon item, int currentLevel, int classLevel)
-    {
-        var newLevel = GetEnhancementLevel(classLevel);
-
-        // Blade skill: Improved Enhancement — +1 enhancement bonus (capped at the +5 we can apply).
-        _improvedEnhancement ??= BlueprintTool.Get<BlueprintFeature>(Guids.BladeSkillImprovedEnhancement);
-        if (newLevel > 0 && _improvedEnhancement != null && Owner.Descriptor.HasFact(_improvedEnhancement))
-            newLevel = System.Math.Min(5, newLevel + 1);
-
-        if (currentLevel > 0)
-        {
-            var oldEnch = GetEnhancementEnchantment(currentLevel);
-            if (oldEnch != null)
-            {
-                var existing = item.GetEnchantment(oldEnch);
-                if (existing != null) item.RemoveEnchantment(existing);
-            }
-        }
-
-        if (newLevel > 0)
-        {
-            var ench = GetEnhancementEnchantment(newLevel);
-            if (ench != null) item.AddEnchantment(ench, null);
-        }
-
-        return newLevel;
-    }
-
-    // Enhanced Mind Blade direct enhancement bonus (max direct bonus column from SK table)
-    private static int GetEnhancementLevel(int classLevel)
-    {
-        if (classLevel >= 15) return 5;
-        if (classLevel >= 13) return 4;
-        if (classLevel >= 9)  return 3;
-        if (classLevel >= 7)  return 2;
-        if (classLevel >= 3)  return 1;
-        return 0;
-    }
-
-    private static BlueprintWeaponEnchantment GetEnhancementEnchantment(int level) => level switch
-    {
-        1 => WeaponEnchantmentRefs.Enhancement1.Reference.Get(),
-        2 => WeaponEnchantmentRefs.Enhancement2.Reference.Get(),
-        3 => WeaponEnchantmentRefs.Enhancement3.Reference.Get(),
-        4 => WeaponEnchantmentRefs.Enhancement4.Reference.Get(),
-        5 => WeaponEnchantmentRefs.Enhancement5.Reference.Get(),
-        _ => null
-    };
 }

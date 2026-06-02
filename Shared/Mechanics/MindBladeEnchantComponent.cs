@@ -1,0 +1,163 @@
+using System;
+using System.Collections.Generic;
+using BlueprintCore.Blueprints.References;
+using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Items.Ecnchantments;
+using Kingmaker.Blueprints.Items.Weapons;
+using Kingmaker.EntitySystem.Entities;
+using Kingmaker.Items;
+using Kingmaker.UnitLogic;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
+using PsychicWarrior.Utils;
+
+namespace PsychicWarrior.Shared.Mechanics;
+
+/// <summary>
+/// Enhanced Mind Blade. Carried by the buff behind each enhancement/ability toggle. Toggling one on
+/// or off recomputes the full set of enchantments applied to the equipped mind blade, enforcing the
+/// level-scaled point pool. The "enhancement" toggle (IsEnhancement) eats all remaining points up to
+/// the max direct bonus; ability toggles each cost <see cref="Cost"/> points.
+/// </summary>
+[Serializable]
+public class MindBladeEnchantComponent : UnitFactComponentDelegate
+{
+    public int Cost;
+    public BlueprintWeaponEnchantmentReference Enchantment; // ability toggles
+    public bool IsEnhancement;                              // the eat-all direct-bonus toggle
+
+    public override void OnActivate()
+    {
+        // Budget check for ability toggles: refuse if active ability costs would exceed the pool.
+        if (!IsEnhancement && MindBladeEnchantments.ActiveAbilityCost(Owner) > MindBladeEnchantments.GetPool(Owner))
+        {
+            if (Fact is Kingmaker.UnitLogic.Buffs.Buff buff) buff.Remove();
+            return;
+        }
+        MindBladeEnchantments.Recompute(Owner);
+    }
+
+    public override void OnDeactivate() => MindBladeEnchantments.Recompute(Owner);
+}
+
+/// <summary>
+/// Static engine for the Enhanced Mind Blade pool: progression math + applying the current toggle
+/// selection to the equipped mind blade item.
+/// </summary>
+public static class MindBladeEnchantments
+{
+    private static BlueprintCharacterClass _skClass;
+    private static BlueprintFeature _improvedEnhancement;
+
+    // All enchantments this system manages (Enhancement1-5 + every ability); registered by
+    // EnhancedMindBlade.Configure so Recompute can clear them before re-applying.
+    public static readonly List<BlueprintWeaponEnchantmentReference> ManagedEnchantments = [];
+
+    private static int SkLevel(UnitEntityData owner)
+    {
+        _skClass ??= BlueprintTool.Get<BlueprintCharacterClass>(Guids.SoulKnifeClass);
+        return owner.Progression.GetClassLevel(_skClass);
+    }
+
+    public static int GetPool(UnitEntityData owner)
+    {
+        int lvl = SkLevel(owner);
+        int pool = lvl < 3 ? 0 : Math.Min(9, (lvl - 1) / 2);
+        if (pool > 0 && HasImprovedEnhancement(owner)) pool += 1;
+        return pool;
+    }
+
+    public static int GetMaxDirect(UnitEntityData owner)
+    {
+        int lvl = SkLevel(owner);
+        int max =
+            lvl >= 15 ? 5 :
+            lvl >= 13 ? 4 :
+            lvl >= 9  ? 3 :
+            lvl >= 7  ? 2 :
+            lvl >= 3  ? 1 : 0;
+        if (max > 0 && HasImprovedEnhancement(owner)) max = Math.Min(5, max + 1);
+        return max;
+    }
+
+    private static bool HasImprovedEnhancement(UnitEntityData owner)
+    {
+        _improvedEnhancement ??= BlueprintTool.Get<BlueprintFeature>(Guids.BladeSkillImprovedEnhancement);
+        return _improvedEnhancement != null && owner.Descriptor.HasFact(_improvedEnhancement);
+    }
+
+    public static int ActiveAbilityCost(UnitEntityData owner)
+    {
+        int cost = 0;
+        foreach (var buff in owner.Descriptor.Buffs.Enumerable)
+        {
+            var c = buff.Blueprint.GetComponent<MindBladeEnchantComponent>();
+            if (c != null && !c.IsEnhancement) cost += c.Cost;
+        }
+        return cost;
+    }
+
+    /// <summary>Reapplies the current toggle selection to the equipped mind blade.</summary>
+    public static void Recompute(UnitEntityData owner)
+    {
+        var item = FindMindBlade(owner);
+        if (item == null) return;
+
+        foreach (var managed in ManagedEnchantments)
+        {
+            var bp = managed?.Get();
+            if (bp == null) continue;
+            var existing = item.GetEnchantment(bp);
+            if (existing != null) item.RemoveEnchantment(existing);
+        }
+
+        bool enhanceToggle = false;
+        int abilityCost = 0;
+        var abilityEnchants = new List<BlueprintWeaponEnchantment>();
+        foreach (var buff in owner.Descriptor.Buffs.Enumerable)
+        {
+            var c = buff.Blueprint.GetComponent<MindBladeEnchantComponent>();
+            if (c == null) continue;
+            if (c.IsEnhancement) { enhanceToggle = true; continue; }
+            var ench = c.Enchantment?.Get();
+            if (ench != null) { abilityEnchants.Add(ench); abilityCost += c.Cost; }
+        }
+
+        foreach (var ench in abilityEnchants)
+            item.AddEnchantment(ench, null);
+
+        if (enhanceToggle)
+        {
+            int direct = Math.Min(GetMaxDirect(owner), GetPool(owner) - abilityCost);
+            var ench = EnhancementEnchant(direct);
+            if (ench != null) item.AddEnchantment(ench, null);
+        }
+    }
+
+    private static BlueprintWeaponEnchantment EnhancementEnchant(int level) => level switch
+    {
+        1 => WeaponEnchantmentRefs.Enhancement1.Reference.Get(),
+        2 => WeaponEnchantmentRefs.Enhancement2.Reference.Get(),
+        3 => WeaponEnchantmentRefs.Enhancement3.Reference.Get(),
+        4 => WeaponEnchantmentRefs.Enhancement4.Reference.Get(),
+        5 => WeaponEnchantmentRefs.Enhancement5.Reference.Get(),
+        _ => null,
+    };
+
+    private static readonly string[] MindBladeWeaponGuids =
+    [
+        Guids.MindBladeLightWeapon, Guids.MindBladeOneHandedWeapon,
+        Guids.MindBladeTwoHandedWeapon, Guids.MindBladeDoublePrimaryWeapon,
+    ];
+
+    private static ItemEntityWeapon FindMindBlade(UnitEntityData owner)
+    {
+        var slot = owner.Descriptor.Body?.PrimaryHand;
+        if (slot == null || !slot.HasItem) return null;
+        if (slot.Item is not ItemEntityWeapon weapon || weapon.Blueprint == null) return null;
+        foreach (var guid in MindBladeWeaponGuids)
+            if (weapon.Blueprint == BlueprintTool.Get<BlueprintItemWeapon>(guid)) return weapon;
+        return null;
+    }
+}
