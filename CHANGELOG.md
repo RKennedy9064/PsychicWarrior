@@ -1,17 +1,19 @@
 # Changelog
 
-## [0.2.0] - 2026-05-31
+## [0.2.0] - 2026-06-01
 
 ### Added
 - Soulknife class (Phase 1 skeleton): full BAB, d10 HD, good Reflex and Will saves, appears in character creation and levels to 20
 - Form Mind Blade: at 1st level, choose the weapon your mind blade manifests as. The blade's damage and critical range are set by the weapon's form — light (1d6), one-handed (1d8), or two-handed (2d6), all 19-20/×2 — and the blade takes on the chosen weapon's appearance. Toggle it on your action bar to summon or dismiss the weapon, which is bound to your primary hand while active. You are always proficient with your mind blade, and it counts as a magic weapon.
-- Enhanced Mind Blade: at 3rd level the mind blade gains an enhancement pool that grows with level (up to +9 points). Allocate it between weapon special abilities (one toggle each — Flaming, Frost, Shock, Corrosive, Keen, Ghost Touch, Vicious, Agile, the matching +2 bursts, Holy, Unholy, Anarchic, Axiomatic, Brilliant Energy) and a direct enhancement bonus via the "Enhance Mind Blade" eat-all toggle (capped at the level's max direct bonus: +1 at 3rd, +2 at 7th, +3 at 9th, +4 at 13th, +5 at 15th). Toggle abilities first, then enable the enhancement toggle to spend the remaining points
+- Enhanced Mind Blade: at 3rd level the mind blade gains an enhancement pool that grows with level (up to +9 points). Allocate it between weapon special abilities (one toggle each) and a direct enhancement bonus via the "Enhance Mind Blade" eat-all toggle (capped at the level's max direct bonus: +1 at 3rd, +2 at 7th, +3 at 9th, +4 at 13th, +5 at 15th). Special abilities unlock by level: +1 abilities (Flaming, Frost, Shock, Corrosive, Keen, Ghost Touch, Vicious, Agile) at 5th level, +2 abilities (Flaming Burst, Icy Burst, Shocking Burst, Corrosive Burst, Holy, Unholy, Anarchic, Axiomatic) at 7th, and Brilliant Energy at 12th. Toggle abilities first, then enable the enhancement toggle to spend the remaining points
 - Weapon Focus (Mind Blade): available as a 1st-level soulknife bonus feat, granting +1 to attack rolls with your mind blade
 - Soulknife bonus feat at 1st level: choose Weapon Focus (Mind Blade), Power Attack, or Two-Weapon Fighting (Two-Weapon Fighting may be chosen without meeting its normal Dexterity requirement)
 - Psychic Strike: imbue the mind blade with destructive psychic energy (1d8 at 3rd level, scaling every four levels); charge persists through misses and can be recharged as a swift action by expending psionic focus
 - Blade Skills selection (every even level): Focused Offense (Wisdom to attack and damage while focused), Evasion, Powerful Strikes (placeholder)
 
-### Changed
+## [0.1.4] - 2026-05-31
+
+### Added
 - Advanced Mind Knight Path feat: when using the Mind Knight Maneuver, gain a competence bonus to attack rolls equal to +1 per four psychic warrior levels
 - Advanced Feral Path feat: while in Feral Trance, the trance competence bonus also applies to damage rolls with natural attacks and unarmed strikes
 - Advanced Weaponmaster Path feat: while in Weaponmaster Trance, your trance competence bonus also applies to weapon damage rolls

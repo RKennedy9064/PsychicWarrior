@@ -508,6 +508,11 @@ public static class Guids
     public const string EnhancedMindBladeFeature       = "1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d";
     public const string EnhancedMindBladeEnhanceToggle = "2b3c4d5e-6f7a-4b8c-9d0e-1f2a3b4c5d6e";
     public const string EnhancedMindBladeEnhanceBuff   = "3c4d5e6f-7a8b-4c9d-0e1f-2a3b4c5d6e7f";
+    public const string EnhancedMindBladePoolResource  = "7a8b9c0d-1e2f-4a3b-4c5d-6e7f8a9b0c1d";
+    // Ability-tier features, granted at the level each tier of special abilities unlocks.
+    public const string EnhancedMindBladeAbilities5    = "4d5e6f7a-8b9c-4d0e-1f2a-3b4c5d6e7f8a";
+    public const string EnhancedMindBladeAbilities7    = "5e6f7a8b-9c0d-4e1f-2a3b-4c5d6e7f8a9b";
+    public const string EnhancedMindBladeAbilities12   = "6f7a8b9c-0d1e-4f2a-3b4c-5d6e7f8a9b0c";
 
     // Form buffs and toggles
     public const string MindBladeLightBuff           = "4ac8177a-62a8-43ac-5c4e-25ab5c2a4e2e";

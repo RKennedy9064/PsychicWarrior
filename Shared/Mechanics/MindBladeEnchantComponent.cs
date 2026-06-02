@@ -27,16 +27,10 @@ public class MindBladeEnchantComponent : UnitFactComponentDelegate
     public BlueprintWeaponEnchantmentReference Enchantment; // ability toggles
     public bool IsEnhancement;                              // the eat-all direct-bonus toggle
 
-    public override void OnActivate()
-    {
-        // Budget check for ability toggles: refuse if active ability costs would exceed the pool.
-        if (!IsEnhancement && MindBladeEnchantments.ActiveAbilityCost(Owner) > MindBladeEnchantments.GetPool(Owner))
-        {
-            if (Fact is Kingmaker.UnitLogic.Buffs.Buff buff) buff.Remove();
-            return;
-        }
-        MindBladeEnchantments.Recompute(Owner);
-    }
+    // Budget + the on-icon point count are handled by the game's ActivatableAbilityResourceLogic against
+    // the pool resource (see EnhancedMindBlade + MindBladeEnchantPoolPatch), so this component only
+    // (re)applies the current selection of enchantments to the equipped mind blade.
+    public override void OnActivate() => MindBladeEnchantments.Recompute(Owner);
 
     public override void OnDeactivate() => MindBladeEnchantments.Recompute(Owner);
 }
@@ -53,6 +47,11 @@ public static class MindBladeEnchantments
     // All enchantments this system manages (Enhancement1-5 + every ability); registered by
     // EnhancedMindBlade.Configure so Recompute can clear them before re-applying.
     public static readonly List<BlueprintWeaponEnchantmentReference> ManagedEnchantments = [];
+
+    // Ability-toggle blueprint GUID (dashed) -> pool cost (+N). Populated by EnhancedMindBlade.Configure;
+    // read by MindBladeEnchantPoolPatch to charge/darken the correct amount per toggle.
+    public static readonly Dictionary<string, int> AbilityToggleCosts =
+        new(StringComparer.OrdinalIgnoreCase);
 
     private static int SkLevel(UnitEntityData owner)
     {
