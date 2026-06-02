@@ -200,6 +200,9 @@ public static class BlueprintInit
         Run(nameof(SoulKnife.Features.BladeSkills.CombatBladeSkills),       SoulKnife.Features.BladeSkills.CombatBladeSkills.Configure,       logger);
         Run(nameof(SoulKnife.Features.BladeSkills.BladeSkillsSelection),    SoulKnife.Features.BladeSkills.BladeSkillsSelection.Configure,    logger);
         Run(nameof(SoulKnife.SoulKnifeClass),                               SoulKnife.SoulKnifeClass.Configure,                               logger);
+        // Recommended build — after the class + its features/selections exist (drives the
+        // "Premade Build Balance" radar + "Use Recommended Build" button on the class screen).
+        Run(nameof(SoulKnife.Features.SoulKnifePrebuild),                   SoulKnife.Features.SoulKnifePrebuild.Configure,                   logger);
 
         // ── Class registration ─────────────────────────────────────────────────
         try

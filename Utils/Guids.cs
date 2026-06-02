@@ -487,6 +487,7 @@ public static class Guids
     // ── SoulKnife class ──────────────────────────────────────────────────────
     public const string SoulKnifeClass               = "7c4a2f91-e3b8-4d65-a017-58c91b2e3f40";
     public const string SoulKnifeProgression         = "8d5b3aa2-f4c9-4e76-b128-69da2c3f4a51";
+    public const string SoulKnifePrebuild            = "9f8e7d6c-5b4a-4938-8271-60c5f4e3d2b1";
     public const string SoulKnifeProficiencies       = "9e6c4bb3-a5da-4f87-c239-7aeb3d4a5b62";
 
     // ── Mind Blade ────────────────────────────────────────────────────────────

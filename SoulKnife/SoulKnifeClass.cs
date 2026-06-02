@@ -87,6 +87,7 @@ public static class SoulKnifeClass
             .SetRecommendedAttributes(StatType.Dexterity, StatType.Wisdom)
             .SetNotRecommendedAttributes(StatType.Charisma)
             .SetSignatureAbilities(Guids.MindBladeFeature, Guids.PsychicStrikeFeature)
+            .SetDefaultBuild(Guids.SoulKnifePrebuild)
             .OnConfigure(bp =>
             {
                 var fighter = CharacterClassRefs.FighterClass.Reference.Get();
