@@ -30,7 +30,10 @@ public class MindBladeTripOnHitComponent : UnitFactComponentDelegate,
         if (evt.Target == null) return;
         if (!IsMindBlade(evt.Weapon)) return;
 
-        var maneuver = new RuleCombatManeuver(evt.Initiator, evt.Target, CombatManeuver.Trip, evt.AttackRoll.AttackBonusRule);
+        var maneuver = new RuleCombatManeuver(evt.Initiator, evt.Target, CombatManeuver.Trip, evt.AttackRoll.AttackBonusRule)
+        {
+            Reason = new RuleReason(Fact),
+        };
         Rulebook.Trigger(maneuver);
     }
 

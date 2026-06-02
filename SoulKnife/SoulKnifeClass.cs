@@ -79,6 +79,7 @@ public static class SoulKnifeClass
                 StatType.SkillThievery,
                 StatType.SkillUseMagicDevice)
             .SetProgression(progression)
+            .SetStartingItems(ItemArmorRefs.ScalemailStandard.Reference.Get())
             .SetStartingGold(411)
             .SetPrimaryColor(6)
             .SetSecondaryColor(14)

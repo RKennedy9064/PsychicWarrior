@@ -53,6 +53,10 @@ public class ExplodingCriticalComponent : UnitFactComponentDelegate,
         focus.Remove();
 
         var raw = WeaponInheritedDamage.Build(evt.Weapon, new DiceFormula(numDice, DiceType.D8), alignmentBypassAll: false);
-        Rulebook.Trigger(new RuleDealDamage(evt.Initiator, evt.Target, new DamageBundle(raw)));
+        Rulebook.Trigger(new RuleDealDamage(evt.Initiator, evt.Target, new DamageBundle(raw))
+        {
+            Reason = new RuleReason(Fact),
+            ForceUseReasonAsSource = true,
+        });
     }
 }

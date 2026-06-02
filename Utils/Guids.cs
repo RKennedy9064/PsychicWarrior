@@ -527,9 +527,11 @@ public static class Guids
     // ── Blade Skills ──────────────────────────────────────────────────────────
     public const string BladeSkillsSelection         = "16e4c33b-2d52-481a-4bc1-f263050ece4e";
     public const string BladeSkillFocusedOffense     = "27f5d44c-3e63-492b-5cd2-374160fdf55f";
+    public const string BladeSkillFocusedOffenseBuff = "38068c6e-4f74-4a3c-6ee3-485271fe66e0";
     public const string BladeSkillEvasion            = "38068c5d-4f74-4b4d-7ef4-596381907771";
     public const string BladeSkillPowerfulStrikes    = "490a9d7e-5085-4c5e-8f05-6a74920188b2";
     public const string BladeSkillFocusedDefense     = "5a1bb08f-6196-4e5c-9d16-8b85a42399c4";
+    public const string BladeSkillFocusedDefenseBuff = "6b2cc190-72a7-4f6d-ae27-9c96b53400e5";
     public const string BladeSkillImprovedEvasion    = "6b2cc19a-72a7-4f6d-ae27-9c96b53400d5";
     public const string BladeSkillImprovedEnhancement= "7c3dd2ab-83b8-407e-bf38-ad07c64511e6";
     public const string BladeSkillVampiricBlade      = "8d4ee3bc-94c9-4180-c049-be18d75622f7";
@@ -585,6 +587,18 @@ public static class Guids
     public const string BladeSkillThunderBlade       = "9e5fa45f-a5da-4cb1-d15a-cf8fe8f793a8";
     public const string BladeSkillThunderBladeToggle = "af60b56a-b6eb-4dc2-e26b-d09ff9f8a4b9";
     public const string BladeSkillThunderBladeBuff   = "b071c67b-c7fc-4ed3-f37c-e1afaaf9b5ca";
+
+    // Energy blade secondary riders (require the matching energy blade)
+    public const string BladeSkillFirestorm          = "c182d78c-d80d-4ef4-048d-f2bac20c6edb";
+    public const string BladeSkillFreezingIce        = "d293e89d-e91e-40f5-159e-03cbd31d7fec";
+    public const string BladeSkillLightningArc       = "e3a4f9ae-fa2f-4106-26af-14dce42e80fd";
+    public const string BladeSkillResoundingThunder  = "f4b60abf-0b30-4217-37b0-25edf53f910e";
+
+    // Reach / charge skills
+    public const string BladeSkillExtendedStrike       = "05c71bc0-1c41-4328-48c1-360ad64fa21f";
+    public const string BladeSkillExtendedStrikeAbility= "16d82cd1-2d52-4439-59d2-471be75fb320";
+    public const string BladeSkillExtendedStrikeBuff   = "27e93de2-3e63-454a-6ae3-582cf86fc431";
+    public const string BladeSkillFuriousCharge        = "38fa4ef3-4f74-465b-7bf4-693da97fd542";
 
     // ── SoulKnife bonus feat ──────────────────────────────────────────────────
     public const string SoulKnifeBonusFeat           = "5a1bae8f-6196-4d6f-9016-7b85a31299c3";

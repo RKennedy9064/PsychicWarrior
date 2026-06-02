@@ -192,6 +192,8 @@ public static class BlueprintInit
         Run(nameof(SoulKnife.Features.MindBlade.MindBlade),                 SoulKnife.Features.MindBlade.MindBlade.Configure,                 logger);
         Run(nameof(SoulKnife.Features.MindBlade.WeaponFocusMindBlade),      SoulKnife.Features.MindBlade.WeaponFocusMindBlade.Configure,      logger);
         Run(nameof(SoulKnife.Features.MindBlade.PsychicStrike),             SoulKnife.Features.MindBlade.PsychicStrike.Configure,             logger);
+        Run(nameof(SoulKnife.Features.BladeSkills.FocusedOffense),         SoulKnife.Features.BladeSkills.FocusedOffense.Configure,          logger);
+        Run(nameof(SoulKnife.Features.BladeSkills.FocusedDefense),         SoulKnife.Features.BladeSkills.FocusedDefense.Configure,          logger);
         Run(nameof(SoulKnife.Features.BladeSkills.EnergyBlades),            SoulKnife.Features.BladeSkills.EnergyBlades.Configure,            logger);
         Run(nameof(SoulKnife.Features.BladeSkills.MobilityBladeSkills),     SoulKnife.Features.BladeSkills.MobilityBladeSkills.Configure,     logger);
         Run(nameof(SoulKnife.Features.BladeSkills.CombatBladeSkills),       SoulKnife.Features.BladeSkills.CombatBladeSkills.Configure,       logger);

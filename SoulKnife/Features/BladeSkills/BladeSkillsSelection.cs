@@ -46,23 +46,8 @@ public static class BladeSkillsSelection
 
     public static void Configure()
     {
-        var focusedOffense = FeatureConfigurator.New("SKFocusedOffense", Guids.BladeSkillFocusedOffense)
-            .SetDisplayName(Loc.Str("SK.FocusedOffense.Name", "Focused Offense"))
-            .SetDescription(Loc.Str("SK.FocusedOffense.Desc",
-                "While maintaining psionic focus, you add your Wisdom modifier as an insight bonus to attack rolls and damage rolls."))
-            .SetIcon(FeatureRefs.WeaponSpecializationGreatsword.Reference.Get().Icon)
-            .SetIsClassFeature()
-            .AddComponent(new FocusedOffenseComponent())
-            .Configure();
-
-        var focusedDefense = FeatureConfigurator.New("SKFocusedDefense", Guids.BladeSkillFocusedDefense)
-            .SetDisplayName(Loc.Str("SK.FocusedDefense.Name", "Focused Defense"))
-            .SetDescription(Loc.Str("SK.FocusedDefense.Desc",
-                "While maintaining psionic focus, you add your Wisdom modifier as a dodge bonus to your Armor Class."))
-            .SetIcon(FeatureRefs.Dodge.Reference.Get().Icon)
-            .SetIsClassFeature()
-            .AddComponent(new FocusedDefenseComponent())
-            .Configure();
+        // Focused Offense and Focused Defense are configured in their own files
+        // (FocusedOffense.Configure / FocusedDefense.Configure), referenced by GUID below.
 
         var evasion = FeatureConfigurator.New("SKBladeSkillEvasion", Guids.BladeSkillEvasion)
             .SetDisplayName(Loc.Str("SK.Evasion.Name", "Evasion"))
@@ -218,17 +203,18 @@ public static class BladeSkillsSelection
             .Configure();
 
         // Psionic Training is itself a feature selection; picking it in the Blade Skill list
-        // cascades the level-up UI into the psionic feat choice.
-        var psionicTraining = FeatureSelectionConfigurator.New("SKPsionicTraining", Guids.BladeSkillPsionicTraining)
+        // cascades the level-up UI into the psionic feat choice. Populate via AddToAllFeatures
+        // (setting m_AllFeatures in OnConfigure is overwritten by Configure()).
+        var psionicTrainingConf = FeatureSelectionConfigurator.New("SKPsionicTraining", Guids.BladeSkillPsionicTraining)
             .SetDisplayName(Loc.Str("SK.PsionicTraining.Name", "Psionic Training"))
             .SetDescription(Loc.Str("SK.PsionicTraining.Desc",
                 "You gain a psionic feat of your choice. You must meet the feat's prerequisites."))
             .SetIcon(FeatureRefs.MartialWeaponProficiency.Reference.Get().Icon)
             .SetIsClassFeature()
-            .SetIgnorePrerequisites(false)
-            .OnConfigure(bp =>
-                bp.m_AllFeatures = [.. PsionicFeats.Select(g => BlueprintTool.GetRef<Kingmaker.Blueprints.BlueprintFeatureReference>(g))])
-            .Configure();
+            .SetIgnorePrerequisites(false);
+        foreach (var g in PsionicFeats)
+            psionicTrainingConf = psionicTrainingConf.AddToAllFeatures(g);
+        var psionicTraining = psionicTrainingConf.Configure();
 
         FeatureSelectionConfigurator.New("SKBladeSkillsSelection", Guids.BladeSkillsSelection)
             .SetDisplayName(Loc.Str("SK.BladeSkills.Name", "Blade Skill"))
@@ -237,8 +223,8 @@ public static class BladeSkillsSelection
             .SetIcon(AbilityRefs.MagicWeapon.Reference.Get().Icon)
             .SetIsClassFeature()
             .AddToAllFeatures(
-                focusedOffense,
-                focusedDefense,
+                Guids.BladeSkillFocusedOffense,
+                Guids.BladeSkillFocusedDefense,
                 evasion,
                 improvedEvasion,
                 powerfulStrikes,
@@ -267,7 +253,13 @@ public static class BladeSkillsSelection
                 Guids.BladeSkillWingClip,
                 Guids.BladeSkillDispellingStrike,
                 Guids.BladeSkillPsychokineticBlast,
-                Guids.BladeSkillMarkOfTheChallenger)
+                Guids.BladeSkillMarkOfTheChallenger,
+                Guids.BladeSkillFirestorm,
+                Guids.BladeSkillFreezingIce,
+                Guids.BladeSkillLightningArc,
+                Guids.BladeSkillResoundingThunder,
+                Guids.BladeSkillExtendedStrike,
+                Guids.BladeSkillFuriousCharge)
             .Configure();
     }
 }

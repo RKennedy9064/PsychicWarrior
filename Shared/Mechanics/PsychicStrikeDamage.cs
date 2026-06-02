@@ -59,7 +59,11 @@ public class PsychicStrikeDamage : UnitFactComponentDelegate,
         buff.Remove();
 
         var raw = WeaponInheritedDamage.Build(evt.Weapon, new DiceFormula(numDice, DiceType.D8), alignmentBypassAll: false);
-        var damageRule = Rulebook.Trigger(new RuleDealDamage(evt.Initiator, evt.Target, new DamageBundle(raw)));
+        var damageRule = Rulebook.Trigger(new RuleDealDamage(evt.Initiator, evt.Target, new DamageBundle(raw))
+        {
+            Reason = new RuleReason(Fact),
+            ForceUseReasonAsSource = true,
+        });
 
         // Blade skill: Vampiric Blade — heal the soulknife for half the psychic strike damage dealt.
         _vampiricBlade ??= BlueprintTool.Get<BlueprintFeature>(Guids.BladeSkillVampiricBlade);

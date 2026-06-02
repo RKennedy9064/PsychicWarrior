@@ -148,6 +148,17 @@ public static class CombatBladeSkills
 
         BuildPsychokineticBlast();
         BuildMarkOfTheChallenger();
+
+        // Furious Charge — extra damage on a charge attack (reuses the Powerful Charge mechanic).
+        FeatureConfigurator.New("SKFuriousCharge", Guids.BladeSkillFuriousCharge)
+            .SetDisplayName(Loc.Str("SK.FuriousCharge.Name", "Furious Charge"))
+            .SetDescription(Loc.Str("SK.FuriousCharge.Desc",
+                "When you charge, your mind blade strikes with extra force, dealing 2 additional points of damage on the charge attack."))
+            .SetIcon(AbilityRefs.ChargeAbility.Reference.Get().Icon)
+            .SetIsClassFeature()
+            .AddPrerequisiteClassLevel(Guids.SoulKnifeClass, 8)
+            .AddPowerfulCharge(useContextBonus: true, value: 2)
+            .Configure();
     }
 
     // Psychokinetic Blast — expend a psychic strike charge to deal its damage to the target and
@@ -186,7 +197,7 @@ public static class CombatBladeSkills
     private static void BuildMarkOfTheChallenger()
     {
         var buff = BuffConfigurator.New("SKMarkOfTheChallengerBuff", Guids.BladeSkillMarkOfTheChallengerBuff)
-            .SetDisplayName(Loc.Str("SK.MarkOfTheChallenger.Name", "Marked"))
+            .SetDisplayName(Loc.Str("SK.MarkOfTheChallenger.BuffName", "Marked"))
             .SetDescription(Loc.Str("SK.MarkOfTheChallenger.BuffDesc",
                 "Goaded by the soulknife: −2 penalty on attack rolls."))
             .SetIcon(AbilityRefs.CauseFear.Reference.Get().Icon)

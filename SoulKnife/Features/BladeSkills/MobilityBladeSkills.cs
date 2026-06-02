@@ -7,6 +7,7 @@ using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.References;
 using BlueprintCore.Utils;
+using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Designers.Mechanics.Buffs;
 using Kingmaker.Enums;
@@ -36,6 +37,41 @@ public static class MobilityBladeSkills
             AbilityRange.Medium, 10, prerequisiteFeature: Guids.BladeSkillGhostStep);
 
         BuildReachingBlade();
+        BuildExtendedStrike();
+    }
+
+    // Extended Strike — a brief burst of extended reach (1 round). Reuses the reach-doubling buff.
+    private static void BuildExtendedStrike()
+    {
+        var buff = BuffConfigurator.New("SKExtendedStrikeBuff", Guids.BladeSkillExtendedStrikeBuff)
+            .SetDisplayName(Loc.Str("SK.ExtendedStrike.Name", "Extended Strike"))
+            .SetDescription(Loc.Str("SK.ExtendedStrike.BuffDesc",
+                "Your mind blade extends, doubling your natural reach until the start of your next turn."))
+            .SetIcon(AbilityRefs.EnlargePerson.Reference.Get().Icon)
+            .AddComponent(new ReachMultiplicator { m_Multiplicator = 2, m_Descriptor = ModifierDescriptor.UntypedStackable })
+            .Configure();
+
+        AbilityConfigurator.New("SKExtendedStrikeAbility", Guids.BladeSkillExtendedStrikeAbility)
+            .SetDisplayName(Loc.Str("SK.ExtendedStrike.Name", "Extended Strike"))
+            .SetDescription(Loc.Str("SK.ExtendedStrike.AbDesc",
+                "Lengthen your mind blade, doubling your natural reach until the start of your next turn so you can strike a distant foe."))
+            .SetIcon(AbilityRefs.EnlargePerson.Reference.Get().Icon)
+            .SetType(AbilityType.Supernatural)
+            .SetRange(AbilityRange.Personal)
+            .SetActionType(UnitCommand.CommandType.Swift)
+            .SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Omni)
+            .AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuff(buff, ContextDuration.Fixed(1)))
+            .Configure();
+
+        FeatureConfigurator.New("SKExtendedStrike", Guids.BladeSkillExtendedStrike)
+            .SetDisplayName(Loc.Str("SK.ExtendedStrike.Name", "Extended Strike"))
+            .SetDescription(Loc.Str("SK.ExtendedStrike.Desc",
+                "As a swift action, you can lengthen your mind blade to double your natural reach until the start of your next turn."))
+            .SetIcon(AbilityRefs.EnlargePerson.Reference.Get().Icon)
+            .SetIsClassFeature()
+            .AddFacts([Guids.BladeSkillExtendedStrikeAbility])
+            .AddPrerequisiteClassLevel(Guids.SoulKnifeClass, 12)
+            .Configure();
     }
 
     private static void BuildTeleport(string name, string featureGuid, string abilityGuid,
@@ -79,7 +115,7 @@ public static class MobilityBladeSkills
     {
         var buff = BuffConfigurator.New("SKReachingBladeBuff", Guids.BladeSkillReachingBladeBuff)
             .SetDisplayName(Loc.Str("SK.ReachingBlade.Name", "Reaching Blade"))
-            .SetDescription(Loc.Str("SK.ReachingBlade.Desc",
+            .SetDescription(Loc.Str("SK.ReachingBlade.BuffDesc",
                 "Your mind blade extends, doubling your natural reach so you can strike foes at a distance."))
             .SetIcon(AbilityRefs.EnlargePerson.Reference.Get().Icon)
             .AddComponent(new ReachMultiplicator { m_Multiplicator = 2, m_Descriptor = ModifierDescriptor.UntypedStackable })
@@ -87,7 +123,7 @@ public static class MobilityBladeSkills
 
         var toggle = ActivatableAbilityConfigurator.New("SKReachingBladeToggle", Guids.BladeSkillReachingBladeToggle)
             .SetDisplayName(Loc.Str("SK.ReachingBlade.Name", "Reaching Blade"))
-            .SetDescription(Loc.Str("SK.ReachingBlade.Desc",
+            .SetDescription(Loc.Str("SK.ReachingBlade.ToggleDesc",
                 "Toggle. Your mind blade extends, doubling your natural reach so you can strike foes at a distance."))
             .SetIcon(AbilityRefs.EnlargePerson.Reference.Get().Icon)
             .SetBuff(buff)

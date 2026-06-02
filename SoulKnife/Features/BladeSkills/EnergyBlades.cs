@@ -29,6 +29,39 @@ public static class EnergyBlades
             AbilityRefs.CallLightning.Reference.Get().Icon);
         Build("SKThunderBlade", Guids.BladeSkillThunderBlade, "Thunder Blade", DamageEnergyType.Sonic,
             AbilityRefs.ResistSonic.Reference.Get().Icon);
+
+        // Secondary riders — each requires the matching energy blade and adds a further +1d10 of
+        // that energy on a mind blade hit. (Adaptation of the tabletop delayed-AoE riders, which
+        // require positional/end-of-turn tracking WotR can't express cleanly.)
+        BuildRider("SKFirestorm", Guids.BladeSkillFirestorm, Guids.BladeSkillFireBlade, "Firestorm",
+            DamageEnergyType.Fire, AbilityRefs.BurningHands.Reference.Get().Icon);
+        BuildRider("SKFreezingIce", Guids.BladeSkillFreezingIce, Guids.BladeSkillIceBlade, "Freezing Ice",
+            DamageEnergyType.Cold, AbilityRefs.RayOfFrost.Reference.Get().Icon);
+        BuildRider("SKLightningArc", Guids.BladeSkillLightningArc, Guids.BladeSkillLightningBlade, "Lightning Arc",
+            DamageEnergyType.Electricity, AbilityRefs.CallLightning.Reference.Get().Icon);
+        BuildRider("SKResoundingThunder", Guids.BladeSkillResoundingThunder, Guids.BladeSkillThunderBlade, "Resounding Thunder",
+            DamageEnergyType.Sonic, AbilityRefs.ResistSonic.Reference.Get().Icon);
+    }
+
+    private static void BuildRider(string name, string guid, string requiredEnergyBlade, string displayName,
+        DamageEnergyType energyType, UnityEngine.Sprite icon)
+    {
+        var energyName = energyType.ToString().ToLower();
+        FeatureConfigurator.New(name, guid)
+            .SetDisplayName(Loc.Str($"SK.{name}.Name", displayName))
+            .SetDescription(Loc.Str($"SK.{name}.Desc",
+                $"Your {energyName} mind blade burns hotter: each successful melee hit deals an additional 1d10 {energyName} damage."))
+            .SetIcon(icon)
+            .SetIsClassFeature()
+            .AddPrerequisiteFeature(requiredEnergyBlade)
+            .AddInitiatorAttackWithWeaponTrigger(
+                action: ActionsBuilder.New().DealDamage(
+                    damageType: DamageTypes.Energy(energyType),
+                    value: ContextDice.Value(DiceType.D10, 1)),
+                onlyHit: true,
+                checkWeaponRangeType: true,
+                rangeType: WeaponRangeType.Melee)
+            .Configure();
     }
 
     private static void Build(string name, string guid, string displayName,
